@@ -2448,6 +2448,99 @@ function caseRouteBoard(currentPath, lang) {
     </div>`;
 }
 
+const caseSpotlightSlugs = [
+  "pages-deploy-diagnosis",
+  "browser-page-review",
+  "docs-site-redesign",
+  "spreadsheet-cleanup",
+  "log-error-diagnosis",
+  "remote-service-health-check"
+];
+
+const caseImpactProfiles = {
+  "pages-deploy-diagnosis": {
+    signal: b("失败通知不能定位根因，必须进入 job steps 找第一个红色步骤。", "The failure notice cannot locate root cause; job steps must reveal the first red step."),
+    cost: b("如果只看邮件，容易把 workflow、artifact 和 Pages 设置混在一起改。", "If you only read the email, workflow, artifact, and Pages settings get mixed into one fix."),
+    proof: b("用本地 build/check、新 run 和线上 200 响应形成闭环。", "Close the loop with local build/check, a new run, and a live 200 response."),
+    reuse: b("适合任何静态站、文档站或个人项目发布失败排查。", "Useful for any static site, documentation site, or personal project deployment failure.")
+  },
+  "browser-page-review": {
+    signal: b("DOM 看起来正常，但手机截图暴露按钮拥挤和表格滚动提示不足。", "The DOM looked fine, but mobile screenshots exposed cramped buttons and weak table scroll cues."),
+    cost: b("如果没有截图证据，页面问题会在真实设备上才被发现。", "Without screenshot evidence, page issues are found only on real devices."),
+    proof: b("桌面、手机、控制台和资源状态一起进入问题表。", "Desktop, mobile, console, and asset state all enter the issue table."),
+    reuse: b("适合上线前页面巡检、活动页检查和登录态只读核查。", "Useful for pre-launch page review, campaign page checks, and signed-in read-only review.")
+  },
+  "docs-site-redesign": {
+    signal: b("视觉改版不能只看首页，必须用页面数量、链接和截图证明发布链路没断。", "A visual redesign cannot be judged by the home page alone; page count, links, and screenshots must prove the publish chain remains intact."),
+    cost: b("如果只改样式，最容易漏掉移动端、生成器模板和 README 展示。", "If only styles are changed, mobile layout, generator templates, and README presentation are easy to miss."),
+    proof: b("构建、链接、禁用词、桌面截图和手机视口一起验收。", "Build, links, blocked terms, desktop screenshots, and mobile viewports are accepted together."),
+    reuse: b("适合批量改版、主题迁移和站点视觉升级。", "Useful for bulk redesigns, theme migration, and site visual upgrades.")
+  },
+  "spreadsheet-cleanup": {
+    signal: b("表格清洗先保留原始行号，再分类缺失、重复和异常值。", "Spreadsheet cleanup preserves original row numbers before classifying missing values, duplicates, and outliers."),
+    cost: b("直接改表会破坏追溯链，后续很难知道哪一行被改过。", "Editing the sheet directly breaks traceability and makes changed rows hard to identify later."),
+    proof: b("画像、异常表、清洗建议和人工复核表分开交付。", "Profile, anomaly table, cleanup suggestions, and human review sheet are delivered separately."),
+    reuse: b("适合运营数据、报名表、费用表和内容清单整理。", "Useful for operations data, signup sheets, expense tables, and content inventories.")
+  },
+  "log-error-diagnosis": {
+    signal: b("先从第一条异常和重复报错频次判断根因方向。", "Start from the first exception and repeated error frequency to judge the root-cause direction."),
+    cost: b("如果直接改代码，可能绕过真正的配置、依赖或环境问题。", "Editing code directly can bypass the real configuration, dependency, or environment problem."),
+    proof: b("日志片段、根因假设、最小修复和复测命令放在同一条链路里。", "Log excerpt, root-cause hypothesis, minimal fix, and retest commands stay in one chain."),
+    reuse: b("适合本地服务启动失败、CI 红灯和线上错误摘要分析。", "Useful for local service startup failures, CI red runs, and live error summaries.")
+  },
+  "remote-service-health-check": {
+    signal: b("先区分服务不可达、依赖异常、配置变更和短暂波动。", "Separate unreachable service, dependency failure, configuration change, and transient fluctuation first."),
+    cost: b("没有健康信号分层，容易把临时抖动当成需要重启的故障。", "Without layered health signals, a transient blip can be mistaken for a restart-worthy incident."),
+    proof: b("健康信号、修复建议、复测状态和回退判断一起交付。", "Health signals, fix suggestions, retest state, and rollback judgment are delivered together."),
+    reuse: b("适合个人服务器、小工具服务和定期健康检查。", "Useful for personal servers, small tool services, and scheduled health checks.")
+  }
+};
+
+function caseImpactProfile(recipe) {
+  const slug = artifactSlug(recipe);
+  return caseImpactProfiles[slug] || {
+    signal: operationTrace(recipe).snapshot.firstSignal,
+    cost: recipe.failureNotes[0][1],
+    proof: operationTrace(recipe).snapshot.finalSignal,
+    reuse: recipe.audience
+  };
+}
+
+function caseSpotlightPanel(currentPath, lang, options = {}) {
+  const isZh = lang === "zh";
+  const limit = options.limit ?? caseSpotlightSlugs.length;
+  const items = caseSpotlightSlugs.slice(0, limit).map(caseBySlug).filter(Boolean);
+  return `
+    <section class="case-spotlight-panel">
+      <header class="section-title">
+        <h2>${isZh ? "强实战入口" : "High-Impact Field Recipes"}</h2>
+        ${paragraph(b(
+          "这组案例优先展示真实任务里最容易出错、最需要证据、也最容易迁移到自己工作的场景。",
+          "These recipes highlight tasks where failures are common, evidence matters, and the workflow can be adapted quickly."
+        ), lang)}
+      </header>
+      <div class="spotlight-grid">
+        ${items.map((recipe) => {
+          const profile = caseImpactProfile(recipe);
+          return `
+            <a class="spotlight-card" href="${relativeLink(currentPath, recipe.path)}">
+              <img src="${relativeLink(currentPath, `${artifactBase(recipe)}/20-interaction-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+              <div>
+                <span>${escapeHtml(textOf(recipe.domain, lang))}</span>
+                <h3>${escapeHtml(textOf(recipe.title, lang))}</h3>
+                <p>${escapeHtml(textOf(profile.signal, lang))}</p>
+                <dl>
+                  <div><dt>${isZh ? "失败代价" : "Failure Cost"}</dt><dd>${escapeHtml(textOf(profile.cost, lang))}</dd></div>
+                  <div><dt>${isZh ? "交付证据" : "Delivery Proof"}</dt><dd>${escapeHtml(textOf(profile.proof, lang))}</dd></div>
+                  <div><dt>${isZh ? "可迁移到" : "Reusable For"}</dt><dd>${escapeHtml(textOf(profile.reuse, lang))}</dd></div>
+                </dl>
+              </div>
+            </a>`;
+        }).join("")}
+      </div>
+    </section>`;
+}
+
 function caseArtifactCount() {
   return artifactDefinitions(caseRecipes[0]).length;
 }
@@ -3104,6 +3197,32 @@ function caseDashboard(recipe, lang) {
     </section>`;
 }
 
+function caseImpactStrip(recipe, lang) {
+  const isZh = lang === "zh";
+  const profile = caseImpactProfile(recipe);
+  const items = [
+    [b("第一信号", "First Signal"), profile.signal],
+    [b("失败代价", "Failure Cost"), profile.cost],
+    [b("交付证据", "Delivery Proof"), profile.proof],
+    [b("可迁移到", "Reusable For"), profile.reuse]
+  ];
+  return `
+    <section class="case-impact-strip" id="${lang}-practical-value-summary">
+      <div class="impact-strip-head">
+        <span>${isZh ? "实战价值摘要" : "Practical Value Summary"}</span>
+        <strong>${escapeHtml(textOf(recipe.title, lang))}</strong>
+      </div>
+      <div class="impact-strip-grid">
+        ${items.map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+    </section>`;
+}
+
 function fieldJournalBlock(recipe, lang) {
   const trace = operationTrace(recipe);
   const isZh = lang === "zh";
@@ -3593,6 +3712,7 @@ function caseContent(recipe, lang) {
         <span>${escapeHtml(textOf(recipe.risk, lang))}</span>
       </div>
     </section>
+    ${caseImpactStrip(recipe, lang)}
     <section id="${lang}-raw-scene">
       <h2>${isZh ? "原始现场片段" : "Raw Scene Excerpt"}</h2>
       ${paragraph(b(
@@ -3734,6 +3854,7 @@ function caseIndexContent(lang) {
         <article><span>${isZh ? "每篇材料" : "Files Per Recipe"}</span><strong>${caseArtifactCount()}</strong></article>
       </div>
       ${caseLibraryHealthContent(lang)}
+      ${caseSpotlightPanel("recipes/index.html", lang)}
       <section class="case-route-section">
         <h2>${isZh ? "按任务入口选择" : "Choose by Task Entry"}</h2>
         ${paragraph(b(
@@ -3751,6 +3872,9 @@ function caseIndexContent(lang) {
             <span>${escapeHtml(textOf(item.domain, lang))}</span>
             <h3>${escapeHtml(textOf(item.title, lang))}</h3>
             <p>${escapeHtml(textOf(item.summary, lang))}</p>
+            <div class="case-proof-tags">
+              <em>${escapeHtml(textOf(caseImpactProfile(item).proof, lang))}</em>
+            </div>
             <dl>
               <div><dt>${isZh ? "成熟度" : "Maturity"}</dt><dd>${caseMaturityScore(item)}</dd></div>
               <div><dt>${isZh ? "材料" : "Files"}</dt><dd>${caseArtifactCount()}</dd></div>
@@ -4070,6 +4194,7 @@ function homePage() {
       </div>
       <figure class="ops-capture">
         <img src="assets/case-artifacts/pages-deploy-diagnosis/13-delivery-capture.svg" alt="${lang === "zh" ? "部署诊断交付截图" : "Deployment diagnosis delivery capture"}">
+        <img src="assets/case-artifacts/pages-deploy-diagnosis/20-interaction-capture.svg" alt="${lang === "zh" ? "部署诊断交互截图" : "Deployment diagnosis interaction capture"}">
       </figure>
       <div class="ops-links">
         ${heroLinks.map(([label, href, detail]) => `
@@ -4170,6 +4295,8 @@ function homePage() {
         </section>
 
         ${proofSection(lang)}
+
+        ${caseSpotlightPanel("index.html", lang, { limit: 3 })}
 
         <section class="home-section">
           <header class="section-title">

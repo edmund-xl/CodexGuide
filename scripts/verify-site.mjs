@@ -114,6 +114,9 @@ const caseRequiredMarkers = [
   "Field Walkthrough",
   "field-journal",
   "field-journal-facts",
+  "实战价值摘要",
+  "Practical Value Summary",
+  "case-impact-strip",
   "首屏证据图",
   "First-screen proof",
   "原始现场片段",
@@ -347,14 +350,14 @@ for (const file of htmlFiles) {
     }
   }
   if (file === "recipes/index.html") {
-    for (const marker of ["case-library-stats", "library-health-panel", "library-health-stats", "maturity-board-table", "completion-board-table", "library-health.json", "case-filter-bar", "case-index-card", "data-case-filter", "data-case-risk"]) {
+    for (const marker of ["case-library-stats", "library-health-panel", "library-health-stats", "maturity-board-table", "completion-board-table", "library-health.json", "case-filter-bar", "case-index-card", "data-case-filter", "data-case-risk", "强实战入口", "High-Impact Field Recipes", "case-spotlight-panel", "spotlight-card"]) {
       if (!html.includes(marker)) {
         errors.push(`${file}: missing recipe index marker ${marker}.`);
       }
     }
   }
   if (file === "index.html") {
-    for (const marker of ["home-ops-panel", "ops-stats", "ops-capture", "ops-links", "13-delivery-capture.svg"]) {
+    for (const marker of ["home-ops-panel", "ops-stats", "ops-capture", "ops-links", "13-delivery-capture.svg", "20-interaction-capture.svg", "强实战入口", "High-Impact Field Recipes", "case-spotlight-panel"]) {
       if (!html.includes(marker)) {
         errors.push(`${file}: missing home dashboard marker ${marker}.`);
       }

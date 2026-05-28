@@ -286,6 +286,36 @@
         <span>中</span>
       </div>
     </section>
+
+    <section class="case-impact-strip" id="zh-practical-value-summary">
+      <div class="impact-strip-head">
+        <span>实战价值摘要</span>
+        <strong>03 GitHub Pages 部署失败诊断</strong>
+      </div>
+      <div class="impact-strip-grid">
+
+          <article>
+            <span>第一信号</span>
+            <strong>失败通知不能定位根因，必须进入 job steps 找第一个红色步骤。</strong>
+          </article>
+
+          <article>
+            <span>失败代价</span>
+            <strong>如果只看邮件，容易把 workflow、artifact 和 Pages 设置混在一起改。</strong>
+          </article>
+
+          <article>
+            <span>交付证据</span>
+            <strong>用本地 build/check、新 run 和线上 200 响应形成闭环。</strong>
+          </article>
+
+          <article>
+            <span>可迁移到</span>
+            <strong>适合任何静态站、文档站或个人项目发布失败排查。</strong>
+          </article>
+
+      </div>
+    </section>
     <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
@@ -1028,6 +1058,36 @@ Human confirmation: Use only the new run as success evidence; do not reinterpret
         <span>Deployment troubleshooting</span>
         <span>Project maintainers and documentation site owners</span>
         <span>Medium</span>
+      </div>
+    </section>
+
+    <section class="case-impact-strip" id="en-practical-value-summary">
+      <div class="impact-strip-head">
+        <span>Practical Value Summary</span>
+        <strong>03 GitHub Pages Deployment Failure Diagnosis</strong>
+      </div>
+      <div class="impact-strip-grid">
+
+          <article>
+            <span>First Signal</span>
+            <strong>The failure notice cannot locate root cause; job steps must reveal the first red step.</strong>
+          </article>
+
+          <article>
+            <span>Failure Cost</span>
+            <strong>If you only read the email, workflow, artifact, and Pages settings get mixed into one fix.</strong>
+          </article>
+
+          <article>
+            <span>Delivery Proof</span>
+            <strong>Close the loop with local build/check, a new run, and a live 200 response.</strong>
+          </article>
+
+          <article>
+            <span>Reusable For</span>
+            <strong>Useful for any static site, documentation site, or personal project deployment failure.</strong>
+          </article>
+
       </div>
     </section>
     <section id="en-raw-scene">
