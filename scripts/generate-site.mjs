@@ -2070,6 +2070,7 @@ function caseLibraryManifest() {
       artifactBase: artifactBase(recipe),
       fieldSnapshot: `${artifactBase(recipe)}/11-field-snapshot.svg`,
       acceptanceLedger: `${artifactBase(recipe)}/12-acceptance-ledger.json`,
+      deliveryCapture: `${artifactBase(recipe)}/13-delivery-capture.svg`,
       title: {
         zh: recipe.title.zh,
         en: recipe.title.en
@@ -2093,6 +2094,56 @@ function caseLibraryManifest() {
         zh: recipe.deliverable.zh,
         en: recipe.deliverable.en
       }
+    }))
+  };
+}
+
+function libraryHealthReport() {
+  const highRiskCases = caseRecipes.filter((recipe) => riskKey(recipe) === "high");
+  const starterCases = caseRecipes.filter((recipe) => riskKey(recipe) === "low");
+  return {
+    generatedAt: verifiedDate,
+    caseCount: caseRecipes.length,
+    artifactCount: caseRecipes.length * caseArtifactCount(),
+    artifactFilesPerCase: caseArtifactCount(),
+    averageMaturityScore: averageMaturityScore(),
+    fieldSnapshots: caseRecipes.length,
+    acceptanceLedgers: caseRecipes.length,
+    deliveryCaptures: caseRecipes.length,
+    highRiskCases: highRiskCases.length,
+    starterCases: starterCases.length,
+    completenessChecks: [
+      "input brief",
+      "evidence table",
+      "result sample",
+      "acceptance runbook",
+      "execution transcript",
+      "delivery preview",
+      "before/after comparison",
+      "quality scorecard",
+      "operation replay",
+      "human handoff",
+      "field snapshot",
+      "acceptance ledger",
+      "delivery capture",
+      "evidence board"
+    ],
+    cases: caseRecipes.map((recipe) => ({
+      slug: artifactSlug(recipe),
+      title: {
+        zh: recipe.title.zh,
+        en: recipe.title.en
+      },
+      risk: riskKey(recipe),
+      maturityScore: caseMaturityScore(recipe),
+      evidenceRows: recipe.evidenceTable.length,
+      acceptanceCommands: recipe.commands.length,
+      humanHandoffItems: operationTrace(recipe).handoff.length,
+      artifactCount: caseArtifactCount(),
+      fieldSnapshot: `${artifactBase(recipe)}/11-field-snapshot.svg`,
+      acceptanceLedger: `${artifactBase(recipe)}/12-acceptance-ledger.json`,
+      deliveryCapture: `${artifactBase(recipe)}/13-delivery-capture.svg`,
+      readyForReuse: caseMaturityScore(recipe) >= 93 && recipe.evidenceTable.length >= 4 && recipe.commands.length >= 3
     }))
   };
 }
@@ -2286,6 +2337,7 @@ function acceptanceLedger(recipe) {
       "10-human-handoff.md",
       "11-field-snapshot.svg",
       "12-acceptance-ledger.json",
+      "13-delivery-capture.svg",
       "evidence-board.svg"
     ]
   };
@@ -2383,6 +2435,13 @@ function artifactDefinitions(recipe) {
       body: acceptanceLedgerJson(recipe)
     },
     {
+      file: "13-delivery-capture.svg",
+      label: b("交付截图", "Delivery Capture"),
+      kind: b("截图", "Capture"),
+      description: b("用截图式画面展示交付物、关键证据、修正动作和人工终审。", "Show deliverable, key evidence, correction, and final human review in a screenshot-style visual."),
+      body: ""
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -2437,11 +2496,11 @@ function runLogRows(recipe) {
 function caseArtifactSection(recipe, lang) {
   const isZh = lang === "zh";
   return `
-    <section>
+    <section id="${lang}-lab-artifact-pack">
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <div class="case-visual-grid">
@@ -2452,6 +2511,10 @@ function caseArtifactSection(recipe, lang) {
         <figure class="case-visual">
           <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
           <figcaption>${isZh ? "证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。" : "The evidence board compresses material, process, result, and acceptance state into one visual."}</figcaption>
+        </figure>
+        <figure id="${lang}-delivery-capture" class="case-visual case-capture">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/13-delivery-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "交付截图把结果片段、证据状态、终审动作和交接事项放进同一张画面。" : "The delivery capture puts result sample, evidence status, final review, and handoff into one frame."}</figcaption>
         </figure>
       </div>
     </section>`;
@@ -2603,6 +2666,82 @@ function acceptanceLedgerPanel(recipe, lang) {
       ], rows, lang, "evidence-table ledger-table")}
       <a class="ledger-link" href="${relativeLink(recipe.path, `${artifactBase(recipe)}/12-acceptance-ledger.json`)}">${isZh ? "打开验收总账 JSON" : "Open acceptance ledger JSON"}</a>
     </div>`;
+}
+
+function caseLibraryHealthContent(lang) {
+  const isZh = lang === "zh";
+  const highRiskCount = caseRecipes.filter((recipe) => riskKey(recipe) === "high").length;
+  const starterCount = caseRecipes.filter((recipe) => riskKey(recipe) === "low").length;
+  const reusableCount = libraryHealthReport().cases.filter((item) => item.readyForReuse).length;
+  const stats = [
+    [b("可复用案例", "Reusable Cases"), b(`${reusableCount}/${caseRecipes.length}`, `${reusableCount}/${caseRecipes.length}`)],
+    [b("现场图", "Field Snapshots"), b(String(caseRecipes.length), String(caseRecipes.length))],
+    [b("交付截图", "Delivery Captures"), b(String(caseRecipes.length), String(caseRecipes.length))],
+    [b("验收总账", "Acceptance Ledgers"), b(String(caseRecipes.length), String(caseRecipes.length))],
+    [b("高风险复核", "High-Risk Review"), b(String(highRiskCount), String(highRiskCount))]
+  ];
+  const maturityRows = [
+    [
+      b("完整闭环", "Closed Loop"),
+      b(`${reusableCount} 个案例`, `${reusableCount} recipes`),
+      b("有输入、证据、结果、回放、现场图、交付截图、验收总账和人工交接。", "Includes input, evidence, result, replay, field snapshot, delivery capture, acceptance ledger, and human handoff."),
+      b("可直接替换材料后复用。", "Ready to reuse after replacing materials.")
+    ],
+    [
+      b("低风险上手", "Low-Risk Starter"),
+      b(`${starterCount} 个案例`, `${starterCount} recipes`),
+      b("适合第一次验证浏览器或页面检查类任务。", "Suitable for first browser or page-check tasks."),
+      b("先跑只读检查，再进入高风险案例。", "Run read-only checks before moving to higher-risk recipes.")
+    ],
+    [
+      b("高风险复核", "High-Risk Review"),
+      b(`${highRiskCount} 个案例`, `${highRiskCount} recipes`),
+      b("包含登录态、API 影响或远程服务相关判断。", "Includes signed-in state, API impact, or remote-service decisions."),
+      b("必须保留人工确认和回退路径。", "Must keep human confirmation and rollback path.")
+    ],
+    [
+      b("材料完整度", "Artifact Completeness"),
+      b(`${caseRecipes.length * caseArtifactCount()} 个文件`, `${caseRecipes.length * caseArtifactCount()} files`),
+      b(`每个案例 ${caseArtifactCount()} 个材料文件，全部进入总账。`, `${caseArtifactCount()} artifact files per recipe, all listed in ledgers.`),
+      b("用 health report 复核整库状态。", "Use the health report to review the whole library.")
+    ]
+  ];
+  const completionRows = [
+    [b("输入能否替换", "Replaceable Input"), b("输入任务单 + 可复用任务单", "Input brief + reusable work order"), b("材料、路径、限制和禁止动作要能替换。", "Materials, paths, constraints, and prohibited actions must be replaceable.")],
+    [b("过程能否复盘", "Reviewable Process"), b("执行转录 + 命令回放 + 现场图", "Transcript + command replay + field snapshot"), b("要能看见第一信号、修正动作和完成信号。", "First signal, correction, and done signal must be visible.")],
+    [b("结果能否验收", "Acceptable Result"), b("证据表 + 交付截图 + 验收总账", "Evidence table + delivery capture + acceptance ledger"), b("要能用证据行、截图式画面、命令和人工交接判断完成。", "Completion must be judged by evidence rows, screenshot-style visual, commands, and handoff.")],
+    [b("风险能否交接", "Transferable Risk"), b("风险边界 + 人工交接", "Risk boundaries + human handoff"), b("高风险动作必须有负责人继续判断。", "High-risk actions must have an owner for continued judgment.")]
+  ];
+
+  return `
+    <section id="${lang}-recipe-maturity-board" class="library-health-panel">
+      <h2>${isZh ? "案例成熟度看板" : "Recipe Maturity Board"}</h2>
+      ${paragraph(b(
+        "这一块不是介绍案例，而是检查整座案例库是否达到可复用、可复核、可交接的状态。",
+        "This panel does not introduce recipes; it checks whether the whole recipe library is reusable, reviewable, and transferable."
+      ), lang)}
+      <div class="library-health-stats">
+        ${stats.map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+      ${tableHtml([
+        b("成熟度状态", "Maturity State"),
+        b("覆盖", "Coverage"),
+        b("判定依据", "Decision Basis"),
+        b("下一步", "Next Step")
+      ], maturityRows, lang, "evidence-table maturity-board-table")}
+      <h3>${isZh ? "补齐清单" : "Completion Checklist"}</h3>
+      ${tableHtml([
+        b("检查项", "Check"),
+        b("材料", "Material"),
+        b("达标要求", "Requirement")
+      ], completionRows, lang, "evidence-table completion-board-table")}
+      <a class="ledger-link" href="${relativeLink("recipes/index.html", `${artifactRoot}/library-health.json`)}">${isZh ? "打开案例库健康报告 JSON" : "Open library health report JSON"}</a>
+    </section>`;
 }
 
 function caseContent(recipe, lang) {
@@ -2768,6 +2907,7 @@ function caseIndexContent(lang) {
         <article><span>${isZh ? "平均成熟度" : "Average Maturity"}</span><strong>${averageMaturityScore()}</strong></article>
         <article><span>${isZh ? "每篇材料" : "Files Per Recipe"}</span><strong>${caseArtifactCount()}</strong></article>
       </div>
+      ${caseLibraryHealthContent(lang)}
       <section class="case-route-section">
         <h2>${isZh ? "按任务入口选择" : "Choose by Task Entry"}</h2>
         ${paragraph(b(
@@ -3500,9 +3640,72 @@ function caseFieldSnapshotSvg(recipe) {
 </svg>`;
 }
 
+function caseDeliveryCaptureSvg(recipe) {
+  const outputLines = textOf(recipe.outputSample, "zh")
+    .split("\n")
+    .map((line) => line.replace(/^[-\s]+/, "").trim())
+    .filter(Boolean)
+    .slice(0, 4);
+  const outputRows = outputLines.map((line, index) => {
+    const y = 250 + index * 44;
+    return `
+      <g>
+        <rect x="74" y="${y - 24}" width="478" height="34" rx="7" fill="${index % 2 === 0 ? "#202020" : "#242424"}" stroke="#333"/>
+        <circle cx="96" cy="${y - 7}" r="5" fill="#66d17a"/>
+        <text x="116" y="${y - 2}" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">${escapeXml(compactSvgText(line, 54))}</text>
+      </g>`;
+  }).join("");
+  const evidenceRows = recipe.evidenceTable.slice(0, 4).map((row, index) => {
+    const y = 250 + index * 44;
+    const status = textOf(row[3], "zh");
+    const statusColor = status.includes("待") ? "#f5c542" : "#66d17a";
+    return `
+      <g>
+        <rect x="592" y="${y - 24}" width="254" height="34" rx="7" fill="${index % 2 === 0 ? "#1f1f1f" : "#242424"}" stroke="#333"/>
+        <text x="610" y="${y - 2}" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">${escapeXml(compactSvgText(textOf(row[0], "zh"), 18))}</text>
+        <circle cx="816" cy="${y - 8}" r="6" fill="${statusColor}"/>
+      </g>`;
+  }).join("");
+  const handoff = operationTrace(recipe).handoff[0];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(textOf(recipe.title, "zh"))} - 交付截图</title>
+  <desc id="desc">A screenshot-style delivery capture for a practical Codex task.</desc>
+  <rect width="920" height="560" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="492" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="54" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="85" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="85" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="85" r="6" fill="#66d17a"/>
+  <text x="160" y="90" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">${escapeXml(artifactSlug(recipe))}/delivery-review</text>
+
+  <text x="58" y="150" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">DELIVERY CAPTURE</text>
+  <text x="58" y="184" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.title, "zh"), 34))}</text>
+  <rect x="694" y="132" width="168" height="54" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="716" y="154" fill="#888" font-family="Arial" font-size="12" font-weight="900">MATURITY</text>
+  <text x="716" y="178" fill="#ff922c" font-family="Arial" font-size="24" font-weight="900">${caseMaturityScore(recipe)} / 100</text>
+
+  <text x="74" y="218" fill="#888" font-family="Arial" font-size="12" font-weight="900">OUTPUT</text>
+  <text x="592" y="218" fill="#888" font-family="Arial" font-size="12" font-weight="900">EVIDENCE STATUS</text>
+  ${outputRows}
+  ${evidenceRows}
+
+  <rect x="74" y="402" width="356" height="70" rx="8" fill="#2c241d" stroke="#ff922c"/>
+  <text x="96" y="430" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">FINAL REVIEW</text>
+  <text x="96" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">${escapeXml(compactSvgText(textOf(recipe.acceptanceChecks[0], "zh"), 24))}</text>
+
+  <rect x="450" y="402" width="396" height="70" rx="8" fill="#202020" stroke="#333"/>
+  <text x="472" y="430" fill="#888" font-family="Arial" font-size="12" font-weight="900">HANDOFF</text>
+  <text x="472" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">${escapeXml(compactSvgText(textOf(handoff, "zh"), 34))}</text>
+
+  <text x="74" y="506" fill="#666" font-family="Arial" font-size="13">The delivery capture is a visual handoff: result, evidence status, final review, and owner action in one frame.</text>
+</svg>`;
+}
+
 function writeCaseArtifacts() {
   fs.rmSync(path.join(root, artifactRoot), { recursive: true, force: true });
   write(`${artifactRoot}/index.json`, JSON.stringify(caseLibraryManifest(), null, 2));
+  write(`${artifactRoot}/library-health.json`, JSON.stringify(libraryHealthReport(), null, 2));
   for (const recipe of caseRecipes) {
     for (const item of artifactDefinitions(recipe)) {
       const filePath = `${artifactBase(recipe)}/${item.file}`;
@@ -3510,6 +3713,8 @@ function writeCaseArtifacts() {
         write(filePath, caseEvidenceSvg(recipe));
       } else if (item.file === "11-field-snapshot.svg") {
         write(filePath, caseFieldSnapshotSvg(recipe));
+      } else if (item.file === "13-delivery-capture.svg") {
+        write(filePath, caseDeliveryCaptureSvg(recipe));
       } else {
         write(filePath, item.body);
       }

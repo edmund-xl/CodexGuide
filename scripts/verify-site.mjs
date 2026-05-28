@@ -32,9 +32,11 @@ const caseArtifactFiles = [
   "10-human-handoff.md",
   "11-field-snapshot.svg",
   "12-acceptance-ledger.json",
+  "13-delivery-capture.svg",
   "evidence-board.svg"
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
+const caseLibraryHealth = "assets/case-artifacts/library-health.json";
 const oldRecipeSlugs = [
   "newsletter-brief.html",
   "docs-site-refresh.html",
@@ -71,6 +73,8 @@ const caseRequiredMarkers = [
   "Field Snapshot",
   "实测快照",
   "Run Snapshot",
+  "交付截图",
+  "Delivery Capture",
   "命令回放",
   "Command Replay",
   "现场记录",
@@ -98,6 +102,7 @@ const caseRequiredMarkers = [
   "quality-scorecard",
   "ledger-panel",
   "ledger-table",
+  "case-capture",
   "evidence-table",
   "command-panel",
   "output-sample",
@@ -197,8 +202,41 @@ if (!files.includes(caseLibraryManifest)) {
       if (!item.fieldSnapshot || !item.acceptanceLedger) {
         errors.push(`Recipe library manifest missing field snapshot or acceptance ledger for ${item.slug}.`);
       }
+      if (!item.deliveryCapture) {
+        errors.push(`Recipe library manifest missing delivery capture for ${item.slug}.`);
+      }
       if (item.artifactCount !== caseArtifactFiles.length) {
         errors.push(`Recipe library manifest artifact count mismatch for ${item.slug}.`);
+      }
+    }
+  }
+}
+
+if (!files.includes(caseLibraryHealth)) {
+  errors.push(`Missing recipe library health report: ${caseLibraryHealth}`);
+} else {
+  const health = JSON.parse(fs.readFileSync(path.join(root, caseLibraryHealth), "utf8"));
+  if (health.caseCount !== casePages.length) {
+    errors.push(`Recipe library health case count mismatch: ${health.caseCount}`);
+  }
+  if (health.artifactFilesPerCase !== caseArtifactFiles.length) {
+    errors.push(`Recipe library health artifact count mismatch: ${health.artifactFilesPerCase}`);
+  }
+  if (health.artifactCount !== casePages.length * caseArtifactFiles.length) {
+    errors.push(`Recipe library health total artifact count mismatch: ${health.artifactCount}`);
+  }
+  if (health.fieldSnapshots !== casePages.length || health.acceptanceLedgers !== casePages.length || health.deliveryCaptures !== casePages.length) {
+    errors.push("Recipe library health visual or ledger counts are invalid.");
+  }
+  if (!Array.isArray(health.cases) || health.cases.length !== casePages.length) {
+    errors.push("Recipe library health cases array is invalid.");
+  } else {
+    for (const item of health.cases) {
+      if (!item.fieldSnapshot || !item.acceptanceLedger || !item.deliveryCapture) {
+        errors.push(`Recipe library health missing visual proof paths for ${item.slug}.`);
+      }
+      if (item.artifactCount !== caseArtifactFiles.length) {
+        errors.push(`Recipe library health artifact count mismatch for ${item.slug}.`);
       }
     }
   }
@@ -231,7 +269,7 @@ for (const file of htmlFiles) {
     }
   }
   if (file === "recipes/index.html") {
-    for (const marker of ["case-library-stats", "case-filter-bar", "case-index-card", "data-case-filter", "data-case-risk"]) {
+    for (const marker of ["case-library-stats", "library-health-panel", "library-health-stats", "maturity-board-table", "completion-board-table", "library-health.json", "case-filter-bar", "case-index-card", "data-case-filter", "data-case-risk"]) {
       if (!html.includes(marker)) {
         errors.push(`${file}: missing recipe index marker ${marker}.`);
       }

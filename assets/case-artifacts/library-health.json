@@ -1,0 +1,268 @@
+{
+  "generatedAt": "2026-05-28",
+  "caseCount": 14,
+  "artifactCount": 196,
+  "artifactFilesPerCase": 14,
+  "averageMaturityScore": 94,
+  "fieldSnapshots": 14,
+  "acceptanceLedgers": 14,
+  "deliveryCaptures": 14,
+  "highRiskCases": 3,
+  "starterCases": 1,
+  "completenessChecks": [
+    "input brief",
+    "evidence table",
+    "result sample",
+    "acceptance runbook",
+    "execution transcript",
+    "delivery preview",
+    "before/after comparison",
+    "quality scorecard",
+    "operation replay",
+    "human handoff",
+    "field snapshot",
+    "acceptance ledger",
+    "delivery capture",
+    "evidence board"
+  ],
+  "cases": [
+    {
+      "slug": "deck-export-check",
+      "title": {
+        "zh": "01 演示稿生成与导出核查",
+        "en": "01 Deck Generation and Export Verification"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/deck-export-check/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/deck-export-check/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/deck-export-check/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "browser-page-review",
+      "title": {
+        "zh": "02 浏览器页面巡检与截图证据",
+        "en": "02 Browser Page Review with Screenshot Evidence"
+      },
+      "risk": "low",
+      "maturityScore": 95,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/browser-page-review/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/browser-page-review/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/browser-page-review/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "pages-deploy-diagnosis",
+      "title": {
+        "zh": "03 GitHub Pages 部署失败诊断",
+        "en": "03 GitHub Pages Deployment Failure Diagnosis"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/pages-deploy-diagnosis/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/pages-deploy-diagnosis/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "docs-site-redesign",
+      "title": {
+        "zh": "04 本地文档站批量改版",
+        "en": "04 Local Documentation Site Redesign"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/docs-site-redesign/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/docs-site-redesign/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/docs-site-redesign/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "markdown-knowledge-base",
+      "title": {
+        "zh": "05 Markdown 知识库重整",
+        "en": "05 Markdown Knowledge Base Restructure"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/markdown-knowledge-base/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/markdown-knowledge-base/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/markdown-knowledge-base/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "spreadsheet-cleanup",
+      "title": {
+        "zh": "06 表格数据清洗与异常核对",
+        "en": "06 Spreadsheet Cleanup and Anomaly Review"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/spreadsheet-cleanup/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/spreadsheet-cleanup/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/spreadsheet-cleanup/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "screenshot-to-spec",
+      "title": {
+        "zh": "07 设计截图转实现规格",
+        "en": "07 Design Screenshot to Implementation Spec"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/screenshot-to-spec/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/screenshot-to-spec/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/screenshot-to-spec/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "authenticated-readonly-review",
+      "title": {
+        "zh": "08 登录态网页只读检查",
+        "en": "08 Read-only Review of an Authenticated Web Page"
+      },
+      "risk": "high",
+      "maturityScore": 93,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/authenticated-readonly-review/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/authenticated-readonly-review/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/authenticated-readonly-review/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "document-evidence-table",
+      "title": {
+        "zh": "09 文档与 PDF 摘要到证据表",
+        "en": "09 Document and PDF Summary to Evidence Table"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/document-evidence-table/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/document-evidence-table/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/document-evidence-table/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "api-impact-analysis",
+      "title": {
+        "zh": "10 API 变更影响分析",
+        "en": "10 API Change Impact Analysis"
+      },
+      "risk": "high",
+      "maturityScore": 93,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/api-impact-analysis/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/api-impact-analysis/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/api-impact-analysis/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "release-notes-changelog",
+      "title": {
+        "zh": "11 发布说明与变更日志生成",
+        "en": "11 Release Notes and Changelog Drafting"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/release-notes-changelog/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/release-notes-changelog/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/release-notes-changelog/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "automation-scheduled-checks",
+      "title": {
+        "zh": "12 自动化提醒与定期检查",
+        "en": "12 Automation Reminders and Scheduled Checks"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/automation-scheduled-checks/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/automation-scheduled-checks/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/automation-scheduled-checks/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "log-error-diagnosis",
+      "title": {
+        "zh": "13 日志报错定位与修复建议",
+        "en": "13 Log Error Diagnosis and Fix Proposal"
+      },
+      "risk": "medium",
+      "maturityScore": 94,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/log-error-diagnosis/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/log-error-diagnosis/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/log-error-diagnosis/13-delivery-capture.svg",
+      "readyForReuse": true
+    },
+    {
+      "slug": "remote-service-health-check",
+      "title": {
+        "zh": "14 远程服务健康检查与修复建议",
+        "en": "14 Remote Service Health Check and Fix Proposal"
+      },
+      "risk": "high",
+      "maturityScore": 93,
+      "evidenceRows": 4,
+      "acceptanceCommands": 3,
+      "humanHandoffItems": 3,
+      "artifactCount": 14,
+      "fieldSnapshot": "assets/case-artifacts/remote-service-health-check/11-field-snapshot.svg",
+      "acceptanceLedger": "assets/case-artifacts/remote-service-health-check/12-acceptance-ledger.json",
+      "deliveryCapture": "assets/case-artifacts/remote-service-health-check/13-delivery-capture.svg",
+      "readyForReuse": true
+    }
+  ]
+}

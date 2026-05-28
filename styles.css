@@ -1102,26 +1102,37 @@ main {
   padding: 22px;
 }
 
-.case-library-stats {
+.case-library-stats,
+.library-health-stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   margin-top: 18px;
 }
 
+.case-library-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.library-health-stats {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
 .case-library-stats article,
+.library-health-stats article,
 .case-index-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
 
-.case-library-stats article {
+.case-library-stats article,
+.library-health-stats article {
   min-width: 0;
   padding: 14px;
 }
 
 .case-library-stats span,
+.library-health-stats span,
 .case-index-card span,
 .case-index-card dt {
   color: var(--accent);
@@ -1131,12 +1142,36 @@ main {
   text-transform: uppercase;
 }
 
-.case-library-stats strong {
+.case-library-stats strong,
+.library-health-stats strong {
   display: block;
   margin-top: 6px;
   color: var(--ink);
   font-size: 2rem;
   line-height: 1.1;
+}
+
+.library-health-panel {
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 146, 44, 0.08), rgba(30, 30, 30, 0.98));
+}
+
+.library-health-panel h2 {
+  margin-top: 0;
+}
+
+.library-health-panel h3 {
+  margin-top: 22px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.maturity-board-table,
+.completion-board-table {
+  min-width: 880px;
 }
 
 .case-filter-bar {
@@ -1400,6 +1435,10 @@ main {
 
 .case-visual-grid .case-visual {
   margin: 0;
+}
+
+.case-capture {
+  grid-column: 1 / -1;
 }
 
 .case-visual img {
@@ -1697,6 +1736,7 @@ main {
   .case-dashboard,
   .run-snapshot,
   .case-library-stats,
+  .library-health-stats,
   .case-card-grid,
   .artifact-grid,
   .case-visual-grid,

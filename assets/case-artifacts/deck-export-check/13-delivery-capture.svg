@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
+  <title id="title">01 演示稿生成与导出核查 - 交付截图</title>
+  <desc id="desc">A screenshot-style delivery capture for a practical Codex task.</desc>
+  <rect width="920" height="560" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="492" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="54" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="85" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="85" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="85" r="6" fill="#66d17a"/>
+  <text x="160" y="90" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">deck-export-check/delivery-review</text>
+
+  <text x="58" y="150" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">DELIVERY CAPTURE</text>
+  <text x="58" y="184" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">01 演示稿生成与导出核查</text>
+  <rect x="694" y="132" width="168" height="54" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="716" y="154" fill="#888" font-family="Arial" font-size="12" font-weight="900">MATURITY</text>
+  <text x="716" y="178" fill="#ff922c" font-family="Arial" font-size="24" font-weight="900">94 / 100</text>
+
+  <text x="74" y="218" fill="#888" font-family="Arial" font-size="12" font-weight="900">OUTPUT</text>
+  <text x="592" y="218" fill="#888" font-family="Arial" font-size="12" font-weight="900">EVIDENCE STATUS</text>
+
+      <g>
+        <rect x="74" y="226" width="478" height="34" rx="7" fill="#202020" stroke="#333"/>
+        <circle cx="96" cy="243" r="5" fill="#66d17a"/>
+        <text x="116" y="248" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">交付摘要</text>
+      </g>
+      <g>
+        <rect x="74" y="270" width="478" height="34" rx="7" fill="#242424" stroke="#333"/>
+        <circle cx="96" cy="287" r="5" fill="#66d17a"/>
+        <text x="116" y="292" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">deck-draft.pptx：7 页，可打开，可导出</text>
+      </g>
+      <g>
+        <rect x="74" y="314" width="478" height="34" rx="7" fill="#202020" stroke="#333"/>
+        <circle cx="96" cy="331" r="5" fill="#66d17a"/>
+        <text x="116" y="336" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">slide-checklist.md：7 行逐页状态，1 项待确认</text>
+      </g>
+      <g>
+        <rect x="74" y="358" width="478" height="34" rx="7" fill="#242424" stroke="#333"/>
+        <circle cx="96" cy="375" r="5" fill="#66d17a"/>
+        <text x="116" y="380" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">export-notes.md：列出试用期、隐私表述、版权素材三类人工确认点</text>
+      </g>
+
+      <g>
+        <rect x="592" y="226" width="254" height="34" rx="7" fill="#1f1f1f" stroke="#333"/>
+        <text x="610" y="248" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">大纲锁定</text>
+        <circle cx="816" cy="242" r="6" fill="#66d17a"/>
+      </g>
+      <g>
+        <rect x="592" y="270" width="254" height="34" rx="7" fill="#242424" stroke="#333"/>
+        <text x="610" y="292" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">文件导出</text>
+        <circle cx="816" cy="286" r="6" fill="#66d17a"/>
+      </g>
+      <g>
+        <rect x="592" y="314" width="254" height="34" rx="7" fill="#1f1f1f" stroke="#333"/>
+        <text x="610" y="336" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">视觉抽查</text>
+        <circle cx="816" cy="330" r="6" fill="#66d17a"/>
+      </g>
+      <g>
+        <rect x="592" y="358" width="254" height="34" rx="7" fill="#242424" stroke="#333"/>
+        <text x="610" y="380" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">人工确认</text>
+        <circle cx="816" cy="374" r="6" fill="#f5c542"/>
+      </g>
+
+  <rect x="74" y="402" width="356" height="70" rx="8" fill="#2c241d" stroke="#ff922c"/>
+  <text x="96" y="430" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">FINAL REVIEW</text>
+  <text x="96" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">交付物齐全，文件名不覆盖原始材料。</text>
+
+  <rect x="450" y="402" width="396" height="70" rx="8" fill="#202020" stroke="#333"/>
+  <text x="472" y="430" fill="#888" font-family="Arial" font-size="12" font-weight="900">HANDOFF</text>
+  <text x="472" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">演示稿可用于内部评审，不能直接对外发布。</text>
+
+  <text x="74" y="506" fill="#666" font-family="Arial" font-size="13">The delivery capture is a visual handoff: result, evidence status, final review, and owner action in one frame.</text>
+</svg>
