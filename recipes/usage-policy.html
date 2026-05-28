@@ -121,6 +121,60 @@
 
     </dl>
 
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>决策工作台</span>
+        <strong>使用规范</strong>
+      </div>
+      <p>这块把普通阅读页改成一次可执行判断：先看入口和材料，再记录证据、失败处理和验收动作。</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>入口</span>
+            <strong>材料审查 + 人工确认</strong>
+          </article>
+
+          <article>
+            <span>材料</span>
+            <strong>隐私字段、账号动作、发布动作</strong>
+          </article>
+
+          <article>
+            <span>证据</span>
+            <strong>脱敏记录、确认清单、停止条件</strong>
+          </article>
+
+          <article>
+            <span>完成信号</span>
+            <strong>敏感材料已处理，发布动作有负责人确认</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>检查点</th><th>动作</th><th>材料/证据</th><th>完成判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>输入判断</td><td>先判断本页任务是否匹配当前材料、入口和风险等级。</td><td>隐私字段、账号动作、发布动作</td><td>材料不匹配时先缩小任务，不进入执行。</td></tr>
+
+            <tr><td>过程证据</td><td>执行前写清禁止动作，执行后留下可打开的检查材料。</td><td>脱敏记录、确认清单、停止条件</td><td>另一个人能看懂判断链路。</td></tr>
+
+            <tr><td>失败处理</td><td>遇到停止条件时记录现场，不扩大权限、不补猜缺失信息。</td><td>材料包含密钥、证件、合同原文或未授权内容</td><td>停止原因和下一步负责人明确。</td></tr>
+
+            <tr><td>验收动作</td><td>用本页给出的命令、截图、清单或人工检查证明完成。</td><td>敏感材料已处理，发布动作有负责人确认</td><td>通过项、待确认项和回退方式都已记录。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>可复用判断单</h3>
+      <pre class="output-sample decision-brief"><code>检查：这份材料是否含密钥、客户资料、私人证件或账号权限
+动作：先脱敏，再限定输出格式和禁止动作
+停止：无法确认授权时不继续处理
+验收：保留脱敏说明和人工确认项</code></pre>
+    </section>
 
 
 
@@ -192,6 +246,60 @@
 
     </dl>
 
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>Decision Workbench</span>
+        <strong>Usage Policy</strong>
+      </div>
+      <p>This panel turns a reading page into an executable decision: check entry and materials, then record evidence, failure handling, and acceptance action.</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>Entry</span>
+            <strong>Material review plus human confirmation</strong>
+          </article>
+
+          <article>
+            <span>Material</span>
+            <strong>Private fields, account actions, publishing actions</strong>
+          </article>
+
+          <article>
+            <span>Evidence</span>
+            <strong>Redaction log, confirmation checklist, stop conditions</strong>
+          </article>
+
+          <article>
+            <span>Done Signal</span>
+            <strong>Sensitive material is handled and publishing actions have owner confirmation</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Action</th><th>Material / Evidence</th><th>Done Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Input Decision</td><td>First decide whether this page matches the current material, entry point, and risk level.</td><td>Private fields, account actions, publishing actions</td><td>If materials do not match, narrow the task before execution.</td></tr>
+
+            <tr><td>Process Evidence</td><td>State prohibited actions before execution and keep openable check material afterward.</td><td>Redaction log, confirmation checklist, stop conditions</td><td>Another person can understand the decision chain.</td></tr>
+
+            <tr><td>Failure Handling</td><td>When a stop condition appears, record the state without expanding permissions or guessing missing information.</td><td>Material includes keys, IDs, full contracts, or unauthorized content</td><td>The stop reason and next owner are clear.</td></tr>
+
+            <tr><td>Acceptance Action</td><td>Prove completion with the page's commands, screenshots, checklist, or manual review.</td><td>Sensitive material is handled and publishing actions have owner confirmation</td><td>Passed items, confirmation items, and rollback path are recorded.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>Reusable Decision Brief</h3>
+      <pre class="output-sample decision-brief"><code>Check: whether the material contains keys, customer records, private IDs, or account permissions
+Action: redact first, then limit output format and prohibited actions
+Stop: do not continue when authorization is unclear
+Acceptance: keep redaction notes and human confirmation items</code></pre>
+    </section>
 
 
 

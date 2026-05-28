@@ -937,6 +937,7 @@ main {
 
 .doc-content p {
   margin: 0 0 14px;
+  overflow-wrap: anywhere;
 }
 
 .doc-content code {
@@ -1031,6 +1032,93 @@ main {
 }
 
 .tutorial-brief {
+  border-color: rgba(255, 146, 44, 0.45);
+  background: rgba(255, 146, 44, 0.07);
+}
+
+.decision-workbench {
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 146, 44, 0.11), rgba(36, 36, 36, 0.96) 42%),
+    var(--panel);
+}
+
+.decision-workbench-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.decision-workbench-head span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.decision-workbench-head strong {
+  max-width: 58%;
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.decision-workbench p {
+  margin-top: 16px;
+}
+
+.decision-workbench h3 {
+  margin: 22px 0 0;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.decision-workbench-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.decision-workbench-stats article {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.78);
+}
+
+.decision-workbench-stats span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.decision-workbench-stats strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.decision-workbench-table {
+  min-width: 880px;
+}
+
+.decision-brief {
   border-color: rgba(255, 146, 44, 0.45);
   background: rgba(255, 146, 44, 0.07);
 }
@@ -1830,7 +1918,7 @@ main {
 @media (max-width: 920px) {
   main,
   .site-footer {
-    width: min(100% - 28px, 760px);
+    width: min(calc(100vw - 28px), 760px);
   }
 
   .site-header {
@@ -1891,6 +1979,7 @@ main {
   .case-library-stats,
   .library-health-stats,
   .tutorial-lab-stats,
+  .decision-workbench-stats,
   .case-card-grid,
   .artifact-grid,
   .case-visual-grid,
@@ -1928,11 +2017,39 @@ main {
   .case-index-card dl {
     grid-template-columns: 1fr;
   }
+
+  .decision-workbench-head {
+    flex-direction: column;
+  }
+
+  .decision-workbench-head strong {
+    max-width: 100%;
+    text-align: left;
+  }
 }
 
 @media (max-width: 520px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   main {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0 14px;
     overflow: hidden;
+  }
+
+  .doc-layout,
+  .doc-content,
+  .language-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .site-header {
@@ -1961,6 +2078,16 @@ main {
     overflow-wrap: anywhere;
     word-break: break-all;
     font-size: 1.78rem;
+  }
+
+  .doc-content p,
+  .doc-content li,
+  .doc-meta-grid dd,
+  .decision-workbench-stats strong,
+  .tutorial-lab-stats strong,
+  .case-dashboard strong {
+    overflow-wrap: anywhere;
+    word-break: break-all;
   }
 
   .hero-copy,

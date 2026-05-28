@@ -121,6 +121,60 @@
 
     </dl>
         <img class="doc-hero-image" src="../assets/entry-map.svg" alt="入口地图">
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>决策工作台</span>
+        <strong>入口地图</strong>
+      </div>
+      <p>这块把普通阅读页改成一次可执行判断：先看入口和材料，再记录证据、失败处理和验收动作。</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>入口</span>
+            <strong>桌面端 / CLI / IDE / 云端任务</strong>
+          </article>
+
+          <article>
+            <span>材料</span>
+            <strong>材料位置、风险等级、验收方式</strong>
+          </article>
+
+          <article>
+            <span>证据</span>
+            <strong>入口选择表、禁止动作、验收截图</strong>
+          </article>
+
+          <article>
+            <span>完成信号</span>
+            <strong>入口、权限和验收方式三项能互相解释</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>检查点</th><th>动作</th><th>材料/证据</th><th>完成判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>输入判断</td><td>先判断本页任务是否匹配当前材料、入口和风险等级。</td><td>材料位置、风险等级、验收方式</td><td>材料不匹配时先缩小任务，不进入执行。</td></tr>
+
+            <tr><td>过程证据</td><td>执行前写清禁止动作，执行后留下可打开的检查材料。</td><td>入口选择表、禁止动作、验收截图</td><td>另一个人能看懂判断链路。</td></tr>
+
+            <tr><td>失败处理</td><td>遇到停止条件时记录现场，不扩大权限、不补猜缺失信息。</td><td>入口需要超出当前材料权限</td><td>停止原因和下一步负责人明确。</td></tr>
+
+            <tr><td>验收动作</td><td>用本页给出的命令、截图、清单或人工检查证明完成。</td><td>入口、权限和验收方式三项能互相解释</td><td>通过项、待确认项和回退方式都已记录。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>可复用判断单</h3>
+      <pre class="output-sample decision-brief"><code>场景：我要检查一个本地页面和一份截图
+入口：桌面端或本地浏览器检查
+禁止：不登录新账号，不发送文件，不覆盖页面
+验收：保存桌面/手机截图，列出问题等级</code></pre>
+    </section>
 
 
 
@@ -192,6 +246,60 @@
 
     </dl>
         <img class="doc-hero-image" src="../assets/entry-map.svg" alt="Entry Point Map">
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>Decision Workbench</span>
+        <strong>Entry Point Map</strong>
+      </div>
+      <p>This panel turns a reading page into an executable decision: check entry and materials, then record evidence, failure handling, and acceptance action.</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>Entry</span>
+            <strong>Desktop / CLI / IDE / cloud task</strong>
+          </article>
+
+          <article>
+            <span>Material</span>
+            <strong>Material location, risk level, acceptance method</strong>
+          </article>
+
+          <article>
+            <span>Evidence</span>
+            <strong>Entry choice table, prohibited actions, acceptance screenshot</strong>
+          </article>
+
+          <article>
+            <span>Done Signal</span>
+            <strong>Entry point, permissions, and acceptance method explain each other</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Action</th><th>Material / Evidence</th><th>Done Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Input Decision</td><td>First decide whether this page matches the current material, entry point, and risk level.</td><td>Material location, risk level, acceptance method</td><td>If materials do not match, narrow the task before execution.</td></tr>
+
+            <tr><td>Process Evidence</td><td>State prohibited actions before execution and keep openable check material afterward.</td><td>Entry choice table, prohibited actions, acceptance screenshot</td><td>Another person can understand the decision chain.</td></tr>
+
+            <tr><td>Failure Handling</td><td>When a stop condition appears, record the state without expanding permissions or guessing missing information.</td><td>Entry point needs access beyond current materials</td><td>The stop reason and next owner are clear.</td></tr>
+
+            <tr><td>Acceptance Action</td><td>Prove completion with the page's commands, screenshots, checklist, or manual review.</td><td>Entry point, permissions, and acceptance method explain each other</td><td>Passed items, confirmation items, and rollback path are recorded.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>Reusable Decision Brief</h3>
+      <pre class="output-sample decision-brief"><code>Scenario: review one local page and one screenshot
+Entry: desktop app or local browser review
+Prohibited: no new sign-in, no file sending, no page overwrite
+Acceptance: save desktop/mobile screenshots and list issue severity</code></pre>
+    </section>
 
 
 

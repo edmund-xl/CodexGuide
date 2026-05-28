@@ -72,6 +72,119 @@ const resourcePages = [
   ["contribute/roadmap.html", "共建路线图", "Contribution roadmap", "用 Issue、PR、验收清单和事实核对流程维护一个可持续开源文档项目。", "Maintain a sustainable open-source documentation project with issues, pull requests, acceptance checklists, and fact checks."]
 ];
 
+const decisionWorkbenchProfiles = new Map([
+  ["platform/index.html", {
+    entry: b("桌面端 / CLI / IDE / 云端任务", "Desktop / CLI / IDE / cloud task"),
+    material: b("材料位置、风险等级、验收方式", "Material location, risk level, acceptance method"),
+    evidence: b("入口选择表、禁止动作、验收截图", "Entry choice table, prohibited actions, acceptance screenshot"),
+    stop: b("入口需要超出当前材料权限", "Entry point needs access beyond current materials"),
+    done: b("入口、权限和验收方式三项能互相解释", "Entry point, permissions, and acceptance method explain each other"),
+    sample: b(
+      "场景：我要检查一个本地页面和一份截图\n入口：桌面端或本地浏览器检查\n禁止：不登录新账号，不发送文件，不覆盖页面\n验收：保存桌面/手机截图，列出问题等级",
+      "Scenario: review one local page and one screenshot\nEntry: desktop app or local browser review\nProhibited: no new sign-in, no file sending, no page overwrite\nAcceptance: save desktop/mobile screenshots and list issue severity"
+    )
+  }],
+  ["configuration/index.html", {
+    entry: b("本地配置 + 只读验证任务", "Local configuration plus read-only validation task"),
+    material: b("当前目录、默认权限、审批策略", "Current directory, default permissions, approval policy"),
+    evidence: b("配置差异、只读任务记录、回退说明", "Configuration diff, read-only task log, rollback note"),
+    stop: b("配置会默认扩大目录或网络访问", "Configuration expands directory or network access by default"),
+    done: b("最小配置可运行、可解释、可回退", "Minimum configuration runs, is explainable, and is reversible"),
+    sample: b(
+      "目标：建立当前项目的最小可用配置\n限制：不保存密钥，不默认扩大工作区\n验证：让 Codex 只读说明会访问哪些文件\n交付：配置 diff、验证记录、回退步骤",
+      "Goal: create the minimum usable configuration for the current project\nConstraints: do not save secrets or broaden the workspace by default\nVerification: ask Codex to explain which files it would access read-only\nDeliverable: configuration diff, validation log, rollback steps"
+    )
+  }],
+  ["configuration/cli-options.html", {
+    entry: b("终端命令 + 审批提示", "Terminal commands plus approval prompts"),
+    material: b("运行命令、模型选择、沙盒范围", "Run command, model choice, sandbox scope"),
+    evidence: b("命令输出、审批记录、失败退出码", "Command output, approval record, failure exit code"),
+    stop: b("命令会删除、发布、推送或改远端状态", "Command deletes, publishes, pushes, or changes remote state"),
+    done: b("命令能复跑，风险动作有单独确认", "Commands can rerun and risky actions have separate confirmation"),
+    sample: b(
+      "任务：整理 CLI 常用启动方式\n先做：列出命令、适用场景和风险动作\n不要：直接执行发布、删除或推送\n验收：每条命令都有用途、退出条件和人工确认点",
+      "Task: organize common CLI launch patterns\nFirst: list command, use case, and risky action\nDo not: publish, delete, or push directly\nAcceptance: every command has purpose, exit condition, and human confirmation point"
+    )
+  }],
+  ["configuration/config-file.html", {
+    entry: b("配置文件工作副本", "Configuration file working copy"),
+    material: b("config.toml、环境变量说明、忽略规则", "config.toml, environment variable notes, ignore rules"),
+    evidence: b("前后 diff、敏感字段检查、回退副本", "Before/after diff, sensitive-field check, rollback copy"),
+    stop: b("凭据、账号标识或私人路径准备写入仓库", "Credentials, account identifiers, or private paths would be written to the repository"),
+    done: b("配置文件不含敏感值，变更能被复核", "Configuration file has no sensitive values and changes are reviewable"),
+    sample: b(
+      "材料：config.toml 工作副本\n要求：只保留稳定偏好和审批默认值\n检查：搜索 token、key、password、个人目录\n交付：安全 diff、待人工确认项、回退文件名",
+      "Material: config.toml working copy\nRequirement: keep only stable preferences and approval defaults\nCheck: search for token, key, password, and personal directories\nDeliverable: safe diff, human confirmation items, rollback filename"
+    )
+  }],
+  ["configuration/mcp-skills-subagents.html", {
+    entry: b("工具连接清单 + 单项试跑", "Tool connection list plus one-by-one trial"),
+    material: b("可用工具、权限范围、任务拆分条件", "Available tools, permission scope, task-splitting conditions"),
+    evidence: b("启用清单、试跑记录、失败处理", "Enablement checklist, trial log, failure handling"),
+    stop: b("一次打开多个高权限工具且没有验收方式", "Multiple high-permission tools are enabled at once without acceptance"),
+    done: b("每个扩展能力都有用途、边界和关闭方式", "Every extension has purpose, boundary, and shutdown method"),
+    sample: b(
+      "目标：只验证一个工具连接是否适合当前任务\n限制：一次只启用一个能力，不处理真实敏感材料\n验收：记录输入、输出、权限提示和关闭方式\n失败：连接不稳定时停止扩大范围",
+      "Goal: verify whether one tool connection fits the current task\nConstraints: enable one capability at a time and avoid real sensitive material\nAcceptance: record input, output, permission prompt, and shutdown path\nFailure: stop expanding scope when the connection is unstable"
+    )
+  }],
+  ["configuration/security-admin.html", {
+    entry: b("权限矩阵 + 团队规则", "Permission matrix plus team policy"),
+    material: b("文件、命令、网络、凭据、账号动作", "Files, commands, network, credentials, account actions"),
+    evidence: b("审批矩阵、拒绝样例、升级路径", "Approval matrix, refusal samples, escalation path"),
+    stop: b("无法说明动作影响或负责人", "Action impact or owner cannot be stated"),
+    done: b("每类高风险动作都有默认处理方式", "Every high-risk action type has a default handling rule"),
+    sample: b(
+      "场景：团队准备允许 Codex 改仓库\n矩阵：文件写入、命令执行、联网、凭据读取、账号操作\n规则：低风险可执行，高风险必须人工确认\n验收：每类动作都有允许、拒绝和升级样例",
+      "Scenario: a team prepares to let Codex edit a repository\nMatrix: file write, command run, network, credential read, account operation\nRule: low-risk actions may run; high-risk actions need human confirmation\nAcceptance: every action type has allow, deny, and escalation samples"
+    )
+  }],
+  ["practice/index.html", {
+    entry: b("任务说明 + 复盘记录", "Task brief plus retrospective record"),
+    material: b("目标、范围、约束、输出格式", "Objective, scope, constraints, output format"),
+    evidence: b("计划、diff、截图、人工清单", "Plan, diff, screenshot, manual checklist"),
+    stop: b("目标含糊或验收方式缺失", "Objective is vague or acceptance method is missing"),
+    done: b("五段式闭环留下可复查材料", "The five-stage loop leaves reviewable material"),
+    sample: b(
+      "任务：把一份资料副本整理成摘要表\n说明：只读原件，输出到新文件\n探索：先列字段和不确定项\n验证：人工核对 5 行样本和全部待确认项",
+      "Task: turn a document duplicate into a summary table\nBrief: read the source only and output to a new file\nDiscovery: list fields and uncertainties first\nVerification: manually check five sample rows and all confirmation items"
+    )
+  }],
+  ["reference/index.html", {
+    entry: b("官方页面 + 核对日期", "Official page plus verification date"),
+    material: b("功能、价格、限额、模型、安全策略", "Features, pricing, limits, models, safety policy"),
+    evidence: b("核对清单、日期、改动记录", "Validation checklist, date, change log"),
+    stop: b("动态事实无法在官方页面确认", "A dynamic fact cannot be confirmed on an official page"),
+    done: b("每条动态信息都有最近核对日期", "Every dynamic detail has a recent verification date"),
+    sample: b(
+      "目标：更新一条 Codex 功能说明\n材料：官方产品页或开发者文档\n要求：记录核对日期，不写永久结论\n验收：页面文字、链接和日期三项一致",
+      "Goal: update one Codex feature note\nMaterial: official product page or developer documentation\nRequirement: record verification date and avoid permanent claims\nAcceptance: page copy, link, and date are consistent"
+    )
+  }],
+  ["contribute/roadmap.html", {
+    entry: b("Issue / PR / 本地检查", "Issue / PR / local checks"),
+    material: b("修改意图、影响范围、验收命令", "Change intent, impact area, acceptance commands"),
+    evidence: b("构建结果、链接检查、双语 diff", "Build result, link check, bilingual diff"),
+    stop: b("只改中文或英文，另一侧缺失", "Only Chinese or English is changed while the other side is missing"),
+    done: b("PR 能说明为什么改、怎么验收、风险在哪", "The PR explains why it changed, how it was checked, and where risks remain"),
+    sample: b(
+      "PR 内容：新增一个工具实测案例\n必须包含：中文、英文、输入材料、验收命令、风险边界\n本地检查：npm run build && npm run check\n交付：截图、diff、待确认项",
+      "PR content: add one tool-tested recipe\nMust include: Chinese, English, input material, acceptance command, risk boundary\nLocal check: npm run build && npm run check\nDeliverable: screenshot, diff, confirmation items"
+    )
+  }],
+  ["recipes/usage-policy.html", {
+    entry: b("材料审查 + 人工确认", "Material review plus human confirmation"),
+    material: b("隐私字段、账号动作、发布动作", "Private fields, account actions, publishing actions"),
+    evidence: b("脱敏记录、确认清单、停止条件", "Redaction log, confirmation checklist, stop conditions"),
+    stop: b("材料包含密钥、证件、合同原文或未授权内容", "Material includes keys, IDs, full contracts, or unauthorized content"),
+    done: b("敏感材料已处理，发布动作有负责人确认", "Sensitive material is handled and publishing actions have owner confirmation"),
+    sample: b(
+      "检查：这份材料是否含密钥、客户资料、私人证件或账号权限\n动作：先脱敏，再限定输出格式和禁止动作\n停止：无法确认授权时不继续处理\n验收：保留脱敏说明和人工确认项",
+      "Check: whether the material contains keys, customer records, private IDs, or account permissions\nAction: redact first, then limit output format and prohibited actions\nStop: do not continue when authorization is unclear\nAcceptance: keep redaction notes and human confirmation items"
+    )
+  }]
+]);
+
 const caseRecipes = [
   {
     path: "recipes/deck-export-check.html",
@@ -2726,6 +2839,78 @@ function tutorialLabPanel(lab, lang) {
     </section>`;
 }
 
+function shouldRenderDecisionWorkbench(page) {
+  return decisionWorkbenchProfiles.has(page.path)
+    && !page.caseIndex
+    && !page.caseRecipe
+    && !page.tutorialLab;
+}
+
+function decisionWorkbenchPanel(page, lang) {
+  const profile = decisionWorkbenchProfiles.get(page.path);
+  if (!profile) return "";
+  const isZh = lang === "zh";
+  const rows = [
+    [
+      b("输入判断", "Input Decision"),
+      b("先判断本页任务是否匹配当前材料、入口和风险等级。", "First decide whether this page matches the current material, entry point, and risk level."),
+      profile.material,
+      b("材料不匹配时先缩小任务，不进入执行。", "If materials do not match, narrow the task before execution.")
+    ],
+    [
+      b("过程证据", "Process Evidence"),
+      b("执行前写清禁止动作，执行后留下可打开的检查材料。", "State prohibited actions before execution and keep openable check material afterward."),
+      profile.evidence,
+      b("另一个人能看懂判断链路。", "Another person can understand the decision chain.")
+    ],
+    [
+      b("失败处理", "Failure Handling"),
+      b("遇到停止条件时记录现场，不扩大权限、不补猜缺失信息。", "When a stop condition appears, record the state without expanding permissions or guessing missing information."),
+      profile.stop,
+      b("停止原因和下一步负责人明确。", "The stop reason and next owner are clear.")
+    ],
+    [
+      b("验收动作", "Acceptance Action"),
+      b("用本页给出的命令、截图、清单或人工检查证明完成。", "Prove completion with the page's commands, screenshots, checklist, or manual review."),
+      profile.done,
+      b("通过项、待确认项和回退方式都已记录。", "Passed items, confirmation items, and rollback path are recorded.")
+    ]
+  ];
+
+  return `
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>${isZh ? "决策工作台" : "Decision Workbench"}</span>
+        <strong>${escapeHtml(textOf(page.title, lang))}</strong>
+      </div>
+      ${paragraph(b(
+        "这块把普通阅读页改成一次可执行判断：先看入口和材料，再记录证据、失败处理和验收动作。",
+        "This panel turns a reading page into an executable decision: check entry and materials, then record evidence, failure handling, and acceptance action."
+      ), lang)}
+      <div class="decision-workbench-stats">
+        ${[
+          [b("入口", "Entry"), profile.entry],
+          [b("材料", "Material"), profile.material],
+          [b("证据", "Evidence"), profile.evidence],
+          [b("完成信号", "Done Signal"), profile.done]
+        ].map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+      ${tableHtml([
+        b("检查点", "Checkpoint"),
+        b("动作", "Action"),
+        b("材料/证据", "Material / Evidence"),
+        b("完成判断", "Done Decision")
+      ], rows, lang, "evidence-table decision-workbench-table")}
+      <h3>${isZh ? "可复用判断单" : "Reusable Decision Brief"}</h3>
+      ${codeSample(profile.sample, lang, "output-sample decision-brief")}
+    </section>`;
+}
+
 function acceptanceLedgerPanel(recipe, lang) {
   const ledger = acceptanceLedger(recipe);
   const isZh = lang === "zh";
@@ -3534,7 +3719,7 @@ function docPage(page) {
         <h1>${escapeHtml(textOf(page.title, lang))}</h1>
         ${paragraph(page.summary, lang)}
         ${metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang)}
-        ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(textOf(page.title, lang))}">` : ""}
+        ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(textOf(page.title, lang))}">` : ""}${shouldRenderDecisionWorkbench(page) ? decisionWorkbenchPanel(page, lang) : ""}
         ${page.caseIndex ? caseIndexContent(lang) : ""}
         ${page.caseRecipe ? caseContent(page.caseRecipe, lang) : ""}
         ${page.tutorialLab ? tutorialLabPanel(page.tutorialLab, lang) : ""}${page.sections.map((item) => `

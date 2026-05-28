@@ -121,6 +121,60 @@
 
     </dl>
 
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>决策工作台</span>
+        <strong>配置总览</strong>
+      </div>
+      <p>这块把普通阅读页改成一次可执行判断：先看入口和材料，再记录证据、失败处理和验收动作。</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>入口</span>
+            <strong>本地配置 + 只读验证任务</strong>
+          </article>
+
+          <article>
+            <span>材料</span>
+            <strong>当前目录、默认权限、审批策略</strong>
+          </article>
+
+          <article>
+            <span>证据</span>
+            <strong>配置差异、只读任务记录、回退说明</strong>
+          </article>
+
+          <article>
+            <span>完成信号</span>
+            <strong>最小配置可运行、可解释、可回退</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>检查点</th><th>动作</th><th>材料/证据</th><th>完成判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>输入判断</td><td>先判断本页任务是否匹配当前材料、入口和风险等级。</td><td>当前目录、默认权限、审批策略</td><td>材料不匹配时先缩小任务，不进入执行。</td></tr>
+
+            <tr><td>过程证据</td><td>执行前写清禁止动作，执行后留下可打开的检查材料。</td><td>配置差异、只读任务记录、回退说明</td><td>另一个人能看懂判断链路。</td></tr>
+
+            <tr><td>失败处理</td><td>遇到停止条件时记录现场，不扩大权限、不补猜缺失信息。</td><td>配置会默认扩大目录或网络访问</td><td>停止原因和下一步负责人明确。</td></tr>
+
+            <tr><td>验收动作</td><td>用本页给出的命令、截图、清单或人工检查证明完成。</td><td>最小配置可运行、可解释、可回退</td><td>通过项、待确认项和回退方式都已记录。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>可复用判断单</h3>
+      <pre class="output-sample decision-brief"><code>目标：建立当前项目的最小可用配置
+限制：不保存密钥，不默认扩大工作区
+验证：让 Codex 只读说明会访问哪些文件
+交付：配置 diff、验证记录、回退步骤</code></pre>
+    </section>
 
 
 
@@ -201,6 +255,60 @@
 
     </dl>
 
+    <section class="decision-workbench">
+      <div class="decision-workbench-head">
+        <span>Decision Workbench</span>
+        <strong>Configuration overview</strong>
+      </div>
+      <p>This panel turns a reading page into an executable decision: check entry and materials, then record evidence, failure handling, and acceptance action.</p>
+      <div class="decision-workbench-stats">
+
+          <article>
+            <span>Entry</span>
+            <strong>Local configuration plus read-only validation task</strong>
+          </article>
+
+          <article>
+            <span>Material</span>
+            <strong>Current directory, default permissions, approval policy</strong>
+          </article>
+
+          <article>
+            <span>Evidence</span>
+            <strong>Configuration diff, read-only task log, rollback note</strong>
+          </article>
+
+          <article>
+            <span>Done Signal</span>
+            <strong>Minimum configuration runs, is explainable, and is reversible</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table decision-workbench-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Action</th><th>Material / Evidence</th><th>Done Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Input Decision</td><td>First decide whether this page matches the current material, entry point, and risk level.</td><td>Current directory, default permissions, approval policy</td><td>If materials do not match, narrow the task before execution.</td></tr>
+
+            <tr><td>Process Evidence</td><td>State prohibited actions before execution and keep openable check material afterward.</td><td>Configuration diff, read-only task log, rollback note</td><td>Another person can understand the decision chain.</td></tr>
+
+            <tr><td>Failure Handling</td><td>When a stop condition appears, record the state without expanding permissions or guessing missing information.</td><td>Configuration expands directory or network access by default</td><td>The stop reason and next owner are clear.</td></tr>
+
+            <tr><td>Acceptance Action</td><td>Prove completion with the page's commands, screenshots, checklist, or manual review.</td><td>Minimum configuration runs, is explainable, and is reversible</td><td>Passed items, confirmation items, and rollback path are recorded.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>Reusable Decision Brief</h3>
+      <pre class="output-sample decision-brief"><code>Goal: create the minimum usable configuration for the current project
+Constraints: do not save secrets or broaden the workspace by default
+Verification: ask Codex to explain which files it would access read-only
+Deliverable: configuration diff, validation log, rollback steps</code></pre>
+    </section>
 
 
 

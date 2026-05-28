@@ -67,6 +67,10 @@ https://edmund-xl.github.io/CodexGuide/
 
 ![第一次任务教程截图](assets/screenshots/guide-first-task.png)
 
+配置总览展示决策工作台、入口判断、过程证据、失败处理和可复用判断单。
+
+![配置工作台截图](assets/screenshots/config-workbench.png)
+
 部署诊断案例的交付截图展示结果片段、证据状态、成熟度、终审动作和人工交接。
 
 ![部署诊断案例截图](assets/screenshots/case-pages-deploy-diagnosis.png)
@@ -167,6 +171,10 @@ The recipe index shows a tool-tested task matrix split by entry, evidence, deliv
 The first-task guide shows the hands-on acceptance panel, evidence table, failure branch, and reusable work order.
 
 ![First-task guide screenshot](assets/screenshots/guide-first-task.png)
+
+The configuration overview shows the decision workbench, entry decision, process evidence, failure handling, and reusable decision brief.
+
+![Configuration workbench screenshot](assets/screenshots/config-workbench.png)
 
 The deployment diagnosis delivery capture shows result snippets, evidence status, maturity, final review, and human handoff.
 

@@ -37,6 +37,18 @@ const caseArtifactFiles = [
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
 const caseLibraryHealth = "assets/case-artifacts/library-health.json";
+const decisionWorkbenchPages = [
+  "platform/index.html",
+  "configuration/index.html",
+  "configuration/cli-options.html",
+  "configuration/config-file.html",
+  "configuration/mcp-skills-subagents.html",
+  "configuration/security-admin.html",
+  "practice/index.html",
+  "reference/index.html",
+  "contribute/roadmap.html",
+  "recipes/usage-policy.html"
+];
 const oldRecipeSlugs = [
   "newsletter-brief.html",
   "docs-site-refresh.html",
@@ -286,6 +298,13 @@ for (const file of htmlFiles) {
     for (const marker of ["实操验收面板", "Hands-on Acceptance Panel", "tutorial-lab-panel", "tutorial-lab-stats", "tutorial-evidence-table", "tutorial-brief", "失败分支", "Failure Branch"]) {
       if (!html.includes(marker)) {
         errors.push(`${file}: missing tutorial lab marker ${marker}.`);
+      }
+    }
+  }
+  if (decisionWorkbenchPages.includes(file)) {
+    for (const marker of ["决策工作台", "Decision Workbench", "decision-workbench", "decision-workbench-stats", "decision-workbench-table", "decision-brief", "失败处理", "Failure Handling"]) {
+      if (!html.includes(marker)) {
+        errors.push(`${file}: missing decision workbench marker ${marker}.`);
       }
     }
   }
