@@ -92,7 +92,7 @@
         <h1>12 自动化提醒与定期检查</h1>
         <p>把重复检查任务设计成只提醒、不越权的自动化流程，先手动试跑，再确认频率、暂停规则和输出格式。</p>
 
-    <section class="field-story-panel">
+    <section id="zh-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>现场叙事</h2>
@@ -138,6 +138,46 @@
 交付：automation-brief.md、mock-result.md、pause-rules.md
 人工确认：自动化不能替代需要人工判断的动作。</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="案例复盘导航">
+      <div>
+        <span>复盘导航</span>
+        <strong>按现场链路阅读</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#zh-field-story">
+            <span>现场</span>
+            <small>先看问题、第一信号和首屏证据。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-raw-scene">
+            <span>片段</span>
+            <small>查看原始日志、表格、diff 或检查记录。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-input-materials">
+            <span>材料</span>
+            <small>确认可读取材料和禁止动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-evidence-trail">
+            <span>证据</span>
+            <small>判断过程证据是否足够。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-delivery-preview">
+            <span>结果</span>
+            <small>查看交付片段和修正动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-acceptance-criteria">
+            <span>验收</span>
+            <small>复跑命令和人工步骤。</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -204,7 +244,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="zh-task-background">
       <h2>任务背景</h2>
       <p>把重复检查任务设计成只提醒、不越权的自动化流程，先手动试跑，再确认频率、暂停规则和输出格式。</p>
       <div class="risk-strip">
@@ -213,7 +253,7 @@
         <span>中</span>
       </div>
     </section>
-    <section>
+    <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
       <pre class="output-sample raw-scene"><code>scheduled-check-run.txt
@@ -222,7 +262,7 @@ exit_condition=no new failures and no stale issue over 3 days
 first_run=missing failure notification channel
 fix=补失败提醒、停止条件和人工接手人</code></pre>
     </section>
-    <section>
+    <section id="zh-input-materials">
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -235,14 +275,14 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
 输出：状态、异常、建议
 限制：只检查和提醒，不自动修复、不自动提交</code></pre>
     </section>
-    <section>
+    <section id="zh-run-environment">
       <h2>运行环境</h2>
 
     <ul class="case-checklist">
       <li>运行频率以低打扰为默认：每日一次或每周一次。</li><li>标准输出只包含状态、变化、异常、建议和待确认动作。</li><li>连续三次无有效信息时，降低频率或暂停。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-run-snapshot">
       <h2>实测快照</h2>
       <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
 
@@ -377,13 +417,13 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="zh-operating-script">
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先把模糊任务改写成检查规则和停止条件。</li><li>生成一次模拟输出，让用户确认长度、语气和行动性。</li><li>建立自动化时只保存任务本身，频率和目标由调度配置承担。</li>
       </ol>
     </section>
-    <section>
+    <section id="zh-command-replay">
       <h2>命令回放</h2>
       <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
 
@@ -404,7 +444,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-run-log">
       <h2>现场记录</h2>
       <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
 
@@ -427,7 +467,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-execution-transcript">
       <h2>执行转录</h2>
       <p>执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。</p>
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：检查对象、频率、异常定义、标准输出、暂停条件
@@ -441,7 +481,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
 00:50 产出交付物：automation-brief.md、mock-result.md、pause-rules.md
 00:55 验收判断：任务规则可被执行，异常定义明确。</code></pre>
     </section>
-    <section>
+    <section id="zh-evidence-trail">
       <h2>过程证据</h2>
       <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
@@ -464,7 +504,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-delivery-preview">
       <h2>交付预览</h2>
       <p>交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。</p>
 
@@ -492,7 +532,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="zh-before-after">
       <h2>前后对比</h2>
       <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
 
@@ -517,7 +557,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-quality-scorecard">
       <h2>质量评分</h2>
       <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
 
@@ -555,7 +595,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </div>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-ledger">
       <h2>验收总账</h2>
       <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
 
@@ -605,7 +645,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       <a class="ledger-link" href="../assets/case-artifacts/automation-scheduled-checks/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
-    <section>
+    <section id="zh-result-sample">
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>mock-result.md
@@ -614,7 +654,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
 异常：无
 建议：本周无需处理；如连续 3 周无异常，可改为每两周一次</code></pre>
     </section>
-    <section>
+    <section id="zh-failures-corrections">
       <h2>失败与修正</h2>
 
     <div class="table-wrap">
@@ -634,14 +674,14 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-risk-boundaries">
       <h2>风险边界</h2>
 
     <ul class="case-checklist risk-list">
       <li>自动化只提醒，不执行发布、删除、发送、付款或提交。</li><li>失败时输出原因和建议，不自行扩大权限。</li><li>频率和通知对象可随时暂停或调整。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-human-handoff">
       <h2>人工交接</h2>
       <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
 
@@ -652,7 +692,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-criteria">
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -664,7 +704,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
       <code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</code><code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html</code><code>人工确认自动化输出没有发布、删除、发送或付款动作。</code>
     </div>
     </section>
-    <section>
+    <section id="zh-work-order">
       <h2>可复用任务单</h2>
       <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
       <pre class="output-sample work-order"><code>请先把这个重复任务改写成检查规则、异常定义和标准输出格式。
@@ -693,7 +733,7 @@ fix=补失败提醒、停止条件和人工接手人</code></pre>
         <h1>12 Automation Reminders and Scheduled Checks</h1>
         <p>Design a recurring check as a reminder-only automation that does not overstep, with a manual trial before confirming frequency, pause rules, and output format.</p>
 
-    <section class="field-story-panel">
+    <section id="en-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>Field Story</h2>
@@ -739,6 +779,46 @@ Correction: Use URL, status code, and page marker
 Delivery: automation-brief.md, mock-result.md, and pause-rules.md
 Human confirmation: Automation cannot replace actions requiring human judgment.</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="Recipe recap navigation">
+      <div>
+        <span>Recap Navigator</span>
+        <strong>Read by evidence chain</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#en-field-story">
+            <span>Field</span>
+            <small>Start with the problem, first signal, and proof frame.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-raw-scene">
+            <span>Excerpt</span>
+            <small>Inspect the raw log, table, diff, or check record.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-input-materials">
+            <span>Inputs</span>
+            <small>Confirm readable materials and prohibited actions.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-evidence-trail">
+            <span>Evidence</span>
+            <small>Judge whether process evidence is strong enough.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-delivery-preview">
+            <span>Result</span>
+            <small>Review the delivery sample and correction.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-acceptance-criteria">
+            <span>Acceptance</span>
+            <small>Rerun commands and manual checks.</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -805,7 +885,7 @@ Human confirmation: Automation cannot replace actions requiring human judgment.<
         </div>
 
     </section>
-    <section>
+    <section id="en-task-background">
       <h2>Task Background</h2>
       <p>Design a recurring check as a reminder-only automation that does not overstep, with a manual trial before confirming frequency, pause rules, and output format.</p>
       <div class="risk-strip">
@@ -814,7 +894,7 @@ Human confirmation: Automation cannot replace actions requiring human judgment.<
         <span>Medium</span>
       </div>
     </section>
-    <section>
+    <section id="en-raw-scene">
       <h2>Raw Scene Excerpt</h2>
       <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
       <pre class="output-sample raw-scene"><code>scheduled-check-run.txt
@@ -823,7 +903,7 @@ exit_condition=no new failures and no stale issue over 3 days
 first_run=missing failure notification channel
 fix=add failure notification, stop condition, and human owner</code></pre>
     </section>
-    <section>
+    <section id="en-input-materials">
       <h2>Input Materials</h2>
       <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
 
@@ -836,14 +916,14 @@ Targets: home, recipe index, usage policy
 Output: status, anomalies, suggestions
 Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
     </section>
-    <section>
+    <section id="en-run-environment">
       <h2>Run Environment</h2>
 
     <ul class="case-checklist">
       <li>Default frequency is low interruption: daily or weekly.</li><li>Standard output contains only status, changes, anomalies, suggestions, and confirmation actions.</li><li>If three consecutive runs have no value, reduce frequency or pause.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-run-snapshot">
       <h2>Run Snapshot</h2>
       <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
 
@@ -978,13 +1058,13 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="en-operating-script">
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Rewrite the vague task into check rules and stop conditions first.</li><li>Generate one mock output so the user can confirm length, tone, and actionability.</li><li>When creating automation, keep the prompt focused on the task while schedule config owns frequency and destination.</li>
       </ol>
     </section>
-    <section>
+    <section id="en-command-replay">
       <h2>Command Replay</h2>
       <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
 
@@ -1005,7 +1085,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-run-log">
       <h2>Run Log</h2>
       <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
 
@@ -1028,7 +1108,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-execution-transcript">
       <h2>Execution Transcript</h2>
       <p>The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review.</p>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Check target, frequency, anomaly definition, standard output, and pause condition
@@ -1042,7 +1122,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
 00:50 Deliverables prepared: automation-brief.md, mock-result.md, and pause-rules.md
 00:55 Acceptance decision: Task rules are executable and anomaly definition is explicit.</code></pre>
     </section>
-    <section>
+    <section id="en-evidence-trail">
       <h2>Evidence Trail</h2>
       <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
@@ -1065,7 +1145,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-delivery-preview">
       <h2>Delivery Preview</h2>
       <p>The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability.</p>
 
@@ -1093,7 +1173,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="en-before-after">
       <h2>Before / After</h2>
       <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
 
@@ -1118,7 +1198,7 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-quality-scorecard">
       <h2>Quality Scorecard</h2>
       <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
 
@@ -1156,7 +1236,7 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
       </div>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-ledger">
       <h2>Acceptance Ledger</h2>
       <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
 
@@ -1206,7 +1286,7 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
       <a class="ledger-link" href="../assets/case-artifacts/automation-scheduled-checks/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
-    <section>
+    <section id="en-result-sample">
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>mock-result.md
@@ -1215,7 +1295,7 @@ Change: home title now uses the new recipe matrix
 Anomaly: none
 Suggestion: no action this week; if three weeks stay clean, switch to biweekly</code></pre>
     </section>
-    <section>
+    <section id="en-failures-corrections">
       <h2>Failures and Corrections</h2>
 
     <div class="table-wrap">
@@ -1235,14 +1315,14 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-risk-boundaries">
       <h2>Risk Boundaries</h2>
 
     <ul class="case-checklist risk-list">
       <li>Automation reminds only and does not publish, delete, send, pay, or commit.</li><li>On failure, output reason and suggestion without expanding permissions.</li><li>Frequency and recipient can be paused or adjusted anytime.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-human-handoff">
       <h2>Human Handoff</h2>
       <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
 
@@ -1253,7 +1333,7 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
     </ul>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-criteria">
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
@@ -1265,7 +1345,7 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
       <code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</code><code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html</code><code>Manually confirm automation output contains no publish, delete, send, or payment action.</code>
     </div>
     </section>
-    <section>
+    <section id="en-work-order">
       <h2>Reusable Work Order</h2>
       <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
       <pre class="output-sample work-order"><code>First rewrite this recurring task into check rules, anomaly definition, and standard output format.

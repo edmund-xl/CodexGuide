@@ -92,7 +92,7 @@
         <h1>05 Markdown 知识库重整</h1>
         <p>把散乱 Markdown 笔记整理成统一 frontmatter、主题索引和待补清单，并保留样本 diff 便于回退。</p>
 
-    <section class="field-story-panel">
+    <section id="zh-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>现场叙事</h2>
@@ -138,6 +138,46 @@
 交付：重整后的 Markdown 副本、index.md、pending-review.md
 人工确认：原文只移动和补元数据，不删除正文。</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="案例复盘导航">
+      <div>
+        <span>复盘导航</span>
+        <strong>按现场链路阅读</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#zh-field-story">
+            <span>现场</span>
+            <small>先看问题、第一信号和首屏证据。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-raw-scene">
+            <span>片段</span>
+            <small>查看原始日志、表格、diff 或检查记录。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-input-materials">
+            <span>材料</span>
+            <small>确认可读取材料和禁止动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-evidence-trail">
+            <span>证据</span>
+            <small>判断过程证据是否足够。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-delivery-preview">
+            <span>结果</span>
+            <small>查看交付片段和修正动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-acceptance-criteria">
+            <span>验收</span>
+            <small>复跑命令和人工步骤。</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -204,7 +244,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="zh-task-background">
       <h2>任务背景</h2>
       <p>把散乱 Markdown 笔记整理成统一 frontmatter、主题索引和待补清单，并保留样本 diff 便于回退。</p>
       <div class="risk-strip">
@@ -213,7 +253,7 @@
         <span>低到中</span>
       </div>
     </section>
-    <section>
+    <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
       <pre class="output-sample raw-scene"><code>missing-fields.md
@@ -222,7 +262,7 @@ file,title,date,topic,status,next_action
 meeting-ai.md,present,missing,meeting,active,add date
 draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
     </section>
-    <section>
+    <section id="zh-input-materials">
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -235,14 +275,14 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
   draft-launch.md     # 状态不清楚
 目标字段: title, date, topic, status, summary, next_action</code></pre>
     </section>
-    <section>
+    <section id="zh-run-environment">
       <h2>运行环境</h2>
 
     <ul class="case-checklist">
       <li>样本目录：<code>notes-working/</code>，先抽 5 篇验证规则。</li><li>索引按 topic 和 status 分组，不复制完整目录树。</li><li>所有批量修改先展示 diff，再等待确认。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-run-snapshot">
       <h2>实测快照</h2>
       <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
 
@@ -377,13 +417,13 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="zh-operating-script">
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>第一步只扫描文件名、标题和已有 frontmatter，输出缺失矩阵。</li><li>第二步处理 5 篇样本并展示 diff，确认规则后再批量迁移。</li><li>第三步生成主题索引和待补清单，突出状态和下一步。</li>
       </ol>
     </section>
-    <section>
+    <section id="zh-command-replay">
       <h2>命令回放</h2>
       <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
 
@@ -404,7 +444,7 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-run-log">
       <h2>现场记录</h2>
       <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
 
@@ -427,7 +467,7 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-execution-transcript">
       <h2>执行转录</h2>
       <p>执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。</p>
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：笔记副本、字段规则、样本文件、目标索引格式
@@ -441,7 +481,7 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
 00:50 产出交付物：重整后的 Markdown 副本、index.md、pending-review.md
 00:55 验收判断：每篇笔记都有统一字段或明确待补标记。</code></pre>
     </section>
-    <section>
+    <section id="zh-evidence-trail">
       <h2>过程证据</h2>
       <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
@@ -464,7 +504,7 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-delivery-preview">
       <h2>交付预览</h2>
       <p>交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。</p>
 
@@ -492,7 +532,7 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="zh-before-after">
       <h2>前后对比</h2>
       <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
 
@@ -520,7 +560,7 @@ pending-review.md
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-quality-scorecard">
       <h2>质量评分</h2>
       <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
 
@@ -558,7 +598,7 @@ pending-review.md
       </div>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-ledger">
       <h2>验收总账</h2>
       <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
 
@@ -608,7 +648,7 @@ pending-review.md
       <a class="ledger-link" href="../assets/case-artifacts/markdown-knowledge-base/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
-    <section>
+    <section id="zh-result-sample">
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>index.md
@@ -620,7 +660,7 @@ pending-review.md
 - meeting-ai.md: date 缺失
 - draft-launch.md: status 需要确认</code></pre>
     </section>
-    <section>
+    <section id="zh-failures-corrections">
       <h2>失败与修正</h2>
 
     <div class="table-wrap">
@@ -640,14 +680,14 @@ pending-review.md
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-risk-boundaries">
       <h2>风险边界</h2>
 
     <ul class="case-checklist risk-list">
       <li>原始笔记目录不写入，迁移只发生在工作副本。</li><li>缺失信息标记为 pending，不补写没有证据的内容。</li><li>批量前必须展示样本 diff 并确认规则。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-human-handoff">
       <h2>人工交接</h2>
       <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
 
@@ -658,7 +698,7 @@ pending-review.md
     </ul>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-criteria">
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -670,7 +710,7 @@ pending-review.md
       <code>rg --files notes-working | sort</code><code>rg -n &quot;^title:|^date:|^topic:|^status:&quot; notes-working</code><code>git diff -- notes-working index.md pending-review.md</code>
     </div>
     </section>
-    <section>
+    <section id="zh-work-order">
       <h2>可复用任务单</h2>
       <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
       <pre class="output-sample work-order"><code>请扫描这个 Markdown 工作副本，先输出字段缺失矩阵和迁移规则。
@@ -699,7 +739,7 @@ pending-review.md
         <h1>05 Markdown Knowledge Base Restructure</h1>
         <p>Restructure scattered Markdown notes into consistent frontmatter, a topic index, and a pending list while keeping sample diffs for rollback.</p>
 
-    <section class="field-story-panel">
+    <section id="en-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>Field Story</h2>
@@ -745,6 +785,46 @@ Correction: Keep only provable dates and mark others pending
 Delivery: Restructured Markdown copy, index.md, and pending-review.md
 Human confirmation: Original text is moved and annotated, not deleted.</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="Recipe recap navigation">
+      <div>
+        <span>Recap Navigator</span>
+        <strong>Read by evidence chain</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#en-field-story">
+            <span>Field</span>
+            <small>Start with the problem, first signal, and proof frame.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-raw-scene">
+            <span>Excerpt</span>
+            <small>Inspect the raw log, table, diff, or check record.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-input-materials">
+            <span>Inputs</span>
+            <small>Confirm readable materials and prohibited actions.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-evidence-trail">
+            <span>Evidence</span>
+            <small>Judge whether process evidence is strong enough.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-delivery-preview">
+            <span>Result</span>
+            <small>Review the delivery sample and correction.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-acceptance-criteria">
+            <span>Acceptance</span>
+            <small>Rerun commands and manual checks.</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -811,7 +891,7 @@ Human confirmation: Original text is moved and annotated, not deleted.</code></p
         </div>
 
     </section>
-    <section>
+    <section id="en-task-background">
       <h2>Task Background</h2>
       <p>Restructure scattered Markdown notes into consistent frontmatter, a topic index, and a pending list while keeping sample diffs for rollback.</p>
       <div class="risk-strip">
@@ -820,7 +900,7 @@ Human confirmation: Original text is moved and annotated, not deleted.</code></p
         <span>Low to medium</span>
       </div>
     </section>
-    <section>
+    <section id="en-raw-scene">
       <h2>Raw Scene Excerpt</h2>
       <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
       <pre class="output-sample raw-scene"><code>missing-fields.md
@@ -829,7 +909,7 @@ file,title,date,topic,status,next_action
 meeting-ai.md,present,missing,meeting,active,add date
 draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
     </section>
-    <section>
+    <section id="en-input-materials">
       <h2>Input Materials</h2>
       <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
 
@@ -842,14 +922,14 @@ draft-launch.md,present,present,launch,unclear,confirm status</code></pre>
   draft-launch.md     # unclear status
 Target fields: title, date, topic, status, summary, next_action</code></pre>
     </section>
-    <section>
+    <section id="en-run-environment">
       <h2>Run Environment</h2>
 
     <ul class="case-checklist">
       <li>Sample folder: <code>notes-working/</code>; validate rules with five notes first.</li><li>The index groups by topic and status instead of copying the full folder tree.</li><li>All batch edits show diffs before confirmation.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-run-snapshot">
       <h2>Run Snapshot</h2>
       <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
 
@@ -984,13 +1064,13 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="en-operating-script">
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Step one scans only filenames, headings, and existing frontmatter, then outputs a missing-field matrix.</li><li>Step two processes five samples and shows diffs; batch migration happens only after rules are confirmed.</li><li>Step three generates topic index and pending list, emphasizing status and next action.</li>
       </ol>
     </section>
-    <section>
+    <section id="en-command-replay">
       <h2>Command Replay</h2>
       <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
 
@@ -1011,7 +1091,7 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-run-log">
       <h2>Run Log</h2>
       <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
 
@@ -1034,7 +1114,7 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-execution-transcript">
       <h2>Execution Transcript</h2>
       <p>The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review.</p>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Notes copy, field rules, sample files, and target index format
@@ -1048,7 +1128,7 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
 00:50 Deliverables prepared: Restructured Markdown copy, index.md, and pending-review.md
 00:55 Acceptance decision: Every note has consistent fields or explicit pending markers.</code></pre>
     </section>
-    <section>
+    <section id="en-evidence-trail">
       <h2>Evidence Trail</h2>
       <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
@@ -1071,7 +1151,7 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-delivery-preview">
       <h2>Delivery Preview</h2>
       <p>The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability.</p>
 
@@ -1099,7 +1179,7 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="en-before-after">
       <h2>Before / After</h2>
       <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
 
@@ -1127,7 +1207,7 @@ pending-review.md
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-quality-scorecard">
       <h2>Quality Scorecard</h2>
       <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
 
@@ -1165,7 +1245,7 @@ pending-review.md
       </div>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-ledger">
       <h2>Acceptance Ledger</h2>
       <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
 
@@ -1215,7 +1295,7 @@ pending-review.md
       <a class="ledger-link" href="../assets/case-artifacts/markdown-knowledge-base/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
-    <section>
+    <section id="en-result-sample">
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>index.md
@@ -1227,7 +1307,7 @@ pending-review.md
 - meeting-ai.md: missing date
 - draft-launch.md: status needs confirmation</code></pre>
     </section>
-    <section>
+    <section id="en-failures-corrections">
       <h2>Failures and Corrections</h2>
 
     <div class="table-wrap">
@@ -1247,14 +1327,14 @@ pending-review.md
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-risk-boundaries">
       <h2>Risk Boundaries</h2>
 
     <ul class="case-checklist risk-list">
       <li>The original notes folder is not written; migration happens only in the working copy.</li><li>Missing information is marked pending and absent content is not invented.</li><li>Before batching, sample diffs and rules must be confirmed.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-human-handoff">
       <h2>Human Handoff</h2>
       <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
 
@@ -1265,7 +1345,7 @@ pending-review.md
     </ul>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-criteria">
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
@@ -1277,7 +1357,7 @@ pending-review.md
       <code>rg --files notes-working | sort</code><code>rg -n &quot;^title:|^date:|^topic:|^status:&quot; notes-working</code><code>git diff -- notes-working index.md pending-review.md</code>
     </div>
     </section>
-    <section>
+    <section id="en-work-order">
       <h2>Reusable Work Order</h2>
       <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
       <pre class="output-sample work-order"><code>Scan this Markdown working copy and first output a missing-field matrix and migration rules.

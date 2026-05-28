@@ -92,7 +92,7 @@
         <h1>10 API 变更影响分析</h1>
         <p>把一份接口变更说明转成端点影响表、调用点清单、测试矩阵和发布风险，不直接修改代码。</p>
 
-    <section class="field-story-panel">
+    <section id="zh-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>现场叙事</h2>
@@ -138,6 +138,46 @@
 交付：api-impact.md、call-sites.md、test-matrix.md
 人工确认：没有 owner 的调用点不能直接关闭。</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="案例复盘导航">
+      <div>
+        <span>复盘导航</span>
+        <strong>按现场链路阅读</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#zh-field-story">
+            <span>现场</span>
+            <small>先看问题、第一信号和首屏证据。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-raw-scene">
+            <span>片段</span>
+            <small>查看原始日志、表格、diff 或检查记录。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-input-materials">
+            <span>材料</span>
+            <small>确认可读取材料和禁止动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-evidence-trail">
+            <span>证据</span>
+            <small>判断过程证据是否足够。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-delivery-preview">
+            <span>结果</span>
+            <small>查看交付片段和修正动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-acceptance-criteria">
+            <span>验收</span>
+            <small>复跑命令和人工步骤。</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -204,7 +244,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="zh-task-background">
       <h2>任务背景</h2>
       <p>把一份接口变更说明转成端点影响表、调用点清单、测试矩阵和发布风险，不直接修改代码。</p>
       <div class="risk-strip">
@@ -213,7 +253,7 @@
         <span>中到高</span>
       </div>
     </section>
-    <section>
+    <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
       <pre class="output-sample raw-scene"><code>api-diff.txt
@@ -224,7 +264,7 @@ breaking=true
 affected=client parser, docs example, contract test
 next=补兼容层和回归用例</code></pre>
     </section>
-    <section>
+    <section id="zh-input-materials">
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -237,14 +277,14 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
 429 错误会返回 retry_after_ms
 上线时间：2026-06-10</code></pre>
     </section>
-    <section>
+    <section id="zh-run-environment">
       <h2>运行环境</h2>
 
     <ul class="case-checklist">
       <li>搜索范围：<code>src/</code>、<code>tests/</code>、<code>docs/</code>。</li><li>影响级别：阻断、需要修改、需要测试、仅文档。</li><li>发布前确认版本号、环境、回退方案和监控指标。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-run-snapshot">
       <h2>实测快照</h2>
       <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
 
@@ -379,13 +419,13 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
         </figure>
       </div>
     </section>
-    <section>
+    <section id="zh-operating-script">
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先把变更写成旧行为、新行为、影响级别和待确认项。</li><li>再只读搜索端点名、字段名和错误码，列出路径与用途。</li><li>最后输出测试矩阵，不在分析阶段顺手改代码。</li>
       </ol>
     </section>
-    <section>
+    <section id="zh-command-replay">
       <h2>命令回放</h2>
       <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
 
@@ -406,7 +446,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-run-log">
       <h2>现场记录</h2>
       <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
 
@@ -429,7 +469,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-execution-transcript">
       <h2>执行转录</h2>
       <p>执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。</p>
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：变更说明、版本号、端点名、字段名、错误码
@@ -443,7 +483,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
 00:50 产出交付物：api-impact.md、call-sites.md、test-matrix.md
 00:55 验收判断：影响表覆盖端点、字段、鉴权、限额和错误码。</code></pre>
     </section>
-    <section>
+    <section id="zh-evidence-trail">
       <h2>过程证据</h2>
       <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
@@ -466,7 +506,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-delivery-preview">
       <h2>交付预览</h2>
       <p>交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。</p>
 
@@ -494,7 +534,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
 
     </div>
     </section>
-    <section>
+    <section id="zh-before-after">
       <h2>前后对比</h2>
       <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
 
@@ -519,7 +559,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-quality-scorecard">
       <h2>质量评分</h2>
       <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
 
@@ -557,7 +597,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </div>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-ledger">
       <h2>验收总账</h2>
       <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
 
@@ -607,7 +647,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       <a class="ledger-link" href="../assets/case-artifacts/api-impact-analysis/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
-    <section>
+    <section id="zh-result-sample">
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>test-matrix.md
@@ -616,7 +656,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
 | priority enum | priority=urgent | 校验通过或给出明确错误 |
 | 429 重试 | retry_after_ms=1200 | UI 显示等待建议，不立即重试 |</code></pre>
     </section>
-    <section>
+    <section id="zh-failures-corrections">
       <h2>失败与修正</h2>
 
     <div class="table-wrap">
@@ -636,14 +676,14 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-risk-boundaries">
       <h2>风险边界</h2>
 
     <ul class="case-checklist risk-list">
       <li>分析阶段只读搜索，不修改代码或测试。</li><li>破坏性变更必须标明回退方案和上线窗口。</li><li>未验证行为写入待核对，不作为确定结论。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-human-handoff">
       <h2>人工交接</h2>
       <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
 
@@ -654,7 +694,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
     </ul>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-criteria">
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -666,7 +706,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
       <code>rg -n &quot;GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429&quot; src tests docs</code><code>rg -n &quot;archived|priority&quot; tests src</code><code>人工确认版本号、环境、上线窗口和回退方式。</code>
     </div>
     </section>
-    <section>
+    <section id="zh-work-order">
       <h2>可复用任务单</h2>
       <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
       <pre class="output-sample work-order"><code>请先把这份接口变更拆成影响表，不要修改代码。
@@ -695,7 +735,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
         <h1>10 API Change Impact Analysis</h1>
         <p>Turn API change notes into endpoint impact, call-site inventory, test matrix, and release risk without editing code directly.</p>
 
-    <section class="field-story-panel">
+    <section id="en-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>Field Story</h2>
@@ -741,6 +781,46 @@ Correction: Require call-sites.md
 Delivery: api-impact.md, call-sites.md, and test-matrix.md
 Human confirmation: Call sites without owners cannot be closed.</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="Recipe recap navigation">
+      <div>
+        <span>Recap Navigator</span>
+        <strong>Read by evidence chain</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#en-field-story">
+            <span>Field</span>
+            <small>Start with the problem, first signal, and proof frame.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-raw-scene">
+            <span>Excerpt</span>
+            <small>Inspect the raw log, table, diff, or check record.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-input-materials">
+            <span>Inputs</span>
+            <small>Confirm readable materials and prohibited actions.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-evidence-trail">
+            <span>Evidence</span>
+            <small>Judge whether process evidence is strong enough.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-delivery-preview">
+            <span>Result</span>
+            <small>Review the delivery sample and correction.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-acceptance-criteria">
+            <span>Acceptance</span>
+            <small>Rerun commands and manual checks.</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -807,7 +887,7 @@ Human confirmation: Call sites without owners cannot be closed.</code></pre>
         </div>
 
     </section>
-    <section>
+    <section id="en-task-background">
       <h2>Task Background</h2>
       <p>Turn API change notes into endpoint impact, call-site inventory, test matrix, and release risk without editing code directly.</p>
       <div class="risk-strip">
@@ -816,7 +896,7 @@ Human confirmation: Call sites without owners cannot be closed.</code></pre>
         <span>Medium to high</span>
       </div>
     </section>
-    <section>
+    <section id="en-raw-scene">
       <h2>Raw Scene Excerpt</h2>
       <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
       <pre class="output-sample raw-scene"><code>api-diff.txt
@@ -827,7 +907,7 @@ breaking=true
 affected=client parser, docs example, contract test
 next=add compatibility layer and regression case</code></pre>
     </section>
-    <section>
+    <section id="en-input-materials">
       <h2>Input Materials</h2>
       <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
 
@@ -840,14 +920,14 @@ POST /v1/tasks changes priority from string to enum
 429 errors include retry_after_ms
 Release date: 2026-06-10</code></pre>
     </section>
-    <section>
+    <section id="en-run-environment">
       <h2>Run Environment</h2>
 
     <ul class="case-checklist">
       <li>Search scope: <code>src/</code>, <code>tests/</code>, and <code>docs/</code>.</li><li>Impact levels: blocking, needs change, needs test, and docs only.</li><li>Before release, confirm version, environment, rollback plan, and monitoring signals.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-run-snapshot">
       <h2>Run Snapshot</h2>
       <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
 
@@ -982,13 +1062,13 @@ Release date: 2026-06-10</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="en-operating-script">
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>First write changes as old behavior, new behavior, impact level, and confirmation item.</li><li>Then read-only search endpoint names, field names, and error codes, listing paths and usage.</li><li>Finally output a test matrix and do not edit code during analysis.</li>
       </ol>
     </section>
-    <section>
+    <section id="en-command-replay">
       <h2>Command Replay</h2>
       <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
 
@@ -1009,7 +1089,7 @@ Release date: 2026-06-10</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-run-log">
       <h2>Run Log</h2>
       <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
 
@@ -1032,7 +1112,7 @@ Release date: 2026-06-10</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-execution-transcript">
       <h2>Execution Transcript</h2>
       <p>The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review.</p>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Change notes, version, endpoint names, fields, and error codes
@@ -1046,7 +1126,7 @@ Release date: 2026-06-10</code></pre>
 00:50 Deliverables prepared: api-impact.md, call-sites.md, and test-matrix.md
 00:55 Acceptance decision: Impact table covers endpoints, fields, auth, limits, and error codes.</code></pre>
     </section>
-    <section>
+    <section id="en-evidence-trail">
       <h2>Evidence Trail</h2>
       <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
@@ -1069,7 +1149,7 @@ Release date: 2026-06-10</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-delivery-preview">
       <h2>Delivery Preview</h2>
       <p>The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability.</p>
 
@@ -1097,7 +1177,7 @@ Release date: 2026-06-10</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="en-before-after">
       <h2>Before / After</h2>
       <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
 
@@ -1122,7 +1202,7 @@ Release date: 2026-06-10</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-quality-scorecard">
       <h2>Quality Scorecard</h2>
       <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
 
@@ -1160,7 +1240,7 @@ Release date: 2026-06-10</code></pre>
       </div>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-ledger">
       <h2>Acceptance Ledger</h2>
       <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
 
@@ -1210,7 +1290,7 @@ Release date: 2026-06-10</code></pre>
       <a class="ledger-link" href="../assets/case-artifacts/api-impact-analysis/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
-    <section>
+    <section id="en-result-sample">
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>test-matrix.md
@@ -1219,7 +1299,7 @@ Release date: 2026-06-10</code></pre>
 | priority enum | priority=urgent | validation passes or shows clear error |
 | 429 retry | retry_after_ms=1200 | UI shows wait guidance and does not retry immediately |</code></pre>
     </section>
-    <section>
+    <section id="en-failures-corrections">
       <h2>Failures and Corrections</h2>
 
     <div class="table-wrap">
@@ -1239,14 +1319,14 @@ Release date: 2026-06-10</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-risk-boundaries">
       <h2>Risk Boundaries</h2>
 
     <ul class="case-checklist risk-list">
       <li>Analysis phase is read-only and does not edit code or tests.</li><li>Breaking changes must state rollback plan and release window.</li><li>Unverified behavior goes into confirmation items and not into conclusions.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-human-handoff">
       <h2>Human Handoff</h2>
       <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
 
@@ -1257,7 +1337,7 @@ Release date: 2026-06-10</code></pre>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-criteria">
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
@@ -1269,7 +1349,7 @@ Release date: 2026-06-10</code></pre>
       <code>rg -n &quot;GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429&quot; src tests docs</code><code>rg -n &quot;archived|priority&quot; tests src</code><code>Manually confirm version, environment, release window, and rollback method.</code>
     </div>
     </section>
-    <section>
+    <section id="en-work-order">
       <h2>Reusable Work Order</h2>
       <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
       <pre class="output-sample work-order"><code>First split this API change into an impact table; do not edit code.

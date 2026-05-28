@@ -2987,7 +2987,7 @@ function fieldStoryPanel(recipe, lang) {
   );
 
   return `
-    <section class="field-story-panel">
+    <section id="${lang}-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>${isZh ? "现场叙事" : "Field Story"}</h2>
@@ -3019,6 +3019,34 @@ function fieldStoryPanel(recipe, lang) {
       ], storyRows, lang, "evidence-table field-story-table")}
       ${codeSample(brief, lang, "output-sample story-brief")}
     </section>`;
+}
+
+function caseRecapNav(lang) {
+  const isZh = lang === "zh";
+  const items = [
+    [b("现场", "Field"), "field-story", b("先看问题、第一信号和首屏证据。", "Start with the problem, first signal, and proof frame.")],
+    [b("片段", "Excerpt"), "raw-scene", b("查看原始日志、表格、diff 或检查记录。", "Inspect the raw log, table, diff, or check record.")],
+    [b("材料", "Inputs"), "input-materials", b("确认可读取材料和禁止动作。", "Confirm readable materials and prohibited actions.")],
+    [b("证据", "Evidence"), "evidence-trail", b("判断过程证据是否足够。", "Judge whether process evidence is strong enough.")],
+    [b("结果", "Result"), "delivery-preview", b("查看交付片段和修正动作。", "Review the delivery sample and correction.")],
+    [b("验收", "Acceptance"), "acceptance-criteria", b("复跑命令和人工步骤。", "Rerun commands and manual checks.")]
+  ];
+
+  return `
+    <nav class="case-recap-nav" aria-label="${isZh ? "案例复盘导航" : "Recipe recap navigation"}">
+      <div>
+        <span>${isZh ? "复盘导航" : "Recap Navigator"}</span>
+        <strong>${isZh ? "按现场链路阅读" : "Read by evidence chain"}</strong>
+      </div>
+      <div class="recap-nav-grid">
+        ${items.map(([label, id, detail]) => `
+          <a data-recap-anchor href="#${lang}-${id}">
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <small>${escapeHtml(textOf(detail, lang))}</small>
+          </a>
+        `).join("")}
+      </div>
+    </nav>`;
 }
 
 function commandPanel(recipe, lang) {
@@ -3343,7 +3371,7 @@ function caseContent(recipe, lang) {
 
   return `
     ${caseDashboard(recipe, lang)}
-    <section>
+    <section id="${lang}-task-background">
       <h2>${isZh ? "任务背景" : "Task Background"}</h2>
       ${paragraph(recipe.summary, lang)}
       <div class="risk-strip">
@@ -3352,7 +3380,7 @@ function caseContent(recipe, lang) {
         <span>${escapeHtml(textOf(recipe.risk, lang))}</span>
       </div>
     </section>
-    <section>
+    <section id="${lang}-raw-scene">
       <h2>${isZh ? "原始现场片段" : "Raw Scene Excerpt"}</h2>
       ${paragraph(b(
         "这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。",
@@ -3360,92 +3388,92 @@ function caseContent(recipe, lang) {
       ), lang)}
       ${codeSample(b(rawSceneSnippet(recipe, "zh"), rawSceneSnippet(recipe, "en")), lang, "output-sample raw-scene")}
     </section>
-    <section>
+    <section id="${lang}-input-materials">
       <h2>${isZh ? "输入材料" : "Input Materials"}</h2>
       ${paragraph(b("本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。", "This task first locks readable materials, prohibited actions, and output format before generation or inspection."), lang)}
       ${checklist(recipe.materials, lang, "case-checklist")}
       ${codeSample(recipe.inputSample, lang)}
     </section>
-    <section>
+    <section id="${lang}-run-environment">
       <h2>${isZh ? "运行环境" : "Run Environment"}</h2>
       ${checklist(recipe.environment, lang, "case-checklist")}
     </section>
-    <section>
+    <section id="${lang}-run-snapshot">
       <h2>${isZh ? "实测快照" : "Run Snapshot"}</h2>
       ${paragraph(b("这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。", "This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable."), lang)}
       ${runSnapshotPanel(recipe, lang)}
     </section>
     ${caseArtifactSection(recipe, lang)}
-    <section>
+    <section id="${lang}-operating-script">
       <h2>${isZh ? "操作剧本" : "Operating Script"}</h2>
       <ol class="case-timeline">
         ${recipe.playbook.map((item) => `<li>${escapeHtml(textOf(item, lang))}</li>`).join("")}
       </ol>
     </section>
-    <section>
+    <section id="${lang}-command-replay">
       <h2>${isZh ? "命令回放" : "Command Replay"}</h2>
       ${paragraph(b("命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。", "Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain."), lang)}
       ${operationReplayTable(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-run-log">
       <h2>${isZh ? "现场记录" : "Run Log"}</h2>
       ${paragraph(b("现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。", "The run log preserves key decisions by time so readers can see why the task was deliverable."), lang)}
       ${tableHtml(runHeaders, runLogRows(recipe), lang, "evidence-table run-log-table")}
     </section>
-    <section>
+    <section id="${lang}-execution-transcript">
       <h2>${isZh ? "执行转录" : "Execution Transcript"}</h2>
       ${paragraph(b("执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。", "The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review."), lang)}
       ${codeSample(b(executionTranscript(recipe, "zh"), executionTranscript(recipe, "en")), lang, "output-sample execution-transcript")}
     </section>
-    <section>
+    <section id="${lang}-evidence-trail">
       <h2>${isZh ? "过程证据" : "Evidence Trail"}</h2>
       ${paragraph(b("下面的表格记录本次任务如何判断完成，而不是只描述最终结果。", "The table below records how this task judged completion instead of only describing the final result."), lang)}
       ${tableHtml(evidenceHeaders, recipe.evidenceTable, lang)}
     </section>
-    <section>
+    <section id="${lang}-delivery-preview">
       <h2>${isZh ? "交付预览" : "Delivery Preview"}</h2>
       ${paragraph(b("交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。", "The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability."), lang)}
       ${deliveryPreview(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-before-after">
       <h2>${isZh ? "前后对比" : "Before / After"}</h2>
       ${paragraph(b("前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。", "The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop."), lang)}
       ${beforeAfterPanel(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-quality-scorecard">
       <h2>${isZh ? "质量评分" : "Quality Scorecard"}</h2>
       ${paragraph(b("质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。", "The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar."), lang)}
       ${qualityScorecard(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-acceptance-ledger">
       <h2>${isZh ? "验收总账" : "Acceptance Ledger"}</h2>
       ${paragraph(b("验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。", "The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record."), lang)}
       ${acceptanceLedgerPanel(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-result-sample">
       <h2>${isZh ? "结果样例" : "Result Sample"}</h2>
       ${paragraph(b("结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。", "The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it."), lang)}
       ${codeSample(recipe.outputSample, lang)}
     </section>
-    <section>
+    <section id="${lang}-failures-corrections">
       <h2>${isZh ? "失败与修正" : "Failures and Corrections"}</h2>
       ${tableHtml(failureHeaders, recipe.failureNotes, lang, "evidence-table failure-table")}
     </section>
-    <section>
+    <section id="${lang}-risk-boundaries">
       <h2>${isZh ? "风险边界" : "Risk Boundaries"}</h2>
       ${checklist(recipe.riskControls, lang, "case-checklist risk-list")}
     </section>
-    <section>
+    <section id="${lang}-human-handoff">
       <h2>${isZh ? "人工交接" : "Human Handoff"}</h2>
       ${paragraph(b("这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。", "This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision."), lang)}
       ${handoffPanel(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-acceptance-criteria">
       <h2>${isZh ? "验收标准" : "Acceptance Criteria"}</h2>
       ${checklist(recipe.acceptanceChecks, lang)}
       ${commandPanel(recipe, lang)}
     </section>
-    <section>
+    <section id="${lang}-work-order">
       <h2>${isZh ? "可复用任务单" : "Reusable Work Order"}</h2>
       ${paragraph(b("把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。", "Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it."), lang)}
       ${codeSample(b(recipe.taskOrder.map((item) => item.zh).join("\n"), recipe.taskOrder.map((item) => item.en).join("\n")), lang, "output-sample work-order")}
@@ -4019,12 +4047,13 @@ function docPage(page) {
   ` : "";
 
   const languageSection = (lang) => {
-    const isZh = lang === "zh";
-    const pageMeta = metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang);
-    const introAfterSummary = page.caseRecipe
-      ? `${fieldStoryPanel(page.caseRecipe, lang)}
+  const isZh = lang === "zh";
+  const pageMeta = metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang);
+  const introAfterSummary = page.caseRecipe
+    ? `${fieldStoryPanel(page.caseRecipe, lang)}
+        ${caseRecapNav(lang)}
         ${pageMeta}`
-      : pageMeta;
+    : pageMeta;
     return `
       <section class="language-section${isZh ? "" : " english-section"}" lang="${isZh ? "zh-CN" : "en"}" data-language-section="${lang}">
         <p class="language-kicker">${isZh ? "中文" : "English"}</p>

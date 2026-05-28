@@ -92,7 +92,7 @@
         <h1>11 发布说明与变更日志生成</h1>
         <p>从提交范围生成公开发布说明、内部变更日志和待确认项，把技术提交翻译成可发布内容。</p>
 
-    <section class="field-story-panel">
+    <section id="zh-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>现场叙事</h2>
@@ -138,6 +138,46 @@
 交付：release-notes.md、internal-changelog.md、confirm-before-publish.md
 人工确认：用户版不暴露内部工单号。</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="案例复盘导航">
+      <div>
+        <span>复盘导航</span>
+        <strong>按现场链路阅读</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#zh-field-story">
+            <span>现场</span>
+            <small>先看问题、第一信号和首屏证据。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-raw-scene">
+            <span>片段</span>
+            <small>查看原始日志、表格、diff 或检查记录。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-input-materials">
+            <span>材料</span>
+            <small>确认可读取材料和禁止动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-evidence-trail">
+            <span>证据</span>
+            <small>判断过程证据是否足够。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-delivery-preview">
+            <span>结果</span>
+            <small>查看交付片段和修正动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-acceptance-criteria">
+            <span>验收</span>
+            <small>复跑命令和人工步骤。</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -204,7 +244,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="zh-task-background">
       <h2>任务背景</h2>
       <p>从提交范围生成公开发布说明、内部变更日志和待确认项，把技术提交翻译成可发布内容。</p>
       <div class="risk-strip">
@@ -213,7 +253,7 @@
         <span>中</span>
       </div>
     </section>
-    <section>
+    <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
       <pre class="output-sample raw-scene"><code>release-draft-check.md
@@ -222,7 +262,7 @@ grouped=feature, fix, docs, internal
 blocked=含内部任务号、未确认发布日期、风险描述过强
 fix=改写为用户可读摘要，待确认项单列</code></pre>
     </section>
-    <section>
+    <section id="zh-input-materials">
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -234,14 +274,14 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
 语气：简洁、可行动，不写内部模块名
 限制：未确认功能不要写成承诺</code></pre>
     </section>
-    <section>
+    <section id="zh-run-environment">
       <h2>运行环境</h2>
 
     <ul class="case-checklist">
       <li>分类：新增、修复、改进、文档、内部维护、破坏性变更。</li><li>每条公开说明都要能回到提交或 Issue。</li><li>发布前确认语气、范围、版本号、日期和遗漏项。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-run-snapshot">
       <h2>实测快照</h2>
       <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
 
@@ -376,13 +416,13 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="zh-operating-script">
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先读取提交范围并过滤合并噪音、格式化和纯依赖维护。</li><li>按用户影响分类，再把技术语言改写成用户能理解的结果。</li><li>输出公开版、内部版和发布前确认清单。</li>
       </ol>
     </section>
-    <section>
+    <section id="zh-command-replay">
       <h2>命令回放</h2>
       <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
 
@@ -403,7 +443,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-run-log">
       <h2>现场记录</h2>
       <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
 
@@ -426,7 +466,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-execution-transcript">
       <h2>执行转录</h2>
       <p>执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。</p>
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：版本范围、提交摘要、Issue 编号、发布对象
@@ -440,7 +480,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
 00:50 产出交付物：release-notes.md、internal-changelog.md、confirm-before-publish.md
 00:55 验收判断：公开版和内部版分开，内容边界清楚。</code></pre>
     </section>
-    <section>
+    <section id="zh-evidence-trail">
       <h2>过程证据</h2>
       <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
@@ -463,7 +503,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-delivery-preview">
       <h2>交付预览</h2>
       <p>交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。</p>
 
@@ -491,7 +531,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="zh-before-after">
       <h2>前后对比</h2>
       <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
 
@@ -519,7 +559,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-quality-scorecard">
       <h2>质量评分</h2>
       <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
 
@@ -557,7 +597,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </div>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-ledger">
       <h2>验收总账</h2>
       <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
 
@@ -607,7 +647,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       <a class="ledger-link" href="../assets/case-artifacts/release-notes-changelog/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
-    <section>
+    <section id="zh-result-sample">
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>release-notes.md
@@ -619,7 +659,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
 - 是否公开提到自动化功能
 - 版本日期是否为 2026-05-28</code></pre>
     </section>
-    <section>
+    <section id="zh-failures-corrections">
       <h2>失败与修正</h2>
 
     <div class="table-wrap">
@@ -639,14 +679,14 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-risk-boundaries">
       <h2>风险边界</h2>
 
     <ul class="case-checklist risk-list">
       <li>不公开未确认的客户、金额、事故细节或路线图承诺。</li><li>公开版删除内部模块名、调试路径和敏感上下文。</li><li>最终发布由用户确认版本号、日期、语气和范围。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-human-handoff">
       <h2>人工交接</h2>
       <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
 
@@ -657,7 +697,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-criteria">
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -669,7 +709,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
       <code>git log --oneline v0.8.0..HEAD</code><code>git diff --name-only v0.8.0..HEAD</code><code>人工核对 release-notes.md 中每条是否能回到提交或 Issue。</code>
     </div>
     </section>
-    <section>
+    <section id="zh-work-order">
       <h2>可复用任务单</h2>
       <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
       <pre class="output-sample work-order"><code>请读取这个版本范围，先输出变更分类表。
@@ -698,7 +738,7 @@ fix=改写为用户可读摘要，待确认项单列</code></pre>
         <h1>11 Release Notes and Changelog Drafting</h1>
         <p>Generate public release notes, internal changelog, and confirmation items from a commit range, translating technical commits into publishable content.</p>
 
-    <section class="field-story-panel">
+    <section id="en-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>Field Story</h2>
@@ -744,6 +784,46 @@ Correction: Rewrite as user impact
 Delivery: release-notes.md, internal-changelog.md, and confirm-before-publish.md
 Human confirmation: The user-facing version does not expose internal ticket IDs.</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="Recipe recap navigation">
+      <div>
+        <span>Recap Navigator</span>
+        <strong>Read by evidence chain</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#en-field-story">
+            <span>Field</span>
+            <small>Start with the problem, first signal, and proof frame.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-raw-scene">
+            <span>Excerpt</span>
+            <small>Inspect the raw log, table, diff, or check record.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-input-materials">
+            <span>Inputs</span>
+            <small>Confirm readable materials and prohibited actions.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-evidence-trail">
+            <span>Evidence</span>
+            <small>Judge whether process evidence is strong enough.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-delivery-preview">
+            <span>Result</span>
+            <small>Review the delivery sample and correction.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-acceptance-criteria">
+            <span>Acceptance</span>
+            <small>Rerun commands and manual checks.</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -810,7 +890,7 @@ Human confirmation: The user-facing version does not expose internal ticket IDs.
         </div>
 
     </section>
-    <section>
+    <section id="en-task-background">
       <h2>Task Background</h2>
       <p>Generate public release notes, internal changelog, and confirmation items from a commit range, translating technical commits into publishable content.</p>
       <div class="risk-strip">
@@ -819,7 +899,7 @@ Human confirmation: The user-facing version does not expose internal ticket IDs.
         <span>Medium</span>
       </div>
     </section>
-    <section>
+    <section id="en-raw-scene">
       <h2>Raw Scene Excerpt</h2>
       <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
       <pre class="output-sample raw-scene"><code>release-draft-check.md
@@ -828,7 +908,7 @@ grouped=feature, fix, docs, internal
 blocked=internal ticket IDs, unconfirmed release date, over-strong risk wording
 fix=rewrite as user-readable summary and separate confirmation items</code></pre>
     </section>
-    <section>
+    <section id="en-input-materials">
       <h2>Input Materials</h2>
       <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
 
@@ -840,14 +920,14 @@ Audience: everyday users and small-team admins
 Tone: concise and actionable; avoid internal module names
 Constraint: do not present unconfirmed features as promises</code></pre>
     </section>
-    <section>
+    <section id="en-run-environment">
       <h2>Run Environment</h2>
 
     <ul class="case-checklist">
       <li>Categories: added, fixed, improved, docs, internal maintenance, and breaking changes.</li><li>Every public note must map back to a commit or issue.</li><li>Before publication, confirm tone, scope, version, date, and omissions.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-run-snapshot">
       <h2>Run Snapshot</h2>
       <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
 
@@ -982,13 +1062,13 @@ Constraint: do not present unconfirmed features as promises</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="en-operating-script">
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Read the commit range first and filter merge noise, formatting-only work, and pure dependency maintenance.</li><li>Classify by user impact, then rewrite technical wording into user-understandable results.</li><li>Output public version, internal version, and pre-publication confirmation checklist.</li>
       </ol>
     </section>
-    <section>
+    <section id="en-command-replay">
       <h2>Command Replay</h2>
       <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
 
@@ -1009,7 +1089,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-run-log">
       <h2>Run Log</h2>
       <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
 
@@ -1032,7 +1112,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-execution-transcript">
       <h2>Execution Transcript</h2>
       <p>The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review.</p>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Version range, commit summaries, issue IDs, and release audience
@@ -1046,7 +1126,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
 00:50 Deliverables prepared: release-notes.md, internal-changelog.md, and confirm-before-publish.md
 00:55 Acceptance decision: Public and internal versions are separate with clear boundaries.</code></pre>
     </section>
-    <section>
+    <section id="en-evidence-trail">
       <h2>Evidence Trail</h2>
       <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
@@ -1069,7 +1149,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-delivery-preview">
       <h2>Delivery Preview</h2>
       <p>The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability.</p>
 
@@ -1097,7 +1177,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="en-before-after">
       <h2>Before / After</h2>
       <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
 
@@ -1125,7 +1205,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-quality-scorecard">
       <h2>Quality Scorecard</h2>
       <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
 
@@ -1163,7 +1243,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </div>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-ledger">
       <h2>Acceptance Ledger</h2>
       <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
 
@@ -1213,7 +1293,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       <a class="ledger-link" href="../assets/case-artifacts/release-notes-changelog/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
-    <section>
+    <section id="en-result-sample">
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>release-notes.md
@@ -1225,7 +1305,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
 - Whether automation features can be mentioned publicly
 - Whether the release date is 2026-05-28</code></pre>
     </section>
-    <section>
+    <section id="en-failures-corrections">
       <h2>Failures and Corrections</h2>
 
     <div class="table-wrap">
@@ -1245,14 +1325,14 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-risk-boundaries">
       <h2>Risk Boundaries</h2>
 
     <ul class="case-checklist risk-list">
       <li>Do not publish unconfirmed customer, amount, incident detail, or roadmap promise.</li><li>Public version removes internal module names, debug paths, and sensitive context.</li><li>The user confirms version, date, tone, and scope before publication.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-human-handoff">
       <h2>Human Handoff</h2>
       <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
 
@@ -1263,7 +1343,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-criteria">
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
@@ -1275,7 +1355,7 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       <code>git log --oneline v0.8.0..HEAD</code><code>git diff --name-only v0.8.0..HEAD</code><code>Manually verify each release-notes.md item maps back to a commit or issue.</code>
     </div>
     </section>
-    <section>
+    <section id="en-work-order">
       <h2>Reusable Work Order</h2>
       <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
       <pre class="output-sample work-order"><code>Read this version range and first output a categorized change table.

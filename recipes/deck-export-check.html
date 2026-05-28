@@ -92,7 +92,7 @@
         <h1>01 演示稿生成与导出核查</h1>
         <p>用一份脱敏产品说明生成 7 页演示稿，并用导出截图、逐页表和人工确认项判断是否可交付。</p>
 
-    <section class="field-story-panel">
+    <section id="zh-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>现场叙事</h2>
@@ -138,6 +138,46 @@
 交付：deck-draft.pptx、slide-checklist.md、export-notes.md
 人工确认：演示稿可用于内部评审，不能直接对外发布。</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="案例复盘导航">
+      <div>
+        <span>复盘导航</span>
+        <strong>按现场链路阅读</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#zh-field-story">
+            <span>现场</span>
+            <small>先看问题、第一信号和首屏证据。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-raw-scene">
+            <span>片段</span>
+            <small>查看原始日志、表格、diff 或检查记录。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-input-materials">
+            <span>材料</span>
+            <small>确认可读取材料和禁止动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-evidence-trail">
+            <span>证据</span>
+            <small>判断过程证据是否足够。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-delivery-preview">
+            <span>结果</span>
+            <small>查看交付片段和修正动作。</small>
+          </a>
+
+          <a data-recap-anchor href="#zh-acceptance-criteria">
+            <span>验收</span>
+            <small>复跑命令和人工步骤。</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -204,7 +244,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="zh-task-background">
       <h2>任务背景</h2>
       <p>用一份脱敏产品说明生成 7 页演示稿，并用导出截图、逐页表和人工确认项判断是否可交付。</p>
       <div class="risk-strip">
@@ -213,7 +253,7 @@
         <span>低到中</span>
       </div>
     </section>
-    <section>
+    <section id="zh-raw-scene">
       <h2>原始现场片段</h2>
       <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
       <pre class="output-sample raw-scene"><code>deck-export.log
@@ -222,7 +262,7 @@ overflow=data-slide body_height=118 card_height=92
 human_review=试用期、隐私表述、版权素材
 fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
     </section>
-    <section>
+    <section id="zh-input-materials">
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -235,14 +275,14 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
 必须出现：7 天试用、三步上手、数据不对外发送
 限制：不要写客户名，不要写价格，不要承诺自动决策</code></pre>
     </section>
-    <section>
+    <section id="zh-run-environment">
       <h2>运行环境</h2>
 
     <ul class="case-checklist">
       <li>工作目录：<code>workspace/deck-demo/</code>，输出目录：<code>workspace/deck-demo/out/</code>。</li><li>导出检查覆盖首页、目录页、数据页和结尾页四张截图。</li><li>高风险内容为金额、日期、承诺语和版权素材，全部标记为人工确认。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-run-snapshot">
       <h2>实测快照</h2>
       <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
 
@@ -377,13 +417,13 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="zh-operating-script">
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先生成 7 页结构表，逐页确认标题、主张、证据和备注，再允许制作文件。</li><li>生成文件时同步生成 &lt;code&gt;slide-checklist.md&lt;/code&gt;，每页记录输入材料、风险点和验收状态。</li><li>导出后逐张截图检查标题长度、正文溢出、备注缺失和图片占位。</li>
       </ol>
     </section>
-    <section>
+    <section id="zh-command-replay">
       <h2>命令回放</h2>
       <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
 
@@ -404,7 +444,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-run-log">
       <h2>现场记录</h2>
       <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
 
@@ -427,7 +467,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-execution-transcript">
       <h2>执行转录</h2>
       <p>执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。</p>
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：脱敏产品说明、品牌色、页数限制、必须出现的三条信息
@@ -441,7 +481,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
 00:50 产出交付物：deck-draft.pptx、slide-checklist.md、export-notes.md
 00:55 验收判断：交付物齐全，文件名不覆盖原始材料。</code></pre>
     </section>
-    <section>
+    <section id="zh-evidence-trail">
       <h2>过程证据</h2>
       <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
@@ -464,7 +504,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-delivery-preview">
       <h2>交付预览</h2>
       <p>交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。</p>
 
@@ -492,7 +532,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
 
     </div>
     </section>
-    <section>
+    <section id="zh-before-after">
       <h2>前后对比</h2>
       <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
 
@@ -517,7 +557,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-quality-scorecard">
       <h2>质量评分</h2>
       <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
 
@@ -555,7 +595,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </div>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-ledger">
       <h2>验收总账</h2>
       <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
 
@@ -605,7 +645,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       <a class="ledger-link" href="../assets/case-artifacts/deck-export-check/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
-    <section>
+    <section id="zh-result-sample">
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>交付摘要
@@ -614,7 +654,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
 - export-notes.md：列出试用期、隐私表述、版权素材三类人工确认点
 - screenshots/：cover、agenda、data、closing 四张 PNG</code></pre>
     </section>
-    <section>
+    <section id="zh-failures-corrections">
       <h2>失败与修正</h2>
 
     <div class="table-wrap">
@@ -634,14 +674,14 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       </table>
     </div>
     </section>
-    <section>
+    <section id="zh-risk-boundaries">
       <h2>风险边界</h2>
 
     <ul class="case-checklist risk-list">
       <li>不使用真实客户、金额、合同号、商标图片或未授权素材。</li><li>所有对外承诺、隐私表述和日期在发送前由用户确认。</li><li>原始说明保留为只读副本，生成文件使用新文件名。</li>
     </ul>
     </section>
-    <section>
+    <section id="zh-human-handoff">
       <h2>人工交接</h2>
       <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
 
@@ -652,7 +692,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="zh-acceptance-criteria">
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -664,7 +704,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
       <code>ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md</code><code>人工打开 deck-draft.pptx，确认 7 页均可显示且备注不为空。</code><code>人工检查 screenshots/cover.png、agenda.png、data.png、closing.png 是否无文字溢出。</code>
     </div>
     </section>
-    <section>
+    <section id="zh-work-order">
       <h2>可复用任务单</h2>
       <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
       <pre class="output-sample work-order"><code>请先把这份脱敏产品说明拆成 7 页演示稿结构，不要生成文件。
@@ -693,7 +733,7 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
         <h1>01 Deck Generation and Export Verification</h1>
         <p>Generate a seven-slide deck from a redacted product brief and judge delivery with export screenshots, a slide table, and human confirmations.</p>
 
-    <section class="field-story-panel">
+    <section id="en-field-story" class="field-story-panel">
       <div class="field-story-grid">
         <div class="field-story-copy">
           <h2>Field Story</h2>
@@ -739,6 +779,46 @@ Correction: Lock the seven-slide structure before file generation
 Delivery: deck-draft.pptx, slide-checklist.md, and export-notes.md
 Human confirmation: The deck is ready for internal review, not direct external publication.</code></pre>
     </section>
+
+    <nav class="case-recap-nav" aria-label="Recipe recap navigation">
+      <div>
+        <span>Recap Navigator</span>
+        <strong>Read by evidence chain</strong>
+      </div>
+      <div class="recap-nav-grid">
+
+          <a data-recap-anchor href="#en-field-story">
+            <span>Field</span>
+            <small>Start with the problem, first signal, and proof frame.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-raw-scene">
+            <span>Excerpt</span>
+            <small>Inspect the raw log, table, diff, or check record.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-input-materials">
+            <span>Inputs</span>
+            <small>Confirm readable materials and prohibited actions.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-evidence-trail">
+            <span>Evidence</span>
+            <small>Judge whether process evidence is strong enough.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-delivery-preview">
+            <span>Result</span>
+            <small>Review the delivery sample and correction.</small>
+          </a>
+
+          <a data-recap-anchor href="#en-acceptance-criteria">
+            <span>Acceptance</span>
+            <small>Rerun commands and manual checks.</small>
+          </a>
+
+      </div>
+    </nav>
 
     <dl class="doc-meta-grid">
 
@@ -805,7 +885,7 @@ Human confirmation: The deck is ready for internal review, not direct external p
         </div>
 
     </section>
-    <section>
+    <section id="en-task-background">
       <h2>Task Background</h2>
       <p>Generate a seven-slide deck from a redacted product brief and judge delivery with export screenshots, a slide table, and human confirmations.</p>
       <div class="risk-strip">
@@ -814,7 +894,7 @@ Human confirmation: The deck is ready for internal review, not direct external p
         <span>Low to medium</span>
       </div>
     </section>
-    <section>
+    <section id="en-raw-scene">
       <h2>Raw Scene Excerpt</h2>
       <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
       <pre class="output-sample raw-scene"><code>deck-export.log
@@ -823,7 +903,7 @@ overflow=data-slide body_height=118 card_height=92
 human_review=trial, privacy wording, licensed assets
 fix=lock seven-slide structure, shorten data slide body, export screenshots again</code></pre>
     </section>
-    <section>
+    <section id="en-input-materials">
       <h2>Input Materials</h2>
       <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
 
@@ -836,14 +916,14 @@ Core claim: organize meeting notes, tasks, and file links into a trackable works
 Must include: seven-day trial, three-step onboarding, no external data sending
 Constraints: no customer names, no pricing, no autonomous decision claims</code></pre>
     </section>
-    <section>
+    <section id="en-run-environment">
       <h2>Run Environment</h2>
 
     <ul class="case-checklist">
       <li>Workspace: <code>workspace/deck-demo/</code>; output directory: <code>workspace/deck-demo/out/</code>.</li><li>Export review covers four screenshots: cover, agenda, data slide, and closing slide.</li><li>High-risk items are amounts, dates, commitments, and licensed assets; all are marked for human confirmation.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-run-snapshot">
       <h2>Run Snapshot</h2>
       <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
 
@@ -978,13 +1058,13 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
         </figure>
       </div>
     </section>
-    <section>
+    <section id="en-operating-script">
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Create a seven-slide structure table first, confirming title, claim, evidence, and notes before file generation.</li><li>Generate &lt;code&gt;slide-checklist.md&lt;/code&gt; alongside the file, recording input material, risk, and acceptance status per slide.</li><li>After export, inspect screenshots for title length, text overflow, missing notes, and image placeholders.</li>
       </ol>
     </section>
-    <section>
+    <section id="en-command-replay">
       <h2>Command Replay</h2>
       <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
 
@@ -1005,7 +1085,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-run-log">
       <h2>Run Log</h2>
       <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
 
@@ -1028,7 +1108,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-execution-transcript">
       <h2>Execution Transcript</h2>
       <p>The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review.</p>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Redacted product brief, brand colors, slide limit, and three required messages
@@ -1042,7 +1122,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
 00:50 Deliverables prepared: deck-draft.pptx, slide-checklist.md, and export-notes.md
 00:55 Acceptance decision: Deliverables are complete and do not overwrite source material.</code></pre>
     </section>
-    <section>
+    <section id="en-evidence-trail">
       <h2>Evidence Trail</h2>
       <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
@@ -1065,7 +1145,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-delivery-preview">
       <h2>Delivery Preview</h2>
       <p>The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability.</p>
 
@@ -1093,7 +1173,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
 
     </div>
     </section>
-    <section>
+    <section id="en-before-after">
       <h2>Before / After</h2>
       <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
 
@@ -1118,7 +1198,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-quality-scorecard">
       <h2>Quality Scorecard</h2>
       <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
 
@@ -1156,7 +1236,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </div>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-ledger">
       <h2>Acceptance Ledger</h2>
       <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
 
@@ -1206,7 +1286,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       <a class="ledger-link" href="../assets/case-artifacts/deck-export-check/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
-    <section>
+    <section id="en-result-sample">
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>Delivery summary
@@ -1215,7 +1295,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
 - export-notes.md: trial, privacy wording, and asset confirmation items
 - screenshots/: cover, agenda, data, and closing PNG files</code></pre>
     </section>
-    <section>
+    <section id="en-failures-corrections">
       <h2>Failures and Corrections</h2>
 
     <div class="table-wrap">
@@ -1235,14 +1315,14 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       </table>
     </div>
     </section>
-    <section>
+    <section id="en-risk-boundaries">
       <h2>Risk Boundaries</h2>
 
     <ul class="case-checklist risk-list">
       <li>Do not use real customers, amounts, contract IDs, marks, or unauthorized assets.</li><li>All external promises, privacy wording, and dates are confirmed by the user before sending.</li><li>The original brief stays read-only; generated files use new names.</li>
     </ul>
     </section>
-    <section>
+    <section id="en-human-handoff">
       <h2>Human Handoff</h2>
       <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
 
@@ -1253,7 +1333,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
     </ul>
     </div>
     </section>
-    <section>
+    <section id="en-acceptance-criteria">
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
@@ -1265,7 +1345,7 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       <code>ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md</code><code>Open deck-draft.pptx manually and confirm all seven slides display and notes are not empty.</code><code>Manually check screenshots/cover.png, agenda.png, data.png, and closing.png for no text overflow.</code>
     </div>
     </section>
-    <section>
+    <section id="en-work-order">
       <h2>Reusable Work Order</h2>
       <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
       <pre class="output-sample work-order"><code>First split this redacted product brief into a seven-slide deck structure; do not generate files yet.

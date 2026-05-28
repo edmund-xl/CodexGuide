@@ -1269,6 +1269,68 @@ main {
   font-size: 0.88rem;
 }
 
+.case-recap-nav {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 12px;
+  margin: -6px 0 24px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.case-recap-nav > div:first-child {
+  min-width: 0;
+}
+
+.case-recap-nav > div:first-child span,
+.case-recap-nav a span {
+  display: block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.case-recap-nav > div:first-child strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.recap-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.case-recap-nav a {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel-3);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.case-recap-nav a:hover {
+  border-color: rgba(255, 146, 44, 0.55);
+  background: rgba(255, 146, 44, 0.09);
+}
+
+.case-recap-nav a small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
 .risk-strip {
   display: flex;
   flex-wrap: wrap;
@@ -2086,6 +2148,8 @@ main {
   .case-dashboard,
   .field-story-grid,
   .field-story-kpis,
+  .case-recap-nav,
+  .recap-nav-grid,
   .run-snapshot,
   .case-library-stats,
   .library-health-stats,
