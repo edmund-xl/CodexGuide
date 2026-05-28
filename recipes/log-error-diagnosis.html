@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>使用规范 | Usage Policy | Codex Everyday Guide</title>
-    <meta name="description" content="说明隐私、安全、人工复核和发布前确认要求。 Document privacy, safety, human review, and pre-publication confirmation requirements.">
+    <title>13 日志报错定位与修复建议 | 13 Log Error Diagnosis and Fix Proposal | Codex Everyday Guide</title>
+    <meta name="description" content="把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。 Turn build or service logs into root-cause hypotheses, validation commands, minimal fix, rollback method, and rerun acceptance.">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
@@ -44,7 +44,7 @@
     <details class="nav-dropdown">
       <summary><span>实战案例</span></summary>
       <div class="dropdown-menu">
-        <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html" aria-current="page">使用规范</a>
+        <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html" aria-current="page">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
       </div>
     </details>
       </nav>
@@ -75,7 +75,7 @@
 
         <section>
           <h2>实战案例</h2>
-          <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html" aria-current="page">使用规范</a>
+          <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html" aria-current="page">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
         </section>
 
         <section>
@@ -89,8 +89,8 @@
       <section class="language-section" lang="zh-CN" data-language-section="zh">
         <p class="language-kicker">中文</p>
         <p class="eyebrow">实战案例</p>
-        <h1>使用规范</h1>
-        <p>说明隐私、安全、人工复核和发布前确认要求。</p>
+        <h1>13 日志报错定位与修复建议</h1>
+        <p>把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。</p>
 
     <dl class="doc-meta-grid">
 
@@ -106,17 +106,17 @@
 
         <div>
           <dt>适用读者</dt>
-          <dd>贡献者、维护者、复用者</dd>
+          <dd>项目维护者、个人开发者、技术支持</dd>
         </div>
 
         <div>
           <dt>预计耗时</dt>
-          <dd>10 分钟</dd>
+          <dd>40-70 分钟</dd>
         </div>
 
         <div>
           <dt>风险等级</dt>
-          <dd>低到中</dd>
+          <dd>中</dd>
         </div>
 
     </dl>
@@ -124,23 +124,152 @@
 
 
 
-          <section>
-            <h2>隐私与材料控制</h2>
-            <p>使用 Codex 前先确认材料是否可以被读取、修改或上传。默认只提供完成任务所需的最小信息。</p>
+    <section class="case-dashboard" aria-label="任务状态面板">
 
-    <ul class="single-lang-list">
-      <li>不要提交密钥、客户资料、私人证件、合同原文或内部账号信息。</li><li>只在必要时允许联网、运行命令或读取额外目录。</li><li>敏感材料应先脱敏，再进入任务流程。</li>
+        <div>
+          <span>入口</span>
+          <strong>日志片段 + 本地只读检查</strong>
+        </div>
+
+        <div>
+          <span>材料</span>
+          <strong>错误上下文、失败命令、环境、最近改动、重现步骤</strong>
+        </div>
+
+        <div>
+          <span>证据</span>
+          <strong>错误片段、相关文件、验证命令、修复范围</strong>
+        </div>
+
+        <div>
+          <span>交付物</span>
+          <strong>diagnosis.md、validation-plan.md、fix-proposal.md</strong>
+        </div>
+
+        <div>
+          <span>风险</span>
+          <strong>中</strong>
+        </div>
+
+        <div>
+          <span>预计耗时</span>
+          <strong>40-70 分钟</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>任务背景</h2>
+      <p>把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。</p>
+      <div class="risk-strip">
+        <span>排障修复</span>
+        <span>项目维护者、个人开发者、技术支持</span>
+        <span>中</span>
+      </div>
+    </section>
+    <section>
+      <h2>输入材料</h2>
+      <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
+
+    <ul class="case-checklist">
+      <li>日志先脱敏，尤其是 token、邮箱、账号 ID 和私人路径。</li><li>提供失败命令、环境、最近改动和是否可稳定重现。</li><li>第一轮只读定位，不运行破坏性命令。</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>失败命令：npm run check
+错误片段：Error: missing local target recipes/old-page.html
+最近改动：案例 URL 改名
+限制：先定位断链，不要回滚全部改动</code></pre>
+    </section>
+    <section>
+      <h2>运行环境</h2>
 
-          <section>
-            <h2>人工复核</h2>
-            <p>Codex 可以帮助整理、检查和生成草稿，但对外发布、删除、覆盖、发送和账号操作必须由用户确认。</p>
-
-    <ul class="single-lang-list">
-      <li>发布前核对事实、数字、日期、链接和承诺。</li><li>高风险建议必须附限制条件和人工确认点。</li><li>任务结果应保留输出、检查证据和待确认事项。</li>
+    <ul class="case-checklist">
+      <li>根因排序：配置、依赖、路径、权限、网络、代码变更。</li><li>每个假设都要有验证命令和预期结果。</li><li>修复建议分最小修复和后续加固，不顺手重构无关模块。</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>操作剧本</h2>
+      <ol class="case-timeline">
+        <li>先分离症状、直接错误、可能根因和待验证假设。</li><li>读取错误前后上下文，再搜索相关路径、脚本和生成器数据。</li><li>确认根因后提出最小修复、回退方式和复跑命令。</li>
+      </ol>
+    </section>
+    <section>
+      <h2>过程证据</h2>
+      <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>检查点</th><th>观察结果</th><th>证据文件</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>症状</td><td>检查脚本报告 old-page.html 断链</td><td>npm run check</td><td>已记录</td></tr>
+
+            <tr><td>根因假设</td><td>导航或搜索索引仍指向旧 URL</td><td>rg old-page</td><td>待验证</td></tr>
+
+            <tr><td>验证</td><td>生成器数据中找到旧路径</td><td>scripts/generate-site.mjs</td><td>确认</td></tr>
+
+            <tr><td>验收</td><td>修复后 build/check 均通过</td><td>npm run build &amp;&amp; npm run check</td><td>通过</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>结果样例</h2>
+      <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
+      <pre class="output-sample"><code>diagnosis.md
+症状：链接检查失败，目标 recipes/old-page.html 不存在
+根因：案例 URL 改名后，搜索索引仍使用旧路径
+最小修复：更新 caseRecipes path 和首页入口链接
+回退方式：恢复上一提交或改回旧 path
+验收：npm run build &amp;&amp; npm run check</code></pre>
+    </section>
+    <section>
+      <h2>失败与修正</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>失败点</th><th>现象</th><th>修正动作</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>只看最后一行</td><td>最后一行是连锁失败，不是根因</td><td>读取错误前后上下文</td></tr>
+
+            <tr><td>清缓存掩盖问题</td><td>清缓存后短暂通过但路径仍旧</td><td>用搜索确认真实根因</td></tr>
+
+            <tr><td>修复范围扩大</td><td>顺手重构无关样式</td><td>最小修复只处理当前失败</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>风险边界</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>破坏性命令必须说明后果并等待用户确认。</li><li>不使用大回滚掩盖根因，除非已确认当前改动不可保留。</li><li>日志脱敏后再写入报告或截图。</li>
+    </ul>
+    </section>
+    <section>
+      <h2>验收标准</h2>
+
+    <ul class="acceptance-checklist">
+      <li>诊断记录包含症状、直接错误、根因假设、验证结果和最小修复。</li><li>每个假设都有验证命令和预期结果。</li><li>修复建议包含回退方式和验收命令。</li><li>最终用原失败命令和相关检查命令复跑通过。</li>
+    </ul>
+
+    <div class="command-panel">
+      <strong>验收命令与人工步骤</strong>
+      <code>npm run check</code><code>rg -n &quot;old-page|missing local target|recipes/&quot; scripts recipes README.md</code><code>npm run build &amp;&amp; npm run check &amp;&amp; git diff --check</code>
+    </div>
+    </section>
+    <section>
+      <h2>可复用任务单</h2>
+      <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
+      <pre class="output-sample work-order"><code>请根据这段日志先输出根因假设，不要直接修改文件。
+请给出每个假设的验证命令和预期结果。
+确认根因后再提出最小修复、回退方式和验收命令。</code></pre>
+    </section>
 
         <section>
           <h2>文档质量验收标准</h2>
@@ -152,7 +281,7 @@
         </section>
 
     <nav class="next-links" aria-label="相关链接">
-      <a href="../reference/index.html">官方文档</a><a href="../LICENSE">开源许可</a>
+      <a href="usage-policy.html">使用规范</a><a href="index.html">返回案例总览</a>
     </nav>
 
       </section>
@@ -160,8 +289,8 @@
       <section class="language-section english-section" lang="en" data-language-section="en">
         <p class="language-kicker">English</p>
         <p class="eyebrow">Recipes</p>
-        <h1>Usage Policy</h1>
-        <p>Document privacy, safety, human review, and pre-publication confirmation requirements.</p>
+        <h1>13 Log Error Diagnosis and Fix Proposal</h1>
+        <p>Turn build or service logs into root-cause hypotheses, validation commands, minimal fix, rollback method, and rerun acceptance.</p>
 
     <dl class="doc-meta-grid">
 
@@ -177,17 +306,17 @@
 
         <div>
           <dt>Audience</dt>
-          <dd>Contributors, maintainers, and reusers</dd>
+          <dd>Project maintainers, individual developers, and technical support</dd>
         </div>
 
         <div>
           <dt>Estimated time</dt>
-          <dd>10 minutes</dd>
+          <dd>40-70 minutes</dd>
         </div>
 
         <div>
           <dt>Risk level</dt>
-          <dd>Low to medium</dd>
+          <dd>Medium</dd>
         </div>
 
     </dl>
@@ -195,23 +324,152 @@
 
 
 
-          <section>
-            <h2>Privacy and material control</h2>
-            <p>Before using Codex, confirm whether the material may be read, changed, or uploaded. Provide only the minimum information required for the task by default.</p>
+    <section class="case-dashboard" aria-label="Task status panel">
 
-    <ul class="single-lang-list">
-      <li>Do not submit keys, customer records, private IDs, full contract text, or internal account information.</li><li>Allow internet access, command execution, or additional directory reads only when necessary.</li><li>Sensitive material should be redacted before it enters the task workflow.</li>
+        <div>
+          <span>Entry</span>
+          <strong>Log snippets plus local read-only inspection</strong>
+        </div>
+
+        <div>
+          <span>Materials</span>
+          <strong>Error context, failing command, environment, recent changes, and reproduction steps</strong>
+        </div>
+
+        <div>
+          <span>Evidence</span>
+          <strong>Error snippet, related files, validation commands, and fix scope</strong>
+        </div>
+
+        <div>
+          <span>Deliverable</span>
+          <strong>diagnosis.md, validation-plan.md, and fix-proposal.md</strong>
+        </div>
+
+        <div>
+          <span>Risk</span>
+          <strong>Medium</strong>
+        </div>
+
+        <div>
+          <span>Duration</span>
+          <strong>40-70 minutes</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>Task Background</h2>
+      <p>Turn build or service logs into root-cause hypotheses, validation commands, minimal fix, rollback method, and rerun acceptance.</p>
+      <div class="risk-strip">
+        <span>Troubleshooting</span>
+        <span>Project maintainers, individual developers, and technical support</span>
+        <span>Medium</span>
+      </div>
+    </section>
+    <section>
+      <h2>Input Materials</h2>
+      <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
+
+    <ul class="case-checklist">
+      <li>Logs are redacted first, especially tokens, emails, account IDs, and personal paths.</li><li>Provide failing command, environment, recent changes, and whether it reproduces reliably.</li><li>The first round is read-only diagnosis and does not run destructive commands.</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>Failing command: npm run check
+Error snippet: Error: missing local target recipes/old-page.html
+Recent change: recipe URL rename
+Constraint: locate broken link first; do not roll back all changes</code></pre>
+    </section>
+    <section>
+      <h2>Run Environment</h2>
 
-          <section>
-            <h2>Human review</h2>
-            <p>Codex can help organize, check, and draft, but publishing, deleting, overwriting, sending, and account actions must be confirmed by the user.</p>
-
-    <ul class="single-lang-list">
-      <li>Verify facts, numbers, dates, links, and commitments before publication.</li><li>High-risk guidance must include constraints and human confirmation points.</li><li>Task results should keep outputs, review evidence, and items requiring confirmation.</li>
+    <ul class="case-checklist">
+      <li>Root-cause order: configuration, dependency, path, permission, network, and code change.</li><li>Every hypothesis needs a validation command and expected result.</li><li>Fix proposal separates minimal fix and follow-up hardening without refactoring unrelated modules.</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>Operating Script</h2>
+      <ol class="case-timeline">
+        <li>Separate symptom, direct error, possible root cause, and hypotheses to validate first.</li><li>Read context around the error, then search related paths, scripts, and generator data.</li><li>After confirming root cause, propose minimal fix, rollback method, and rerun commands.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Evidence Trail</h2>
+      <p>The table below records how this task judged completion instead of only describing the final result.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Observation</th><th>Evidence file</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Symptom</td><td>Check script reports broken old-page.html link</td><td>npm run check</td><td>Recorded</td></tr>
+
+            <tr><td>Hypothesis</td><td>Navigation or search index still points to old URL</td><td>rg old-page</td><td>To validate</td></tr>
+
+            <tr><td>Validation</td><td>Old path found in generator data</td><td>scripts/generate-site.mjs</td><td>Confirmed</td></tr>
+
+            <tr><td>Acceptance</td><td>After fix, build/check both pass</td><td>npm run build &amp;&amp; npm run check</td><td>Pass</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Result Sample</h2>
+      <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
+      <pre class="output-sample"><code>diagnosis.md
+Symptom: link check failed because recipes/old-page.html does not exist
+Root cause: after recipe URL rename, search index still used the old path
+Minimal fix: update caseRecipes path and home entry link
+Rollback: restore previous commit or switch back to old path
+Acceptance: npm run build &amp;&amp; npm run check</code></pre>
+    </section>
+    <section>
+      <h2>Failures and Corrections</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>Failure</th><th>Symptom</th><th>Correction</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Last line only</td><td>The last line was a cascading failure, not root cause</td><td>Read context around the error</td></tr>
+
+            <tr><td>Cache clearing masked issue</td><td>Clearing cache briefly passed but path remained old</td><td>Use search to confirm real cause</td></tr>
+
+            <tr><td>Fix scope expanded</td><td>Unrelated style refactor was added</td><td>Minimal fix addresses only current failure</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Risk Boundaries</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>Destructive commands must explain consequences and wait for user confirmation.</li><li>Do not use broad rollback to mask root cause unless current changes are confirmed unsalvageable.</li><li>Logs are redacted before entering reports or screenshots.</li>
+    </ul>
+    </section>
+    <section>
+      <h2>Acceptance Criteria</h2>
+
+    <ul class="acceptance-checklist">
+      <li>Diagnosis includes symptom, direct error, root-cause hypotheses, validation result, and minimal fix.</li><li>Every hypothesis has a validation command and expected result.</li><li>Fix proposal includes rollback method and acceptance commands.</li><li>Final acceptance reruns the original failing command and related checks successfully.</li>
+    </ul>
+
+    <div class="command-panel">
+      <strong>Acceptance commands and manual steps</strong>
+      <code>npm run check</code><code>rg -n &quot;old-page|missing local target|recipes/&quot; scripts recipes README.md</code><code>npm run build &amp;&amp; npm run check &amp;&amp; git diff --check</code>
+    </div>
+    </section>
+    <section>
+      <h2>Reusable Work Order</h2>
+      <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
+      <pre class="output-sample work-order"><code>Use this log to output root-cause hypotheses first; do not edit files directly.
+Provide validation commands and expected results for each hypothesis.
+After confirming root cause, propose minimal fix, rollback method, and acceptance commands.</code></pre>
+    </section>
 
         <section>
           <h2>Documentation Quality Acceptance Criteria</h2>
@@ -223,7 +481,7 @@
         </section>
 
     <nav class="next-links" aria-label="Related links">
-      <a href="../reference/index.html">Official documentation</a><a href="../LICENSE">Open-source license</a>
+      <a href="usage-policy.html">Usage policy</a><a href="index.html">Back to recipe index</a>
     </nav>
 
       </section>

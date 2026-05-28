@@ -3,6 +3,55 @@ import path from "node:path";
 
 const root = process.cwd();
 const expectedHtmlPages = 43;
+const casePages = [
+  "recipes/deck-export-check.html",
+  "recipes/browser-page-review.html",
+  "recipes/pages-deploy-diagnosis.html",
+  "recipes/docs-site-redesign.html",
+  "recipes/markdown-knowledge-base.html",
+  "recipes/spreadsheet-cleanup.html",
+  "recipes/screenshot-to-spec.html",
+  "recipes/authenticated-readonly-review.html",
+  "recipes/document-evidence-table.html",
+  "recipes/api-impact-analysis.html",
+  "recipes/release-notes-changelog.html",
+  "recipes/automation-scheduled-checks.html",
+  "recipes/log-error-diagnosis.html"
+];
+const oldRecipeSlugs = [
+  "newsletter-brief.html",
+  "docs-site-refresh.html",
+  "accessibility-audit.html",
+  "photo-archive.html",
+  "expense-report.html",
+  "podcast-notes.html",
+  "api-changelog.html",
+  "shop-copy.html",
+  "learning-plan.html",
+  "support-triage.html",
+  "github-release.html"
+];
+const caseRequiredMarkers = [
+  "输入材料",
+  "Input Materials",
+  "过程证据",
+  "Evidence Trail",
+  "结果样例",
+  "Result Sample",
+  "失败与修正",
+  "Failures and Corrections",
+  "风险边界",
+  "Risk Boundaries",
+  "验收标准",
+  "Acceptance Criteria",
+  "可复用任务单",
+  "Reusable Work Order",
+  "case-dashboard",
+  "evidence-table",
+  "command-panel",
+  "output-sample",
+  "acceptance-checklist"
+];
 const phrase = (...codes) => String.fromCodePoint(...codes);
 const forbiddenPatterns = [
   ["codex", "guide", "\\.ai"],
@@ -55,6 +104,18 @@ if (htmlFiles.length !== expectedHtmlPages) {
   errors.push(`Expected ${expectedHtmlPages} HTML pages, found ${htmlFiles.length}.`);
 }
 
+for (const oldSlug of oldRecipeSlugs) {
+  if (files.includes(`recipes/${oldSlug}`)) {
+    errors.push(`Old recipe page still exists: recipes/${oldSlug}`);
+  }
+}
+
+for (const casePage of casePages) {
+  if (!htmlFiles.includes(casePage)) {
+    errors.push(`Missing semantic recipe page: ${casePage}`);
+  }
+}
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   const zhIndex = html.indexOf('data-language-section="zh"');
@@ -73,6 +134,18 @@ for (const file of htmlFiles) {
   }
   if (file !== "index.html" && (!/文档质量验收标准/i.test(html) || !/Documentation Quality Acceptance Criteria/i.test(html))) {
     errors.push(`${file}: missing acceptance criteria.`);
+  }
+  if (casePages.includes(file)) {
+    for (const marker of caseRequiredMarkers) {
+      if (!html.includes(marker)) {
+        errors.push(`${file}: missing case marker ${marker}.`);
+      }
+    }
+  }
+  for (const oldSlug of oldRecipeSlugs) {
+    if (html.includes(oldSlug)) {
+      errors.push(`${file}: contains old recipe slug ${oldSlug}.`);
+    }
   }
   for (const pattern of forbiddenPatterns) {
     if (pattern.test(html)) {
@@ -93,6 +166,11 @@ for (const file of htmlFiles) {
 
 for (const file of files.filter((item) => /\.(md|mjs|js|css|html)$/.test(item) && item !== "scripts/verify-site.mjs")) {
   const body = fs.readFileSync(path.join(root, file), "utf8");
+  for (const oldSlug of oldRecipeSlugs) {
+    if (body.includes(oldSlug)) {
+      errors.push(`${file}: contains old recipe slug ${oldSlug}.`);
+    }
+  }
   for (const pattern of forbiddenPatterns) {
     if (pattern.test(body)) {
       errors.push(`${file}: contains forbidden legacy/reference keyword ${pattern}.`);

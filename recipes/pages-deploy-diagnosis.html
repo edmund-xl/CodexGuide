@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>使用规范 | Usage Policy | Codex Everyday Guide</title>
-    <meta name="description" content="说明隐私、安全、人工复核和发布前确认要求。 Document privacy, safety, human review, and pre-publication confirmation requirements.">
+    <title>03 GitHub Pages 部署失败诊断 | 03 GitHub Pages Deployment Failure Diagnosis | Codex Everyday Guide</title>
+    <meta name="description" content="从失败通知、Actions job 和本地检查命令定位 Pages 发布问题，并用新的 run 与线上响应完成闭环。 Diagnose a Pages deployment issue from failure notification, Actions jobs, and local checks, then close the loop with a new run and live response.">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
@@ -44,7 +44,7 @@
     <details class="nav-dropdown">
       <summary><span>实战案例</span></summary>
       <div class="dropdown-menu">
-        <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html" aria-current="page">使用规范</a>
+        <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html" aria-current="page">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
       </div>
     </details>
       </nav>
@@ -75,7 +75,7 @@
 
         <section>
           <h2>实战案例</h2>
-          <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html" aria-current="page">使用规范</a>
+          <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html" aria-current="page">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
         </section>
 
         <section>
@@ -89,8 +89,8 @@
       <section class="language-section" lang="zh-CN" data-language-section="zh">
         <p class="language-kicker">中文</p>
         <p class="eyebrow">实战案例</p>
-        <h1>使用规范</h1>
-        <p>说明隐私、安全、人工复核和发布前确认要求。</p>
+        <h1>03 GitHub Pages 部署失败诊断</h1>
+        <p>从失败通知、Actions job 和本地检查命令定位 Pages 发布问题，并用新的 run 与线上响应完成闭环。</p>
 
     <dl class="doc-meta-grid">
 
@@ -106,17 +106,17 @@
 
         <div>
           <dt>适用读者</dt>
-          <dd>贡献者、维护者、复用者</dd>
+          <dd>项目维护者、内容站负责人</dd>
         </div>
 
         <div>
           <dt>预计耗时</dt>
-          <dd>10 分钟</dd>
+          <dd>40-70 分钟</dd>
         </div>
 
         <div>
           <dt>风险等级</dt>
-          <dd>低到中</dd>
+          <dd>中</dd>
         </div>
 
     </dl>
@@ -124,23 +124,153 @@
 
 
 
-          <section>
-            <h2>隐私与材料控制</h2>
-            <p>使用 Codex 前先确认材料是否可以被读取、修改或上传。默认只提供完成任务所需的最小信息。</p>
+    <section class="case-dashboard" aria-label="任务状态面板">
 
-    <ul class="single-lang-list">
-      <li>不要提交密钥、客户资料、私人证件、合同原文或内部账号信息。</li><li>只在必要时允许联网、运行命令或读取额外目录。</li><li>敏感材料应先脱敏，再进入任务流程。</li>
+        <div>
+          <span>入口</span>
+          <strong>本地仓库 + Actions 日志</strong>
+        </div>
+
+        <div>
+          <span>材料</span>
+          <strong>失败截图、run id、workflow 文件、最新提交 SHA</strong>
+        </div>
+
+        <div>
+          <span>证据</span>
+          <strong>失败步骤、修复提交、新 run、线上 200 响应</strong>
+        </div>
+
+        <div>
+          <span>交付物</span>
+          <strong>deploy-incident.md、修复提交、验证命令记录</strong>
+        </div>
+
+        <div>
+          <span>风险</span>
+          <strong>中</strong>
+        </div>
+
+        <div>
+          <span>预计耗时</span>
+          <strong>40-70 分钟</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>任务背景</h2>
+      <p>从失败通知、Actions job 和本地检查命令定位 Pages 发布问题，并用新的 run 与线上响应完成闭环。</p>
+      <div class="risk-strip">
+        <span>发布排障</span>
+        <span>项目维护者、内容站负责人</span>
+        <span>中</span>
+      </div>
+    </section>
+    <section>
+      <h2>输入材料</h2>
+      <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
+
+    <ul class="case-checklist">
+      <li>失败页面截图只用于识别 job 名称和失败状态，不作为唯一判断。</li><li>本地工作区先确认干净，避免发布修复混入内容改动。</li><li>只改 workflow 或 Pages 配置相关文件，不碰业务页面。</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>失败摘要
+Run: Deploy Pages #5
+build: failed in 10 seconds
+deploy: skipped
+现象: 邮件显示 Some jobs were not successful
+限制: 不改内容页面，先判断 workflow、artifact、Pages 设置哪一段失败</code></pre>
+    </section>
+    <section>
+      <h2>运行环境</h2>
 
-          <section>
-            <h2>人工复核</h2>
-            <p>Codex 可以帮助整理、检查和生成草稿，但对外发布、删除、覆盖、发送和账号操作必须由用户确认。</p>
-
-    <ul class="single-lang-list">
-      <li>发布前核对事实、数字、日期、链接和承诺。</li><li>高风险建议必须附限制条件和人工确认点。</li><li>任务结果应保留输出、检查证据和待确认事项。</li>
+    <ul class="case-checklist">
+      <li>仓库分支：<code>main</code>，发布方式：GitHub Pages Actions。</li><li>本地质量门禁：<code>npm run build</code>、<code>npm run check</code>、<code>git diff --check</code>。</li><li>线上验收：目标地址返回 <code>200 OK</code>，页面包含本次标题或新内容标记。</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>操作剧本</h2>
+      <ol class="case-timeline">
+        <li>先区分内容构建失败、artifact 上传失败、Pages 配置失败和部署失败。</li><li>进入 job steps 找第一个红色步骤，不被最终 skipped 状态误导。</li><li>修复后用新 run 验证，旧失败 run 不会自动变绿。</li>
+      </ol>
+    </section>
+    <section>
+      <h2>过程证据</h2>
+      <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>检查点</th><th>观察结果</th><th>证据文件</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>本地构建</td><td>43 个页面生成成功</td><td>npm run build</td><td>通过</td></tr>
+
+            <tr><td>本地检查</td><td>双语、链接、验收、禁用词通过</td><td>npm run check</td><td>通过</td></tr>
+
+            <tr><td>失败定位</td><td>第一个失败点在 Pages 配置或 artifact 步骤</td><td>job steps</td><td>已定位</td></tr>
+
+            <tr><td>线上验收</td><td>新 run build/deploy 成功，线上返回 200</td><td>curl -I -L</td><td>通过</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>结果样例</h2>
+      <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
+      <pre class="output-sample"><code>deploy-incident.md
+现象：Deploy Pages 的 build 失败，deploy 跳过
+根因：workflow 的 Pages 配置步骤未满足当前发布方式
+修复：更新 Pages Actions 配置并保留 build/check 步骤
+验证：新 run build=success, deploy=success; live URL=200 OK</code></pre>
+    </section>
+    <section>
+      <h2>失败与修正</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>失败点</th><th>现象</th><th>修正动作</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>只看邮件</td><td>邮件没有第一个失败步骤</td><td>必须打开 job steps</td></tr>
+
+            <tr><td>旧 run 误判</td><td>修复后旧 run 仍显示失败</td><td>以新提交触发的新 run 为准</td></tr>
+
+            <tr><td>缓存延迟</td><td>线上页面短时间仍显示旧内容</td><td>用响应头和页面标题共同判断</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>风险边界</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>部署修复与内容改动分开提交，便于回退。</li><li>不使用强制覆盖远端历史，除非用户单独确认。</li><li>每次推送后等待新 run 完成，再宣布线上成功。</li>
+    </ul>
+    </section>
+    <section>
+      <h2>验收标准</h2>
+
+    <ul class="acceptance-checklist">
+      <li>本地 build 和 check 均通过。</li><li>失败记录写清现象、失败步骤、根因、修复和验证命令。</li><li>新 run 的 build 与 deploy 均为 success。</li><li>线上地址返回 200，并能看到新页面内容。</li>
+    </ul>
+
+    <div class="command-panel">
+      <strong>验收命令与人工步骤</strong>
+      <code>npm run build &amp;&amp; npm run check &amp;&amp; git diff --check</code><code>git status --short --branch</code><code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</code>
+    </div>
+    </section>
+    <section>
+      <h2>可复用任务单</h2>
+      <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
+      <pre class="output-sample work-order"><code>请根据这次失败 run 先判断失败类型，不要直接修改业务页面。
+请列出第一个失败步骤、错误信息、最小修复和验证命令。
+修复完成后请提交、推送，并确认新的 run 与线上地址。</code></pre>
+    </section>
 
         <section>
           <h2>文档质量验收标准</h2>
@@ -152,7 +282,7 @@
         </section>
 
     <nav class="next-links" aria-label="相关链接">
-      <a href="../reference/index.html">官方文档</a><a href="../LICENSE">开源许可</a>
+      <a href="docs-site-redesign.html">下一个案例</a><a href="index.html">返回案例总览</a>
     </nav>
 
       </section>
@@ -160,8 +290,8 @@
       <section class="language-section english-section" lang="en" data-language-section="en">
         <p class="language-kicker">English</p>
         <p class="eyebrow">Recipes</p>
-        <h1>Usage Policy</h1>
-        <p>Document privacy, safety, human review, and pre-publication confirmation requirements.</p>
+        <h1>03 GitHub Pages Deployment Failure Diagnosis</h1>
+        <p>Diagnose a Pages deployment issue from failure notification, Actions jobs, and local checks, then close the loop with a new run and live response.</p>
 
     <dl class="doc-meta-grid">
 
@@ -177,17 +307,17 @@
 
         <div>
           <dt>Audience</dt>
-          <dd>Contributors, maintainers, and reusers</dd>
+          <dd>Project maintainers and documentation site owners</dd>
         </div>
 
         <div>
           <dt>Estimated time</dt>
-          <dd>10 minutes</dd>
+          <dd>40-70 minutes</dd>
         </div>
 
         <div>
           <dt>Risk level</dt>
-          <dd>Low to medium</dd>
+          <dd>Medium</dd>
         </div>
 
     </dl>
@@ -195,23 +325,153 @@
 
 
 
-          <section>
-            <h2>Privacy and material control</h2>
-            <p>Before using Codex, confirm whether the material may be read, changed, or uploaded. Provide only the minimum information required for the task by default.</p>
+    <section class="case-dashboard" aria-label="Task status panel">
 
-    <ul class="single-lang-list">
-      <li>Do not submit keys, customer records, private IDs, full contract text, or internal account information.</li><li>Allow internet access, command execution, or additional directory reads only when necessary.</li><li>Sensitive material should be redacted before it enters the task workflow.</li>
+        <div>
+          <span>Entry</span>
+          <strong>Local repository plus Actions logs</strong>
+        </div>
+
+        <div>
+          <span>Materials</span>
+          <strong>Failure screenshot, run id, workflow file, and latest commit SHA</strong>
+        </div>
+
+        <div>
+          <span>Evidence</span>
+          <strong>Failed step, fix commit, new run, and live 200 response</strong>
+        </div>
+
+        <div>
+          <span>Deliverable</span>
+          <strong>deploy-incident.md, fix commit, and validation command record</strong>
+        </div>
+
+        <div>
+          <span>Risk</span>
+          <strong>Medium</strong>
+        </div>
+
+        <div>
+          <span>Duration</span>
+          <strong>40-70 minutes</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>Task Background</h2>
+      <p>Diagnose a Pages deployment issue from failure notification, Actions jobs, and local checks, then close the loop with a new run and live response.</p>
+      <div class="risk-strip">
+        <span>Deployment troubleshooting</span>
+        <span>Project maintainers and documentation site owners</span>
+        <span>Medium</span>
+      </div>
+    </section>
+    <section>
+      <h2>Input Materials</h2>
+      <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
+
+    <ul class="case-checklist">
+      <li>The failure screenshot is used only to identify job name and status, not as the only judgment.</li><li>Confirm a clean local worktree first so deploy fixes do not mix with content edits.</li><li>Change only workflow or Pages configuration-related files, not content pages.</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>Failure summary
+Run: Deploy Pages #5
+build: failed in 10 seconds
+deploy: skipped
+Symptom: email says Some jobs were not successful
+Constraint: do not edit content pages; first identify whether workflow, artifact, or Pages settings failed</code></pre>
+    </section>
+    <section>
+      <h2>Run Environment</h2>
 
-          <section>
-            <h2>Human review</h2>
-            <p>Codex can help organize, check, and draft, but publishing, deleting, overwriting, sending, and account actions must be confirmed by the user.</p>
-
-    <ul class="single-lang-list">
-      <li>Verify facts, numbers, dates, links, and commitments before publication.</li><li>High-risk guidance must include constraints and human confirmation points.</li><li>Task results should keep outputs, review evidence, and items requiring confirmation.</li>
+    <ul class="case-checklist">
+      <li>Repository branch: <code>main</code>; publishing method: GitHub Pages Actions.</li><li>Local quality gates: <code>npm run build</code>, <code>npm run check</code>, and <code>git diff --check</code>.</li><li>Live acceptance: target URL returns <code>200 OK</code> and contains the current title or new content marker.</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>Operating Script</h2>
+      <ol class="case-timeline">
+        <li>First separate content build failure, artifact upload failure, Pages configuration failure, and deploy failure.</li><li>Open job steps and find the first red step instead of being misled by the final skipped status.</li><li>After fixing, validate with a new run; old failed runs do not turn green automatically.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Evidence Trail</h2>
+      <p>The table below records how this task judged completion instead of only describing the final result.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Observation</th><th>Evidence file</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Local build</td><td>43 pages generated successfully</td><td>npm run build</td><td>Pass</td></tr>
+
+            <tr><td>Local check</td><td>Bilingual, links, acceptance, and blocked words passed</td><td>npm run check</td><td>Pass</td></tr>
+
+            <tr><td>Failure location</td><td>First failure located in Pages configuration or artifact step</td><td>job steps</td><td>Located</td></tr>
+
+            <tr><td>Live acceptance</td><td>New run build/deploy passed and live URL returned 200</td><td>curl -I -L</td><td>Pass</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Result Sample</h2>
+      <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
+      <pre class="output-sample"><code>deploy-incident.md
+Symptom: Deploy Pages build failed and deploy was skipped
+Root cause: workflow Pages configuration did not match the current publish mode
+Fix: update Pages Actions configuration while keeping build/check steps
+Verification: new run build=success, deploy=success; live URL=200 OK</code></pre>
+    </section>
+    <section>
+      <h2>Failures and Corrections</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>Failure</th><th>Symptom</th><th>Correction</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Email-only diagnosis</td><td>Email did not show the first failed step</td><td>Open job steps</td></tr>
+
+            <tr><td>Old run confusion</td><td>Old run still showed failure after fix</td><td>Use the new run from the new commit</td></tr>
+
+            <tr><td>Cache delay</td><td>Live page briefly showed old content</td><td>Check both response headers and page title</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Risk Boundaries</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>Keep deploy fixes and content changes in separate commits for rollback.</li><li>Do not force-overwrite remote history unless the user explicitly confirms.</li><li>After each push, wait for the new run to finish before declaring live success.</li>
+    </ul>
+    </section>
+    <section>
+      <h2>Acceptance Criteria</h2>
+
+    <ul class="acceptance-checklist">
+      <li>Local build and check both pass.</li><li>Incident record states symptom, failed step, root cause, fix, and verification commands.</li><li>The new run has build and deploy both successful.</li><li>Live URL returns 200 and displays the new page content.</li>
+    </ul>
+
+    <div class="command-panel">
+      <strong>Acceptance commands and manual steps</strong>
+      <code>npm run build &amp;&amp; npm run check &amp;&amp; git diff --check</code><code>git status --short --branch</code><code>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</code>
+    </div>
+    </section>
+    <section>
+      <h2>Reusable Work Order</h2>
+      <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
+      <pre class="output-sample work-order"><code>Use this failed run to identify the failure type first; do not edit content pages directly.
+List the first failed step, error message, minimal fix, and verification commands.
+After fixing, commit, push, and verify the new run and live URL.</code></pre>
+    </section>
 
         <section>
           <h2>Documentation Quality Acceptance Criteria</h2>
@@ -223,7 +483,7 @@
         </section>
 
     <nav class="next-links" aria-label="Related links">
-      <a href="../reference/index.html">Official documentation</a><a href="../LICENSE">Open-source license</a>
+      <a href="docs-site-redesign.html">Next recipe</a><a href="index.html">Back to recipe index</a>
     </nav>
 
       </section>

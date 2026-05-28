@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>02 浏览器页面巡检与截图证据 | 02 Browser Page Review with Screenshot Evidence | Codex Everyday Guide</title>
-    <meta name="description" content="用浏览器打开本地或测试页面，检查标题、按钮、表单、移动端布局和截图证据。 Open a local or staging page in the browser and review headings, buttons, forms, mobile layout, and screenshot evidence.">
+    <title>06 表格数据清洗与异常核对 | 06 Spreadsheet Cleanup and Anomaly Review | Codex Everyday Guide</title>
+    <meta name="description" content="对一份脱敏 CSV 做只读画像、异常分类、清理建议和人工复核表，保留原始行号便于追溯。 Profile a redacted CSV read-only, classify anomalies, produce cleanup suggestions and a human review sheet, and keep original row numbers for traceability.">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
@@ -44,7 +44,7 @@
     <details class="nav-dropdown">
       <summary><span>实战案例</span></summary>
       <div class="dropdown-menu">
-        <a href="index.html">案例总览</a><a href="newsletter-brief.html">01 演示稿生成核查</a><a href="spreadsheet-cleanup.html" aria-current="page">02 页面巡检截图</a><a href="docs-site-refresh.html">03 Pages 部署诊断</a><a href="accessibility-audit.html">04 文档站批量改版</a><a href="photo-archive.html">05 知识库重整</a><a href="expense-report.html">06 表格清洗核对</a><a href="podcast-notes.html">07 截图转规格</a><a href="api-changelog.html">08 登录页只读检查</a><a href="shop-copy.html">09 文档证据表</a><a href="learning-plan.html">10 API 影响分析</a><a href="support-triage.html">11 发布说明</a><a href="markdown-knowledge-base.html">12 自动化检查</a><a href="github-release.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
+        <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html" aria-current="page">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
       </div>
     </details>
       </nav>
@@ -75,7 +75,7 @@
 
         <section>
           <h2>实战案例</h2>
-          <a href="index.html">案例总览</a><a href="newsletter-brief.html">01 演示稿生成核查</a><a href="spreadsheet-cleanup.html" aria-current="page">02 页面巡检截图</a><a href="docs-site-refresh.html">03 Pages 部署诊断</a><a href="accessibility-audit.html">04 文档站批量改版</a><a href="photo-archive.html">05 知识库重整</a><a href="expense-report.html">06 表格清洗核对</a><a href="podcast-notes.html">07 截图转规格</a><a href="api-changelog.html">08 登录页只读检查</a><a href="shop-copy.html">09 文档证据表</a><a href="learning-plan.html">10 API 影响分析</a><a href="support-triage.html">11 发布说明</a><a href="markdown-knowledge-base.html">12 自动化检查</a><a href="github-release.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
+          <a href="index.html">案例总览</a><a href="deck-export-check.html">01 演示稿导出核查</a><a href="browser-page-review.html">02 页面巡检截图</a><a href="pages-deploy-diagnosis.html">03 Pages 部署诊断</a><a href="docs-site-redesign.html">04 文档站批量改版</a><a href="markdown-knowledge-base.html">05 知识库重整</a><a href="spreadsheet-cleanup.html" aria-current="page">06 表格清洗核对</a><a href="screenshot-to-spec.html">07 截图转规格</a><a href="authenticated-readonly-review.html">08 登录页只读检查</a><a href="document-evidence-table.html">09 文档证据表</a><a href="api-impact-analysis.html">10 API 影响分析</a><a href="release-notes-changelog.html">11 发布说明</a><a href="automation-scheduled-checks.html">12 自动化检查</a><a href="log-error-diagnosis.html">13 日志报错诊断</a><a href="usage-policy.html">使用规范</a>
         </section>
 
         <section>
@@ -89,8 +89,8 @@
       <section class="language-section" lang="zh-CN" data-language-section="zh">
         <p class="language-kicker">中文</p>
         <p class="eyebrow">实战案例</p>
-        <h1>02 浏览器页面巡检与截图证据</h1>
-        <p>用浏览器打开本地或测试页面，检查标题、按钮、表单、移动端布局和截图证据。</p>
+        <h1>06 表格数据清洗与异常核对</h1>
+        <p>对一份脱敏 CSV 做只读画像、异常分类、清理建议和人工复核表，保留原始行号便于追溯。</p>
 
     <dl class="doc-meta-grid">
 
@@ -106,102 +106,171 @@
 
         <div>
           <dt>适用读者</dt>
-          <dd>业务人员、创作者、项目维护者</dd>
+          <dd>运营、财务助理、数据维护者</dd>
         </div>
 
         <div>
           <dt>预计耗时</dt>
-          <dd>35-60 分钟</dd>
+          <dd>45-75 分钟</dd>
         </div>
 
         <div>
           <dt>风险等级</dt>
-          <dd>低</dd>
+          <dd>中</dd>
         </div>
 
     </dl>
 
 
-          <section>
-            <h2>任务背景</h2>
-            <p>用浏览器打开本地或测试页面，检查标题、按钮、表单、移动端布局和截图证据。</p>
 
-    <ul class="single-lang-list">
-      <li>场景：网页质量。</li><li>入口：桌面端 + 浏览器检查。</li><li>证据：桌面截图、移动截图、控制台摘要、问题表。</li>
+
+    <section class="case-dashboard" aria-label="任务状态面板">
+
+        <div>
+          <span>入口</span>
+          <strong>本地 CSV + 只读分析</strong>
+        </div>
+
+        <div>
+          <span>材料</span>
+          <strong>脱敏 CSV、字段说明、金额和日期规则</strong>
+        </div>
+
+        <div>
+          <span>证据</span>
+          <strong>数据画像、异常表、样本行、校验公式</strong>
+        </div>
+
+        <div>
+          <span>交付物</span>
+          <strong>data-profile.md、anomalies.csv、review-sheet.csv</strong>
+        </div>
+
+        <div>
+          <span>风险</span>
+          <strong>中</strong>
+        </div>
+
+        <div>
+          <span>预计耗时</span>
+          <strong>45-75 分钟</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>任务背景</h2>
+      <p>对一份脱敏 CSV 做只读画像、异常分类、清理建议和人工复核表，保留原始行号便于追溯。</p>
+      <div class="risk-strip">
+        <span>数据整理</span>
+        <span>运营、财务助理、数据维护者</span>
+        <span>中</span>
+      </div>
+    </section>
+    <section>
+      <h2>输入材料</h2>
+      <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
+
+    <ul class="case-checklist">
+      <li>CSV 已替换真实姓名、电话、证件号和完整地址。</li><li>唯一键为 order_id，金额单位为 CNY，允许空值字段为 note。</li><li>第一轮只读分析，不删除行、不覆盖原文件。</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>order_id,date,amount,status,note
+1001,2026-05-01,199.00,paid,
+1002,2026/05/02,-20.00,paid,refund?
+1002,2026-05-02,20.00,paid,duplicate?
+1003,,8500.00,pending,large order</code></pre>
+    </section>
+    <section>
+      <h2>运行环境</h2>
 
-          <section>
-            <h2>环境与材料</h2>
-            <p>先把可用环境、允许读取的材料和禁止动作写清楚，再让 Codex 开始处理。</p>
-
-    <ul class="single-lang-list">
-      <li>使用本地页面、测试环境页面或已公开页面，不输入账号密码。</li><li>提前定义要检查的视口：桌面 1440px、平板 900px、手机 390px。</li><li>准备页面目标：用户要看到什么、点击什么、完成什么。</li>
+    <ul class="case-checklist">
+      <li>样本文件：<code>orders-redacted.csv</code>，清理输出使用 <code>-cleaned</code> 后缀。</li><li>异常分类：重复、缺失、格式、范围、跨字段矛盾。</li><li>所有异常保留 <code>original_row</code>，人工复核时可回到原始行。</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>操作剧本</h2>
+      <ol class="case-timeline">
+        <li>先输出数据画像：行数、列数、字段类型、空值、重复键和金额范围。</li><li>再列异常规则，不直接删除或填补任何值。</li><li>最后生成异常表和人工复核表，保留原始行号和建议动作。</li>
+      </ol>
+    </section>
+    <section>
+      <h2>过程证据</h2>
+      <p>下面的表格记录本次任务如何判断完成，而不是只描述最终结果。</p>
 
-          <section>
-            <h2>操作剧本</h2>
-            <p>把任务拆成可观察的步骤，要求 Codex 先说明处理方式，再产出文件、表格或报告。</p>
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>检查点</th><th>观察结果</th><th>证据文件</th><th>状态</th></tr>
+        </thead>
+        <tbody>
 
-    <ul class="single-lang-list">
-      <li>先让 Codex 读取页面结构，列出关键区域和交互点。</li><li>按视口分别截图，不用同一张图替代所有设备。</li><li>把问题按阻断、影响体验、文字瑕疵、后续优化四类归档。</li>
+            <tr><td>数据画像</td><td>4 行、5 列，order_id 有重复，date 有缺失</td><td>data-profile.md</td><td>通过</td></tr>
+
+            <tr><td>重复检测</td><td>order_id=1002 出现 2 次，金额符号不一致</td><td>anomalies.csv</td><td>待复核</td></tr>
+
+            <tr><td>范围检测</td><td>amount=8500 超过手动确认阈值</td><td>review-sheet.csv</td><td>待确认</td></tr>
+
+            <tr><td>输出安全</td><td>原始 CSV 未覆盖，清理版使用新文件名</td><td>file list</td><td>通过</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>结果样例</h2>
+      <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
+      <pre class="output-sample"><code>anomalies.csv
+original_row,field,type,value,suggestion
+3,order_id,duplicate,1002,确认是否拆单或重复导入
+3,amount,range,-20.00,确认是否退款
+5,date,missing,,补充业务日期
+5,amount,range,8500.00,人工确认大额订单</code></pre>
+    </section>
+    <section>
+      <h2>失败与修正</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>失败点</th><th>现象</th><th>修正动作</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>误删重复行</td><td>重复 order_id 可能是拆单或退款</td><td>只标记异常，不自动删除</td></tr>
+
+            <tr><td>自动补空值</td><td>空日期被填成当天日期</td><td>缺失值保持空并进入复核表</td></tr>
+
+            <tr><td>丢失原始行号</td><td>复核表无法定位原 CSV 行</td><td>所有输出增加 original_row</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>风险边界</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>不覆盖原文件，不删除行，不自动填补业务字段。</li><li>金额、日期、状态和退款判断必须人工复核。</li><li>输出文件只使用脱敏字段，不加入新个人信息。</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>验收标准</h2>
 
-          <section>
-            <h2>关键步骤</h2>
-            <p>每一步都要留下中间结果，避免只得到一份无法复查的最终文本。</p>
-
-    <ul class="single-lang-list">
-      <li>打开目标地址并确认页面标题、主标题、导航和核心按钮都可见。</li><li>执行一次主路径点击，只记录可见状态，不提交真实交易或表单。</li><li>切换移动视口，检查导航折叠、按钮换行和长词是否溢出。</li>
+    <ul class="acceptance-checklist">
+      <li>数据画像写清行数、列数、空值、重复和范围异常。</li><li>异常表保留原始行号和建议动作。</li><li>清理版不覆盖原始 CSV。</li><li>所有业务判断进入人工复核表。</li>
     </ul>
-          </section>
 
-          <section>
-            <h2>过程证据</h2>
-            <p>实战案例的价值不在于说做完了，而在于能展示做了什么、怎么判断、哪里需要人确认。</p>
-
-    <ul class="single-lang-list">
-      <li>本案例的核心证据是：桌面截图、移动截图、控制台摘要、问题表。</li><li>证据文件和截图应使用稳定命名，方便回看和比对。</li><li>不确定项必须集中记录，不夹在正文里被忽略。</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>结果样例</h2>
-            <p>输出必须能被另一个人独立检查，不能只是一段聊天记录。</p>
-
-    <ul class="single-lang-list">
-      <li>输出 <code>page-review.md</code>，每条问题包含位置、现象、截图名、建议和优先级。</li><li>通过项也要记录，例如导航可用、主按钮可见、移动端无横向滚动。</li><li>截图文件命名使用页面、视口和时间，例如 <code>home-mobile-390.png</code>。</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>踩坑记录</h2>
-            <p>以下问题在真实任务中最容易导致返工，应在任务单里提前写明。</p>
-
-    <ul class="single-lang-list">
-      <li>不要只看 DOM 文本；视觉重叠、遮挡和空白必须用截图判断。</li><li>不要在真实账号页面随意点击提交、购买、删除或授权按钮。</li><li>移动端问题通常来自固定宽度、长按钮文案和表格列宽。</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>风险边界</h2>
-            <p>Codex 可以协助分析、生成和检查，但账号动作、公开发布和高风险改动必须由用户确认。</p>
-
-    <ul class="single-lang-list">
-      <li>不要提交表单、不要修改数据、不要触发账号动作。</li><li>保留原始材料或原始文件，改动版使用新文件名。</li><li>涉及金额、日期、权限、对外承诺和个人信息时，必须人工复核。</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>可复用任务单</h2>
-            <p>把下面三句复制成任务起点，再替换成自己的材料、约束和验收方式。</p>
-
-    <ul class="single-lang-list">
-      <li>请打开这个页面做只读巡检，先说明会检查哪些区域。</li><li>请分别检查桌面和手机视口，输出截图清单和问题表。</li><li>不要提交表单、不要修改数据、不要触发账号动作。</li>
-    </ul>
-          </section>
+    <div class="command-panel">
+      <strong>验收命令与人工步骤</strong>
+      <code>wc -l orders-redacted.csv</code><code>head -n 5 orders-redacted.csv</code><code>rg -n &quot;,,|-[0-9]+\.|pending&quot; orders-redacted.csv</code>
+    </div>
+    </section>
+    <section>
+      <h2>可复用任务单</h2>
+      <p>把下面任务单作为起点，替换材料、路径、限制和验收方式后再执行。</p>
+      <pre class="output-sample work-order"><code>请先只读分析这个脱敏 CSV，输出数据画像和异常规则。
+不要覆盖原文件，不要删除行，保留 original_row。
+确认规则后再生成异常表、清理版和人工复核表。</code></pre>
+    </section>
 
         <section>
           <h2>文档质量验收标准</h2>
@@ -213,7 +282,7 @@
         </section>
 
     <nav class="next-links" aria-label="相关链接">
-      <a href="docs-site-refresh.html">下一个案例</a><a href="index.html">返回案例总览</a>
+      <a href="screenshot-to-spec.html">下一个案例</a><a href="index.html">返回案例总览</a>
     </nav>
 
       </section>
@@ -221,8 +290,8 @@
       <section class="language-section english-section" lang="en" data-language-section="en">
         <p class="language-kicker">English</p>
         <p class="eyebrow">Recipes</p>
-        <h1>02 Browser Page Review with Screenshot Evidence</h1>
-        <p>Open a local or staging page in the browser and review headings, buttons, forms, mobile layout, and screenshot evidence.</p>
+        <h1>06 Spreadsheet Cleanup and Anomaly Review</h1>
+        <p>Profile a redacted CSV read-only, classify anomalies, produce cleanup suggestions and a human review sheet, and keep original row numbers for traceability.</p>
 
     <dl class="doc-meta-grid">
 
@@ -238,102 +307,171 @@
 
         <div>
           <dt>Audience</dt>
-          <dd>Operators, creators, and project maintainers</dd>
+          <dd>Operators, finance assistants, and data maintainers</dd>
         </div>
 
         <div>
           <dt>Estimated time</dt>
-          <dd>35-60 minutes</dd>
+          <dd>45-75 minutes</dd>
         </div>
 
         <div>
           <dt>Risk level</dt>
-          <dd>Low</dd>
+          <dd>Medium</dd>
         </div>
 
     </dl>
 
 
-          <section>
-            <h2>Task Background</h2>
-            <p>Open a local or staging page in the browser and review headings, buttons, forms, mobile layout, and screenshot evidence.</p>
 
-    <ul class="single-lang-list">
-      <li>Scenario: Web quality.</li><li>Entry: Desktop app plus browser inspection.</li><li>Evidence: Desktop screenshot, mobile screenshot, console summary, and issue table.</li>
+
+    <section class="case-dashboard" aria-label="Task status panel">
+
+        <div>
+          <span>Entry</span>
+          <strong>Local CSV plus read-only analysis</strong>
+        </div>
+
+        <div>
+          <span>Materials</span>
+          <strong>Redacted CSV, field notes, amount and date rules</strong>
+        </div>
+
+        <div>
+          <span>Evidence</span>
+          <strong>Data profile, anomaly table, sample rows, and validation formulas</strong>
+        </div>
+
+        <div>
+          <span>Deliverable</span>
+          <strong>data-profile.md, anomalies.csv, and review-sheet.csv</strong>
+        </div>
+
+        <div>
+          <span>Risk</span>
+          <strong>Medium</strong>
+        </div>
+
+        <div>
+          <span>Duration</span>
+          <strong>45-75 minutes</strong>
+        </div>
+
+    </section>
+    <section>
+      <h2>Task Background</h2>
+      <p>Profile a redacted CSV read-only, classify anomalies, produce cleanup suggestions and a human review sheet, and keep original row numbers for traceability.</p>
+      <div class="risk-strip">
+        <span>Data cleanup</span>
+        <span>Operators, finance assistants, and data maintainers</span>
+        <span>Medium</span>
+      </div>
+    </section>
+    <section>
+      <h2>Input Materials</h2>
+      <p>This task first locks readable materials, prohibited actions, and output format before generation or inspection.</p>
+
+    <ul class="case-checklist">
+      <li>The CSV has real names, phone numbers, IDs, and full addresses replaced.</li><li>The unique key is order_id, amount unit is CNY, and allowed blank field is note.</li><li>The first round is read-only: no rows deleted and no source file overwritten.</li>
     </ul>
-          </section>
+      <pre class="output-sample"><code>order_id,date,amount,status,note
+1001,2026-05-01,199.00,paid,
+1002,2026/05/02,-20.00,paid,refund?
+1002,2026-05-02,20.00,paid,duplicate?
+1003,,8500.00,pending,large order</code></pre>
+    </section>
+    <section>
+      <h2>Run Environment</h2>
 
-          <section>
-            <h2>Environment and Materials</h2>
-            <p>Define the available environment, allowed materials, and prohibited actions before Codex starts processing.</p>
-
-    <ul class="single-lang-list">
-      <li>Use a local page, staging page, or public page; do not enter credentials.</li><li>Define viewports up front: desktop 1440px, tablet 900px, and mobile 390px.</li><li>Prepare the page goal: what users should see, click, and complete.</li>
+    <ul class="case-checklist">
+      <li>Sample file: <code>orders-redacted.csv</code>; cleaned output uses a <code>-cleaned</code> suffix.</li><li>Anomaly classes: duplicate, missing, format, range, and cross-field conflict.</li><li>Every anomaly keeps <code>original_row</code> so reviewers can return to the source row.</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>Operating Script</h2>
+      <ol class="case-timeline">
+        <li>First output data profile: rows, columns, inferred types, blanks, duplicate keys, and amount range.</li><li>Then list anomaly rules without deleting or filling values.</li><li>Finally generate anomaly and human review tables with original row numbers and suggested actions.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Evidence Trail</h2>
+      <p>The table below records how this task judged completion instead of only describing the final result.</p>
 
-          <section>
-            <h2>Operating Script</h2>
-            <p>Split the task into observable steps and ask Codex to state the handling method before producing files, tables, or reports.</p>
+    <div class="table-wrap">
+      <table class="evidence-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Observation</th><th>Evidence file</th><th>Status</th></tr>
+        </thead>
+        <tbody>
 
-    <ul class="single-lang-list">
-      <li>Ask Codex to read page structure first and list key regions and interactions.</li><li>Capture screenshots per viewport; do not use one screenshot for all devices.</li><li>Classify issues as blocking, experience impact, copy polish, or follow-up improvement.</li>
+            <tr><td>Data profile</td><td>4 rows, 5 columns, duplicate order_id, missing date</td><td>data-profile.md</td><td>Pass</td></tr>
+
+            <tr><td>Duplicate check</td><td>order_id=1002 appears twice with inconsistent amount signs</td><td>anomalies.csv</td><td>Needs review</td></tr>
+
+            <tr><td>Range check</td><td>amount=8500 exceeds manual review threshold</td><td>review-sheet.csv</td><td>Needs confirmation</td></tr>
+
+            <tr><td>Output safety</td><td>Original CSV not overwritten; cleaned version uses new filename</td><td>file list</td><td>Pass</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Result Sample</h2>
+      <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
+      <pre class="output-sample"><code>anomalies.csv
+original_row,field,type,value,suggestion
+3,order_id,duplicate,1002,confirm split order or duplicate import
+3,amount,range,-20.00,confirm refund
+5,date,missing,,add business date
+5,amount,range,8500.00,manually confirm large order</code></pre>
+    </section>
+    <section>
+      <h2>Failures and Corrections</h2>
+
+    <div class="table-wrap">
+      <table class="evidence-table failure-table">
+        <thead>
+          <tr><th>Failure</th><th>Symptom</th><th>Correction</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Deleted duplicate row</td><td>Duplicate order_id may be split order or refund</td><td>Flag anomalies without deleting</td></tr>
+
+            <tr><td>Filled blanks automatically</td><td>Blank date was filled with today</td><td>Keep blanks and put them in the review sheet</td></tr>
+
+            <tr><td>Lost source row</td><td>Review sheet could not locate source CSV row</td><td>Add original_row to every output</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Risk Boundaries</h2>
+
+    <ul class="case-checklist risk-list">
+      <li>Do not overwrite the original file, delete rows, or auto-fill business fields.</li><li>Amounts, dates, status, and refund judgment require human review.</li><li>Output files use only redacted fields and add no new personal data.</li>
     </ul>
-          </section>
+    </section>
+    <section>
+      <h2>Acceptance Criteria</h2>
 
-          <section>
-            <h2>Key Steps</h2>
-            <p>Every step should leave an intermediate result instead of only producing final text that cannot be reviewed.</p>
-
-    <ul class="single-lang-list">
-      <li>Open the target URL and confirm the page title, main heading, navigation, and primary button are visible.</li><li>Run one primary-path click and record visible state without submitting real transactions or forms.</li><li>Switch to mobile viewport and check navigation collapse, button wrapping, and long-word overflow.</li>
+    <ul class="acceptance-checklist">
+      <li>Data profile states row count, column count, blanks, duplicates, and range anomalies.</li><li>Anomaly table preserves original row numbers and suggested actions.</li><li>Cleaned version does not overwrite the source CSV.</li><li>All business judgments go into the human review sheet.</li>
     </ul>
-          </section>
 
-          <section>
-            <h2>Evidence Trail</h2>
-            <p>The value of a practical recipe is not saying it is done, but showing what was done, how it was judged, and what needs human confirmation.</p>
-
-    <ul class="single-lang-list">
-      <li>The core evidence for this recipe is: Desktop screenshot, mobile screenshot, console summary, and issue table.</li><li>Evidence files and screenshots should use stable names for review and comparison.</li><li>Uncertainties must be centralized instead of being buried in body text.</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>Result Sample</h2>
-            <p>The output must be independently reviewable by another person, not just a chat transcript.</p>
-
-    <ul class="single-lang-list">
-      <li>Output <code>page-review.md</code>; each issue includes location, symptom, screenshot name, recommendation, and priority.</li><li>Record passing checks too, such as usable navigation, visible primary button, and no horizontal mobile scrolling.</li><li>Screenshot names include page, viewport, and time, such as <code>home-mobile-390.png</code>.</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>Pitfalls</h2>
-            <p>The following issues most often cause rework in real tasks and should be stated in the work order up front.</p>
-
-    <ul class="single-lang-list">
-      <li>Do not inspect DOM text only; overlap, occlusion, and empty areas require screenshots.</li><li>Do not click submit, purchase, delete, or authorization buttons on real account pages.</li><li>Mobile issues often come from fixed widths, long button text, and table column widths.</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>Risk Boundaries</h2>
-            <p>Codex can assist with analysis, generation, and checking, but account actions, publication, and high-risk changes require user confirmation.</p>
-
-    <ul class="single-lang-list">
-      <li>Do not submit forms, modify data, or trigger account actions.</li><li>Keep original materials or files and use a new filename for edited versions.</li><li>Amounts, dates, permissions, external promises, and personal information must be manually reviewed.</li>
-    </ul>
-          </section>
-
-          <section>
-            <h2>Reusable Work Order</h2>
-            <p>Use the following three lines as the starting work order, then replace them with your own materials, constraints, and acceptance method.</p>
-
-    <ul class="single-lang-list">
-      <li>Open this page for read-only review and first state which areas will be checked.</li><li>Check desktop and mobile viewports separately, then output screenshot inventory and issue table.</li><li>Do not submit forms, modify data, or trigger account actions.</li>
-    </ul>
-          </section>
+    <div class="command-panel">
+      <strong>Acceptance commands and manual steps</strong>
+      <code>wc -l orders-redacted.csv</code><code>head -n 5 orders-redacted.csv</code><code>rg -n &quot;,,|-[0-9]+\.|pending&quot; orders-redacted.csv</code>
+    </div>
+    </section>
+    <section>
+      <h2>Reusable Work Order</h2>
+      <p>Use the work order below as a starting point, then replace materials, paths, constraints, and acceptance method before running it.</p>
+      <pre class="output-sample work-order"><code>First analyze this redacted CSV read-only and output data profile and anomaly rules.
+Do not overwrite the original file, do not delete rows, and preserve original_row.
+After the rules are confirmed, generate the anomaly table, cleaned version, and human review sheet.</code></pre>
+    </section>
 
         <section>
           <h2>Documentation Quality Acceptance Criteria</h2>
@@ -345,7 +483,7 @@
         </section>
 
     <nav class="next-links" aria-label="Related links">
-      <a href="docs-site-refresh.html">Next recipe</a><a href="index.html">Back to recipe index</a>
+      <a href="screenshot-to-spec.html">Next recipe</a><a href="index.html">Back to recipe index</a>
     </nav>
 
       </section>
@@ -372,7 +510,7 @@
         <button type="submit" aria-label="关闭搜索">×</button>
       </form>
       <input id="siteSearchInput" type="search" placeholder="输入：权限、入口、案例、CLI">
-      <div class="search-results"><a data-search-item="学习路线 Learning Path 教程 Guide 用三条路线覆盖普通用户、个人开发者和团队落地。读者不需要一次读完整站，应先选择与当前任务最接近的路径。 Use three routes for everyday users, individual developers, and team adoption. Readers should start with the route closest to the task at hand instead of reading the whole site first." href="../guide/00-overview.html"><strong>学习路线</strong></a><a data-search-item="入口地图 Entry Point Map 入口 Platform 同一套 Codex 能力在不同入口里的节奏不同。专业使用方式是先选入口，再设计任务。 The same Codex capability behaves differently across entry points. A professional workflow chooses the entry point before designing the task." href="../platform/index.html"><strong>入口地图</strong></a><a data-search-item="配置总览 Configuration overview 配置 Configuration 用最小配置建立可理解、可回退、可审计的 Codex 工作环境。 Establish a Codex environment that is understandable, reversible, and auditable with minimal configuration." href="../configuration/index.html"><strong>配置总览</strong></a><a data-search-item="CLI 选项与命令 CLI options and commands 配置 Configuration 把 CLI 选项整理成任务执行、模型选择、审批控制和排障四类。 Organize CLI options into task execution, model selection, approval control, and troubleshooting." href="../configuration/cli-options.html"><strong>CLI 选项与命令</strong></a><a data-search-item="config.toml 任务配置 config.toml task configuration 配置 Configuration 用配置文件沉淀稳定偏好，同时避免把凭据和私人信息写进仓库。 Use configuration files to persist stable preferences while keeping credentials and private data out of the repository." href="../configuration/config-file.html"><strong>config.toml 任务配置</strong></a><a data-search-item="MCP、Skills 与 Subagents MCP, Skills, and Subagents 配置 Configuration 区分工具连接、方法沉淀和任务拆分，避免把扩展能力一次性全部打开。 Separate tool connections, reusable methods, and task decomposition instead of enabling every extension at once." href="../configuration/mcp-skills-subagents.html"><strong>MCP、Skills 与 Subagents</strong></a><a data-search-item="安全与审批 Security and approvals 配置 Configuration 将文件、命令、网络、凭据和团队规则纳入统一审批模型。 Bring files, commands, network access, credentials, and team policy into one approval model." href="../configuration/security-admin.html"><strong>安全与审批</strong></a><a data-search-item="实践方法 Operating Model 资源 Resources 把每次任务拆成说明、探索、实施、验证和复盘五段，形成可复用工作法。 Split every task into brief, discovery, execution, verification, and retrospective to create a reusable operating model." href="../practice/index.html"><strong>实践方法</strong></a><a data-search-item="官方文档 Official Documentation 资源 Resources 最后核对：2026-05-28。功能、价格、限额、模型和安全策略必须回到 OpenAI 官方文档核对。 Last checked: 2026-05-28. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI documentation." href="../reference/index.html"><strong>官方文档</strong></a><a data-search-item="共建路线图 Contribution Roadmap 资源 Resources 用 Issue、PR、验收清单和事实核对流程维护一个可持续开源文档项目。 Maintain a sustainable open-source documentation project with issues, pull requests, acceptance checklists, and fact checks." href="../contribute/roadmap.html"><strong>共建路线图</strong></a><a data-search-item="01 安装并打开桌面端 01 Install and open the desktop app 教程 Guide 完成安装、登录和第一个低风险工作区确认。 Complete installation, sign-in, and first low-risk workspace validation." href="../guide/01-desktop-install.html"><strong>01 安装并打开桌面端</strong></a><a data-search-item="02 准备账号、计划与使用边界 02 Prepare account, plan, and usage boundaries 教程 Guide 确认当前计划、数据控制、适用任务与不适用任务。 Confirm current plan, data controls, supported tasks, and unsupported tasks." href="../guide/02-account-plan.html"><strong>02 准备账号、计划与使用边界</strong></a><a data-search-item="03 认识桌面 App 的任务界面 03 Understand the desktop task interface 教程 Guide 理解任务区、文件区、权限提示、差异预览和结果回看。 Understand the task pane, file area, permission prompts, diff preview, and result review." href="../guide/03-app-tour.html"><strong>03 认识桌面 App 的任务界面</strong></a><a data-search-item="04 手机发起、桌面接手 04 Start on mobile and hand off to desktop 教程 Guide 把移动端灵感或临时任务转成桌面可执行的工作单。 Convert a mobile note or ad-hoc idea into an executable desktop work order." href="../guide/04-mobile-handoff.html"><strong>04 手机发起、桌面接手</strong></a><a data-search-item="05 完成第一个低风险任务 05 Complete the first low-risk task 教程 Guide 用一份资料副本跑通说明、执行、验证和复盘。 Use a duplicate source file to complete scope definition, execution, verification, and retrospective." href="../guide/05-first-task.html"><strong>05 完成第一个低风险任务</strong></a><a data-search-item="06 排队、并行与任务节奏 06 Queueing, parallel work, and task pacing 教程 Guide 区分顺序任务、并行任务和需要用户确认的暂停点。 Distinguish sequential tasks, parallel tasks, and user-confirmation pause points." href="../guide/06-queue-parallel.html"><strong>06 排队、并行与任务节奏</strong></a><a data-search-item="07 权限弹窗怎么判断 07 Review permission prompts 教程 Guide 用文件、命令、网络和账号四类问题判断是否授权。 Decide whether to approve by evaluating file, command, network, and account actions." href="../guide/07-permission-review.html"><strong>07 权限弹窗怎么判断</strong></a><a data-search-item="08 用 Skills 与插件扩展任务 08 Extend tasks with Skills and plugins 教程 Guide 理解 Skills、MCP 和插件如何扩展 Codex 工作流。 Understand how Skills, MCP, and plugins extend Codex workflows." href="../guide/08-skill-plugin-library.html"><strong>08 用 Skills 与插件扩展任务</strong></a><a data-search-item="09 自动化前的确认清单 09 Pre-automation checklist 教程 Guide 把重复任务自动化前，先定义触发条件、退出条件和失败提醒。 Before automating repeated work, define triggers, exit conditions, and failure notifications." href="../guide/09-automation-checks.html"><strong>09 自动化前的确认清单</strong></a><a data-search-item="10 搭建个人任务工作台 10 Build a personal task workbench 教程 Guide 用固定目录、模板和检查清单沉淀个人常用任务。 Use stable folders, templates, and checklists to standardize personal tasks." href="../guide/10-personal-workbench.html"><strong>10 搭建个人任务工作台</strong></a><a data-search-item="11 CLI 安装与登录 11 Install and sign in to the CLI 教程 Guide 从终端启动 Codex，确认本地仓库和命令执行边界。 Start Codex from the terminal and confirm local repository and command execution boundaries." href="../guide/11-cli-install-login.html"><strong>11 CLI 安装与登录</strong></a><a data-search-item="12 第一次让 Codex 改一个小项目 12 First small project edit with the CLI 教程 Guide 让 Codex 先计划，再小步修改，最后用测试或页面检查验收。 Ask Codex to plan first, make a small edit, and verify with tests or page review." href="../guide/12-cli-first-edit.html"><strong>12 第一次让 Codex 改一个小项目</strong></a><a data-search-item="13 在 VS Code 中协同修改 13 Collaborate in VS Code 教程 Guide 在编辑器上下文中解释局部代码、提出补丁和整理提交说明。 Use editor context to explain local code, propose patches, and prepare commit notes." href="../guide/13-vscode-flow.html"><strong>13 在 VS Code 中协同修改</strong></a><a data-search-item="14 用 AGENTS.md 写项目规则 14 Define project rules with AGENTS.md 教程 Guide 把项目命令、风格、禁区和验收方式写进仓库规则。 Document project commands, style, restricted areas, and acceptance checks in the repository." href="../guide/14-project-rules.html"><strong>14 用 AGENTS.md 写项目规则</strong></a><a data-search-item="15 沙盒、审批与回退 15 Sandbox, approvals, and rollback 教程 Guide 建立文件、网络、凭据和高风险命令的审批边界。 Set approval boundaries for files, network, credentials, and high-risk commands." href="../guide/15-sandbox-approvals.html"><strong>15 沙盒、审批与回退</strong></a><a data-search-item="16 云端任务与本地接力 16 Cloud tasks and local handoff 教程 Guide 把长任务交给云端执行，再在本地检查差异和结果。 Delegate long-running tasks to cloud execution and review diffs locally." href="../guide/16-cloud-tasks.html"><strong>16 云端任务与本地接力</strong></a><a data-search-item="17 排障手册 17 Troubleshooting handbook 教程 Guide 按登录、权限、依赖、网络、执行和输出质量定位问题。 Diagnose issues across sign-in, permissions, dependencies, network, execution, and output quality." href="../guide/17-troubleshooting.html"><strong>17 排障手册</strong></a><a data-search-item="案例总览 Recipe Index 实战案例 Recipes 案例库提供可调整的任务模板。每个案例都应替换成读者自己的材料、工具和验收方式。 The recipe library provides adaptable task templates. Each recipe should be replaced with the reader's own materials, tools, and acceptance method." href="index.html"><strong>案例总览</strong></a><a data-search-item="01 演示稿生成与导出核查 01 Deck Generation and Export Verification 实战案例 Recipes 把一份产品说明整理成演示稿，并用导出文件、页面截图和逐页检查表确认结果可交付。 Turn a product brief into a deck, then validate the exported file, screenshots, and slide-by-slide checklist." href="newsletter-brief.html"><strong>01 演示稿生成与导出核查</strong></a><a data-search-item="02 浏览器页面巡检与截图证据 02 Browser Page Review with Screenshot Evidence 实战案例 Recipes 用浏览器打开本地或测试页面，检查标题、按钮、表单、移动端布局和截图证据。 Open a local or staging page in the browser and review headings, buttons, forms, mobile layout, and screenshot evidence." href="spreadsheet-cleanup.html"><strong>02 浏览器页面巡检与截图证据</strong></a><a data-search-item="03 GitHub Pages 部署失败诊断 03 GitHub Pages Deployment Failure Diagnosis 实战案例 Recipes 从失败截图、Actions 日志和仓库设置定位 Pages 部署问题，并形成可复用排障记录。 Use failure screenshots, Actions logs, and repository settings to diagnose a Pages deployment issue and create a reusable incident note." href="docs-site-refresh.html"><strong>03 GitHub Pages 部署失败诊断</strong></a><a data-search-item="04 本地文档站批量改版 04 Local Documentation Site Redesign 实战案例 Recipes 把一个静态文档站统一改成新的产品风格，同时保留页面路径、链接和质量检查。 Apply a new product style to a static documentation site while preserving paths, links, and quality checks." href="accessibility-audit.html"><strong>04 本地文档站批量改版</strong></a><a data-search-item="05 Markdown 知识库重整 05 Markdown Knowledge Base Restructure 实战案例 Recipes 把散乱 Markdown 笔记整理成统一字段、目录索引和可搜索主题清单。 Restructure scattered Markdown notes into consistent fields, an index, and searchable topic list." href="photo-archive.html"><strong>05 Markdown 知识库重整</strong></a><a data-search-item="06 表格数据清洗与异常核对 06 Spreadsheet Cleanup and Anomaly Review 实战案例 Recipes 清理 CSV 或表格数据，输出异常行、修正建议和人工复核清单。 Clean CSV or spreadsheet data and output anomalous rows, correction suggestions, and a human review checklist." href="expense-report.html"><strong>06 表格数据清洗与异常核对</strong></a><a data-search-item="07 设计截图转实现规格 07 Design Screenshot to Implementation Spec 实战案例 Recipes 把页面截图转成可执行的前端改版规格，明确布局、颜色、状态和验收方式。 Turn page screenshots into an actionable frontend specification with layout, colors, states, and acceptance checks." href="podcast-notes.html"><strong>07 设计截图转实现规格</strong></a><a data-search-item="08 登录态网页只读检查 08 Read-only Review of an Authenticated Web Page 实战案例 Recipes 在已有登录态下只读检查页面状态、数据展示和交互入口，不触发账号动作。 Use an existing signed-in session to read page state, displayed data, and interaction entries without triggering account actions." href="api-changelog.html"><strong>08 登录态网页只读检查</strong></a><a data-search-item="09 文档与 PDF 摘要到证据表 09 Document and PDF Summary to Evidence Table 实战案例 Recipes 把长文档或 PDF 摘要成可审阅证据表，保留页码、原句线索和不确定项。 Summarize long documents or PDFs into a reviewable evidence table with page numbers, quote cues, and uncertainties." href="shop-copy.html"><strong>09 文档与 PDF 摘要到证据表</strong></a><a data-search-item="10 API 变更影响分析 10 API Change Impact Analysis 实战案例 Recipes 把接口变更说明转成影响范围、改动清单、测试点和上线风险。 Turn API change notes into impacted areas, change list, test points, and release risk." href="learning-plan.html"><strong>10 API 变更影响分析</strong></a><a data-search-item="11 发布说明与变更日志生成 11 Release Notes and Changelog Drafting 实战案例 Recipes 从提交摘要、Issue 和 PR 信息整理出可发布的版本说明和内部变更日志。 Create publishable release notes and an internal changelog from commit summaries, issues, and pull requests." href="support-triage.html"><strong>11 发布说明与变更日志生成</strong></a><a data-search-item="12 自动化提醒与定期检查 12 Automation Reminders and Scheduled Checks 实战案例 Recipes 把重复检查任务设计成可暂停、可复核、不会越权执行的自动化流程。 Design repeated checks as automations that are pausable, reviewable, and unable to overstep authority." href="markdown-knowledge-base.html"><strong>12 自动化提醒与定期检查</strong></a><a data-search-item="13 日志报错定位与修复建议 13 Log Error Diagnosis and Fix Proposal 实战案例 Recipes 把终端报错、构建日志或服务日志整理成根因假设、验证命令和最小修复建议。 Turn terminal errors, build logs, or service logs into root-cause hypotheses, verification commands, and minimal fix proposals." href="github-release.html"><strong>13 日志报错定位与修复建议</strong></a><a data-search-item="使用规范 Usage Policy 实战案例 Recipes 说明隐私、安全、人工复核和发布前确认要求。 Document privacy, safety, human review, and pre-publication confirmation requirements." href="usage-policy.html"><strong>使用规范</strong></a></div>
+      <div class="search-results"><a data-search-item="学习路线 Learning Path 教程 Guide 用三条路线覆盖普通用户、个人开发者和团队落地。读者不需要一次读完整站，应先选择与当前任务最接近的路径。 Use three routes for everyday users, individual developers, and team adoption. Readers should start with the route closest to the task at hand instead of reading the whole site first." href="../guide/00-overview.html"><strong>学习路线</strong></a><a data-search-item="入口地图 Entry Point Map 入口 Platform 同一套 Codex 能力在不同入口里的节奏不同。专业使用方式是先选入口，再设计任务。 The same Codex capability behaves differently across entry points. A professional workflow chooses the entry point before designing the task." href="../platform/index.html"><strong>入口地图</strong></a><a data-search-item="配置总览 Configuration overview 配置 Configuration 用最小配置建立可理解、可回退、可审计的 Codex 工作环境。 Establish a Codex environment that is understandable, reversible, and auditable with minimal configuration." href="../configuration/index.html"><strong>配置总览</strong></a><a data-search-item="CLI 选项与命令 CLI options and commands 配置 Configuration 把 CLI 选项整理成任务执行、模型选择、审批控制和排障四类。 Organize CLI options into task execution, model selection, approval control, and troubleshooting." href="../configuration/cli-options.html"><strong>CLI 选项与命令</strong></a><a data-search-item="config.toml 任务配置 config.toml task configuration 配置 Configuration 用配置文件沉淀稳定偏好，同时避免把凭据和私人信息写进仓库。 Use configuration files to persist stable preferences while keeping credentials and private data out of the repository." href="../configuration/config-file.html"><strong>config.toml 任务配置</strong></a><a data-search-item="MCP、Skills 与 Subagents MCP, Skills, and Subagents 配置 Configuration 区分工具连接、方法沉淀和任务拆分，避免把扩展能力一次性全部打开。 Separate tool connections, reusable methods, and task decomposition instead of enabling every extension at once." href="../configuration/mcp-skills-subagents.html"><strong>MCP、Skills 与 Subagents</strong></a><a data-search-item="安全与审批 Security and approvals 配置 Configuration 将文件、命令、网络、凭据和团队规则纳入统一审批模型。 Bring files, commands, network access, credentials, and team policy into one approval model." href="../configuration/security-admin.html"><strong>安全与审批</strong></a><a data-search-item="实践方法 Operating Model 资源 Resources 把每次任务拆成说明、探索、实施、验证和复盘五段，形成可复用工作法。 Split every task into brief, discovery, execution, verification, and retrospective to create a reusable operating model." href="../practice/index.html"><strong>实践方法</strong></a><a data-search-item="官方文档 Official Documentation 资源 Resources 最后核对：2026-05-28。功能、价格、限额、模型和安全策略必须回到 OpenAI 官方文档核对。 Last checked: 2026-05-28. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI documentation." href="../reference/index.html"><strong>官方文档</strong></a><a data-search-item="共建路线图 Contribution Roadmap 资源 Resources 用 Issue、PR、验收清单和事实核对流程维护一个可持续开源文档项目。 Maintain a sustainable open-source documentation project with issues, pull requests, acceptance checklists, and fact checks." href="../contribute/roadmap.html"><strong>共建路线图</strong></a><a data-search-item="01 安装并打开桌面端 01 Install and open the desktop app 教程 Guide 完成安装、登录和第一个低风险工作区确认。 Complete installation, sign-in, and first low-risk workspace validation." href="../guide/01-desktop-install.html"><strong>01 安装并打开桌面端</strong></a><a data-search-item="02 准备账号、计划与使用边界 02 Prepare account, plan, and usage boundaries 教程 Guide 确认当前计划、数据控制、适用任务与不适用任务。 Confirm current plan, data controls, supported tasks, and unsupported tasks." href="../guide/02-account-plan.html"><strong>02 准备账号、计划与使用边界</strong></a><a data-search-item="03 认识桌面 App 的任务界面 03 Understand the desktop task interface 教程 Guide 理解任务区、文件区、权限提示、差异预览和结果回看。 Understand the task pane, file area, permission prompts, diff preview, and result review." href="../guide/03-app-tour.html"><strong>03 认识桌面 App 的任务界面</strong></a><a data-search-item="04 手机发起、桌面接手 04 Start on mobile and hand off to desktop 教程 Guide 把移动端灵感或临时任务转成桌面可执行的工作单。 Convert a mobile note or ad-hoc idea into an executable desktop work order." href="../guide/04-mobile-handoff.html"><strong>04 手机发起、桌面接手</strong></a><a data-search-item="05 完成第一个低风险任务 05 Complete the first low-risk task 教程 Guide 用一份资料副本跑通说明、执行、验证和复盘。 Use a duplicate source file to complete scope definition, execution, verification, and retrospective." href="../guide/05-first-task.html"><strong>05 完成第一个低风险任务</strong></a><a data-search-item="06 排队、并行与任务节奏 06 Queueing, parallel work, and task pacing 教程 Guide 区分顺序任务、并行任务和需要用户确认的暂停点。 Distinguish sequential tasks, parallel tasks, and user-confirmation pause points." href="../guide/06-queue-parallel.html"><strong>06 排队、并行与任务节奏</strong></a><a data-search-item="07 权限弹窗怎么判断 07 Review permission prompts 教程 Guide 用文件、命令、网络和账号四类问题判断是否授权。 Decide whether to approve by evaluating file, command, network, and account actions." href="../guide/07-permission-review.html"><strong>07 权限弹窗怎么判断</strong></a><a data-search-item="08 用 Skills 与插件扩展任务 08 Extend tasks with Skills and plugins 教程 Guide 理解 Skills、MCP 和插件如何扩展 Codex 工作流。 Understand how Skills, MCP, and plugins extend Codex workflows." href="../guide/08-skill-plugin-library.html"><strong>08 用 Skills 与插件扩展任务</strong></a><a data-search-item="09 自动化前的确认清单 09 Pre-automation checklist 教程 Guide 把重复任务自动化前，先定义触发条件、退出条件和失败提醒。 Before automating repeated work, define triggers, exit conditions, and failure notifications." href="../guide/09-automation-checks.html"><strong>09 自动化前的确认清单</strong></a><a data-search-item="10 搭建个人任务工作台 10 Build a personal task workbench 教程 Guide 用固定目录、模板和检查清单沉淀个人常用任务。 Use stable folders, templates, and checklists to standardize personal tasks." href="../guide/10-personal-workbench.html"><strong>10 搭建个人任务工作台</strong></a><a data-search-item="11 CLI 安装与登录 11 Install and sign in to the CLI 教程 Guide 从终端启动 Codex，确认本地仓库和命令执行边界。 Start Codex from the terminal and confirm local repository and command execution boundaries." href="../guide/11-cli-install-login.html"><strong>11 CLI 安装与登录</strong></a><a data-search-item="12 第一次让 Codex 改一个小项目 12 First small project edit with the CLI 教程 Guide 让 Codex 先计划，再小步修改，最后用测试或页面检查验收。 Ask Codex to plan first, make a small edit, and verify with tests or page review." href="../guide/12-cli-first-edit.html"><strong>12 第一次让 Codex 改一个小项目</strong></a><a data-search-item="13 在 VS Code 中协同修改 13 Collaborate in VS Code 教程 Guide 在编辑器上下文中解释局部代码、提出补丁和整理提交说明。 Use editor context to explain local code, propose patches, and prepare commit notes." href="../guide/13-vscode-flow.html"><strong>13 在 VS Code 中协同修改</strong></a><a data-search-item="14 用 AGENTS.md 写项目规则 14 Define project rules with AGENTS.md 教程 Guide 把项目命令、风格、禁区和验收方式写进仓库规则。 Document project commands, style, restricted areas, and acceptance checks in the repository." href="../guide/14-project-rules.html"><strong>14 用 AGENTS.md 写项目规则</strong></a><a data-search-item="15 沙盒、审批与回退 15 Sandbox, approvals, and rollback 教程 Guide 建立文件、网络、凭据和高风险命令的审批边界。 Set approval boundaries for files, network, credentials, and high-risk commands." href="../guide/15-sandbox-approvals.html"><strong>15 沙盒、审批与回退</strong></a><a data-search-item="16 云端任务与本地接力 16 Cloud tasks and local handoff 教程 Guide 把长任务交给云端执行，再在本地检查差异和结果。 Delegate long-running tasks to cloud execution and review diffs locally." href="../guide/16-cloud-tasks.html"><strong>16 云端任务与本地接力</strong></a><a data-search-item="17 排障手册 17 Troubleshooting handbook 教程 Guide 按登录、权限、依赖、网络、执行和输出质量定位问题。 Diagnose issues across sign-in, permissions, dependencies, network, execution, and output quality." href="../guide/17-troubleshooting.html"><strong>17 排障手册</strong></a><a data-search-item="案例总览 Recipe Index 实战案例 Recipes 13 个案例按真实任务复盘组织，重点展示输入、证据、结果、失败修正和验收方式。 Thirteen recipes are organized as real task retrospectives, highlighting input, evidence, result, correction, and acceptance method." href="index.html"><strong>案例总览</strong></a><a data-search-item="01 演示稿生成与导出核查 01 Deck Generation and Export Verification 实战案例 Recipes 用一份脱敏产品说明生成 7 页演示稿，并用导出截图、逐页表和人工确认项判断是否可交付。 Generate a seven-slide deck from a redacted product brief and judge delivery with export screenshots, a slide table, and human confirmations." href="deck-export-check.html"><strong>01 演示稿生成与导出核查</strong></a><a data-search-item="02 浏览器页面巡检与截图证据 02 Browser Page Review with Screenshot Evidence 实战案例 Recipes 用本地页面做一次只读巡检，记录桌面与手机视口、控制台状态、截图证据和问题优先级。 Run a read-only review of a local page, recording desktop and mobile viewports, console state, screenshot evidence, and issue priority." href="browser-page-review.html"><strong>02 浏览器页面巡检与截图证据</strong></a><a data-search-item="03 GitHub Pages 部署失败诊断 03 GitHub Pages Deployment Failure Diagnosis 实战案例 Recipes 从失败通知、Actions job 和本地检查命令定位 Pages 发布问题，并用新的 run 与线上响应完成闭环。 Diagnose a Pages deployment issue from failure notification, Actions jobs, and local checks, then close the loop with a new run and live response." href="pages-deploy-diagnosis.html"><strong>03 GitHub Pages 部署失败诊断</strong></a><a data-search-item="04 本地文档站批量改版 04 Local Documentation Site Redesign 实战案例 Recipes 把静态文档站一次性改成深色产品工作台，并用页面数量、链接、截图和禁用词检查证明未破坏发布链路。 Redesign a static documentation site into a dark product workspace and prove the publish chain remains intact with page count, links, screenshots, and blocked-word checks." href="docs-site-redesign.html"><strong>04 本地文档站批量改版</strong></a><a data-search-item="05 Markdown 知识库重整 05 Markdown Knowledge Base Restructure 实战案例 Recipes 把散乱 Markdown 笔记整理成统一 frontmatter、主题索引和待补清单，并保留样本 diff 便于回退。 Restructure scattered Markdown notes into consistent frontmatter, a topic index, and a pending list while keeping sample diffs for rollback." href="markdown-knowledge-base.html"><strong>05 Markdown 知识库重整</strong></a><a data-search-item="06 表格数据清洗与异常核对 06 Spreadsheet Cleanup and Anomaly Review 实战案例 Recipes 对一份脱敏 CSV 做只读画像、异常分类、清理建议和人工复核表，保留原始行号便于追溯。 Profile a redacted CSV read-only, classify anomalies, produce cleanup suggestions and a human review sheet, and keep original row numbers for traceability." href="spreadsheet-cleanup.html"><strong>06 表格数据清洗与异常核对</strong></a><a data-search-item="07 设计截图转实现规格 07 Design Screenshot to Implementation Spec 实战案例 Recipes 把目标截图和当前页面截图转成可执行改版规格，输出组件映射、状态表、风险项和截图验收方式。 Turn target and current screenshots into an actionable redesign spec with component mapping, state table, risks, and screenshot acceptance." href="screenshot-to-spec.html"><strong>07 设计截图转实现规格</strong></a><a data-search-item="08 登录态网页只读检查 08 Read-only Review of an Authenticated Web Page 实战案例 Recipes 在用户已登录的浏览器里只读检查页面状态，记录可见问题、禁点清单和待用户确认动作。 Read page state in the user's signed-in browser, recording visible issues, no-click controls, and actions needing user confirmation." href="authenticated-readonly-review.html"><strong>08 登录态网页只读检查</strong></a><a data-search-item="09 文档与 PDF 摘要到证据表 09 Document and PDF Summary to Evidence Table 实战案例 Recipes 把长文档拆成带页码的证据表，保留摘录线索、置信度和待确认项，避免只有自然段摘要。 Turn a long document into a page-numbered evidence table with excerpt cues, confidence, and confirmation items instead of only paragraph summaries." href="document-evidence-table.html"><strong>09 文档与 PDF 摘要到证据表</strong></a><a data-search-item="10 API 变更影响分析 10 API Change Impact Analysis 实战案例 Recipes 把一份接口变更说明转成端点影响表、调用点清单、测试矩阵和发布风险，不直接修改代码。 Turn API change notes into endpoint impact, call-site inventory, test matrix, and release risk without editing code directly." href="api-impact-analysis.html"><strong>10 API 变更影响分析</strong></a><a data-search-item="11 发布说明与变更日志生成 11 Release Notes and Changelog Drafting 实战案例 Recipes 从提交范围生成公开发布说明、内部变更日志和待确认项，把技术提交翻译成可发布内容。 Generate public release notes, internal changelog, and confirmation items from a commit range, translating technical commits into publishable content." href="release-notes-changelog.html"><strong>11 发布说明与变更日志生成</strong></a><a data-search-item="12 自动化提醒与定期检查 12 Automation Reminders and Scheduled Checks 实战案例 Recipes 把重复检查任务设计成只提醒、不越权的自动化流程，先手动试跑，再确认频率、暂停规则和输出格式。 Design a recurring check as a reminder-only automation that does not overstep, with a manual trial before confirming frequency, pause rules, and output format." href="automation-scheduled-checks.html"><strong>12 自动化提醒与定期检查</strong></a><a data-search-item="13 日志报错定位与修复建议 13 Log Error Diagnosis and Fix Proposal 实战案例 Recipes 把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。 Turn build or service logs into root-cause hypotheses, validation commands, minimal fix, rollback method, and rerun acceptance." href="log-error-diagnosis.html"><strong>13 日志报错定位与修复建议</strong></a><a data-search-item="使用规范 Usage Policy 实战案例 Recipes 说明隐私、安全、人工复核和发布前确认要求。 Document privacy, safety, human review, and pre-publication confirmation requirements." href="usage-policy.html"><strong>使用规范</strong></a></div>
     </dialog>
     <script src="../script.js"></script>
   </body>
