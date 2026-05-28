@@ -36,7 +36,7 @@ jobs:
       - name: Prepare static artifact
         run: |
           mkdir site
-          cp index.html styles.css script.js LICENSE site/
+          cp index.html styles.css script.js LICENSE sitemap.xml robots.txt feed.json rss.xml atom.xml site/
           cp -R assets configuration contribute guide platform practice recipes reference site/
 
       - name: Configure Pages

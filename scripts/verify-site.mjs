@@ -242,6 +242,15 @@ for (const file of publishingFiles) {
   }
 }
 
+if (files.includes(".github/workflows/pages.yml")) {
+  const workflow = fs.readFileSync(path.join(root, ".github/workflows/pages.yml"), "utf8");
+  for (const file of ["sitemap.xml", "robots.txt", "feed.json", "rss.xml", "atom.xml"]) {
+    if (!workflow.includes(file)) {
+      errors.push(`Pages workflow does not publish ${file}.`);
+    }
+  }
+}
+
 for (const casePage of casePages) {
   if (!htmlFiles.includes(casePage)) {
     errors.push(`Missing semantic recipe page: ${casePage}`);
