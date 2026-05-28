@@ -312,7 +312,7 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
 
     <section id="zh-lab-artifact-pack">
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获、触发现场、修正现场、终审现场和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -406,6 +406,24 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <small>把原始现场片段渲染成可打开的截图式证据画面。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/16-trigger-capture.svg">
+          <span>截图</span>
+          <strong>触发现场</strong>
+          <small>展示任务为什么开始、第一信号是什么、先看了哪些材料。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/17-correction-capture.svg">
+          <span>截图</span>
+          <strong>修正现场</strong>
+          <small>展示第一个失败点、最小修正动作和复测依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/18-final-review-capture.svg">
+          <span>截图</span>
+          <strong>终审现场</strong>
+          <small>展示结果、验收信号、人工交接和可交付判断。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -430,6 +448,24 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <img src="../assets/case-artifacts/browser-page-review/13-delivery-capture.svg" alt="02 浏览器页面巡检与截图证据">
           <figcaption>交付截图把结果片段、证据状态、终审动作和交接事项放进同一张画面。</figcaption>
         </figure>
+      </div>
+      <div class="proof-sequence-panel">
+        <h3>三段式现场证据</h3>
+        <p>这一组图按真实任务顺序组织：先证明为什么开始，再证明怎样修正，最后证明凭什么交付。它让读者不只看到结果，还能复盘判断路径。</p>
+        <div class="proof-sequence-grid">
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/16-trigger-capture.svg" alt="02 浏览器页面巡检与截图证据">
+            <figcaption>触发现场：任务背景、第一信号和起始材料。</figcaption>
+          </figure>
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/17-correction-capture.svg" alt="02 浏览器页面巡检与截图证据">
+            <figcaption>修正现场：失败点、最小动作和复测证据。</figcaption>
+          </figure>
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/18-final-review-capture.svg" alt="02 浏览器页面巡检与截图证据">
+            <figcaption>终审现场：结果、验收信号和人工交接。</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
     <section id="zh-operating-script">
@@ -619,7 +655,7 @@ P2 文字瑕疵：2 - 两处按钮文案可缩短
 
           <article>
             <span>材料文件</span>
-            <strong>16</strong>
+            <strong>19</strong>
           </article>
 
           <article>
@@ -968,7 +1004,7 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
 
     <section id="en-lab-artifact-pack">
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, trigger capture, correction capture, final review capture, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -1062,6 +1098,24 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <small>Render the raw scene excerpt as an openable screenshot-style evidence frame.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/16-trigger-capture.svg">
+          <span>Capture</span>
+          <strong>Trigger Capture</strong>
+          <small>Show why the task started, what the first signal was, and which materials were inspected first.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/17-correction-capture.svg">
+          <span>Capture</span>
+          <strong>Correction Capture</strong>
+          <small>Show the first failure, minimal correction, and retest basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/18-final-review-capture.svg">
+          <span>Capture</span>
+          <strong>Final Review Capture</strong>
+          <small>Show result, acceptance signal, human handoff, and delivery decision.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -1086,6 +1140,24 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <img src="../assets/case-artifacts/browser-page-review/13-delivery-capture.svg" alt="02 Browser Page Review with Screenshot Evidence">
           <figcaption>The delivery capture puts result sample, evidence status, final review, and handoff into one frame.</figcaption>
         </figure>
+      </div>
+      <div class="proof-sequence-panel">
+        <h3>Three-Step Field Evidence</h3>
+        <p>This visual sequence follows the task order: why it started, how it was corrected, and why it was deliverable. It lets readers review the decision path, not just the result.</p>
+        <div class="proof-sequence-grid">
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/16-trigger-capture.svg" alt="02 Browser Page Review with Screenshot Evidence">
+            <figcaption>Trigger capture: task context, first signal, and starting material.</figcaption>
+          </figure>
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/17-correction-capture.svg" alt="02 Browser Page Review with Screenshot Evidence">
+            <figcaption>Correction capture: failure point, minimal action, and retest evidence.</figcaption>
+          </figure>
+          <figure class="case-visual">
+            <img src="../assets/case-artifacts/browser-page-review/18-final-review-capture.svg" alt="02 Browser Page Review with Screenshot Evidence">
+            <figcaption>Final review capture: result, acceptance signal, and human handoff.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
     <section id="en-operating-script">
@@ -1275,7 +1347,7 @@ Passed checks: local service 200, no desktop overlap, no mobile page overflow</t
 
           <article>
             <span>Artifact Files</span>
-            <strong>16</strong>
+            <strong>19</strong>
           </article>
 
           <article>

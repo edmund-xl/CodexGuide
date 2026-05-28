@@ -1,14 +1,15 @@
 {
   "generatedAt": "2026-05-28",
   "caseCount": 14,
-  "artifactCount": 224,
-  "artifactFilesPerCase": 16,
+  "artifactCount": 266,
+  "artifactFilesPerCase": 19,
   "averageMaturityScore": 94,
   "fieldSnapshots": 14,
   "acceptanceLedgers": 14,
   "deliveryCaptures": 14,
   "rawScenes": 14,
   "rawSceneCaptures": 14,
+  "proofSequenceCaptures": 42,
   "highRiskCases": 3,
   "starterCases": 1,
   "completenessChecks": [
@@ -27,6 +28,7 @@
     "delivery capture",
     "raw scene excerpt",
     "run proof capture",
+    "proof sequence captures",
     "evidence board"
   ],
   "cases": [
@@ -41,12 +43,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/deck-export-check/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/deck-export-check/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/deck-export-check/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/deck-export-check/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/deck-export-check/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/deck-export-check/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/deck-export-check/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/deck-export-check/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -60,12 +67,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/browser-page-review/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/browser-page-review/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/browser-page-review/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/browser-page-review/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/browser-page-review/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/browser-page-review/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/browser-page-review/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/browser-page-review/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -79,12 +91,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/pages-deploy-diagnosis/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/pages-deploy-diagnosis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/pages-deploy-diagnosis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/pages-deploy-diagnosis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/pages-deploy-diagnosis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/pages-deploy-diagnosis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/pages-deploy-diagnosis/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -98,12 +115,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/docs-site-redesign/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/docs-site-redesign/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/docs-site-redesign/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/docs-site-redesign/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/docs-site-redesign/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/docs-site-redesign/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/docs-site-redesign/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/docs-site-redesign/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -117,12 +139,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/markdown-knowledge-base/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/markdown-knowledge-base/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/markdown-knowledge-base/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/markdown-knowledge-base/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/markdown-knowledge-base/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/markdown-knowledge-base/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/markdown-knowledge-base/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/markdown-knowledge-base/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -136,12 +163,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/spreadsheet-cleanup/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/spreadsheet-cleanup/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/spreadsheet-cleanup/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/spreadsheet-cleanup/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/spreadsheet-cleanup/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/spreadsheet-cleanup/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/spreadsheet-cleanup/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/spreadsheet-cleanup/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -155,12 +187,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/screenshot-to-spec/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/screenshot-to-spec/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/screenshot-to-spec/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/screenshot-to-spec/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/screenshot-to-spec/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/screenshot-to-spec/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/screenshot-to-spec/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/screenshot-to-spec/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -174,12 +211,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/authenticated-readonly-review/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/authenticated-readonly-review/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/authenticated-readonly-review/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/authenticated-readonly-review/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/authenticated-readonly-review/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/authenticated-readonly-review/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/authenticated-readonly-review/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/authenticated-readonly-review/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -193,12 +235,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/document-evidence-table/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/document-evidence-table/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/document-evidence-table/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/document-evidence-table/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/document-evidence-table/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/document-evidence-table/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/document-evidence-table/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/document-evidence-table/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -212,12 +259,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/api-impact-analysis/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/api-impact-analysis/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/api-impact-analysis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/api-impact-analysis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/api-impact-analysis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/api-impact-analysis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/api-impact-analysis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/api-impact-analysis/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -231,12 +283,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/release-notes-changelog/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/release-notes-changelog/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/release-notes-changelog/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/release-notes-changelog/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/release-notes-changelog/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/release-notes-changelog/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/release-notes-changelog/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/release-notes-changelog/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -250,12 +307,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/automation-scheduled-checks/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/automation-scheduled-checks/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/automation-scheduled-checks/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/automation-scheduled-checks/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/automation-scheduled-checks/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/automation-scheduled-checks/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/automation-scheduled-checks/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/automation-scheduled-checks/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -269,12 +331,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/log-error-diagnosis/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/log-error-diagnosis/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/log-error-diagnosis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/log-error-diagnosis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/log-error-diagnosis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/log-error-diagnosis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/log-error-diagnosis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/log-error-diagnosis/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     },
     {
@@ -288,12 +355,17 @@
       "evidenceRows": 4,
       "acceptanceCommands": 3,
       "humanHandoffItems": 3,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "fieldSnapshot": "assets/case-artifacts/remote-service-health-check/11-field-snapshot.svg",
       "acceptanceLedger": "assets/case-artifacts/remote-service-health-check/12-acceptance-ledger.json",
       "deliveryCapture": "assets/case-artifacts/remote-service-health-check/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/remote-service-health-check/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/remote-service-health-check/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/remote-service-health-check/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/remote-service-health-check/18-final-review-capture.svg"
+      },
       "readyForReuse": true
     }
   ]

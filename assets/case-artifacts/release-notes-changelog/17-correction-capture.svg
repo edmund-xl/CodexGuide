@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">11 发布说明与变更日志生成 - 修正现场</title>
+  <desc id="desc">A field-evidence capture from a practical Codex task sequence.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="54" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="85" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="85" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="85" r="6" fill="#66d17a"/>
+  <text x="160" y="90" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">release-notes-changelog/correction</text>
+
+  <text x="58" y="150" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">CORRECTION CAPTURE</text>
+  <text x="58" y="184" fill="#e0e0e0" font-family="Arial" font-size="28" font-weight="900">11 发布说明与变更日志生成</text>
+  <rect x="732" y="132" width="130" height="58" rx="9" fill="#242424" stroke="#ff922c"/>
+  <text x="754" y="154" fill="#888" font-family="Arial" font-size="12" font-weight="900">STEP</text>
+  <text x="754" y="180" fill="#ff922c" font-family="Arial" font-size="27" font-weight="900">02</text>
+
+  <rect x="58" y="206" width="804" height="0" fill="none"/>
+  <text x="58" y="214" fill="#888" font-family="Arial" font-size="15">技术提交对用户不可读</text>
+
+      <g>
+        <rect x="58" y="228" width="804" height="42" rx="8" fill="#202020" stroke="#333"/>
+        <text x="82" y="253" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">材料</text>
+        <text x="170" y="253" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">版本范围、提交摘要、Issue 编号、发布对象</text>
+      </g>
+      <g>
+        <rect x="58" y="280" width="804" height="42" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="305" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">动作</text>
+        <text x="170" y="305" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">按 Added/Changed/Fixed/Risk 分组</text>
+      </g>
+      <g>
+        <rect x="58" y="332" width="804" height="42" rx="8" fill="#202020" stroke="#333"/>
+        <text x="82" y="357" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">信号</text>
+        <text x="170" y="357" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">改写成用户影响</text>
+      </g>
+      <g>
+        <rect x="58" y="384" width="804" height="42" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="409" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">证据</text>
+        <text x="170" y="409" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">release-notes.md</text>
+      </g>
+
+  <rect x="58" y="444" width="804" height="34" rx="8" fill="#101010" stroke="#333"/>
+  <text x="80" y="466" fill="#666" font-family="Menlo, Consolas, monospace" font-size="12">CORRECTION: 提交直贴</text>
+</svg>

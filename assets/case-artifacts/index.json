@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-05-28",
   "caseCount": 14,
-  "artifactCount": 224,
-  "artifactFilesPerCase": 16,
+  "artifactCount": 266,
+  "artifactFilesPerCase": 19,
   "averageMaturityScore": 94,
   "requiredArtifactFiles": [
     "01-input-brief.md",
@@ -20,6 +20,9 @@
     "13-delivery-capture.svg",
     "14-raw-scene.txt",
     "15-run-proof-capture.svg",
+    "16-trigger-capture.svg",
+    "17-correction-capture.svg",
+    "18-final-review-capture.svg",
     "evidence-board.svg"
   ],
   "cases": [
@@ -32,6 +35,11 @@
       "deliveryCapture": "assets/case-artifacts/deck-export-check/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/deck-export-check/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/deck-export-check/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/deck-export-check/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/deck-export-check/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/deck-export-check/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "01 演示稿生成与导出核查",
         "en": "01 Deck Generation and Export Verification"
@@ -46,7 +54,7 @@
         "en": "Low to medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "导出文件、四张预览截图、逐页验收表",
         "en": "Exported file, four preview screenshots, and slide acceptance table"
@@ -65,6 +73,11 @@
       "deliveryCapture": "assets/case-artifacts/browser-page-review/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/browser-page-review/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/browser-page-review/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/browser-page-review/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/browser-page-review/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/browser-page-review/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "02 浏览器页面巡检与截图证据",
         "en": "02 Browser Page Review with Screenshot Evidence"
@@ -79,7 +92,7 @@
         "en": "Low"
       },
       "maturityScore": 95,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "桌面截图、手机截图、控制台摘要、问题表",
         "en": "Desktop screenshot, mobile screenshot, console summary, and issue table"
@@ -98,6 +111,11 @@
       "deliveryCapture": "assets/case-artifacts/pages-deploy-diagnosis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/pages-deploy-diagnosis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/pages-deploy-diagnosis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/pages-deploy-diagnosis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/pages-deploy-diagnosis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/pages-deploy-diagnosis/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "03 GitHub Pages 部署失败诊断",
         "en": "03 GitHub Pages Deployment Failure Diagnosis"
@@ -112,7 +130,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "失败步骤、修复提交、新 run、线上 200 响应",
         "en": "Failed step, fix commit, new run, and live 200 response"
@@ -131,6 +149,11 @@
       "deliveryCapture": "assets/case-artifacts/docs-site-redesign/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/docs-site-redesign/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/docs-site-redesign/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/docs-site-redesign/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/docs-site-redesign/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/docs-site-redesign/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "04 本地文档站批量改版",
         "en": "04 Local Documentation Site Redesign"
@@ -145,7 +168,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "diff、构建日志、链接检查、桌面与手机截图",
         "en": "Diff, build log, link check, desktop and mobile screenshots"
@@ -164,6 +187,11 @@
       "deliveryCapture": "assets/case-artifacts/markdown-knowledge-base/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/markdown-knowledge-base/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/markdown-knowledge-base/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/markdown-knowledge-base/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/markdown-knowledge-base/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/markdown-knowledge-base/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "05 Markdown 知识库重整",
         "en": "05 Markdown Knowledge Base Restructure"
@@ -178,7 +206,7 @@
         "en": "Low to medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "字段缺失矩阵、样本 diff、索引页、待补清单",
         "en": "Missing-field matrix, sample diff, index page, and pending list"
@@ -197,6 +225,11 @@
       "deliveryCapture": "assets/case-artifacts/spreadsheet-cleanup/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/spreadsheet-cleanup/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/spreadsheet-cleanup/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/spreadsheet-cleanup/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/spreadsheet-cleanup/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/spreadsheet-cleanup/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "06 表格数据清洗与异常核对",
         "en": "06 Spreadsheet Cleanup and Anomaly Review"
@@ -211,7 +244,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "数据画像、异常表、样本行、校验公式",
         "en": "Data profile, anomaly table, sample rows, and validation formulas"
@@ -230,6 +263,11 @@
       "deliveryCapture": "assets/case-artifacts/screenshot-to-spec/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/screenshot-to-spec/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/screenshot-to-spec/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/screenshot-to-spec/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/screenshot-to-spec/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/screenshot-to-spec/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "07 设计截图转实现规格",
         "en": "07 Design Screenshot to Implementation Spec"
@@ -244,7 +282,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "视觉规则表、组件映射表、验收截图",
         "en": "Visual rule table, component mapping table, and acceptance screenshots"
@@ -263,6 +301,11 @@
       "deliveryCapture": "assets/case-artifacts/authenticated-readonly-review/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/authenticated-readonly-review/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/authenticated-readonly-review/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/authenticated-readonly-review/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/authenticated-readonly-review/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/authenticated-readonly-review/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "08 登录态网页只读检查",
         "en": "08 Read-only Review of an Authenticated Web Page"
@@ -277,7 +320,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "可见状态摘要、脱敏截图、禁点清单、待确认动作",
         "en": "Visible state summary, redacted screenshots, no-click list, and confirmation actions"
@@ -296,6 +339,11 @@
       "deliveryCapture": "assets/case-artifacts/document-evidence-table/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/document-evidence-table/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/document-evidence-table/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/document-evidence-table/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/document-evidence-table/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/document-evidence-table/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "09 文档与 PDF 摘要到证据表",
         "en": "09 Document and PDF Summary to Evidence Table"
@@ -310,7 +358,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "证据表、页码、摘录线索、问题清单",
         "en": "Evidence table, page numbers, excerpt cues, and question list"
@@ -329,6 +377,11 @@
       "deliveryCapture": "assets/case-artifacts/api-impact-analysis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/api-impact-analysis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/api-impact-analysis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/api-impact-analysis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/api-impact-analysis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/api-impact-analysis/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "10 API 变更影响分析",
         "en": "10 API Change Impact Analysis"
@@ -343,7 +396,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "端点清单、调用位置、测试建议、风险表",
         "en": "Endpoint list, call sites, test suggestions, and risk table"
@@ -362,6 +415,11 @@
       "deliveryCapture": "assets/case-artifacts/release-notes-changelog/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/release-notes-changelog/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/release-notes-changelog/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/release-notes-changelog/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/release-notes-changelog/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/release-notes-changelog/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "11 发布说明与变更日志生成",
         "en": "11 Release Notes and Changelog Drafting"
@@ -376,7 +434,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "提交范围、分类表、草稿、待确认项",
         "en": "Commit range, category table, draft, and confirmation items"
@@ -395,6 +453,11 @@
       "deliveryCapture": "assets/case-artifacts/automation-scheduled-checks/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/automation-scheduled-checks/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/automation-scheduled-checks/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/automation-scheduled-checks/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/automation-scheduled-checks/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/automation-scheduled-checks/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "12 自动化提醒与定期检查",
         "en": "12 Automation Reminders and Scheduled Checks"
@@ -409,7 +472,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "触发条件、模拟输出、暂停规则、失败提醒",
         "en": "Trigger conditions, mock output, pause rules, and failure notification"
@@ -428,6 +491,11 @@
       "deliveryCapture": "assets/case-artifacts/log-error-diagnosis/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/log-error-diagnosis/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/log-error-diagnosis/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/log-error-diagnosis/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/log-error-diagnosis/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/log-error-diagnosis/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "13 日志报错定位与修复建议",
         "en": "13 Log Error Diagnosis and Fix Proposal"
@@ -442,7 +510,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "错误片段、相关文件、验证命令、修复范围",
         "en": "Error snippet, related files, validation commands, and fix scope"
@@ -461,6 +529,11 @@
       "deliveryCapture": "assets/case-artifacts/remote-service-health-check/13-delivery-capture.svg",
       "rawScene": "assets/case-artifacts/remote-service-health-check/14-raw-scene.txt",
       "rawSceneCapture": "assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg",
+      "proofSequence": {
+        "trigger": "assets/case-artifacts/remote-service-health-check/16-trigger-capture.svg",
+        "correction": "assets/case-artifacts/remote-service-health-check/17-correction-capture.svg",
+        "finalReview": "assets/case-artifacts/remote-service-health-check/18-final-review-capture.svg"
+      },
       "title": {
         "zh": "14 远程服务健康检查与修复建议",
         "en": "14 Remote Service Health Check and Fix Proposal"
@@ -475,7 +548,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 16,
+      "artifactCount": 19,
       "evidence": {
         "zh": "healthz 响应、错误窗口、配置片段、复测记录",
         "en": "healthz response, error window, config snippet, and retest record"

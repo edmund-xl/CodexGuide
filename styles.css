@@ -1844,6 +1844,31 @@ main {
   margin: 0;
 }
 
+.proof-sequence-panel {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #181818;
+}
+
+.proof-sequence-panel h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.proof-sequence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.proof-sequence-grid .case-visual {
+  margin: 0;
+}
+
 .case-capture {
   grid-column: 1 / -1;
 }
@@ -2158,6 +2183,7 @@ main {
   .case-card-grid,
   .artifact-grid,
   .case-visual-grid,
+  .proof-sequence-grid,
   .delivery-preview,
   .score-grid,
   .quality-scorecard,
