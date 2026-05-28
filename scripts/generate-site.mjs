@@ -5,6 +5,9 @@ const root = process.cwd();
 const verifiedDate = "2026-05-28";
 const expectedPageCount = 44;
 const artifactRoot = "assets/case-artifacts";
+const siteName = "Codex Everyday Guide";
+const siteBaseUrl = "https://edmund-xl.github.io/CodexGuide";
+const repositoryUrl = "https://github.com/edmund-xl/CodexGuide";
 
 const b = (zh, en) => ({ zh, en });
 
@@ -3986,6 +3989,104 @@ function write(filePath, content) {
   fs.writeFileSync(path.join(root, filePath), content.replace(/[ \t]+$/gm, ""), "utf8");
 }
 
+function sitePageRecords() {
+  return [
+    {
+      path: "index.html",
+      title: b("首页", "Home"),
+      group: b("基础", "Basics"),
+      summary: b("面向真实工作流的专业 Codex 双语文档。", "Professional bilingual Codex documentation for real workflows.")
+    },
+    ...pages
+  ];
+}
+
+function xmlText(value) {
+  return escapeXml(String(value));
+}
+
+function writePublishingFiles() {
+  const records = sitePageRecords();
+  const sitemapItems = records.map((page) => {
+    const priority = page.path === "index.html" ? "1.0" : page.path.startsWith("recipes/") ? "0.8" : "0.7";
+    return `  <url>
+    <loc>${xmlText(publicUrl(page.path))}</loc>
+    <lastmod>${verifiedDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+  }).join("\n");
+
+  write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapItems}
+</urlset>
+`);
+
+  write("robots.txt", `User-agent: *
+Allow: /
+Sitemap: ${siteBaseUrl}/sitemap.xml
+`);
+
+  const feedItems = records.map((page) => ({
+    id: publicUrl(page.path),
+    url: publicUrl(page.path),
+    title: `${page.title.zh} | ${page.title.en}`,
+    summary: `${page.summary.zh} ${page.summary.en}`,
+    content_text: `${page.group.zh} / ${page.group.en}\n${page.summary.zh}\n${page.summary.en}`,
+    date_modified: `${verifiedDate}T00:00:00+08:00`
+  }));
+
+  write("feed.json", JSON.stringify({
+    version: "https://jsonfeed.org/version/1.1",
+    title: siteName,
+    home_page_url: `${siteBaseUrl}/`,
+    feed_url: `${siteBaseUrl}/feed.json`,
+    description: "Practical bilingual Codex workflows with reviewable evidence and safety checks.",
+    icon: `${siteBaseUrl}/assets/logo.svg`,
+    favicon: `${siteBaseUrl}/assets/logo.svg`,
+    language: "zh-CN",
+    items: feedItems
+  }, null, 2));
+
+  const rssItems = feedItems.map((item) => `    <item>
+      <title>${xmlText(item.title)}</title>
+      <link>${xmlText(item.url)}</link>
+      <guid>${xmlText(item.id)}</guid>
+      <description>${xmlText(item.summary)}</description>
+      <pubDate>${new Date(`${verifiedDate}T00:00:00+08:00`).toUTCString()}</pubDate>
+    </item>`).join("\n");
+  write("rss.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>${xmlText(siteName)}</title>
+    <link>${xmlText(`${siteBaseUrl}/`)}</link>
+    <description>Practical bilingual Codex workflows with reviewable evidence and safety checks.</description>
+    <lastBuildDate>${new Date(`${verifiedDate}T00:00:00+08:00`).toUTCString()}</lastBuildDate>
+${rssItems}
+  </channel>
+</rss>
+`);
+
+  const atomItems = feedItems.map((item) => `  <entry>
+    <title>${xmlText(item.title)}</title>
+    <link href="${xmlText(item.url)}"/>
+    <id>${xmlText(item.id)}</id>
+    <updated>${verifiedDate}T00:00:00+08:00</updated>
+    <summary>${xmlText(item.summary)}</summary>
+  </entry>`).join("\n");
+  write("atom.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>${xmlText(siteName)}</title>
+  <link href="${xmlText(`${siteBaseUrl}/`)}"/>
+  <link rel="self" href="${xmlText(`${siteBaseUrl}/atom.xml`)}"/>
+  <id>${xmlText(`${siteBaseUrl}/`)}</id>
+  <updated>${verifiedDate}T00:00:00+08:00</updated>
+${atomItems}
+</feed>
+`);
+}
+
 function relativeLink(from, to) {
   if (/^https?:\/\//.test(to) || to.startsWith("#")) return to;
   const fromDir = path.posix.dirname(from);
@@ -4033,7 +4134,7 @@ function topNav(currentPath) {
         ${group(b("实战案例", "Recipes"), recipeNavPages)}
       </nav>
       <div class="header-actions">
-        <a class="icon-link" href="https://github.com/edmund-xl/CodexGuide" aria-label="GitHub">GH</a>
+        <a class="icon-link" href="${repositoryUrl}" aria-label="GitHub">GH</a>
         <button class="search-trigger" type="button" data-open-search>搜索 <kbd>⌘</kbd><kbd>K</kbd></button>
       </div>
     </header>`;
@@ -4109,14 +4210,62 @@ function metaGrid(meta, lang) {
     </dl>`;
 }
 
+function publicUrl(pagePath) {
+  return pagePath === "index.html" ? `${siteBaseUrl}/` : `${siteBaseUrl}/${pagePath}`;
+}
+
+function headMeta(currentPath, title, description) {
+  const pageTitle = `${title.zh} | ${title.en} | ${siteName}`;
+  const descriptionText = `${description.zh} ${description.en}`;
+  const canonical = publicUrl(currentPath);
+  const image = `${siteBaseUrl}/assets/og.svg`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": currentPath === "index.html" ? "WebSite" : "TechArticle",
+    name: currentPath === "index.html" ? siteName : `${title.zh} | ${title.en}`,
+    headline: `${title.zh} | ${title.en}`,
+    description: descriptionText,
+    url: canonical,
+    image,
+    inLanguage: ["zh-CN", "en"],
+    dateModified: verifiedDate,
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteBaseUrl,
+      logo: `${siteBaseUrl}/assets/logo.svg`
+    }
+  };
+  const jsonLdText = JSON.stringify(jsonLd).replaceAll("<", "\\u003c");
+  return `
+    <title>${escapeHtml(pageTitle)}</title>
+    <meta name="description" content="${escapeHtml(descriptionText)}">
+    <link rel="canonical" href="${escapeHtml(canonical)}">
+    <link rel="icon" href="${relativeLink(currentPath, "assets/logo.svg")}" type="image/svg+xml">
+    <link rel="alternate" type="application/rss+xml" title="${siteName} RSS" href="${relativeLink(currentPath, "rss.xml")}">
+    <link rel="alternate" type="application/atom+xml" title="${siteName} Atom" href="${relativeLink(currentPath, "atom.xml")}">
+    <link rel="alternate" type="application/feed+json" title="${siteName} JSON Feed" href="${relativeLink(currentPath, "feed.json")}">
+    <meta property="og:type" content="${currentPath === "index.html" ? "website" : "article"}">
+    <meta property="og:site_name" content="${siteName}">
+    <meta property="og:title" content="${escapeHtml(pageTitle)}">
+    <meta property="og:description" content="${escapeHtml(descriptionText)}">
+    <meta property="og:url" content="${escapeHtml(canonical)}">
+    <meta property="og:image" content="${escapeHtml(image)}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+    <meta name="twitter:description" content="${escapeHtml(descriptionText)}">
+    <meta name="twitter:image" content="${escapeHtml(image)}">
+    <meta name="theme-color" content="#141414">
+    <script type="application/ld+json">${jsonLdText}</script>`;
+}
+
 function layout({ currentPath, title, description, body, home = false }) {
   return `<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${escapeHtml(title.zh)} | ${escapeHtml(title.en)} | Codex Everyday Guide</title>
-    <meta name="description" content="${escapeHtml(description.zh)} ${escapeHtml(description.en)}">
+    ${headMeta(currentPath, title, description)}
     <link rel="stylesheet" href="${relativeLink(currentPath, "styles.css")}">
   </head>
   <body${home ? ' class="home-page"' : ""}>
@@ -4445,6 +4594,40 @@ function writeAssets() {
   <path d="M26 48h22" stroke="#e0e0e0" stroke-width="7" stroke-linecap="round"/>
   <path d="M26 67h32" stroke="#888" stroke-width="7" stroke-linecap="round"/>
   <path d="M60 38l13 10-13 10" fill="none" stroke="#ff922c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`);
+
+  write("assets/og.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Everyday Guide social preview</title>
+  <desc id="desc">Dark product-style preview for the Codex Everyday Guide documentation site.</desc>
+  <rect width="1200" height="630" fill="#141414"/>
+  <rect x="54" y="54" width="1092" height="522" rx="18" fill="#1e1e1e" stroke="#333"/>
+  <rect x="86" y="86" width="486" height="342" rx="14" fill="#101010" stroke="#333"/>
+  <rect x="112" y="116" width="434" height="46" rx="8" fill="#191919" stroke="#333"/>
+  <circle cx="136" cy="139" r="6" fill="#ff6b6b"/>
+  <circle cx="158" cy="139" r="6" fill="#f5c542"/>
+  <circle cx="180" cy="139" r="6" fill="#66d17a"/>
+  <text x="208" y="145" fill="#888" font-family="Menlo, Consolas, monospace" font-size="15">reviewable-task-run</text>
+  <text x="112" y="212" fill="#ff922c" font-family="Arial" font-size="18" font-weight="900">FIELD EVIDENCE</text>
+  <text x="112" y="256" fill="#e0e0e0" font-family="Arial" font-size="34" font-weight="900">294 artifact files</text>
+  <text x="112" y="304" fill="#e0e0e0" font-family="Arial" font-size="34" font-weight="900">14 tool-tested recipes</text>
+  <text x="112" y="350" fill="#888" font-family="Arial" font-size="20">Chinese first. English second. Evidence-driven.</text>
+  <rect x="112" y="382" width="180" height="44" rx="8" fill="#ff922c"/>
+  <text x="138" y="411" fill="#000" font-family="Arial" font-size="20" font-weight="900">Task Matrix</text>
+  <text x="630" y="166" fill="#ff922c" font-family="Arial" font-size="20" font-weight="900">CODEX EVERYDAY GUIDE</text>
+  <text x="630" y="244" fill="#e0e0e0" font-family="Arial" font-size="66" font-weight="900">Practical Codex</text>
+  <text x="630" y="322" fill="#e0e0e0" font-family="Arial" font-size="66" font-weight="900">Workflows</text>
+  <text x="630" y="378" fill="#888" font-family="Arial" font-size="24">Tutorials, configuration, cases, safety checks, and reproducible acceptance evidence.</text>
+  <g font-family="Arial" font-weight="900">
+    <rect x="630" y="432" width="132" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="656" y="468" fill="#ff922c" font-size="24">44</text>
+    <text x="700" y="468" fill="#888" font-size="16">pages</text>
+    <rect x="784" y="432" width="158" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="810" y="468" fill="#ff922c" font-size="24">294</text>
+    <text x="868" y="468" fill="#888" font-size="16">files</text>
+    <rect x="964" y="432" width="130" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="990" y="468" fill="#ff922c" font-size="24">94</text>
+    <text x="1034" y="468" fill="#888" font-size="16">score</text>
+  </g>
 </svg>`);
 
   write("assets/hero-workspace.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" preserveAspectRatio="none">
@@ -4959,6 +5142,7 @@ function build() {
 
   write("index.html", homePage());
   pages.forEach((page) => write(page.path, docPage(page)));
+  writePublishingFiles();
   console.log(`Generated ${pages.length + 1} bilingual pages and SVG assets.`);
 }
 

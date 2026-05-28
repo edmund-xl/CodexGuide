@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Everyday Guide social preview</title>
+  <desc id="desc">Dark product-style preview for the Codex Everyday Guide documentation site.</desc>
+  <rect width="1200" height="630" fill="#141414"/>
+  <rect x="54" y="54" width="1092" height="522" rx="18" fill="#1e1e1e" stroke="#333"/>
+  <rect x="86" y="86" width="486" height="342" rx="14" fill="#101010" stroke="#333"/>
+  <rect x="112" y="116" width="434" height="46" rx="8" fill="#191919" stroke="#333"/>
+  <circle cx="136" cy="139" r="6" fill="#ff6b6b"/>
+  <circle cx="158" cy="139" r="6" fill="#f5c542"/>
+  <circle cx="180" cy="139" r="6" fill="#66d17a"/>
+  <text x="208" y="145" fill="#888" font-family="Menlo, Consolas, monospace" font-size="15">reviewable-task-run</text>
+  <text x="112" y="212" fill="#ff922c" font-family="Arial" font-size="18" font-weight="900">FIELD EVIDENCE</text>
+  <text x="112" y="256" fill="#e0e0e0" font-family="Arial" font-size="34" font-weight="900">294 artifact files</text>
+  <text x="112" y="304" fill="#e0e0e0" font-family="Arial" font-size="34" font-weight="900">14 tool-tested recipes</text>
+  <text x="112" y="350" fill="#888" font-family="Arial" font-size="20">Chinese first. English second. Evidence-driven.</text>
+  <rect x="112" y="382" width="180" height="44" rx="8" fill="#ff922c"/>
+  <text x="138" y="411" fill="#000" font-family="Arial" font-size="20" font-weight="900">Task Matrix</text>
+  <text x="630" y="166" fill="#ff922c" font-family="Arial" font-size="20" font-weight="900">CODEX EVERYDAY GUIDE</text>
+  <text x="630" y="244" fill="#e0e0e0" font-family="Arial" font-size="66" font-weight="900">Practical Codex</text>
+  <text x="630" y="322" fill="#e0e0e0" font-family="Arial" font-size="66" font-weight="900">Workflows</text>
+  <text x="630" y="378" fill="#888" font-family="Arial" font-size="24">Tutorials, configuration, cases, safety checks, and reproducible acceptance evidence.</text>
+  <g font-family="Arial" font-weight="900">
+    <rect x="630" y="432" width="132" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="656" y="468" fill="#ff922c" font-size="24">44</text>
+    <text x="700" y="468" fill="#888" font-size="16">pages</text>
+    <rect x="784" y="432" width="158" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="810" y="468" fill="#ff922c" font-size="24">294</text>
+    <text x="868" y="468" fill="#888" font-size="16">files</text>
+    <rect x="964" y="432" width="130" height="58" rx="10" fill="#242424" stroke="#333"/>
+    <text x="990" y="468" fill="#ff922c" font-size="24">94</text>
+    <text x="1034" y="468" fill="#888" font-size="16">score</text>
+  </g>
+</svg>

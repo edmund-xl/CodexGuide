@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://edmund-xl.github.io/CodexGuide/sitemap.xml

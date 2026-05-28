@@ -44,6 +44,14 @@ const caseArtifactFiles = [
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
 const caseLibraryHealth = "assets/case-artifacts/library-health.json";
+const publishingFiles = [
+  "sitemap.xml",
+  "robots.txt",
+  "feed.json",
+  "rss.xml",
+  "atom.xml",
+  "assets/og.svg"
+];
 const decisionWorkbenchPages = [
   "platform/index.html",
   "configuration/index.html",
@@ -228,6 +236,12 @@ for (const oldSlug of oldRecipeSlugs) {
   }
 }
 
+for (const file of publishingFiles) {
+  if (!files.includes(file)) {
+    errors.push(`Missing publishing file: ${file}`);
+  }
+}
+
 for (const casePage of casePages) {
   if (!htmlFiles.includes(casePage)) {
     errors.push(`Missing semantic recipe page: ${casePage}`);
@@ -323,6 +337,43 @@ if (!files.includes(caseLibraryHealth)) {
   }
 }
 
+if (files.includes("sitemap.xml")) {
+  const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+  const locCount = (sitemap.match(/<loc>/g) || []).length;
+  if (locCount !== expectedHtmlPages) {
+    errors.push(`Sitemap URL count mismatch: ${locCount}`);
+  }
+  if (!sitemap.includes("https://edmund-xl.github.io/CodexGuide/recipes/pages-deploy-diagnosis.html")) {
+    errors.push("Sitemap missing recipe URL.");
+  }
+}
+
+if (files.includes("robots.txt")) {
+  const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
+  if (!robots.includes("Sitemap: https://edmund-xl.github.io/CodexGuide/sitemap.xml")) {
+    errors.push("robots.txt missing sitemap directive.");
+  }
+}
+
+if (files.includes("feed.json")) {
+  const feed = JSON.parse(fs.readFileSync(path.join(root, "feed.json"), "utf8"));
+  if (feed.title !== "Codex Everyday Guide" || !Array.isArray(feed.items) || feed.items.length < 20) {
+    errors.push("JSON feed metadata is incomplete.");
+  }
+  if (!feed.items.some((item) => item.url === "https://edmund-xl.github.io/CodexGuide/recipes/pages-deploy-diagnosis.html")) {
+    errors.push("JSON feed missing deploy diagnosis page.");
+  }
+}
+
+for (const feedFile of ["rss.xml", "atom.xml"]) {
+  if (files.includes(feedFile)) {
+    const body = fs.readFileSync(path.join(root, feedFile), "utf8");
+    if (!body.includes("Codex Everyday Guide") || !body.includes("https://edmund-xl.github.io/CodexGuide/")) {
+      errors.push(`${feedFile}: feed metadata is incomplete.`);
+    }
+  }
+}
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   const zhIndex = html.indexOf('data-language-section="zh"');
@@ -341,6 +392,21 @@ for (const file of htmlFiles) {
   }
   if (file !== "index.html" && (!/文档质量验收标准/i.test(html) || !/Documentation Quality Acceptance Criteria/i.test(html))) {
     errors.push(`${file}: missing acceptance criteria.`);
+  }
+  for (const marker of [
+    'rel="canonical"',
+    'rel="alternate" type="application/rss+xml"',
+    'rel="alternate" type="application/atom+xml"',
+    'rel="alternate" type="application/feed+json"',
+    'property="og:title"',
+    'property="og:image"',
+    'name="twitter:card"',
+    'type="application/ld+json"',
+    'assets/og.svg'
+  ]) {
+    if (!html.includes(marker)) {
+      errors.push(`${file}: missing publishing head marker ${marker}.`);
+    }
   }
   if (casePages.includes(file)) {
     for (const marker of caseRequiredMarkers) {

@@ -53,6 +53,10 @@ http://127.0.0.1:4173/CodexGuide/
 https://edmund-xl.github.io/CodexGuide/
 ```
 
+### 发布产物
+
+构建会同步生成站点地图、爬虫规则、RSS、Atom、JSON Feed、Open Graph 分享图和页面结构化数据。`npm run check` 会检查这些发布产物是否存在，并确认每个 HTML 页面都有 canonical、分享卡片和 JSON-LD 元信息。
+
 ### 页面截图
 
 首页展示深色产品界面、案例库状态面板、交付截图预览和主要入口。
@@ -157,6 +161,10 @@ Published URL:
 ```text
 https://edmund-xl.github.io/CodexGuide/
 ```
+
+### Publishing Artifacts
+
+The build generates a sitemap, robots file, RSS feed, Atom feed, JSON Feed, Open Graph preview image, and structured page metadata. `npm run check` verifies these artifacts and confirms that every HTML page includes canonical, social-card, and JSON-LD metadata.
 
 ### Screenshots
 
