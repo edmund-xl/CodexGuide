@@ -18,6 +18,13 @@ const casePages = [
   "recipes/automation-scheduled-checks.html",
   "recipes/log-error-diagnosis.html"
 ];
+const caseArtifactFiles = [
+  "01-input-brief.md",
+  "02-evidence-table.csv",
+  "03-result-sample.md",
+  "04-acceptance-runbook.md",
+  "evidence-board.svg"
+];
 const oldRecipeSlugs = [
   "newsletter-brief.html",
   "docs-site-refresh.html",
@@ -46,7 +53,13 @@ const caseRequiredMarkers = [
   "Acceptance Criteria",
   "可复用任务单",
   "Reusable Work Order",
+  "实测材料包",
+  "Lab Artifact Pack",
+  "现场记录",
+  "Run Log",
   "case-dashboard",
+  "artifact-grid",
+  "case-visual",
   "evidence-table",
   "command-panel",
   "output-sample",
@@ -113,6 +126,13 @@ for (const oldSlug of oldRecipeSlugs) {
 for (const casePage of casePages) {
   if (!htmlFiles.includes(casePage)) {
     errors.push(`Missing semantic recipe page: ${casePage}`);
+  }
+  const slug = path.basename(casePage, ".html");
+  for (const artifact of caseArtifactFiles) {
+    const artifactPath = `assets/case-artifacts/${slug}/${artifact}`;
+    if (!files.includes(artifactPath)) {
+      errors.push(`Missing recipe artifact: ${artifactPath}`);
+    }
   }
 }
 

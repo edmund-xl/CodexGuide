@@ -186,11 +186,77 @@
       <li>改版规格以本站 token 为准：底色、面板、边框、主文字、次级文字、强调色。</li><li>所有组件必须写明默认、悬停、当前页、禁用或风险状态。</li><li>验收不依赖主观描述，必须有截图或像素级布局检查。</li>
     </ul>
     </section>
+
+    <section>
+      <h2>实测材料包</h2>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/01-input-brief.md">
+          <span>材料</span>
+          <strong>输入任务单</strong>
+          <small>可替换成自己任务的脱敏输入、范围和禁止动作。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/02-evidence-table.csv">
+          <span>证据</span>
+          <strong>证据表 CSV</strong>
+          <small>把检查点、观察结果、证据文件和状态拆成可筛选表格。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/03-result-sample.md">
+          <span>结果</span>
+          <strong>结果片段</strong>
+          <small>保留文件名、状态和待确认项，便于另一个人复核。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/04-acceptance-runbook.md">
+          <span>验收</span>
+          <strong>验收 Runbook</strong>
+          <small>集中保存复跑命令、人工检查点、失败修正和风险边界。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg">
+          <span>视觉</span>
+          <strong>证据看板</strong>
+          <small>用一张独立看板汇总材料、证据、结果和验收状态。</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg" alt="07 设计截图转实现规格">
+        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先提取设计规则：颜色、边框、间距、信息密度、按钮尺寸和表格风格。</li><li>再映射到本站组件，逐项说明要改什么、不改什么。</li><li>最后用桌面和手机截图验收，不用一句像某种风格代替规格。</li>
       </ol>
+    </section>
+    <section>
+      <h2>现场记录</h2>
+      <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>时间</th><th>动作</th><th>材料/证据</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>锁定任务范围和禁止动作</td><td>目标截图、当前截图、可复用限制、视口清单</td><td>可执行</td></tr>
+
+            <tr><td>00:08</td><td>核对运行入口与材料位置</td><td>截图 + 本地页面预览</td><td>通过</td></tr>
+
+            <tr><td>00:22</td><td>采集过程证据并形成表格</td><td>视觉规则表、组件映射表、验收截图</td><td>已留痕</td></tr>
+
+            <tr><td>00:35</td><td>整理交付物、失败修正和验收命令</td><td>implementation-spec.md、component-checklist.md、acceptance-shots/</td><td>待人工终审</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -386,11 +452,77 @@ Output: spec, component table, desktop and mobile acceptance screenshots</code><
       <li>The redesign spec uses this site's tokens: background, panels, borders, primary text, secondary text, and accent.</li><li>Every component states default, hover, current page, disabled, or risk states.</li><li>Acceptance does not rely on subjective description; it requires screenshots or pixel-level layout checks.</li>
     </ul>
     </section>
+
+    <section>
+      <h2>Lab Artifact Pack</h2>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/01-input-brief.md">
+          <span>Material</span>
+          <strong>Input Brief</strong>
+          <small>Redacted input, scope, and prohibited actions that can be replaced for your task.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/02-evidence-table.csv">
+          <span>Evidence</span>
+          <strong>Evidence CSV</strong>
+          <small>Break checkpoints, observations, evidence files, and status into a filterable table.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/03-result-sample.md">
+          <span>Result</span>
+          <strong>Result Sample</strong>
+          <small>Keep filenames, status, and confirmation items so another person can review them.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/04-acceptance-runbook.md">
+          <span>Acceptance</span>
+          <strong>Acceptance Runbook</strong>
+          <small>Keep rerun commands, manual checks, corrections, and risk boundaries together.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg">
+          <span>Visual</span>
+          <strong>Evidence Board</strong>
+          <small>Summarize materials, evidence, result, and acceptance state in one standalone board.</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg" alt="07 Design Screenshot to Implementation Spec">
+        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>First extract design rules: color, border, spacing, density, button sizing, and table style.</li><li>Then map rules to this site's components and state what changes and what stays.</li><li>Finally validate with desktop and mobile screenshots instead of replacing the spec with a broad style phrase.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Run Log</h2>
+      <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>Time</th><th>Action</th><th>Material / Evidence</th><th>Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>Locked task scope and prohibited actions</td><td>Target screenshot, current screenshot, reuse constraints, and viewport list</td><td>Ready</td></tr>
+
+            <tr><td>00:08</td><td>Checked entry point and material location</td><td>Screenshots plus local page preview</td><td>Pass</td></tr>
+
+            <tr><td>00:22</td><td>Captured evidence and built the table</td><td>Visual rule table, component mapping table, and acceptance screenshots</td><td>Recorded</td></tr>
+
+            <tr><td>00:35</td><td>Prepared deliverables, corrections, and acceptance commands</td><td>implementation-spec.md, component-checklist.md, and acceptance-shots/</td><td>Human final review</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Evidence Trail</h2>

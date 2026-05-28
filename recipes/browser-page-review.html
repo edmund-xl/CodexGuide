@@ -185,11 +185,77 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
       <li>服务地址：<code>http://127.0.0.1:4173/</code>。</li><li>检查页面：首页、案例总览、一个案例详情、使用规范页。</li><li>问题分级：阻断、影响体验、文字瑕疵、后续优化。</li>
     </ul>
     </section>
+
+    <section>
+      <h2>实测材料包</h2>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/01-input-brief.md">
+          <span>材料</span>
+          <strong>输入任务单</strong>
+          <small>可替换成自己任务的脱敏输入、范围和禁止动作。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/02-evidence-table.csv">
+          <span>证据</span>
+          <strong>证据表 CSV</strong>
+          <small>把检查点、观察结果、证据文件和状态拆成可筛选表格。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/03-result-sample.md">
+          <span>结果</span>
+          <strong>结果片段</strong>
+          <small>保留文件名、状态和待确认项，便于另一个人复核。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/04-acceptance-runbook.md">
+          <span>验收</span>
+          <strong>验收 Runbook</strong>
+          <small>集中保存复跑命令、人工检查点、失败修正和风险边界。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
+          <span>视觉</span>
+          <strong>证据看板</strong>
+          <small>用一张独立看板汇总材料、证据、结果和验收状态。</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/browser-page-review/evidence-board.svg" alt="02 浏览器页面巡检与截图证据">
+        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先读取页面标题、主标题、导航和核心按钮，确认可见层级。</li><li>分别截图桌面和手机视口，不能用一张截图代替全部设备。</li><li>记录控制台错误、网络失败和横向溢出结果。</li>
       </ol>
+    </section>
+    <section>
+      <h2>现场记录</h2>
+      <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>时间</th><th>动作</th><th>材料/证据</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>锁定任务范围和禁止动作</td><td>目标 URL、主路径、视口尺寸、禁止动作</td><td>可执行</td></tr>
+
+            <tr><td>00:08</td><td>核对运行入口与材料位置</td><td>本地页面 + 浏览器检查</td><td>通过</td></tr>
+
+            <tr><td>00:22</td><td>采集过程证据并形成表格</td><td>桌面截图、手机截图、控制台摘要、问题表</td><td>已留痕</td></tr>
+
+            <tr><td>00:35</td><td>整理交付物、失败修正和验收命令</td><td>page-review.md、screenshots/、console-summary.txt</td><td>待人工终审</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -384,11 +450,77 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
       <li>Service URL: <code>http://127.0.0.1:4173/</code>.</li><li>Checked pages: home, recipe index, one recipe detail, and usage policy.</li><li>Issue levels: blocking, experience impact, copy polish, and follow-up improvement.</li>
     </ul>
     </section>
+
+    <section>
+      <h2>Lab Artifact Pack</h2>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/01-input-brief.md">
+          <span>Material</span>
+          <strong>Input Brief</strong>
+          <small>Redacted input, scope, and prohibited actions that can be replaced for your task.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/02-evidence-table.csv">
+          <span>Evidence</span>
+          <strong>Evidence CSV</strong>
+          <small>Break checkpoints, observations, evidence files, and status into a filterable table.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/03-result-sample.md">
+          <span>Result</span>
+          <strong>Result Sample</strong>
+          <small>Keep filenames, status, and confirmation items so another person can review them.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/04-acceptance-runbook.md">
+          <span>Acceptance</span>
+          <strong>Acceptance Runbook</strong>
+          <small>Keep rerun commands, manual checks, corrections, and risk boundaries together.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
+          <span>Visual</span>
+          <strong>Evidence Board</strong>
+          <small>Summarize materials, evidence, result, and acceptance state in one standalone board.</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/browser-page-review/evidence-board.svg" alt="02 Browser Page Review with Screenshot Evidence">
+        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Read page title, main heading, navigation, and primary buttons first to confirm visible hierarchy.</li><li>Capture desktop and mobile screenshots separately; one screenshot cannot represent all devices.</li><li>Record console errors, network failures, and horizontal overflow results.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Run Log</h2>
+      <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>Time</th><th>Action</th><th>Material / Evidence</th><th>Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>Locked task scope and prohibited actions</td><td>Target URL, primary path, viewport sizes, and prohibited actions</td><td>Ready</td></tr>
+
+            <tr><td>00:08</td><td>Checked entry point and material location</td><td>Local page plus browser inspection</td><td>Pass</td></tr>
+
+            <tr><td>00:22</td><td>Captured evidence and built the table</td><td>Desktop screenshot, mobile screenshot, console summary, and issue table</td><td>Recorded</td></tr>
+
+            <tr><td>00:35</td><td>Prepared deliverables, corrections, and acceptance commands</td><td>page-review.md, screenshots/, and console-summary.txt</td><td>Human final review</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Evidence Trail</h2>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">13 日志报错定位与修复建议</title>
+  <desc id="desc">Evidence board for one practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="82" fill="#ff922c" font-family="Arial" font-size="15" font-weight="800">CASE EVIDENCE BOARD</text>
+  <text x="58" y="122" fill="#e0e0e0" font-family="Arial" font-size="30" font-weight="900">13 日志报错定位与修复建议</text>
+  <text x="58" y="154" fill="#888" font-family="Arial" font-size="17">把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。</text>
+  <rect x="702" y="70" width="160" height="58" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
+  <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">中</text>
+
+      <g>
+        <rect x="58" y="188" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="210" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">INPUT</text>
+        <text x="82" y="230" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">输入材料</text>
+        <text x="260" y="220" fill="#888" font-family="Arial" font-size="17">错误上下文、失败命令、环境、最近改动、重现步骤</text>
+      </g>
+      <g>
+        <rect x="58" y="256" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="278" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">EVIDENCE</text>
+        <text x="82" y="298" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">过程证据</text>
+        <text x="260" y="288" fill="#888" font-family="Arial" font-size="17">错误片段、相关文件、验证命令、修复范围</text>
+      </g>
+      <g>
+        <rect x="58" y="324" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="346" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">RESULT</text>
+        <text x="82" y="366" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">结果样例</text>
+        <text x="260" y="356" fill="#888" font-family="Arial" font-size="17">diagnosis.md、validation-plan.md、fix-proposal.md</text>
+      </g>
+      <g>
+        <rect x="58" y="392" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="414" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">CHECK</text>
+        <text x="82" y="434" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">验收标准</text>
+        <text x="260" y="424" fill="#888" font-family="Arial" font-size="17">诊断记录包含症状、直接错误、根因假设、验证结果和最小修复。</text>
+      </g>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the linked brief, CSV, result sample, and runbook before adapting this recipe.</text>
+</svg>

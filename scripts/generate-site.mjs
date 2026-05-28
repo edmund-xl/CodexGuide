@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const verifiedDate = "2026-05-28";
 const expectedPageCount = 43;
+const artifactRoot = "assets/case-artifacts";
 
 const b = (zh, en) => ({ zh, en });
 
@@ -1515,6 +1516,129 @@ function checklist(items, lang, className = "acceptance-checklist") {
     </ul>`;
 }
 
+function artifactSlug(recipe) {
+  return path.posix.basename(recipe.path, ".html");
+}
+
+function artifactBase(recipe) {
+  return `${artifactRoot}/${artifactSlug(recipe)}`;
+}
+
+function csvCell(value) {
+  return `"${String(value).replaceAll('"', '""')}"`;
+}
+
+function evidenceCsv(recipe) {
+  const header = ["language", "checkpoint", "observation", "evidence_file", "status"].map(csvCell).join(",");
+  const rows = [];
+  for (const lang of ["zh", "en"]) {
+    for (const row of recipe.evidenceTable) {
+      rows.push([lang, ...row.map((cell) => textOf(cell, lang))].map(csvCell).join(","));
+    }
+  }
+  return [header, ...rows].join("\n");
+}
+
+function artifactDefinitions(recipe) {
+  const titleZh = textOf(recipe.title, "zh");
+  return [
+    {
+      file: "01-input-brief.md",
+      label: b("输入任务单", "Input Brief"),
+      kind: b("材料", "Material"),
+      description: b("可替换成自己任务的脱敏输入、范围和禁止动作。", "Redacted input, scope, and prohibited actions that can be replaced for your task."),
+      body: `# ${titleZh}\n\n## 中文\n\n### 任务摘要\n${recipe.summary.zh}\n\n### 可读取材料\n${recipe.materials.map((item) => `- ${item.zh}`).join("\n")}\n\n### 输入样例\n\n\`\`\`text\n${recipe.inputSample.zh}\n\`\`\`\n\n## English\n\n### Task Summary\n${recipe.summary.en}\n\n### Readable Materials\n${recipe.materials.map((item) => `- ${item.en}`).join("\n")}\n\n### Input Sample\n\n\`\`\`text\n${recipe.inputSample.en}\n\`\`\`\n`
+    },
+    {
+      file: "02-evidence-table.csv",
+      label: b("证据表 CSV", "Evidence CSV"),
+      kind: b("证据", "Evidence"),
+      description: b("把检查点、观察结果、证据文件和状态拆成可筛选表格。", "Break checkpoints, observations, evidence files, and status into a filterable table."),
+      body: evidenceCsv(recipe)
+    },
+    {
+      file: "03-result-sample.md",
+      label: b("结果片段", "Result Sample"),
+      kind: b("结果", "Result"),
+      description: b("保留文件名、状态和待确认项，便于另一个人复核。", "Keep filenames, status, and confirmation items so another person can review them."),
+      body: `# ${titleZh} - 结果片段\n\n## 中文\n\n\`\`\`text\n${recipe.outputSample.zh}\n\`\`\`\n\n## English\n\n\`\`\`text\n${recipe.outputSample.en}\n\`\`\`\n`
+    },
+    {
+      file: "04-acceptance-runbook.md",
+      label: b("验收 Runbook", "Acceptance Runbook"),
+      kind: b("验收", "Acceptance"),
+      description: b("集中保存复跑命令、人工检查点、失败修正和风险边界。", "Keep rerun commands, manual checks, corrections, and risk boundaries together."),
+      body: `# ${titleZh} - 验收 Runbook\n\n## 中文\n\n### 命令与人工步骤\n${recipe.commands.map((item) => `- \`${item.zh}\``).join("\n")}\n\n### 验收标准\n${recipe.acceptanceChecks.map((item) => `- ${item.zh}`).join("\n")}\n\n### 失败与修正\n${recipe.failureNotes.map((row) => `- ${row[0].zh}：${row[1].zh}；${row[2].zh}`).join("\n")}\n\n## English\n\n### Commands and Manual Steps\n${recipe.commands.map((item) => `- \`${item.en}\``).join("\n")}\n\n### Acceptance Criteria\n${recipe.acceptanceChecks.map((item) => `- ${item.en}`).join("\n")}\n\n### Failures and Corrections\n${recipe.failureNotes.map((row) => `- ${row[0].en}: ${row[1].en}; ${row[2].en}`).join("\n")}\n`
+    },
+    {
+      file: "evidence-board.svg",
+      label: b("证据看板", "Evidence Board"),
+      kind: b("视觉", "Visual"),
+      description: b("用一张独立看板汇总材料、证据、结果和验收状态。", "Summarize materials, evidence, result, and acceptance state in one standalone board.")
+    }
+  ];
+}
+
+function artifactCards(recipe, lang) {
+  const currentPath = recipe.path;
+  return `
+    <div class="artifact-grid">
+      ${artifactDefinitions(recipe).map((item) => `
+        <a class="artifact-card" href="${relativeLink(currentPath, `${artifactBase(recipe)}/${item.file}`)}">
+          <span>${escapeHtml(textOf(item.kind, lang))}</span>
+          <strong>${escapeHtml(textOf(item.label, lang))}</strong>
+          <small>${escapeHtml(textOf(item.description, lang))}</small>
+        </a>
+      `).join("")}
+    </div>`;
+}
+
+function runLogRows(recipe) {
+  return [
+    [
+      b("00:00", "00:00"),
+      b("锁定任务范围和禁止动作", "Locked task scope and prohibited actions"),
+      recipe.materialsLabel,
+      b("可执行", "Ready")
+    ],
+    [
+      b("00:08", "00:08"),
+      b("核对运行入口与材料位置", "Checked entry point and material location"),
+      recipe.entry,
+      b("通过", "Pass")
+    ],
+    [
+      b("00:22", "00:22"),
+      b("采集过程证据并形成表格", "Captured evidence and built the table"),
+      recipe.evidence,
+      b("已留痕", "Recorded")
+    ],
+    [
+      b("00:35", "00:35"),
+      b("整理交付物、失败修正和验收命令", "Prepared deliverables, corrections, and acceptance commands"),
+      recipe.deliverable,
+      b("待人工终审", "Human final review")
+    ]
+  ];
+}
+
+function caseArtifactSection(recipe, lang) {
+  const isZh = lang === "zh";
+  return `
+    <section>
+      <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
+      ${paragraph(b(
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task."
+      ), lang)}
+      ${artifactCards(recipe, lang)}
+      <figure class="case-visual">
+        <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+        <figcaption>${isZh ? "证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。" : "The evidence board compresses material, process, result, and acceptance state into one visual."}</figcaption>
+      </figure>
+    </section>`;
+}
+
 function caseDashboard(recipe, lang) {
   const items = [
     [b("入口", "Entry"), recipe.entry],
@@ -1556,6 +1680,12 @@ function caseContent(recipe, lang) {
     b("现象", "Symptom"),
     b("修正动作", "Correction")
   ];
+  const runHeaders = [
+    b("时间", "Time"),
+    b("动作", "Action"),
+    b("材料/证据", "Material / Evidence"),
+    b("判断", "Decision")
+  ];
   const isZh = lang === "zh";
 
   return `
@@ -1579,11 +1709,17 @@ function caseContent(recipe, lang) {
       <h2>${isZh ? "运行环境" : "Run Environment"}</h2>
       ${checklist(recipe.environment, lang, "case-checklist")}
     </section>
+    ${caseArtifactSection(recipe, lang)}
     <section>
       <h2>${isZh ? "操作剧本" : "Operating Script"}</h2>
       <ol class="case-timeline">
         ${recipe.playbook.map((item) => `<li>${escapeHtml(textOf(item, lang))}</li>`).join("")}
       </ol>
+    </section>
+    <section>
+      <h2>${isZh ? "现场记录" : "Run Log"}</h2>
+      ${paragraph(b("现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。", "The run log preserves key decisions by time so readers can see why the task was deliverable."), lang)}
+      ${tableHtml(runHeaders, runLogRows(recipe), lang, "evidence-table run-log-table")}
     </section>
     <section>
       <h2>${isZh ? "过程证据" : "Evidence Trail"}</h2>
@@ -1915,6 +2051,11 @@ function homePage() {
     [b("13 个工具实测案例", "13 tool-tested recipes"), b("覆盖演示稿、浏览器检查、部署排障、知识库、表格和日志诊断。", "Covers decks, browser review, deployment diagnosis, knowledge bases, spreadsheets, and log troubleshooting.")],
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
+  const proofRows = [
+    [b("材料包", "Artifact pack"), b("13 组", "13 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook 和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, and evidence board.")],
+    [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
+    [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
+  ];
 
   const homeActions = (lang) => `
     <div class="hero-actions">
@@ -1943,6 +2084,29 @@ function homePage() {
         </a>
       `).join("")}
     </div>`;
+
+  const proofSection = (lang) => {
+    const isZh = lang === "zh";
+    return `
+      <section class="home-section proof-section">
+        <header class="section-title">
+          <h2>${isZh ? "像真实工作台一样交付" : "Delivered Like a Real Workbench"}</h2>
+          ${paragraph(b(
+            "案例页不只告诉你应该怎么做，还把可打开的演示文件、证据表、结果片段和复跑步骤一并交付。读者可以先审材料，再迁移到自己的任务。",
+            "Recipe pages do more than explain what to do: they deliver openable demo files, evidence tables, result samples, and rerun steps. Readers can inspect the material before adapting it."
+          ), lang)}
+        </header>
+        <div class="proof-board">
+          ${proofRows.map(([label, value, detail]) => `
+            <article>
+              <span>${escapeHtml(textOf(label, lang))}</span>
+              <strong>${escapeHtml(textOf(value, lang))}</strong>
+              <p>${escapeHtml(textOf(detail, lang))}</p>
+            </article>
+          `).join("")}
+        </div>
+      </section>`;
+  };
 
   const homeLanguageSection = (lang) => {
     const isZh = lang === "zh";
@@ -1982,6 +2146,8 @@ function homePage() {
           </header>
           ${cardGrid(metrics, lang)}
         </section>
+
+        ${proofSection(lang)}
 
         <section class="split-section">
           <div>
@@ -2213,8 +2379,70 @@ function writeAssets() {
 </svg>`);
 }
 
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function compactSvgText(value, max = 46) {
+  const text = String(value).replace(/\s+/g, " ").trim();
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+}
+
+function caseEvidenceSvg(recipe) {
+  const rows = [
+    ["INPUT", "输入材料", textOf(recipe.materialsLabel, "zh")],
+    ["EVIDENCE", "过程证据", textOf(recipe.evidence, "zh")],
+    ["RESULT", "结果样例", textOf(recipe.deliverable, "zh")],
+    ["CHECK", "验收标准", textOf(recipe.acceptanceChecks[0], "zh")]
+  ];
+  const rowSvg = rows.map(([tag, label, value], index) => {
+    const y = 188 + index * 68;
+    return `
+      <g>
+        <rect x="58" y="${y}" width="804" height="52" rx="8" fill="${index % 2 === 0 ? "#1e1e1e" : "#242424"}" stroke="#333"/>
+        <text x="82" y="${y + 22}" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">${tag}</text>
+        <text x="82" y="${y + 42}" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">${escapeXml(label)}</text>
+        <text x="260" y="${y + 32}" fill="#888" font-family="Arial" font-size="17">${escapeXml(compactSvgText(value, 58))}</text>
+      </g>`;
+  }).join("");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(textOf(recipe.title, "zh"))}</title>
+  <desc id="desc">Evidence board for one practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="82" fill="#ff922c" font-family="Arial" font-size="15" font-weight="800">CASE EVIDENCE BOARD</text>
+  <text x="58" y="122" fill="#e0e0e0" font-family="Arial" font-size="30" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.title, "zh"), 34))}</text>
+  <text x="58" y="154" fill="#888" font-family="Arial" font-size="17">${escapeXml(compactSvgText(textOf(recipe.summary, "zh"), 74))}</text>
+  <rect x="702" y="70" width="160" height="58" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
+  <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">${escapeXml(textOf(recipe.risk, "zh"))}</text>
+  ${rowSvg}
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the linked brief, CSV, result sample, and runbook before adapting this recipe.</text>
+</svg>`;
+}
+
+function writeCaseArtifacts() {
+  fs.rmSync(path.join(root, artifactRoot), { recursive: true, force: true });
+  for (const recipe of caseRecipes) {
+    for (const item of artifactDefinitions(recipe)) {
+      const filePath = `${artifactBase(recipe)}/${item.file}`;
+      if (item.file.endsWith(".svg")) {
+        write(filePath, caseEvidenceSvg(recipe));
+      } else {
+        write(filePath, item.body);
+      }
+    }
+  }
+}
+
 function build() {
   writeAssets();
+  writeCaseArtifacts();
   addOverviewPage();
   addPlatformPage();
   addConfigurationPages();

@@ -187,11 +187,77 @@ deploy: skipped
       <li>仓库分支：<code>main</code>，发布方式：GitHub Pages Actions。</li><li>本地质量门禁：<code>npm run build</code>、<code>npm run check</code>、<code>git diff --check</code>。</li><li>线上验收：目标地址返回 <code>200 OK</code>，页面包含本次标题或新内容标记。</li>
     </ul>
     </section>
+
+    <section>
+      <h2>实测材料包</h2>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/01-input-brief.md">
+          <span>材料</span>
+          <strong>输入任务单</strong>
+          <small>可替换成自己任务的脱敏输入、范围和禁止动作。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/02-evidence-table.csv">
+          <span>证据</span>
+          <strong>证据表 CSV</strong>
+          <small>把检查点、观察结果、证据文件和状态拆成可筛选表格。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/03-result-sample.md">
+          <span>结果</span>
+          <strong>结果片段</strong>
+          <small>保留文件名、状态和待确认项，便于另一个人复核。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/04-acceptance-runbook.md">
+          <span>验收</span>
+          <strong>验收 Runbook</strong>
+          <small>集中保存复跑命令、人工检查点、失败修正和风险边界。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
+          <span>视觉</span>
+          <strong>证据看板</strong>
+          <small>用一张独立看板汇总材料、证据、结果和验收状态。</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages 部署失败诊断">
+        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先区分内容构建失败、artifact 上传失败、Pages 配置失败和部署失败。</li><li>进入 job steps 找第一个红色步骤，不被最终 skipped 状态误导。</li><li>修复后用新 run 验证，旧失败 run 不会自动变绿。</li>
       </ol>
+    </section>
+    <section>
+      <h2>现场记录</h2>
+      <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>时间</th><th>动作</th><th>材料/证据</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>锁定任务范围和禁止动作</td><td>失败截图、run id、workflow 文件、最新提交 SHA</td><td>可执行</td></tr>
+
+            <tr><td>00:08</td><td>核对运行入口与材料位置</td><td>本地仓库 + Actions 日志</td><td>通过</td></tr>
+
+            <tr><td>00:22</td><td>采集过程证据并形成表格</td><td>失败步骤、修复提交、新 run、线上 200 响应</td><td>已留痕</td></tr>
+
+            <tr><td>00:35</td><td>整理交付物、失败修正和验收命令</td><td>deploy-incident.md、修复提交、验证命令记录</td><td>待人工终审</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -388,11 +454,77 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
       <li>Repository branch: <code>main</code>; publishing method: GitHub Pages Actions.</li><li>Local quality gates: <code>npm run build</code>, <code>npm run check</code>, and <code>git diff --check</code>.</li><li>Live acceptance: target URL returns <code>200 OK</code> and contains the current title or new content marker.</li>
     </ul>
     </section>
+
+    <section>
+      <h2>Lab Artifact Pack</h2>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/01-input-brief.md">
+          <span>Material</span>
+          <strong>Input Brief</strong>
+          <small>Redacted input, scope, and prohibited actions that can be replaced for your task.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/02-evidence-table.csv">
+          <span>Evidence</span>
+          <strong>Evidence CSV</strong>
+          <small>Break checkpoints, observations, evidence files, and status into a filterable table.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/03-result-sample.md">
+          <span>Result</span>
+          <strong>Result Sample</strong>
+          <small>Keep filenames, status, and confirmation items so another person can review them.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/04-acceptance-runbook.md">
+          <span>Acceptance</span>
+          <strong>Acceptance Runbook</strong>
+          <small>Keep rerun commands, manual checks, corrections, and risk boundaries together.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
+          <span>Visual</span>
+          <strong>Evidence Board</strong>
+          <small>Summarize materials, evidence, result, and acceptance state in one standalone board.</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages Deployment Failure Diagnosis">
+        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>First separate content build failure, artifact upload failure, Pages configuration failure, and deploy failure.</li><li>Open job steps and find the first red step instead of being misled by the final skipped status.</li><li>After fixing, validate with a new run; old failed runs do not turn green automatically.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Run Log</h2>
+      <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>Time</th><th>Action</th><th>Material / Evidence</th><th>Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>Locked task scope and prohibited actions</td><td>Failure screenshot, run id, workflow file, and latest commit SHA</td><td>Ready</td></tr>
+
+            <tr><td>00:08</td><td>Checked entry point and material location</td><td>Local repository plus Actions logs</td><td>Pass</td></tr>
+
+            <tr><td>00:22</td><td>Captured evidence and built the table</td><td>Failed step, fix commit, new run, and live 200 response</td><td>Recorded</td></tr>
+
+            <tr><td>00:35</td><td>Prepared deliverables, corrections, and acceptance commands</td><td>deploy-incident.md, fix commit, and validation command record</td><td>Human final review</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Evidence Trail</h2>

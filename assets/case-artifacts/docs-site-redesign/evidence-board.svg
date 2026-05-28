@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">04 本地文档站批量改版</title>
+  <desc id="desc">Evidence board for one practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="82" fill="#ff922c" font-family="Arial" font-size="15" font-weight="800">CASE EVIDENCE BOARD</text>
+  <text x="58" y="122" fill="#e0e0e0" font-family="Arial" font-size="30" font-weight="900">04 本地文档站批量改版</text>
+  <text x="58" y="154" fill="#888" font-family="Arial" font-size="17">把静态文档站一次性改成深色产品工作台，并用页面数量、链接、截图和禁用词检查证明未破坏发布链路。</text>
+  <rect x="702" y="70" width="160" height="58" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
+  <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">中</text>
+
+      <g>
+        <rect x="58" y="188" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="210" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">INPUT</text>
+        <text x="82" y="230" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">输入材料</text>
+        <text x="260" y="220" fill="#888" font-family="Arial" font-size="17">生成器、样式表、README、截图目录、发布 workflow</text>
+      </g>
+      <g>
+        <rect x="58" y="256" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="278" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">EVIDENCE</text>
+        <text x="82" y="298" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">过程证据</text>
+        <text x="260" y="288" fill="#888" font-family="Arial" font-size="17">diff、构建日志、链接检查、桌面与手机截图</text>
+      </g>
+      <g>
+        <rect x="58" y="324" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="346" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">RESULT</text>
+        <text x="82" y="366" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">结果样例</text>
+        <text x="260" y="356" fill="#888" font-family="Arial" font-size="17">新版站点、README 截图、质量门禁结果</text>
+      </g>
+      <g>
+        <rect x="58" y="392" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="414" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">CHECK</text>
+        <text x="82" y="434" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">验收标准</text>
+        <text x="260" y="424" fill="#888" font-family="Arial" font-size="17">43 个 HTML 页面全部生成并通过链接检查。</text>
+      </g>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the linked brief, CSV, result sample, and runbook before adapting this recipe.</text>
+</svg>

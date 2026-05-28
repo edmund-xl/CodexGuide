@@ -186,11 +186,77 @@
       <li>样本文件：<code>orders-redacted.csv</code>，清理输出使用 <code>-cleaned</code> 后缀。</li><li>异常分类：重复、缺失、格式、范围、跨字段矛盾。</li><li>所有异常保留 <code>original_row</code>，人工复核时可回到原始行。</li>
     </ul>
     </section>
+
+    <section>
+      <h2>实测材料包</h2>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/01-input-brief.md">
+          <span>材料</span>
+          <strong>输入任务单</strong>
+          <small>可替换成自己任务的脱敏输入、范围和禁止动作。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/02-evidence-table.csv">
+          <span>证据</span>
+          <strong>证据表 CSV</strong>
+          <small>把检查点、观察结果、证据文件和状态拆成可筛选表格。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/03-result-sample.md">
+          <span>结果</span>
+          <strong>结果片段</strong>
+          <small>保留文件名、状态和待确认项，便于另一个人复核。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/04-acceptance-runbook.md">
+          <span>验收</span>
+          <strong>验收 Runbook</strong>
+          <small>集中保存复跑命令、人工检查点、失败修正和风险边界。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg">
+          <span>视觉</span>
+          <strong>证据看板</strong>
+          <small>用一张独立看板汇总材料、证据、结果和验收状态。</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg" alt="06 表格数据清洗与异常核对">
+        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>先输出数据画像：行数、列数、字段类型、空值、重复键和金额范围。</li><li>再列异常规则，不直接删除或填补任何值。</li><li>最后生成异常表和人工复核表，保留原始行号和建议动作。</li>
       </ol>
+    </section>
+    <section>
+      <h2>现场记录</h2>
+      <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>时间</th><th>动作</th><th>材料/证据</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>锁定任务范围和禁止动作</td><td>脱敏 CSV、字段说明、金额和日期规则</td><td>可执行</td></tr>
+
+            <tr><td>00:08</td><td>核对运行入口与材料位置</td><td>本地 CSV + 只读分析</td><td>通过</td></tr>
+
+            <tr><td>00:22</td><td>采集过程证据并形成表格</td><td>数据画像、异常表、样本行、校验公式</td><td>已留痕</td></tr>
+
+            <tr><td>00:35</td><td>整理交付物、失败修正和验收命令</td><td>data-profile.md、anomalies.csv、review-sheet.csv</td><td>待人工终审</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -387,11 +453,77 @@ original_row,field,type,value,suggestion
       <li>Sample file: <code>orders-redacted.csv</code>; cleaned output uses a <code>-cleaned</code> suffix.</li><li>Anomaly classes: duplicate, missing, format, range, and cross-field conflict.</li><li>Every anomaly keeps <code>original_row</code> so reviewers can return to the source row.</li>
     </ul>
     </section>
+
+    <section>
+      <h2>Lab Artifact Pack</h2>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/01-input-brief.md">
+          <span>Material</span>
+          <strong>Input Brief</strong>
+          <small>Redacted input, scope, and prohibited actions that can be replaced for your task.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/02-evidence-table.csv">
+          <span>Evidence</span>
+          <strong>Evidence CSV</strong>
+          <small>Break checkpoints, observations, evidence files, and status into a filterable table.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/03-result-sample.md">
+          <span>Result</span>
+          <strong>Result Sample</strong>
+          <small>Keep filenames, status, and confirmation items so another person can review them.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/04-acceptance-runbook.md">
+          <span>Acceptance</span>
+          <strong>Acceptance Runbook</strong>
+          <small>Keep rerun commands, manual checks, corrections, and risk boundaries together.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg">
+          <span>Visual</span>
+          <strong>Evidence Board</strong>
+          <small>Summarize materials, evidence, result, and acceptance state in one standalone board.</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg" alt="06 Spreadsheet Cleanup and Anomaly Review">
+        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>First output data profile: rows, columns, inferred types, blanks, duplicate keys, and amount range.</li><li>Then list anomaly rules without deleting or filling values.</li><li>Finally generate anomaly and human review tables with original row numbers and suggested actions.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Run Log</h2>
+      <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>Time</th><th>Action</th><th>Material / Evidence</th><th>Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>Locked task scope and prohibited actions</td><td>Redacted CSV, field notes, amount and date rules</td><td>Ready</td></tr>
+
+            <tr><td>00:08</td><td>Checked entry point and material location</td><td>Local CSV plus read-only analysis</td><td>Pass</td></tr>
+
+            <tr><td>00:22</td><td>Captured evidence and built the table</td><td>Data profile, anomaly table, sample rows, and validation formulas</td><td>Recorded</td></tr>
+
+            <tr><td>00:35</td><td>Prepared deliverables, corrections, and acceptance commands</td><td>data-profile.md, anomalies.csv, and review-sheet.csv</td><td>Human final review</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Evidence Trail</h2>

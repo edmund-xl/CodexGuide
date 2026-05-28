@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">12 自动化提醒与定期检查</title>
+  <desc id="desc">Evidence board for one practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="82" fill="#ff922c" font-family="Arial" font-size="15" font-weight="800">CASE EVIDENCE BOARD</text>
+  <text x="58" y="122" fill="#e0e0e0" font-family="Arial" font-size="30" font-weight="900">12 自动化提醒与定期检查</text>
+  <text x="58" y="154" fill="#888" font-family="Arial" font-size="17">把重复检查任务设计成只提醒、不越权的自动化流程，先手动试跑，再确认频率、暂停规则和输出格式。</text>
+  <rect x="702" y="70" width="160" height="58" rx="8" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
+  <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">中</text>
+
+      <g>
+        <rect x="58" y="188" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="210" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">INPUT</text>
+        <text x="82" y="230" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">输入材料</text>
+        <text x="260" y="220" fill="#888" font-family="Arial" font-size="17">检查对象、频率、异常定义、标准输出、暂停条件</text>
+      </g>
+      <g>
+        <rect x="58" y="256" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="278" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">EVIDENCE</text>
+        <text x="82" y="298" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">过程证据</text>
+        <text x="260" y="288" fill="#888" font-family="Arial" font-size="17">触发条件、模拟输出、暂停规则、失败提醒</text>
+      </g>
+      <g>
+        <rect x="58" y="324" width="804" height="52" rx="8" fill="#1e1e1e" stroke="#333"/>
+        <text x="82" y="346" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">RESULT</text>
+        <text x="82" y="366" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">结果样例</text>
+        <text x="260" y="356" fill="#888" font-family="Arial" font-size="17">automation-brief.md、mock-result.md、pause-rules.md</text>
+      </g>
+      <g>
+        <rect x="58" y="392" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
+        <text x="82" y="414" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">CHECK</text>
+        <text x="82" y="434" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">验收标准</text>
+        <text x="260" y="424" fill="#888" font-family="Arial" font-size="17">任务规则可被执行，异常定义明确。</text>
+      </g>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the linked brief, CSV, result sample, and runbook before adapting this recipe.</text>
+</svg>

@@ -186,11 +186,77 @@
       <li>样本目录：<code>notes-working/</code>，先抽 5 篇验证规则。</li><li>索引按 topic 和 status 分组，不复制完整目录树。</li><li>所有批量修改先展示 diff，再等待确认。</li>
     </ul>
     </section>
+
+    <section>
+      <h2>实测材料包</h2>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/01-input-brief.md">
+          <span>材料</span>
+          <strong>输入任务单</strong>
+          <small>可替换成自己任务的脱敏输入、范围和禁止动作。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/02-evidence-table.csv">
+          <span>证据</span>
+          <strong>证据表 CSV</strong>
+          <small>把检查点、观察结果、证据文件和状态拆成可筛选表格。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/03-result-sample.md">
+          <span>结果</span>
+          <strong>结果片段</strong>
+          <small>保留文件名、状态和待确认项，便于另一个人复核。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/04-acceptance-runbook.md">
+          <span>验收</span>
+          <strong>验收 Runbook</strong>
+          <small>集中保存复跑命令、人工检查点、失败修正和风险边界。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/evidence-board.svg">
+          <span>视觉</span>
+          <strong>证据看板</strong>
+          <small>用一张独立看板汇总材料、证据、结果和验收状态。</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/markdown-knowledge-base/evidence-board.svg" alt="05 Markdown 知识库重整">
+        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>操作剧本</h2>
       <ol class="case-timeline">
         <li>第一步只扫描文件名、标题和已有 frontmatter，输出缺失矩阵。</li><li>第二步处理 5 篇样本并展示 diff，确认规则后再批量迁移。</li><li>第三步生成主题索引和待补清单，突出状态和下一步。</li>
       </ol>
+    </section>
+    <section>
+      <h2>现场记录</h2>
+      <p>现场记录按时间保留关键判断点，帮助读者理解这次任务为什么能交付。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>时间</th><th>动作</th><th>材料/证据</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>锁定任务范围和禁止动作</td><td>笔记副本、字段规则、样本文件、目标索引格式</td><td>可执行</td></tr>
+
+            <tr><td>00:08</td><td>核对运行入口与材料位置</td><td>本地 Markdown 目录 + 只读扫描</td><td>通过</td></tr>
+
+            <tr><td>00:22</td><td>采集过程证据并形成表格</td><td>字段缺失矩阵、样本 diff、索引页、待补清单</td><td>已留痕</td></tr>
+
+            <tr><td>00:35</td><td>整理交付物、失败修正和验收命令</td><td>重整后的 Markdown 副本、index.md、pending-review.md</td><td>待人工终审</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -389,11 +455,77 @@ Target fields: title, date, topic, status, summary, next_action</code></pre>
       <li>Sample folder: <code>notes-working/</code>; validate rules with five notes first.</li><li>The index groups by topic and status instead of copying the full folder tree.</li><li>All batch edits show diffs before confirmation.</li>
     </ul>
     </section>
+
+    <section>
+      <h2>Lab Artifact Pack</h2>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+
+    <div class="artifact-grid">
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/01-input-brief.md">
+          <span>Material</span>
+          <strong>Input Brief</strong>
+          <small>Redacted input, scope, and prohibited actions that can be replaced for your task.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/02-evidence-table.csv">
+          <span>Evidence</span>
+          <strong>Evidence CSV</strong>
+          <small>Break checkpoints, observations, evidence files, and status into a filterable table.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/03-result-sample.md">
+          <span>Result</span>
+          <strong>Result Sample</strong>
+          <small>Keep filenames, status, and confirmation items so another person can review them.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/04-acceptance-runbook.md">
+          <span>Acceptance</span>
+          <strong>Acceptance Runbook</strong>
+          <small>Keep rerun commands, manual checks, corrections, and risk boundaries together.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/markdown-knowledge-base/evidence-board.svg">
+          <span>Visual</span>
+          <strong>Evidence Board</strong>
+          <small>Summarize materials, evidence, result, and acceptance state in one standalone board.</small>
+        </a>
+
+    </div>
+      <figure class="case-visual">
+        <img src="../assets/case-artifacts/markdown-knowledge-base/evidence-board.svg" alt="05 Markdown Knowledge Base Restructure">
+        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+      </figure>
+    </section>
     <section>
       <h2>Operating Script</h2>
       <ol class="case-timeline">
         <li>Step one scans only filenames, headings, and existing frontmatter, then outputs a missing-field matrix.</li><li>Step two processes five samples and shows diffs; batch migration happens only after rules are confirmed.</li><li>Step three generates topic index and pending list, emphasizing status and next action.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Run Log</h2>
+      <p>The run log preserves key decisions by time so readers can see why the task was deliverable.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table run-log-table">
+        <thead>
+          <tr><th>Time</th><th>Action</th><th>Material / Evidence</th><th>Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>00:00</td><td>Locked task scope and prohibited actions</td><td>Notes copy, field rules, sample files, and target index format</td><td>Ready</td></tr>
+
+            <tr><td>00:08</td><td>Checked entry point and material location</td><td>Local Markdown folder plus read-only scan</td><td>Pass</td></tr>
+
+            <tr><td>00:22</td><td>Captured evidence and built the table</td><td>Missing-field matrix, sample diff, index page, and pending list</td><td>Recorded</td></tr>
+
+            <tr><td>00:35</td><td>Prepared deliverables, corrections, and acceptance commands</td><td>Restructured Markdown copy, index.md, and pending-review.md</td><td>Human final review</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Evidence Trail</h2>
