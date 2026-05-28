@@ -2474,6 +2474,8 @@ function caseLibraryManifest() {
         correction: `${artifactBase(recipe)}/17-correction-capture.svg`,
         finalReview: `${artifactBase(recipe)}/18-final-review-capture.svg`
       },
+      interactionExcerpt: `${artifactBase(recipe)}/19-interaction-excerpt.md`,
+      interactionCapture: `${artifactBase(recipe)}/20-interaction-capture.svg`,
       title: {
         zh: recipe.title.zh,
         en: recipe.title.en
@@ -2516,6 +2518,8 @@ function libraryHealthReport() {
     rawScenes: caseRecipes.length,
     rawSceneCaptures: caseRecipes.length,
     proofSequenceCaptures: caseRecipes.length * 3,
+    interactionExcerpts: caseRecipes.length,
+    interactionCaptures: caseRecipes.length,
     highRiskCases: highRiskCases.length,
     starterCases: starterCases.length,
     completenessChecks: [
@@ -2535,6 +2539,8 @@ function libraryHealthReport() {
       "raw scene excerpt",
       "run proof capture",
       "proof sequence captures",
+      "key interaction excerpt",
+      "interaction capture",
       "evidence board"
     ],
     cases: caseRecipes.map((recipe) => ({
@@ -2559,6 +2565,8 @@ function libraryHealthReport() {
         correction: `${artifactBase(recipe)}/17-correction-capture.svg`,
         finalReview: `${artifactBase(recipe)}/18-final-review-capture.svg`
       },
+      interactionExcerpt: `${artifactBase(recipe)}/19-interaction-excerpt.md`,
+      interactionCapture: `${artifactBase(recipe)}/20-interaction-capture.svg`,
       readyForReuse: caseMaturityScore(recipe) >= 93 && recipe.evidenceTable.length >= 4 && recipe.commands.length >= 3
     }))
   };
@@ -2686,6 +2694,60 @@ ${trace.handoff.map((item) => `- ${item.en}`).join("\n")}
 `;
 }
 
+function interactionExcerptMarkdown(recipe) {
+  const trace = operationTrace(recipe);
+  const firstEvidence = recipe.evidenceTable[0];
+  const secondEvidence = recipe.evidenceTable[1];
+  const firstFailure = recipe.failureNotes[0];
+  const handoff = trace.handoff[0] ?? recipe.acceptanceChecks[0];
+  return `# ${recipe.title.zh} - 关键交互片段
+
+## 中文
+
+### 任务交代
+
+\`\`\`text
+${textOf(recipe.inputSample, "zh")}
+\`\`\`
+
+### 助手首轮回报
+- 先判断：${textOf(trace.snapshot.firstSignal, "zh")}
+- 已执行：\`${textOf(recipe.commands[0], "zh")}\`
+- 证据落点：${textOf(firstEvidence[2], "zh")}
+- 暂不交付：${textOf(firstFailure[1], "zh")}
+
+### 修正回报
+- 最小修正：${textOf(firstFailure[2], "zh")}
+- 复测动作：\`${textOf(recipe.commands[1], "zh")}\`
+- 复测证据：${textOf(secondEvidence[2], "zh")}
+
+### 人工确认
+- ${textOf(handoff, "zh")}
+
+## English
+
+### Task Handoff
+
+\`\`\`text
+${textOf(recipe.inputSample, "en")}
+\`\`\`
+
+### First Assistant Report
+- First judgment: ${textOf(trace.snapshot.firstSignal, "en")}
+- Action run: \`${textOf(recipe.commands[0], "en")}\`
+- Evidence location: ${textOf(firstEvidence[2], "en")}
+- Not ready yet: ${textOf(firstFailure[1], "en")}
+
+### Correction Report
+- Minimal correction: ${textOf(firstFailure[2], "en")}
+- Retest action: \`${textOf(recipe.commands[1], "en")}\`
+- Retest evidence: ${textOf(secondEvidence[2], "en")}
+
+### Human Confirmation
+- ${textOf(handoff, "en")}
+`;
+}
+
 function acceptanceLedger(recipe) {
   const trace = operationTrace(recipe);
   return {
@@ -2759,6 +2821,8 @@ function acceptanceLedger(recipe) {
       "16-trigger-capture.svg",
       "17-correction-capture.svg",
       "18-final-review-capture.svg",
+      "19-interaction-excerpt.md",
+      "20-interaction-capture.svg",
       "evidence-board.svg"
     ]
   };
@@ -2898,6 +2962,20 @@ function artifactDefinitions(recipe) {
       body: proofSequenceCaptureSvg(recipe, "finalReview")
     },
     {
+      file: "19-interaction-excerpt.md",
+      label: b("关键交互片段", "Key Interaction Excerpt"),
+      kind: b("交互", "Interaction"),
+      description: b("保存任务交代、助手回报、修正回报和人工确认。", "Keep task handoff, assistant report, correction report, and human confirmation."),
+      body: interactionExcerptMarkdown(recipe)
+    },
+    {
+      file: "20-interaction-capture.svg",
+      label: b("交互截图", "Interaction Capture"),
+      kind: b("截图", "Capture"),
+      description: b("用截图式画面展示任务交代、过程回报和人工确认。", "Show task handoff, process report, and human confirmation in one screenshot-style frame."),
+      body: interactionCaptureSvg(recipe)
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -2955,8 +3033,8 @@ function caseArtifactSection(recipe, lang) {
     <section id="${lang}-lab-artifact-pack">
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获、触发现场、修正现场、终审现场和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, trigger capture, correction capture, final review capture, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获、触发现场、修正现场、终审现场、关键交互片段、交互截图和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, trigger capture, correction capture, final review capture, key interaction excerpt, interaction capture, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <div class="case-visual-grid">
@@ -2967,6 +3045,10 @@ function caseArtifactSection(recipe, lang) {
         <figure class="case-visual">
           <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/15-run-proof-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
           <figcaption>${isZh ? "现场捕获把原始日志、表格或 diff 片段做成可打开的证据画面。" : "The run proof capture turns the raw log, table, or diff excerpt into an openable evidence frame."}</figcaption>
+        </figure>
+        <figure class="case-visual case-visual-interaction">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/20-interaction-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "交互截图把任务交代、过程回报、修正回报和人工确认放进同一张画面。" : "The interaction capture puts task handoff, process report, correction report, and human confirmation into one frame."}</figcaption>
         </figure>
         <figure class="case-visual">
           <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
@@ -3955,7 +4037,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获、触发现场、修正现场、终审现场和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, trigger capture, correction capture, final review capture, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获、触发现场、修正现场、终审现场、关键交互片段、交互截图和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, trigger capture, correction capture, final review capture, key interaction excerpt, interaction capture, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -4486,6 +4568,86 @@ function caseDeliveryCaptureSvg(recipe) {
   <text x="472" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">${escapeXml(compactSvgText(textOf(handoff, "zh"), 34))}</text>
 
   <text x="74" y="506" fill="#666" font-family="Arial" font-size="13">The delivery capture is a visual handoff: result, evidence status, final review, and owner action in one frame.</text>
+</svg>`;
+}
+
+function interactionCaptureSvg(recipe) {
+  const trace = operationTrace(recipe);
+  const firstEvidence = recipe.evidenceTable[0];
+  const secondEvidence = recipe.evidenceTable[1];
+  const firstFailure = recipe.failureNotes[0];
+  const handoff = trace.handoff[0] ?? recipe.acceptanceChecks[0];
+  const bubbles = [
+    {
+      role: "USER",
+      label: "任务交代",
+      tone: "#ff922c",
+      x: 66,
+      y: 198,
+      w: 534,
+      text: textOf(recipe.inputSample, "zh").split("\n").filter(Boolean)[0] ?? textOf(trace.snapshot.trigger, "zh"),
+      meta: textOf(recipe.materialsLabel, "zh")
+    },
+    {
+      role: "CODEX",
+      label: "过程回报",
+      tone: "#66d17a",
+      x: 214,
+      y: 300,
+      w: 640,
+      text: `先看 ${textOf(recipe.commands[0], "zh")}；第一信号：${textOf(trace.snapshot.firstSignal, "zh")}`,
+      meta: `证据：${textOf(firstEvidence[2], "zh")}`
+    },
+    {
+      role: "CODEX",
+      label: "修正回报",
+      tone: "#f1c86b",
+      x: 214,
+      y: 402,
+      w: 640,
+      text: `修正：${textOf(firstFailure[2], "zh")}；复测：${textOf(recipe.commands[1], "zh")}`,
+      meta: `复测证据：${textOf(secondEvidence[2], "zh")}`
+    },
+    {
+      role: "HUMAN",
+      label: "人工确认",
+      tone: "#b590ff",
+      x: 66,
+      y: 504,
+      w: 602,
+      text: textOf(handoff, "zh"),
+      meta: textOf(recipe.deliverable, "zh")
+    }
+  ];
+  const bubbleRows = bubbles.map((bubble) => `
+    <g>
+      <rect x="${bubble.x}" y="${bubble.y - 48}" width="${bubble.w}" height="80" rx="12" fill="#202020" stroke="${bubble.tone}"/>
+      <text x="${bubble.x + 22}" y="${bubble.y - 22}" fill="${bubble.tone}" font-family="Arial" font-size="12" font-weight="900">${bubble.role} / ${escapeXml(bubble.label)}</text>
+      <text x="${bubble.x + 22}" y="${bubble.y + 2}" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">${escapeXml(compactSvgText(bubble.text, bubble.w > 600 ? 78 : 60))}</text>
+      <text x="${bubble.x + 22}" y="${bubble.y + 24}" fill="#888" font-family="Arial" font-size="12">${escapeXml(compactSvgText(bubble.meta, bubble.w > 600 ? 86 : 64))}</text>
+    </g>`).join("");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(textOf(recipe.title, "zh"))} - 交互截图</title>
+  <desc id="desc">Screenshot-style task interaction capture with handoff, process report, correction report, and human confirmation.</desc>
+  <rect width="920" height="640" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="572" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="54" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="85" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="85" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="85" r="6" fill="#66d17a"/>
+  <text x="160" y="90" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">${escapeXml(artifactSlug(recipe))}/interaction</text>
+
+  <text x="58" y="146" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">INTERACTION CAPTURE</text>
+  <text x="58" y="180" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.title, "zh"), 34))}</text>
+  <rect x="702" y="130" width="160" height="58" rx="9" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="153" fill="#888" font-family="Arial" font-size="12" font-weight="900">REVIEWABLE</text>
+  <text x="724" y="178" fill="#ff922c" font-family="Arial" font-size="23" font-weight="900">TASK RUN</text>
+
+  ${bubbleRows}
+
+  <rect x="66" y="576" width="788" height="28" rx="7" fill="#101010" stroke="#333"/>
+  <text x="86" y="595" fill="#666" font-family="Menlo, Consolas, monospace" font-size="12">handoff -> report -> correction -> human confirmation</text>
 </svg>`;
 }
 

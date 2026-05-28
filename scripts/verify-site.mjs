@@ -38,6 +38,8 @@ const caseArtifactFiles = [
   "16-trigger-capture.svg",
   "17-correction-capture.svg",
   "18-final-review-capture.svg",
+  "19-interaction-excerpt.md",
+  "20-interaction-capture.svg",
   "evidence-board.svg"
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
@@ -126,6 +128,12 @@ const caseRequiredMarkers = [
   "16-trigger-capture.svg",
   "17-correction-capture.svg",
   "18-final-review-capture.svg",
+  "关键交互片段",
+  "Key Interaction Excerpt",
+  "交互截图",
+  "Interaction Capture",
+  "19-interaction-excerpt.md",
+  "20-interaction-capture.svg",
   "复盘导航",
   "Recap Navigator",
   "case-recap-nav",
@@ -258,6 +266,9 @@ if (!files.includes(caseLibraryManifest)) {
       } else if (!item.proofSequence.trigger || !item.proofSequence.correction || !item.proofSequence.finalReview) {
         errors.push(`Recipe library manifest missing proof sequence files for ${item.slug}.`);
       }
+      if (!item.interactionExcerpt || !item.interactionCapture) {
+        errors.push(`Recipe library manifest missing interaction proof files for ${item.slug}.`);
+      }
       if (item.artifactCount !== caseArtifactFiles.length) {
         errors.push(`Recipe library manifest artifact count mismatch for ${item.slug}.`);
       }
@@ -284,7 +295,9 @@ if (!files.includes(caseLibraryHealth)) {
     health.deliveryCaptures !== casePages.length ||
     health.rawScenes !== casePages.length ||
     health.rawSceneCaptures !== casePages.length ||
-    health.proofSequenceCaptures !== casePages.length * 3
+    health.proofSequenceCaptures !== casePages.length * 3 ||
+    health.interactionExcerpts !== casePages.length ||
+    health.interactionCaptures !== casePages.length
   ) {
     errors.push("Recipe library health visual or ledger counts are invalid.");
   }
@@ -296,6 +309,9 @@ if (!files.includes(caseLibraryHealth)) {
         errors.push(`Recipe library health missing visual proof paths for ${item.slug}.`);
       } else if (!item.proofSequence.trigger || !item.proofSequence.correction || !item.proofSequence.finalReview) {
         errors.push(`Recipe library health missing proof sequence files for ${item.slug}.`);
+      }
+      if (!item.interactionExcerpt || !item.interactionCapture) {
+        errors.push(`Recipe library health missing interaction proof files for ${item.slug}.`);
       }
       if (item.artifactCount !== caseArtifactFiles.length) {
         errors.push(`Recipe library health artifact count mismatch for ${item.slug}.`);

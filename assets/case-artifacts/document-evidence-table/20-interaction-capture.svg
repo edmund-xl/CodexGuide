@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" role="img" aria-labelledby="title desc">
+  <title id="title">09 文档与 PDF 摘要到证据表 - 交互截图</title>
+  <desc id="desc">Screenshot-style task interaction capture with handoff, process report, correction report, and human confirmation.</desc>
+  <rect width="920" height="640" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="572" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="54" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="85" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="85" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="85" r="6" fill="#66d17a"/>
+  <text x="160" y="90" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">document-evidence-table/interaction</text>
+
+  <text x="58" y="146" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">INTERACTION CAPTURE</text>
+  <text x="58" y="180" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">09 文档与 PDF 摘要到证据表</text>
+  <rect x="702" y="130" width="160" height="58" rx="9" fill="#242424" stroke="#ff922c"/>
+  <text x="724" y="153" fill="#888" font-family="Arial" font-size="12" font-weight="900">REVIEWABLE</text>
+  <text x="724" y="178" fill="#ff922c" font-family="Arial" font-size="23" font-weight="900">TASK RUN</text>
+
+
+    <g>
+      <rect x="66" y="150" width="534" height="80" rx="12" fill="#202020" stroke="#ff922c"/>
+      <text x="88" y="176" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">USER / 任务交代</text>
+      <text x="88" y="200" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">摘要目标</text>
+      <text x="88" y="222" fill="#888" font-family="Arial" font-size="12">脱敏 PDF、摘要目标、页码规则、输出字段</text>
+    </g>
+    <g>
+      <rect x="214" y="252" width="640" height="80" rx="12" fill="#202020" stroke="#66d17a"/>
+      <text x="236" y="278" fill="#66d17a" font-family="Arial" font-size="12" font-weight="900">CODEX / 过程回报</text>
+      <text x="236" y="302" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">先看 人工检查 evidence-table.md 每行是否包含页码和摘录线索。；第一信号：初稿把事实和推断混在同一列，无法复核。</text>
+      <text x="236" y="324" fill="#888" font-family="Arial" font-size="12">证据：summary-brief.md</text>
+    </g>
+    <g>
+      <rect x="214" y="354" width="640" height="80" rx="12" fill="#202020" stroke="#f1c86b"/>
+      <text x="236" y="380" fill="#f1c86b" font-family="Arial" font-size="12" font-weight="900">CODEX / 修正回报</text>
+      <text x="236" y="404" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">修正：改成证据表并强制页码；复测：rg -n &quot;待确认|低|中&quot; evidence-table.md open-questions.md</text>
+      <text x="236" y="426" fill="#888" font-family="Arial" font-size="12">复测证据：evidence-table.md</text>
+    </g>
+    <g>
+      <rect x="66" y="456" width="602" height="80" rx="12" fill="#202020" stroke="#b590ff"/>
+      <text x="88" y="482" fill="#b590ff" font-family="Arial" font-size="12" font-weight="900">HUMAN / 人工确认</text>
+      <text x="88" y="506" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">无法读取的扫描页不做事实结论。</text>
+      <text x="88" y="528" fill="#888" font-family="Arial" font-size="12">evidence-table.md、open-questions.md、summary-brief.md</text>
+    </g>
+
+  <rect x="66" y="576" width="788" height="28" rx="7" fill="#101010" stroke="#333"/>
+  <text x="86" y="595" fill="#666" font-family="Menlo, Consolas, monospace" font-size="12">handoff -> report -> correction -> human confirmation</text>
+</svg>

@@ -1934,6 +1934,11 @@ main {
   margin: 0;
 }
 
+.case-visual-interaction {
+  border-color: rgba(255, 146, 44, 0.44);
+  background: #181511;
+}
+
 .case-capture {
   grid-column: 1 / -1;
 }
