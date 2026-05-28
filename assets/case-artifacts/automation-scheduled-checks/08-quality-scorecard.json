@@ -1,0 +1,66 @@
+{
+  "slug": "automation-scheduled-checks",
+  "title": {
+    "zh": "12 自动化提醒与定期检查",
+    "en": "12 Automation Reminders and Scheduled Checks"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "检查对象、频率、异常定义、标准输出、暂停条件",
+        "en": "Check target, frequency, anomaly definition, standard output, and pause condition"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "触发条件、模拟输出、暂停规则、失败提醒",
+        "en": "Trigger conditions, mock output, pause rules, and failure notification"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/",
+        "en": "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "automation-brief.md、mock-result.md、pause-rules.md",
+        "en": "automation-brief.md, mock-result.md, and pause-rules.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html",
+      "人工确认自动化输出没有发布、删除、发送或付款动作。"
+    ],
+    "en": [
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html",
+      "Manually confirm automation output contains no publish, delete, send, or payment action."
+    ]
+  }
+}

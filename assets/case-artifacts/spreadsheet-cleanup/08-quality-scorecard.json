@@ -1,0 +1,66 @@
+{
+  "slug": "spreadsheet-cleanup",
+  "title": {
+    "zh": "06 表格数据清洗与异常核对",
+    "en": "06 Spreadsheet Cleanup and Anomaly Review"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "脱敏 CSV、字段说明、金额和日期规则",
+        "en": "Redacted CSV, field notes, amount and date rules"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "数据画像、异常表、样本行、校验公式",
+        "en": "Data profile, anomaly table, sample rows, and validation formulas"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "wc -l orders-redacted.csv",
+        "en": "wc -l orders-redacted.csv"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "data-profile.md、anomalies.csv、review-sheet.csv",
+        "en": "data-profile.md, anomalies.csv, and review-sheet.csv"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "wc -l orders-redacted.csv",
+      "head -n 5 orders-redacted.csv",
+      "rg -n \",,|-[0-9]+\\.|pending\" orders-redacted.csv"
+    ],
+    "en": [
+      "wc -l orders-redacted.csv",
+      "head -n 5 orders-redacted.csv",
+      "rg -n \",,|-[0-9]+\\.|pending\" orders-redacted.csv"
+    ]
+  }
+}

@@ -30,9 +30,9 @@
       </g>
       <g>
         <rect x="58" y="392" width="804" height="52" rx="8" fill="#242424" stroke="#333"/>
-        <text x="82" y="414" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">CHECK</text>
-        <text x="82" y="434" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">验收标准</text>
-        <text x="260" y="424" fill="#888" font-family="Arial" font-size="17">43 个 HTML 页面全部生成并通过链接检查。</text>
+        <text x="82" y="414" fill="#ff922c" font-family="Arial" font-size="13" font-weight="800">SCORE</text>
+        <text x="82" y="434" fill="#e0e0e0" font-family="Arial" font-size="18" font-weight="800">质量评分</text>
+        <text x="260" y="424" fill="#888" font-family="Arial" font-size="17">94 / 100</text>
       </g>
-  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the brief, CSV, result sample, runbook, transcript, and preview before adapting this recipe.</text>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the brief, CSV, result sample, runbook, transcript, preview, comparison, and scorecard before adapting.</text>
 </svg>

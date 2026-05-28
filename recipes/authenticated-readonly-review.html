@@ -188,7 +188,7 @@
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -226,6 +226,18 @@
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/evidence-board.svg">
@@ -332,6 +344,69 @@
           <strong>报告包含当前状态、可见问题、未执行动作和待确认动作。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>按钮标签只写继续，后果不清楚</td><td>后果不清楚就不点，列入待确认</td><td>readonly-review.md</td></tr>
+
+            <tr><td>过程修正</td><td>截图包含邮箱和余额</td><td>先遮挡或避开，再截图</td><td>no-click-controls.md</td></tr>
+
+            <tr><td>交付后</td><td>readonly-review.md
+当前状态：页面正常加载，顶部有付款提醒
+可见问题：发票入口可见，但本月发票状态需要用户打开确认
+未执行动作：没有点击付款、计划变更、成员删除、邀请发送
+待确认：用户自行查看付款提醒和本月发票</td><td>报告包含当前状态、可见问题、未执行动作和待确认动作。</td><td>readonly-review.md、safe-screenshots/、confirmations.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>93</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>88</strong>
+            <small>已登录页面、检查目标、禁点清单、截图脱敏规则</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>可见状态摘要、脱敏截图、禁点清单、待确认动作</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>人工确认当前 URL 和页面标题是否符合检查目标。</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>readonly-review.md、safe-screenshots/、confirmations.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -507,7 +582,7 @@ Prohibited: change plan, submit payment, delete members, send invites, export fu
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -545,6 +620,18 @@ Prohibited: change plan, submit payment, delete members, send invites, export fu
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/authenticated-readonly-review/evidence-board.svg">
@@ -651,6 +738,69 @@ Prohibited: change plan, submit payment, delete members, send invites, export fu
           <strong>Report includes current state, visible issues, actions not executed, and confirmation actions.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>Button said Continue without clear consequence</td><td>Do not click unclear controls; list them for confirmation</td><td>readonly-review.md</td></tr>
+
+            <tr><td>Correction</td><td>Screenshot included email and balance</td><td>Mask or avoid before capturing</td><td>no-click-controls.md</td></tr>
+
+            <tr><td>After</td><td>readonly-review.md
+Current state: page loads normally with a payment notice at the top
+Visible issue: invoice entry is visible, but current-month invoice status needs user review
+Actions not executed: no payment, plan change, member deletion, or invite sending
+Confirmations: user reviews payment notice and current-month invoice</td><td>Report includes current state, visible issues, actions not executed, and confirmation actions.</td><td>readonly-review.md, safe-screenshots/, and confirmations.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>93</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>88</strong>
+            <small>Signed-in page, review goal, no-click list, and screenshot redaction rules</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Visible state summary, redacted screenshots, no-click list, and confirmation actions</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>Manually confirm the current URL and page title match the review goal.</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>readonly-review.md, safe-screenshots/, and confirmations.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

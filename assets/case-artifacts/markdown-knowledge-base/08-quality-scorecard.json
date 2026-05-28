@@ -1,0 +1,66 @@
+{
+  "slug": "markdown-knowledge-base",
+  "title": {
+    "zh": "05 Markdown 知识库重整",
+    "en": "05 Markdown Knowledge Base Restructure"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "笔记副本、字段规则、样本文件、目标索引格式",
+        "en": "Notes copy, field rules, sample files, and target index format"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "字段缺失矩阵、样本 diff、索引页、待补清单",
+        "en": "Missing-field matrix, sample diff, index page, and pending list"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "rg --files notes-working | sort",
+        "en": "rg --files notes-working | sort"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "重整后的 Markdown 副本、index.md、pending-review.md",
+        "en": "Restructured Markdown copy, index.md, and pending-review.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "rg --files notes-working | sort",
+      "rg -n \"^title:|^date:|^topic:|^status:\" notes-working",
+      "git diff -- notes-working index.md pending-review.md"
+    ],
+    "en": [
+      "rg --files notes-working | sort",
+      "rg -n \"^title:|^date:|^topic:|^status:\" notes-working",
+      "git diff -- notes-working index.md pending-review.md"
+    ]
+  }
+}

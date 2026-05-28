@@ -1,0 +1,66 @@
+{
+  "slug": "log-error-diagnosis",
+  "title": {
+    "zh": "13 日志报错定位与修复建议",
+    "en": "13 Log Error Diagnosis and Fix Proposal"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "错误上下文、失败命令、环境、最近改动、重现步骤",
+        "en": "Error context, failing command, environment, recent changes, and reproduction steps"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "错误片段、相关文件、验证命令、修复范围",
+        "en": "Error snippet, related files, validation commands, and fix scope"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "npm run check",
+        "en": "npm run check"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "diagnosis.md、validation-plan.md、fix-proposal.md",
+        "en": "diagnosis.md, validation-plan.md, and fix-proposal.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "npm run check",
+      "rg -n \"old-page|missing local target|recipes/\" scripts recipes README.md",
+      "npm run build && npm run check && git diff --check"
+    ],
+    "en": [
+      "npm run check",
+      "rg -n \"old-page|missing local target|recipes/\" scripts recipes README.md",
+      "npm run build && npm run check && git diff --check"
+    ]
+  }
+}

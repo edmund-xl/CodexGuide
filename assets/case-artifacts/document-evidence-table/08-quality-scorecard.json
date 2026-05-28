@@ -1,0 +1,66 @@
+{
+  "slug": "document-evidence-table",
+  "title": {
+    "zh": "09 文档与 PDF 摘要到证据表",
+    "en": "09 Document and PDF Summary to Evidence Table"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "脱敏 PDF、摘要目标、页码规则、输出字段",
+        "en": "Redacted PDF, summary goal, page-numbering rules, and output fields"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "证据表、页码、摘录线索、问题清单",
+        "en": "Evidence table, page numbers, excerpt cues, and question list"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "人工检查 evidence-table.md 每行是否包含页码和摘录线索。",
+        "en": "Manually check every evidence-table.md row for page number and excerpt cue."
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "evidence-table.md、open-questions.md、summary-brief.md",
+        "en": "evidence-table.md, open-questions.md, and summary-brief.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "人工检查 evidence-table.md 每行是否包含页码和摘录线索。",
+      "rg -n \"待确认|低|中\" evidence-table.md open-questions.md",
+      "人工回到 PDF 核对所有金额、日期、责任人和限制条件。"
+    ],
+    "en": [
+      "Manually check every evidence-table.md row for page number and excerpt cue.",
+      "rg -n \"待确认|Low|Medium\" evidence-table.md open-questions.md",
+      "Manually return to the PDF to verify all amounts, dates, owners, and constraints."
+    ]
+  }
+}

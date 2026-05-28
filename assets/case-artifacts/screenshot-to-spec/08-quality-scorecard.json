@@ -1,0 +1,66 @@
+{
+  "slug": "screenshot-to-spec",
+  "title": {
+    "zh": "07 设计截图转实现规格",
+    "en": "07 Design Screenshot to Implementation Spec"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "目标截图、当前截图、可复用限制、视口清单",
+        "en": "Target screenshot, current screenshot, reuse constraints, and viewport list"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "视觉规则表、组件映射表、验收截图",
+        "en": "Visual rule table, component mapping table, and acceptance screenshots"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "人工检查 1440x1000 截图：导航、主内容、证据表、按钮无重叠。",
+        "en": "Manually inspect 1440x1000 screenshots: nav, content, evidence table, and buttons have no overlap."
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "implementation-spec.md、component-checklist.md、acceptance-shots/",
+        "en": "implementation-spec.md, component-checklist.md, and acceptance-shots/"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "人工检查 1440x1000 截图：导航、主内容、证据表、按钮无重叠。",
+      "人工检查 390x900 截图：无页面级横向溢出，长命令可读。",
+      "rg -n \"目标品牌名|真实业务词\" implementation-spec.md component-checklist.md"
+    ],
+    "en": [
+      "Manually inspect 1440x1000 screenshots: nav, content, evidence table, and buttons have no overlap.",
+      "Manually inspect 390x900 screenshots: no page-level horizontal overflow and long commands remain readable.",
+      "rg -n \"target brand|real business term\" implementation-spec.md component-checklist.md"
+    ]
+  }
+}

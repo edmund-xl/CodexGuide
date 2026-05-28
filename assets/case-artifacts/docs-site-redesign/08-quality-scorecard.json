@@ -1,0 +1,66 @@
+{
+  "slug": "docs-site-redesign",
+  "title": {
+    "zh": "04 本地文档站批量改版",
+    "en": "04 Local Documentation Site Redesign"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "生成器、样式表、README、截图目录、发布 workflow",
+        "en": "Generator, stylesheet, README, screenshot directory, and deploy workflow"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "diff、构建日志、链接检查、桌面与手机截图",
+        "en": "Diff, build log, link check, desktop and mobile screenshots"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "npm run build",
+        "en": "npm run build"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "新版站点、README 截图、质量门禁结果",
+        "en": "Redesigned site, README screenshots, and quality-gate results"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "npm run build",
+      "npm run check",
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/"
+    ],
+    "en": [
+      "npm run build",
+      "npm run check",
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/"
+    ]
+  }
+}

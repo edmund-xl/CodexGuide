@@ -1,0 +1,66 @@
+{
+  "slug": "remote-service-health-check",
+  "title": {
+    "zh": "14 远程服务健康检查与修复建议",
+    "en": "14 Remote Service Health Check and Fix Proposal"
+  },
+  "maturityScore": 93,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 88,
+      "basis": {
+        "zh": "脱敏 healthz 响应、错误窗口、部署版本、只读命令输出",
+        "en": "Redacted healthz response, error window, deployment version, and read-only command output"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "healthz 响应、错误窗口、配置片段、复测记录",
+        "en": "healthz response, error window, config snippet, and retest record"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "curl -i --max-time 10 http://127.0.0.1:8080/healthz",
+        "en": "curl -i --max-time 10 http://127.0.0.1:8080/healthz"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "health-report.md、repair-plan.md、rollback-note.md",
+        "en": "health-report.md, repair-plan.md, and rollback-note.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "curl -i --max-time 10 http://127.0.0.1:8080/healthz",
+      "rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/",
+      "人工确认 repair-plan.md 包含影响范围、回退方式和复测窗口。"
+    ],
+    "en": [
+      "curl -i --max-time 10 http://127.0.0.1:8080/healthz",
+      "rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/",
+      "Manually confirm repair-plan.md includes impact scope, rollback, and retest window."
+    ]
+  }
+}

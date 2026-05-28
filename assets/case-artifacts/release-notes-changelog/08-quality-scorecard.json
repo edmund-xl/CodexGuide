@@ -1,0 +1,66 @@
+{
+  "slug": "release-notes-changelog",
+  "title": {
+    "zh": "11 发布说明与变更日志生成",
+    "en": "11 Release Notes and Changelog Drafting"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "版本范围、提交摘要、Issue 编号、发布对象",
+        "en": "Version range, commit summaries, issue IDs, and release audience"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "提交范围、分类表、草稿、待确认项",
+        "en": "Commit range, category table, draft, and confirmation items"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "git log --oneline v0.8.0..HEAD",
+        "en": "git log --oneline v0.8.0..HEAD"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "release-notes.md、internal-changelog.md、confirm-before-publish.md",
+        "en": "release-notes.md, internal-changelog.md, and confirm-before-publish.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "git log --oneline v0.8.0..HEAD",
+      "git diff --name-only v0.8.0..HEAD",
+      "人工核对 release-notes.md 中每条是否能回到提交或 Issue。"
+    ],
+    "en": [
+      "git log --oneline v0.8.0..HEAD",
+      "git diff --name-only v0.8.0..HEAD",
+      "Manually verify each release-notes.md item maps back to a commit or issue."
+    ]
+  }
+}

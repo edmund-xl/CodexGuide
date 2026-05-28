@@ -1,0 +1,66 @@
+{
+  "slug": "authenticated-readonly-review",
+  "title": {
+    "zh": "08 登录态网页只读检查",
+    "en": "08 Read-only Review of an Authenticated Web Page"
+  },
+  "maturityScore": 93,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 88,
+      "basis": {
+        "zh": "已登录页面、检查目标、禁点清单、截图脱敏规则",
+        "en": "Signed-in page, review goal, no-click list, and screenshot redaction rules"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "可见状态摘要、脱敏截图、禁点清单、待确认动作",
+        "en": "Visible state summary, redacted screenshots, no-click list, and confirmation actions"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "人工确认当前 URL 和页面标题是否符合检查目标。",
+        "en": "Manually confirm the current URL and page title match the review goal."
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "readonly-review.md、safe-screenshots/、confirmations.md",
+        "en": "readonly-review.md, safe-screenshots/, and confirmations.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "人工确认当前 URL 和页面标题是否符合检查目标。",
+      "人工逐项核对 no-click-controls.md 中的按钮均未触发。",
+      "人工检查 safe-screenshots/ 中无邮箱、余额、账号 ID 或私人资料。"
+    ],
+    "en": [
+      "Manually confirm the current URL and page title match the review goal.",
+      "Manually verify every button in no-click-controls.md remained untriggered.",
+      "Manually inspect safe-screenshots/ for no email, balance, account ID, or private profile data."
+    ]
+  }
+}

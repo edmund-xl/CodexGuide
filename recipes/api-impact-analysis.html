@@ -189,7 +189,7 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -227,6 +227,18 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/evidence-board.svg">
@@ -333,6 +345,69 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
           <strong>影响表覆盖端点、字段、鉴权、限额和错误码。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>未搜索调用点导致遗漏测试</td><td>强制输出 call-sites.md</td><td>api-impact.md</td></tr>
+
+            <tr><td>过程修正</td><td>新增状态影响筛选和空态</td><td>把 UI 和测试纳入影响矩阵</td><td>call-sites.md</td></tr>
+
+            <tr><td>交付后</td><td>test-matrix.md
+| 场景 | 输入 | 预期 |
+| archived 状态 | GET /v1/tasks?status=archived | 列表能展示归档标签 |
+| priority enum | priority=urgent | 校验通过或给出明确错误 |
+| 429 重试 | retry_after_ms=1200 | UI 显示等待建议，不立即重试 |</td><td>影响表覆盖端点、字段、鉴权、限额和错误码。</td><td>api-impact.md、call-sites.md、test-matrix.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>93</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>88</strong>
+            <small>变更说明、版本号、端点名、字段名、错误码</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>端点清单、调用位置、测试建议、风险表</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>rg -n &quot;GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429&quot; src tests docs</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>api-impact.md、call-sites.md、test-matrix.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -509,7 +584,7 @@ Release date: 2026-06-10</code></pre>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -547,6 +622,18 @@ Release date: 2026-06-10</code></pre>
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/api-impact-analysis/evidence-board.svg">
@@ -653,6 +740,69 @@ Release date: 2026-06-10</code></pre>
           <strong>Impact table covers endpoints, fields, auth, limits, and error codes.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>Call sites were not searched and tests were missed</td><td>Require call-sites.md</td><td>api-impact.md</td></tr>
+
+            <tr><td>Correction</td><td>New status affected filters and empty state</td><td>Include UI and tests in impact matrix</td><td>call-sites.md</td></tr>
+
+            <tr><td>After</td><td>test-matrix.md
+| Scenario | Input | Expected |
+| archived status | GET /v1/tasks?status=archived | list can display archived label |
+| priority enum | priority=urgent | validation passes or shows clear error |
+| 429 retry | retry_after_ms=1200 | UI shows wait guidance and does not retry immediately |</td><td>Impact table covers endpoints, fields, auth, limits, and error codes.</td><td>api-impact.md, call-sites.md, and test-matrix.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>93</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>88</strong>
+            <small>Change notes, version, endpoint names, fields, and error codes</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Endpoint list, call sites, test suggestions, and risk table</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>rg -n &quot;GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429&quot; src tests docs</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>api-impact.md, call-sites.md, and test-matrix.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

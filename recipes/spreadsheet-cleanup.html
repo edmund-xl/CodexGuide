@@ -189,7 +189,7 @@
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -227,6 +227,18 @@
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg">
@@ -333,6 +345,70 @@
           <strong>数据画像写清行数、列数、空值、重复和范围异常。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>重复 order_id 可能是拆单或退款</td><td>只标记异常，不自动删除</td><td>data-profile.md</td></tr>
+
+            <tr><td>过程修正</td><td>空日期被填成当天日期</td><td>缺失值保持空并进入复核表</td><td>anomalies.csv</td></tr>
+
+            <tr><td>交付后</td><td>anomalies.csv
+original_row,field,type,value,suggestion
+3,order_id,duplicate,1002,确认是否拆单或重复导入
+3,amount,range,-20.00,确认是否退款
+5,date,missing,,补充业务日期
+5,amount,range,8500.00,人工确认大额订单</td><td>数据画像写清行数、列数、空值、重复和范围异常。</td><td>data-profile.md、anomalies.csv、review-sheet.csv</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>92</strong>
+            <small>脱敏 CSV、字段说明、金额和日期规则</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>数据画像、异常表、样本行、校验公式</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>wc -l orders-redacted.csv</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>data-profile.md、anomalies.csv、review-sheet.csv</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -510,7 +586,7 @@ original_row,field,type,value,suggestion
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -548,6 +624,18 @@ original_row,field,type,value,suggestion
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/spreadsheet-cleanup/evidence-board.svg">
@@ -654,6 +742,70 @@ original_row,field,type,value,suggestion
           <strong>Data profile states row count, column count, blanks, duplicates, and range anomalies.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>Duplicate order_id may be split order or refund</td><td>Flag anomalies without deleting</td><td>data-profile.md</td></tr>
+
+            <tr><td>Correction</td><td>Blank date was filled with today</td><td>Keep blanks and put them in the review sheet</td><td>anomalies.csv</td></tr>
+
+            <tr><td>After</td><td>anomalies.csv
+original_row,field,type,value,suggestion
+3,order_id,duplicate,1002,confirm split order or duplicate import
+3,amount,range,-20.00,confirm refund
+5,date,missing,,add business date
+5,amount,range,8500.00,manually confirm large order</td><td>Data profile states row count, column count, blanks, duplicates, and range anomalies.</td><td>data-profile.md, anomalies.csv, and review-sheet.csv</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>92</strong>
+            <small>Redacted CSV, field notes, amount and date rules</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Data profile, anomaly table, sample rows, and validation formulas</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>wc -l orders-redacted.csv</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>data-profile.md, anomalies.csv, and review-sheet.csv</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

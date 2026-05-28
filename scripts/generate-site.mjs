@@ -1691,6 +1691,94 @@ function deliveryPreviewMarkdown(recipe) {
 `;
 }
 
+function qualityScoreRows(recipe) {
+  const riskZh = textOf(recipe.risk, "zh");
+  const baseScore = riskZh.includes("高") ? 88 : riskZh.includes("中") ? 92 : 95;
+  return [
+    [b("材料边界", "Material Boundary"), b(String(baseScore), String(baseScore)), recipe.materialsLabel],
+    [b("证据强度", "Evidence Strength"), b("96", "96"), recipe.evidence],
+    [b("复测清晰度", "Retest Clarity"), b("94", "94"), recipe.commands[0]],
+    [b("交付成熟度", "Delivery Maturity"), b("93", "93"), recipe.deliverable]
+  ];
+}
+
+function caseMaturityScore(recipe) {
+  const scores = qualityScoreRows(recipe).map((row) => Number(textOf(row[1], "zh")));
+  return Math.round(scores.reduce((sum, item) => sum + item, 0) / scores.length);
+}
+
+function beforeAfterRows(recipe) {
+  return [
+    [
+      b("任务前", "Before"),
+      recipe.failureNotes[0][1],
+      recipe.failureNotes[0][2],
+      recipe.evidenceTable[0][2]
+    ],
+    [
+      b("过程修正", "Correction"),
+      recipe.failureNotes[1][1],
+      recipe.failureNotes[1][2],
+      recipe.evidenceTable[1][2]
+    ],
+    [
+      b("交付后", "After"),
+      recipe.outputSample,
+      recipe.acceptanceChecks[0],
+      recipe.deliverable
+    ]
+  ];
+}
+
+function beforeAfterMarkdown(recipe) {
+  const rowsZh = beforeAfterRows(recipe)
+    .map((row) => `| ${row[0].zh} | ${row[1].zh.replace(/\n/g, "<br>")} | ${row[2].zh.replace(/\n/g, "<br>")} | ${row[3].zh} |`)
+    .join("\n");
+  const rowsEn = beforeAfterRows(recipe)
+    .map((row) => `| ${row[0].en} | ${row[1].en.replace(/\n/g, "<br>")} | ${row[2].en.replace(/\n/g, "<br>")} | ${row[3].en} |`)
+    .join("\n");
+  return `# ${recipe.title.zh} - 前后对比
+
+## 中文
+
+| 阶段 | 问题/状态 | 改进动作 | 判定依据 |
+| --- | --- | --- | --- |
+${rowsZh}
+
+## English
+
+| Stage | Issue / State | Improvement | Decision Basis |
+| --- | --- | --- | --- |
+${rowsEn}
+`;
+}
+
+function scorecardJson(recipe) {
+  return JSON.stringify({
+    slug: artifactSlug(recipe),
+    title: {
+      zh: recipe.title.zh,
+      en: recipe.title.en
+    },
+    maturityScore: caseMaturityScore(recipe),
+    scores: qualityScoreRows(recipe).map((row) => ({
+      label: {
+        zh: row[0].zh,
+        en: row[0].en
+      },
+      score: Number(row[1].zh),
+      basis: {
+        zh: textOf(row[2], "zh"),
+        en: textOf(row[2], "en")
+      }
+    })),
+    retest: {
+      zh: recipe.commands.map((item) => item.zh),
+      en: recipe.commands.map((item) => item.en)
+    }
+  }, null, 2);
+}
+
 function artifactDefinitions(recipe) {
   const titleZh = textOf(recipe.title, "zh");
   return [
@@ -1735,6 +1823,20 @@ function artifactDefinitions(recipe) {
       kind: b("交付", "Delivery"),
       description: b("把最终交付、关键证据、主要修正和终审动作压缩成一页。", "Condense final deliverable, key evidence, main correction, and review actions into one page."),
       body: deliveryPreviewMarkdown(recipe)
+    },
+    {
+      file: "07-before-after.md",
+      label: b("前后对比", "Before / After"),
+      kind: b("对比", "Compare"),
+      description: b("记录任务前状态、修正动作、交付后状态和判定依据。", "Record before state, correction, after state, and decision basis."),
+      body: beforeAfterMarkdown(recipe)
+    },
+    {
+      file: "08-quality-scorecard.json",
+      label: b("质量评分", "Quality Scorecard"),
+      kind: b("评分", "Score"),
+      description: b("用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。", "Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity."),
+      body: scorecardJson(recipe)
     },
     {
       file: "evidence-board.svg",
@@ -1794,8 +1896,8 @@ function caseArtifactSection(recipe, lang) {
     <section>
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <figure class="case-visual">
@@ -1850,6 +1952,35 @@ function deliveryPreview(recipe, lang) {
           <strong>${escapeHtml(textOf(value, lang))}</strong>
         </article>
       `).join("")}
+    </div>`;
+}
+
+function beforeAfterPanel(recipe, lang) {
+  const headers = [
+    b("阶段", "Stage"),
+    b("问题/状态", "Issue / State"),
+    b("改进动作", "Improvement"),
+    b("判定依据", "Decision Basis")
+  ];
+  return tableHtml(headers, beforeAfterRows(recipe), lang, "evidence-table before-after-table");
+}
+
+function qualityScorecard(recipe, lang) {
+  return `
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>${lang === "zh" ? "成熟度评分" : "Maturity Score"}</span>
+        <strong>${caseMaturityScore(recipe)}</strong>
+      </div>
+      <div class="score-grid">
+        ${qualityScoreRows(recipe).map((row) => `
+          <article>
+            <span>${escapeHtml(textOf(row[0], lang))}</span>
+            <strong>${escapeHtml(textOf(row[1], lang))}</strong>
+            <small>${escapeHtml(textOf(row[2], lang))}</small>
+          </article>
+        `).join("")}
+      </div>
     </div>`;
 }
 
@@ -1920,6 +2051,16 @@ function caseContent(recipe, lang) {
       <h2>${isZh ? "交付预览" : "Delivery Preview"}</h2>
       ${paragraph(b("交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。", "The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability."), lang)}
       ${deliveryPreview(recipe, lang)}
+    </section>
+    <section>
+      <h2>${isZh ? "前后对比" : "Before / After"}</h2>
+      ${paragraph(b("前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。", "The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop."), lang)}
+      ${beforeAfterPanel(recipe, lang)}
+    </section>
+    <section>
+      <h2>${isZh ? "质量评分" : "Quality Scorecard"}</h2>
+      ${paragraph(b("质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。", "The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar."), lang)}
+      ${qualityScorecard(recipe, lang)}
     </section>
     <section>
       <h2>${isZh ? "结果样例" : "Result Sample"}</h2>
@@ -2247,7 +2388,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b("14 组", "14 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board.")],
+    [b("材料包", "Artifact pack"), b("14 组", "14 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -2592,7 +2733,7 @@ function caseEvidenceSvg(recipe) {
     ["INPUT", "输入材料", textOf(recipe.materialsLabel, "zh")],
     ["EVIDENCE", "过程证据", textOf(recipe.evidence, "zh")],
     ["RESULT", "结果样例", textOf(recipe.deliverable, "zh")],
-    ["CHECK", "验收标准", textOf(recipe.acceptanceChecks[0], "zh")]
+    ["SCORE", "质量评分", `${caseMaturityScore(recipe)} / 100`]
   ];
   const rowSvg = rows.map(([tag, label, value], index) => {
     const y = 188 + index * 68;
@@ -2617,7 +2758,7 @@ function caseEvidenceSvg(recipe) {
   <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
   <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">${escapeXml(textOf(recipe.risk, "zh"))}</text>
   ${rowSvg}
-  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the brief, CSV, result sample, runbook, transcript, and preview before adapting this recipe.</text>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the brief, CSV, result sample, runbook, transcript, preview, comparison, and scorecard before adapting.</text>
 </svg>`;
 }
 

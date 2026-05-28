@@ -188,7 +188,7 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -226,6 +226,18 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
@@ -332,6 +344,69 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <strong>目标 URL 返回 200，关键资源未缺失。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>DOM 文本正常但手机截图里按钮换行拥挤</td><td>截图成为必检证据</td><td>home-desktop-1440.png</td></tr>
+
+            <tr><td>过程修正</td><td>第一次截图无法判断视口</td><td>统一使用页面加视口命名</td><td>case-mobile-390.png</td></tr>
+
+            <tr><td>交付后</td><td>page-review.md
+P0 阻断：0
+P1 体验影响：1 - 手机端证据表需要明显滚动提示
+P2 文字瑕疵：2 - 两处按钮文案可缩短
+通过项：本地服务 200，桌面无重叠，手机无横向页面溢出</td><td>目标 URL 返回 200，关键资源未缺失。</td><td>page-review.md、screenshots/、console-summary.txt</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>95</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>95</strong>
+            <small>目标 URL、主路径、视口尺寸、禁止动作</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>桌面截图、手机截图、控制台摘要、问题表</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>curl -I -L --max-time 15 http://127.0.0.1:4173/</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>page-review.md、screenshots/、console-summary.txt</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -507,7 +582,7 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -545,6 +620,18 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
@@ -651,6 +738,69 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <strong>Target URL returns 200 and key assets are not missing.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>DOM text was fine but mobile screenshot showed cramped button wrapping</td><td>Make screenshots mandatory evidence</td><td>home-desktop-1440.png</td></tr>
+
+            <tr><td>Correction</td><td>First screenshot names did not show viewport</td><td>Use page plus viewport in filenames</td><td>case-mobile-390.png</td></tr>
+
+            <tr><td>After</td><td>page-review.md
+P0 blocking: 0
+P1 experience impact: 1 - mobile evidence table needs a clearer scroll cue
+P2 copy polish: 2 - two button labels can be shortened
+Passed checks: local service 200, no desktop overlap, no mobile page overflow</td><td>Target URL returns 200 and key assets are not missing.</td><td>page-review.md, screenshots/, and console-summary.txt</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>95</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>95</strong>
+            <small>Target URL, primary path, viewport sizes, and prohibited actions</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Desktop screenshot, mobile screenshot, console summary, and issue table</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>curl -I -L --max-time 15 http://127.0.0.1:4173/</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>page-review.md, screenshots/, and console-summary.txt</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

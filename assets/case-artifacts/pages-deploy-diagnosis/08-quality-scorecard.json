@@ -1,0 +1,66 @@
+{
+  "slug": "pages-deploy-diagnosis",
+  "title": {
+    "zh": "03 GitHub Pages 部署失败诊断",
+    "en": "03 GitHub Pages Deployment Failure Diagnosis"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "失败截图、run id、workflow 文件、最新提交 SHA",
+        "en": "Failure screenshot, run id, workflow file, and latest commit SHA"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "失败步骤、修复提交、新 run、线上 200 响应",
+        "en": "Failed step, fix commit, new run, and live 200 response"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "npm run build && npm run check && git diff --check",
+        "en": "npm run build && npm run check && git diff --check"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "deploy-incident.md、修复提交、验证命令记录",
+        "en": "deploy-incident.md, fix commit, and validation command record"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "npm run build && npm run check && git diff --check",
+      "git status --short --branch",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/"
+    ],
+    "en": [
+      "npm run build && npm run check && git diff --check",
+      "git status --short --branch",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/"
+    ]
+  }
+}

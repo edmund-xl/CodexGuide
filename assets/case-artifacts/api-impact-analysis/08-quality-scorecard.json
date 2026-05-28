@@ -1,0 +1,66 @@
+{
+  "slug": "api-impact-analysis",
+  "title": {
+    "zh": "10 API 变更影响分析",
+    "en": "10 API Change Impact Analysis"
+  },
+  "maturityScore": 93,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 88,
+      "basis": {
+        "zh": "变更说明、版本号、端点名、字段名、错误码",
+        "en": "Change notes, version, endpoint names, fields, and error codes"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "端点清单、调用位置、测试建议、风险表",
+        "en": "Endpoint list, call sites, test suggestions, and risk table"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs",
+        "en": "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "api-impact.md、call-sites.md、test-matrix.md",
+        "en": "api-impact.md, call-sites.md, and test-matrix.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs",
+      "rg -n \"archived|priority\" tests src",
+      "人工确认版本号、环境、上线窗口和回退方式。"
+    ],
+    "en": [
+      "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs",
+      "rg -n \"archived|priority\" tests src",
+      "Manually confirm version, environment, release window, and rollback method."
+    ]
+  }
+}

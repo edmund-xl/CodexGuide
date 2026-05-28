@@ -26,6 +26,8 @@ const caseArtifactFiles = [
   "04-acceptance-runbook.md",
   "05-execution-transcript.log",
   "06-delivery-preview.md",
+  "07-before-after.md",
+  "08-quality-scorecard.json",
   "evidence-board.svg"
 ];
 const oldRecipeSlugs = [
@@ -64,11 +66,17 @@ const caseRequiredMarkers = [
   "Execution Transcript",
   "交付预览",
   "Delivery Preview",
+  "前后对比",
+  "Before / After",
+  "质量评分",
+  "Quality Scorecard",
   "case-dashboard",
   "artifact-grid",
   "case-visual",
   "execution-transcript",
   "delivery-preview",
+  "before-after-table",
+  "quality-scorecard",
   "evidence-table",
   "command-panel",
   "output-sample",

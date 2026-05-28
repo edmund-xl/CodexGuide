@@ -1,0 +1,66 @@
+{
+  "slug": "deck-export-check",
+  "title": {
+    "zh": "01 演示稿生成与导出核查",
+    "en": "01 Deck Generation and Export Verification"
+  },
+  "maturityScore": 94,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 92,
+      "basis": {
+        "zh": "脱敏产品说明、品牌色、页数限制、必须出现的三条信息",
+        "en": "Redacted product brief, brand colors, slide limit, and three required messages"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "导出文件、四张预览截图、逐页验收表",
+        "en": "Exported file, four preview screenshots, and slide acceptance table"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md",
+        "en": "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "deck-draft.pptx、slide-checklist.md、export-notes.md",
+        "en": "deck-draft.pptx, slide-checklist.md, and export-notes.md"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md",
+      "人工打开 deck-draft.pptx，确认 7 页均可显示且备注不为空。",
+      "人工检查 screenshots/cover.png、agenda.png、data.png、closing.png 是否无文字溢出。"
+    ],
+    "en": [
+      "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md",
+      "Open deck-draft.pptx manually and confirm all seven slides display and notes are not empty.",
+      "Manually check screenshots/cover.png, agenda.png, data.png, and closing.png for no text overflow."
+    ]
+  }
+}

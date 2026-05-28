@@ -189,7 +189,7 @@
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -227,6 +227,18 @@
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/evidence-board.svg">
@@ -333,6 +345,69 @@
           <strong>任务规则可被执行，异常定义明确。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>检查网站是否正常无法判断</td><td>改为 URL、状态码和页面标记</td><td>automation-brief.md</td></tr>
+
+            <tr><td>过程修正</td><td>输出像完整报告，难以扫读</td><td>限制为状态、变化、异常、建议</td><td>mock-result.md</td></tr>
+
+            <tr><td>交付后</td><td>mock-result.md
+状态：3 个页面均返回 200
+变化：首页标题已更新为新版案例矩阵
+异常：无
+建议：本周无需处理；如连续 3 周无异常，可改为每两周一次</td><td>任务规则可被执行，异常定义明确。</td><td>automation-brief.md、mock-result.md、pause-rules.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>92</strong>
+            <small>检查对象、频率、异常定义、标准输出、暂停条件</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>触发条件、模拟输出、暂停规则、失败提醒</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>automation-brief.md、mock-result.md、pause-rules.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -509,7 +584,7 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -547,6 +622,18 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/evidence-board.svg">
@@ -653,6 +740,69 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
           <strong>Task rules are executable and anomaly definition is explicit.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>Check whether site is OK was not measurable</td><td>Use URL, status code, and page marker</td><td>automation-brief.md</td></tr>
+
+            <tr><td>Correction</td><td>Output read like a full report and was hard to scan</td><td>Limit to status, change, anomaly, suggestion</td><td>mock-result.md</td></tr>
+
+            <tr><td>After</td><td>mock-result.md
+Status: three pages returned 200
+Change: home title now uses the new recipe matrix
+Anomaly: none
+Suggestion: no action this week; if three weeks stay clean, switch to biweekly</td><td>Task rules are executable and anomaly definition is explicit.</td><td>automation-brief.md, mock-result.md, and pause-rules.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>92</strong>
+            <small>Check target, frequency, anomaly definition, standard output, and pause condition</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Trigger conditions, mock output, pause rules, and failure notification</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>automation-brief.md, mock-result.md, and pause-rules.md</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

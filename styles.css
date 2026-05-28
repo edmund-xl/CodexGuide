@@ -1016,7 +1016,8 @@ main {
 }
 
 .artifact-grid,
-.delivery-preview {
+.delivery-preview,
+.score-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
@@ -1024,7 +1025,8 @@ main {
 }
 
 .artifact-card,
-.delivery-preview article {
+.delivery-preview article,
+.score-grid article {
   display: flex;
   min-height: 132px;
   min-width: 0;
@@ -1039,7 +1041,9 @@ main {
 }
 
 .artifact-card span,
-.delivery-preview span {
+.delivery-preview span,
+.score-grid span,
+.score-hero span {
   color: var(--accent);
   font-family: var(--mono);
   font-size: 0.7rem;
@@ -1048,7 +1052,8 @@ main {
 }
 
 .artifact-card strong,
-.delivery-preview strong {
+.delivery-preview strong,
+.score-grid strong {
   color: var(--ink);
   font-size: 0.94rem;
   line-height: 1.28;
@@ -1062,6 +1067,52 @@ main {
 
 .delivery-preview article {
   background: rgba(255, 146, 44, 0.07);
+}
+
+.quality-scorecard {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.score-hero,
+.score-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.score-hero {
+  display: grid;
+  place-items: center;
+  min-height: 156px;
+  padding: 14px;
+  text-align: center;
+}
+
+.score-hero strong {
+  color: var(--accent);
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.score-grid {
+  margin-top: 0;
+}
+
+.score-grid article {
+  padding: 13px;
+}
+
+.score-grid small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.before-after-table {
+  min-width: 860px;
 }
 
 .execution-transcript {
@@ -1354,6 +1405,8 @@ main {
   .case-dashboard,
   .artifact-grid,
   .delivery-preview,
+  .score-grid,
+  .quality-scorecard,
   .proof-board {
     grid-template-columns: 1fr;
   }

@@ -189,7 +189,7 @@ README 需要展示新版截图
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -227,6 +227,18 @@ README 需要展示新版截图
           <span>交付</span>
           <strong>交付预览</strong>
           <small>把最终交付、关键证据、主要修正和终审动作压缩成一页。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/07-before-after.md">
+          <span>对比</span>
+          <strong>前后对比</strong>
+          <small>记录任务前状态、修正动作、交付后状态和判定依据。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/08-quality-scorecard.json">
+          <span>评分</span>
+          <strong>质量评分</strong>
+          <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/evidence-board.svg">
@@ -333,6 +345,69 @@ README 需要展示新版截图
           <strong>43 个 HTML 页面全部生成并通过链接检查。</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>前后对比</h2>
+      <p>前后对比把原始问题、修正动作、交付后状态和判定依据放在同一张表里，用来判断这篇案例是否真的完成了闭环。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>阶段</th><th>问题/状态</th><th>改进动作</th><th>判定依据</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务前</td><td>改 URL 后旧 HTML 仍留在目录中</td><td>删除旧文件并让校验禁止旧路径</td><td>npm run check</td></tr>
+
+            <tr><td>过程修正</td><td>搜索结果仍显示旧摘要</td><td>统一从新 page 数据生成搜索文本</td><td>verify-site.mjs</td></tr>
+
+            <tr><td>交付后</td><td>改版结果
+- 43 个页面重新生成
+- 案例页新增任务状态面板、证据表、命令块和验收清单
+- README 更新首页、案例总览、两个案例页、使用规范页截图
+- 本地根路径和 /CodexGuide/ 均返回 200</td><td>43 个 HTML 页面全部生成并通过链接检查。</td><td>新版站点、README 截图、质量门禁结果</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>质量评分</h2>
+      <p>质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>成熟度评分</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>材料边界</span>
+            <strong>92</strong>
+            <small>生成器、样式表、README、截图目录、发布 workflow</small>
+          </article>
+
+          <article>
+            <span>证据强度</span>
+            <strong>96</strong>
+            <small>diff、构建日志、链接检查、桌面与手机截图</small>
+          </article>
+
+          <article>
+            <span>复测清晰度</span>
+            <strong>94</strong>
+            <small>npm run build</small>
+          </article>
+
+          <article>
+            <span>交付成熟度</span>
+            <strong>93</strong>
+            <small>新版站点、README 截图、质量门禁结果</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>
@@ -509,7 +584,7 @@ Local and live paths must be accessible</code></pre>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -547,6 +622,18 @@ Local and live paths must be accessible</code></pre>
           <span>Delivery</span>
           <strong>Delivery Preview</strong>
           <small>Condense final deliverable, key evidence, main correction, and review actions into one page.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/07-before-after.md">
+          <span>Compare</span>
+          <strong>Before / After</strong>
+          <small>Record before state, correction, after state, and decision basis.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/08-quality-scorecard.json">
+          <span>Score</span>
+          <strong>Quality Scorecard</strong>
+          <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/evidence-board.svg">
@@ -653,6 +740,69 @@ Local and live paths must be accessible</code></pre>
           <strong>All 43 HTML pages are generated and pass link checks.</strong>
         </article>
 
+    </div>
+    </section>
+    <section>
+      <h2>Before / After</h2>
+      <p>The before/after table puts the initial issue, correction, after state, and decision basis together to judge whether the recipe truly closed the loop.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table before-after-table">
+        <thead>
+          <tr><th>Stage</th><th>Issue / State</th><th>Improvement</th><th>Decision Basis</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Before</td><td>Old HTML files remained after URL changes</td><td>Delete old files and make verification block old paths</td><td>npm run check</td></tr>
+
+            <tr><td>Correction</td><td>Search results still showed old summaries</td><td>Generate search text from new page data</td><td>verify-site.mjs</td></tr>
+
+            <tr><td>After</td><td>Redesign result
+- 43 pages regenerated
+- Recipe pages gain task status panels, evidence tables, command blocks, and acceptance checklists
+- README updates home, recipe index, two recipe pages, and usage policy screenshots
+- Local root and /CodexGuide/ both return 200</td><td>All 43 HTML pages are generated and pass link checks.</td><td>Redesigned site, README screenshots, and quality-gate results</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    </section>
+    <section>
+      <h2>Quality Scorecard</h2>
+      <p>The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar.</p>
+
+    <div class="quality-scorecard">
+      <div class="score-hero">
+        <span>Maturity Score</span>
+        <strong>94</strong>
+      </div>
+      <div class="score-grid">
+
+          <article>
+            <span>Material Boundary</span>
+            <strong>92</strong>
+            <small>Generator, stylesheet, README, screenshot directory, and deploy workflow</small>
+          </article>
+
+          <article>
+            <span>Evidence Strength</span>
+            <strong>96</strong>
+            <small>Diff, build log, link check, desktop and mobile screenshots</small>
+          </article>
+
+          <article>
+            <span>Retest Clarity</span>
+            <strong>94</strong>
+            <small>npm run build</small>
+          </article>
+
+          <article>
+            <span>Delivery Maturity</span>
+            <strong>93</strong>
+            <small>Redesigned site, README screenshots, and quality-gate results</small>
+          </article>
+
+      </div>
     </div>
     </section>
     <section>

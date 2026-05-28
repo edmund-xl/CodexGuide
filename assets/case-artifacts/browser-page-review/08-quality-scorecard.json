@@ -1,0 +1,66 @@
+{
+  "slug": "browser-page-review",
+  "title": {
+    "zh": "02 浏览器页面巡检与截图证据",
+    "en": "02 Browser Page Review with Screenshot Evidence"
+  },
+  "maturityScore": 95,
+  "scores": [
+    {
+      "label": {
+        "zh": "材料边界",
+        "en": "Material Boundary"
+      },
+      "score": 95,
+      "basis": {
+        "zh": "目标 URL、主路径、视口尺寸、禁止动作",
+        "en": "Target URL, primary path, viewport sizes, and prohibited actions"
+      }
+    },
+    {
+      "label": {
+        "zh": "证据强度",
+        "en": "Evidence Strength"
+      },
+      "score": 96,
+      "basis": {
+        "zh": "桌面截图、手机截图、控制台摘要、问题表",
+        "en": "Desktop screenshot, mobile screenshot, console summary, and issue table"
+      }
+    },
+    {
+      "label": {
+        "zh": "复测清晰度",
+        "en": "Retest Clarity"
+      },
+      "score": 94,
+      "basis": {
+        "zh": "curl -I -L --max-time 15 http://127.0.0.1:4173/",
+        "en": "curl -I -L --max-time 15 http://127.0.0.1:4173/"
+      }
+    },
+    {
+      "label": {
+        "zh": "交付成熟度",
+        "en": "Delivery Maturity"
+      },
+      "score": 93,
+      "basis": {
+        "zh": "page-review.md、screenshots/、console-summary.txt",
+        "en": "page-review.md, screenshots/, and console-summary.txt"
+      }
+    }
+  ],
+  "retest": {
+    "zh": [
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/",
+      "浏览器桌面视口：1440x1000，截图 home-desktop-1440.png。",
+      "浏览器手机视口：390x900，检查 document.documentElement.scrollWidth 是否大于 window.innerWidth。"
+    ],
+    "en": [
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/",
+      "Browser desktop viewport: 1440x1000, capture home-desktop-1440.png.",
+      "Browser mobile viewport: 390x900, check whether document.documentElement.scrollWidth is greater than window.innerWidth."
+    ]
+  }
+}
