@@ -51,6 +51,20 @@ http://127.0.0.1:4173/CodexGuide/
 https://edmund-xl.github.io/CodexGuide/
 ```
 
+### 页面截图
+
+首页展示文档站的导航、中文优先内容结构和主要入口。
+
+![首页截图](assets/screenshots/home.png)
+
+教程页展示“先中文、后英文”的完整分区文档结构。
+
+![教程页截图](assets/screenshots/guide-first-task.png)
+
+使用规范页展示隐私、安全和人工复核要求。
+
+![使用规范页截图](assets/screenshots/usage-policy.png)
+
 ### 项目结构
 
 - `scripts/generate-site.mjs`: 双语静态站点生成器
@@ -119,6 +133,20 @@ Published URL:
 ```text
 https://edmund-xl.github.io/CodexGuide/
 ```
+
+### Screenshots
+
+The home page shows the site navigation, Chinese-first content structure, and primary entry points.
+
+![Home page screenshot](assets/screenshots/home.png)
+
+The guide page shows the complete Chinese-first and English-second documentation structure.
+
+![Guide page screenshot](assets/screenshots/guide-first-task.png)
+
+The usage policy page shows privacy, safety, and human review requirements.
+
+![Usage policy screenshot](assets/screenshots/usage-policy.png)
 
 ### Project Structure
 
