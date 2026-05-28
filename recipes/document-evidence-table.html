@@ -92,6 +92,53 @@
         <h1>09 文档与 PDF 摘要到证据表</h1>
         <p>把长文档拆成带页码的证据表，保留摘录线索、置信度和待确认项，避免只有自然段摘要。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>初稿把事实和推断混在同一列，无法复核。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>evidence-table.md、open-questions.md、summary-brief.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/document-evidence-table/13-delivery-capture.svg" alt="09 文档与 PDF 摘要到证据表">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>多份文档摘要需要转成证据表，要求能追溯到页码和原句位置。</td><td>脱敏 PDF、摘要目标、页码规则、输出字段</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>初稿把事实和推断混在同一列，无法复核。</td><td>summary-brief.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>改成证据表并强制页码</td><td>evidence-table.md</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>每行证据都有页码、摘录、判断和人工复核状态。</td><td>evidence-table.md、open-questions.md、summary-brief.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：多份文档摘要需要转成证据表，要求能追溯到页码和原句位置。
+第一信号：初稿把事实和推断混在同一列，无法复核。
+修正：改成证据表并强制页码
+交付：evidence-table.md、open-questions.md、summary-brief.md
+人工确认：无法读取的扫描页不做事实结论。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -636,6 +683,53 @@
         <p class="eyebrow">Recipes</p>
         <h1>09 Document and PDF Summary to Evidence Table</h1>
         <p>Turn a long document into a page-numbered evidence table with excerpt cues, confidence, and confirmation items instead of only paragraph summaries.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The first draft mixed facts and inference in one column, making review difficult.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>evidence-table.md, open-questions.md, and summary-brief.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/document-evidence-table/13-delivery-capture.svg" alt="09 Document and PDF Summary to Evidence Table">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>Several document summaries needed an evidence table traceable to page numbers and original wording.</td><td>Redacted PDF, summary goal, page-numbering rules, and output fields</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The first draft mixed facts and inference in one column, making review difficult.</td><td>summary-brief.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Convert to an evidence table with required page numbers</td><td>evidence-table.md</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Every evidence row had a page, excerpt, judgment, and human review status.</td><td>evidence-table.md, open-questions.md, and summary-brief.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: Several document summaries needed an evidence table traceable to page numbers and original wording.
+First signal: The first draft mixed facts and inference in one column, making review difficult.
+Correction: Convert to an evidence table with required page numbers
+Delivery: evidence-table.md, open-questions.md, and summary-brief.md
+Human confirmation: Do not make factual claims from unreadable scanned pages.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

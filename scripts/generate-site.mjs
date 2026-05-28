@@ -2721,6 +2721,90 @@ function caseDashboard(recipe, lang) {
     </section>`;
 }
 
+function fieldStoryPanel(recipe, lang) {
+  const trace = operationTrace(recipe);
+  const isZh = lang === "zh";
+  const firstEvidence = recipe.evidenceTable[0];
+  const secondEvidence = recipe.evidenceTable[1];
+  const firstFailure = recipe.failureNotes[0];
+  const storyRows = [
+    [
+      b("问题触发", "Trigger"),
+      trace.snapshot.trigger,
+      recipe.materialsLabel,
+      b("先锁定材料和禁止动作。", "Lock material scope and prohibited actions first.")
+    ],
+    [
+      b("第一信号", "First Signal"),
+      trace.snapshot.firstSignal,
+      firstEvidence[2],
+      b("只把可观察现象写进判断。", "Use only observable signals in the decision.")
+    ],
+    [
+      b("修正动作", "Correction"),
+      firstFailure[2],
+      secondEvidence[2],
+      b("先做最小修正，再复测。", "Apply the smallest correction, then retest.")
+    ],
+    [
+      b("交付判断", "Delivery Decision"),
+      trace.snapshot.finalSignal,
+      recipe.deliverable,
+      b("留下结果、证据和人工交接。", "Leave result, evidence, and human handoff.")
+    ]
+  ];
+  const brief = b(
+    [
+      `触发：${textOf(trace.snapshot.trigger, "zh")}`,
+      `第一信号：${textOf(trace.snapshot.firstSignal, "zh")}`,
+      `修正：${textOf(firstFailure[2], "zh")}`,
+      `交付：${textOf(recipe.deliverable, "zh")}`,
+      `人工确认：${textOf(operationTrace(recipe).handoff[0], "zh")}`
+    ].join("\n"),
+    [
+      `Trigger: ${textOf(trace.snapshot.trigger, "en")}`,
+      `First signal: ${textOf(trace.snapshot.firstSignal, "en")}`,
+      `Correction: ${textOf(firstFailure[2], "en")}`,
+      `Delivery: ${textOf(recipe.deliverable, "en")}`,
+      `Human confirmation: ${textOf(operationTrace(recipe).handoff[0], "en")}`
+    ].join("\n")
+  );
+
+  return `
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>${isZh ? "现场叙事" : "Field Story"}</h2>
+          ${paragraph(b(
+            "先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。",
+            "Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable."
+          ), lang)}
+          <div class="field-story-kpis">
+            <article>
+              <span>${isZh ? "第一信号" : "First Signal"}</span>
+              <strong>${escapeHtml(textOf(trace.snapshot.firstSignal, lang))}</strong>
+            </article>
+            <article>
+              <span>${isZh ? "终审证据" : "Final Evidence"}</span>
+              <strong>${escapeHtml(textOf(recipe.deliverable, lang))}</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/13-delivery-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。" : "First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame."}</figcaption>
+        </figure>
+      </div>
+      ${tableHtml([
+        b("节点", "Moment"),
+        b("现场判断", "Field Decision"),
+        b("证据", "Evidence"),
+        b("下一步", "Next Step")
+      ], storyRows, lang, "evidence-table field-story-table")}
+      ${codeSample(brief, lang, "output-sample story-brief")}
+    </section>`;
+}
+
 function commandPanel(recipe, lang) {
   return `
     <div class="command-panel">
@@ -3712,13 +3796,18 @@ function docPage(page) {
 
   const languageSection = (lang) => {
     const isZh = lang === "zh";
+    const pageMeta = metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang);
+    const introAfterSummary = page.caseRecipe
+      ? `${fieldStoryPanel(page.caseRecipe, lang)}
+        ${pageMeta}`
+      : pageMeta;
     return `
       <section class="language-section${isZh ? "" : " english-section"}" lang="${isZh ? "zh-CN" : "en"}" data-language-section="${lang}">
         <p class="language-kicker">${isZh ? "中文" : "English"}</p>
         <p class="eyebrow">${escapeHtml(textOf(page.group, lang))}</p>
         <h1>${escapeHtml(textOf(page.title, lang))}</h1>
         ${paragraph(page.summary, lang)}
-        ${metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang)}
+        ${introAfterSummary}
         ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(textOf(page.title, lang))}">` : ""}${shouldRenderDecisionWorkbench(page) ? decisionWorkbenchPanel(page, lang) : ""}
         ${page.caseIndex ? caseIndexContent(lang) : ""}
         ${page.caseRecipe ? caseContent(page.caseRecipe, lang) : ""}

@@ -92,6 +92,53 @@
         <h1>04 本地文档站批量改版</h1>
         <p>把静态文档站一次性改成深色产品工作台，并用页面数量、链接、截图和禁用词检查证明未破坏发布链路。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>新版站点、README 截图、质量门禁结果</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/docs-site-redesign/13-delivery-capture.svg" alt="04 本地文档站批量改版">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。</td><td>生成器、样式表、README、截图目录、发布 workflow</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。</td><td>npm run check</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>删除旧文件并让校验禁止旧路径</td><td>verify-site.mjs</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>44 个页面生成通过，案例页有证据表、命令块、评分和材料包。</td><td>新版站点、README 截图、质量门禁结果</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。
+第一信号：第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。
+修正：删除旧文件并让校验禁止旧路径
+交付：新版站点、README 截图、质量门禁结果
+人工确认：README 截图必须和当前构建一致。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -636,6 +683,53 @@ README 需要展示新版截图
         <p class="eyebrow">Recipes</p>
         <h1>04 Local Documentation Site Redesign</h1>
         <p>Redesign a static documentation site into a dark product workspace and prove the publish chain remains intact with page count, links, screenshots, and blocked-word checks.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>After the first redesign, recipe details lacked enough density and the index lacked a task matrix.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>Redesigned site, README screenshots, and quality-gate results</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/docs-site-redesign/13-delivery-capture.svg" alt="04 Local Documentation Site Redesign">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>The site needed to move from a light documentation template to a dark product workbench without breaking publishing.</td><td>Generator, stylesheet, README, screenshot directory, and deploy workflow</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>After the first redesign, recipe details lacked enough density and the index lacked a task matrix.</td><td>npm run check</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Delete old files and make verification block old paths</td><td>verify-site.mjs</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>All 44 pages generated successfully, and recipe pages include evidence tables, command blocks, scorecards, and artifact packs.</td><td>Redesigned site, README screenshots, and quality-gate results</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: The site needed to move from a light documentation template to a dark product workbench without breaking publishing.
+First signal: After the first redesign, recipe details lacked enough density and the index lacked a task matrix.
+Correction: Delete old files and make verification block old paths
+Delivery: Redesigned site, README screenshots, and quality-gate results
+Human confirmation: README screenshots must match the current build.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

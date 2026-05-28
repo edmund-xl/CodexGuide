@@ -92,6 +92,53 @@
         <h1>05 Markdown 知识库重整</h1>
         <p>把散乱 Markdown 笔记整理成统一 frontmatter、主题索引和待补清单，并保留样本 diff 便于回退。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>同一主题有三个命名方式，部分笔记没有 owner 和 status。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>重整后的 Markdown 副本、index.md、pending-review.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/markdown-knowledge-base/13-delivery-capture.svg" alt="05 Markdown 知识库重整">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>散乱 Markdown 笔记需要按主题、状态和待补事项重整，且保留回退依据。</td><td>笔记副本、字段规则、样本文件、目标索引格式</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>同一主题有三个命名方式，部分笔记没有 owner 和 status。</td><td>missing-fields.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>只保留可证明日期，其他标待补</td><td>sample-diff.patch</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>12 篇笔记完成统一头部，索引能按主题和待补项检索。</td><td>重整后的 Markdown 副本、index.md、pending-review.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：散乱 Markdown 笔记需要按主题、状态和待补事项重整，且保留回退依据。
+第一信号：同一主题有三个命名方式，部分笔记没有 owner 和 status。
+修正：只保留可证明日期，其他标待补
+交付：重整后的 Markdown 副本、index.md、pending-review.md
+人工确认：原文只移动和补元数据，不删除正文。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -642,6 +689,53 @@ pending-review.md
         <p class="eyebrow">Recipes</p>
         <h1>05 Markdown Knowledge Base Restructure</h1>
         <p>Restructure scattered Markdown notes into consistent frontmatter, a topic index, and a pending list while keeping sample diffs for rollback.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The same topic had three naming styles and some notes had no owner or status.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>Restructured Markdown copy, index.md, and pending-review.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/markdown-knowledge-base/13-delivery-capture.svg" alt="05 Markdown Knowledge Base Restructure">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>Loose Markdown notes needed organization by topic, state, and missing items while preserving rollback evidence.</td><td>Notes copy, field rules, sample files, and target index format</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The same topic had three naming styles and some notes had no owner or status.</td><td>missing-fields.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Keep only provable dates and mark others pending</td><td>sample-diff.patch</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Twelve notes received consistent headers, and the index supports topic and missing-item lookup.</td><td>Restructured Markdown copy, index.md, and pending-review.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: Loose Markdown notes needed organization by topic, state, and missing items while preserving rollback evidence.
+First signal: The same topic had three naming styles and some notes had no owner or status.
+Correction: Keep only provable dates and mark others pending
+Delivery: Restructured Markdown copy, index.md, and pending-review.md
+Human confirmation: Original text is moved and annotated, not deleted.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

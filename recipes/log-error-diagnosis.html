@@ -92,6 +92,53 @@
         <h1>13 日志报错定位与修复建议</h1>
         <p>把构建或服务日志整理成根因假设、验证命令、最小修复、回退方式和复跑验收。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>错误信息指向旧路径，但搜索结果显示还有多个入口残留。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>diagnosis.md、validation-plan.md、fix-proposal.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/log-error-diagnosis/13-delivery-capture.svg" alt="13 日志报错定位与修复建议">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>本地检查失败，需要从日志定位最小修复，不扩大到无关重构。</td><td>错误上下文、失败命令、环境、最近改动、重现步骤</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>错误信息指向旧路径，但搜索结果显示还有多个入口残留。</td><td>npm run check</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>读取错误前后上下文</td><td>rg old-page</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>只改路径映射和入口链接，复跑检查通过。</td><td>diagnosis.md、validation-plan.md、fix-proposal.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：本地检查失败，需要从日志定位最小修复，不扩大到无关重构。
+第一信号：错误信息指向旧路径，但搜索结果显示还有多个入口残留。
+修正：读取错误前后上下文
+交付：diagnosis.md、validation-plan.md、fix-proposal.md
+人工确认：不要顺手重构无关代码。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -637,6 +684,53 @@
         <p class="eyebrow">Recipes</p>
         <h1>13 Log Error Diagnosis and Fix Proposal</h1>
         <p>Turn build or service logs into root-cause hypotheses, validation commands, minimal fix, rollback method, and rerun acceptance.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The error pointed to an old path, and search results showed several stale entries.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>diagnosis.md, validation-plan.md, and fix-proposal.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/log-error-diagnosis/13-delivery-capture.svg" alt="13 Log Error Diagnosis and Fix Proposal">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>A local check failed and needed minimal diagnosis from logs without expanding into unrelated refactors.</td><td>Error context, failing command, environment, recent changes, and reproduction steps</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The error pointed to an old path, and search results showed several stale entries.</td><td>npm run check</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Read context around the error</td><td>rg old-page</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Only path mapping and entry links were changed, and the rerun passed.</td><td>diagnosis.md, validation-plan.md, and fix-proposal.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: A local check failed and needed minimal diagnosis from logs without expanding into unrelated refactors.
+First signal: The error pointed to an old path, and search results showed several stale entries.
+Correction: Read context around the error
+Delivery: diagnosis.md, validation-plan.md, and fix-proposal.md
+Human confirmation: Do not opportunistically refactor unrelated code.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

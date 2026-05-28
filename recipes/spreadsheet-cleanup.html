@@ -92,6 +92,53 @@
         <h1>06 表格数据清洗与异常核对</h1>
         <p>对一份脱敏 CSV 做只读画像、异常分类、清理建议和人工复核表，保留原始行号便于追溯。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>总行数与有效订单数不一致，金额列存在负数和文本值。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>data-profile.md、anomalies.csv、review-sheet.csv</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/spreadsheet-cleanup/13-delivery-capture.svg" alt="06 表格数据清洗与异常核对">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>脱敏订单 CSV 出现空状态、异常金额和重复行，需要形成可复核清理建议。</td><td>脱敏 CSV、字段说明、金额和日期规则</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>总行数与有效订单数不一致，金额列存在负数和文本值。</td><td>data-profile.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>只标记异常，不自动删除</td><td>anomalies.csv</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>异常被分为 4 类，所有建议都保留原始行号。</td><td>data-profile.md、anomalies.csv、review-sheet.csv</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：脱敏订单 CSV 出现空状态、异常金额和重复行，需要形成可复核清理建议。
+第一信号：总行数与有效订单数不一致，金额列存在负数和文本值。
+修正：只标记异常，不自动删除
+交付：data-profile.md、anomalies.csv、review-sheet.csv
+人工确认：不直接覆盖原 CSV。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -638,6 +685,53 @@ original_row,field,type,value,suggestion
         <p class="eyebrow">Recipes</p>
         <h1>06 Spreadsheet Cleanup and Anomaly Review</h1>
         <p>Profile a redacted CSV read-only, classify anomalies, produce cleanup suggestions and a human review sheet, and keep original row numbers for traceability.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>Total rows and valid orders did not match, and the amount column contained negatives and text values.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>data-profile.md, anomalies.csv, and review-sheet.csv</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/spreadsheet-cleanup/13-delivery-capture.svg" alt="06 Spreadsheet Cleanup and Anomaly Review">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>A redacted order CSV had blank statuses, abnormal amounts, and duplicates needing reviewable cleanup suggestions.</td><td>Redacted CSV, field notes, amount and date rules</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>Total rows and valid orders did not match, and the amount column contained negatives and text values.</td><td>data-profile.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Flag anomalies without deleting</td><td>anomalies.csv</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Anomalies were split into four classes, with original row numbers preserved for every suggestion.</td><td>data-profile.md, anomalies.csv, and review-sheet.csv</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: A redacted order CSV had blank statuses, abnormal amounts, and duplicates needing reviewable cleanup suggestions.
+First signal: Total rows and valid orders did not match, and the amount column contained negatives and text values.
+Correction: Flag anomalies without deleting
+Delivery: data-profile.md, anomalies.csv, and review-sheet.csv
+Human confirmation: Do not overwrite the original CSV.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

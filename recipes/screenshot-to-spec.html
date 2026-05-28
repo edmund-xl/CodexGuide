@@ -92,6 +92,53 @@
         <h1>07 设计截图转实现规格</h1>
         <p>把目标截图和当前页面截图转成可执行改版规格，输出组件映射、状态表、风险项和截图验收方式。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>截图里按钮、筛选栏和表格密度没有文字规格。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>implementation-spec.md、component-checklist.md、acceptance-shots/</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/screenshot-to-spec/13-delivery-capture.svg" alt="07 设计截图转实现规格">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>只有目标截图和当前页面截图，需要转成开发可执行的组件规格。</td><td>目标截图、当前截图、可复用限制、视口清单</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>截图里按钮、筛选栏和表格密度没有文字规格。</td><td>implementation-spec.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>拆成 token、组件和验收项</td><td>component-checklist.md</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>输出 8 个组件、5 个状态、3 个断点的实现清单。</td><td>implementation-spec.md、component-checklist.md、acceptance-shots/</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：只有目标截图和当前页面截图，需要转成开发可执行的组件规格。
+第一信号：截图里按钮、筛选栏和表格密度没有文字规格。
+修正：拆成 token、组件和验收项
+交付：implementation-spec.md、component-checklist.md、acceptance-shots/
+人工确认：截图不能证明交互状态，缺失状态必须标为待确认。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -636,6 +683,53 @@
         <p class="eyebrow">Recipes</p>
         <h1>07 Design Screenshot to Implementation Spec</h1>
         <p>Turn target and current screenshots into an actionable redesign spec with component mapping, state table, risks, and screenshot acceptance.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>Buttons, filters, and table density were visible in screenshots but lacked written specs.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>implementation-spec.md, component-checklist.md, and acceptance-shots/</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/screenshot-to-spec/13-delivery-capture.svg" alt="07 Design Screenshot to Implementation Spec">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>Only target and current screenshots were available, requiring an implementable component specification.</td><td>Target screenshot, current screenshot, reuse constraints, and viewport list</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>Buttons, filters, and table density were visible in screenshots but lacked written specs.</td><td>implementation-spec.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Split into tokens, components, and acceptance checks</td><td>component-checklist.md</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>The output included an implementation checklist for eight components, five states, and three breakpoints.</td><td>implementation-spec.md, component-checklist.md, and acceptance-shots/</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: Only target and current screenshots were available, requiring an implementable component specification.
+First signal: Buttons, filters, and table density were visible in screenshots but lacked written specs.
+Correction: Split into tokens, components, and acceptance checks
+Delivery: implementation-spec.md, component-checklist.md, and acceptance-shots/
+Human confirmation: Screenshots cannot prove interaction states, so missing states must be marked for confirmation.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

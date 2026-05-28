@@ -92,6 +92,53 @@
         <h1>14 远程服务健康检查与修复建议</h1>
         <p>用脱敏健康日志和只读命令记录复盘一次服务异常，输出根因排序、修复建议、回退方式和复测清单。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>10:12 到 10:19 错误率升高，重启不是第一步。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>health-report.md、repair-plan.md、rollback-note.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/remote-service-health-check/13-delivery-capture.svg" alt="14 远程服务健康检查与修复建议">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>远程服务短时间内多次 5xx，需要只读确认健康状态并提出最小修复建议。</td><td>脱敏 healthz 响应、错误窗口、部署版本、只读命令输出</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>10:12 到 10:19 错误率升高，重启不是第一步。</td><td>evidence/healthz-window.txt</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>先用只读证据排序根因</td><td>evidence/config-delta.txt</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>只读确认超时集中在一个下游调用，给出限流和回滚两条建议。</td><td>health-report.md、repair-plan.md、rollback-note.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：远程服务短时间内多次 5xx，需要只读确认健康状态并提出最小修复建议。
+第一信号：10:12 到 10:19 错误率升高，重启不是第一步。
+修正：先用只读证据排序根因
+交付：health-report.md、repair-plan.md、rollback-note.md
+人工确认：只读检查不能擅自重启、扩容或改配置。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -638,6 +685,53 @@ healthz: HTTP 503, db_pool_wait_ms=4800
         <p class="eyebrow">Recipes</p>
         <h1>14 Remote Service Health Check and Fix Proposal</h1>
         <p>Use redacted health logs and read-only command records to review a service incident, then output root-cause ranking, fix proposal, rollback path, and retest checklist.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>Error rate rose from 10:12 to 10:19, and restart was not the first step.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>health-report.md, repair-plan.md, and rollback-note.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/remote-service-health-check/13-delivery-capture.svg" alt="14 Remote Service Health Check and Fix Proposal">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>A remote service produced repeated 5xx responses, requiring read-only health confirmation and minimal fix suggestions.</td><td>Redacted healthz response, error window, deployment version, and read-only command output</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>Error rate rose from 10:12 to 10:19, and restart was not the first step.</td><td>evidence/healthz-window.txt</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Rank causes with read-only evidence first</td><td>evidence/config-delta.txt</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Read-only checks showed timeouts concentrated in one downstream call, producing rate-limit and rollback options.</td><td>health-report.md, repair-plan.md, and rollback-note.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: A remote service produced repeated 5xx responses, requiring read-only health confirmation and minimal fix suggestions.
+First signal: Error rate rose from 10:12 to 10:19, and restart was not the first step.
+Correction: Rank causes with read-only evidence first
+Delivery: health-report.md, repair-plan.md, and rollback-note.md
+Human confirmation: Read-only checks must not restart, scale, or change configuration without approval.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

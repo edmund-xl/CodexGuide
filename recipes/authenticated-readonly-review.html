@@ -92,6 +92,53 @@
         <h1>08 登录态网页只读检查</h1>
         <p>在用户已登录的浏览器里只读检查页面状态，记录可见问题、禁点清单和待用户确认动作。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>页面含有导出和邀请按钮，必须明确不点击。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>readonly-review.md、safe-screenshots/、confirmations.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/authenticated-readonly-review/13-delivery-capture.svg" alt="08 登录态网页只读检查">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>登录态页面需要检查信息是否完整，但不能修改账号、配置或数据。</td><td>已登录页面、检查目标、禁点清单、截图脱敏规则</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>页面含有导出和邀请按钮，必须明确不点击。</td><td>readonly-review.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>后果不清楚就不点，列入待确认</td><td>no-click-controls.md</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>完成 6 个只读检查点，未触发表单提交或写入动作。</td><td>readonly-review.md、safe-screenshots/、confirmations.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：登录态页面需要检查信息是否完整，但不能修改账号、配置或数据。
+第一信号：页面含有导出和邀请按钮，必须明确不点击。
+修正：后果不清楚就不点，列入待确认
+交付：readonly-review.md、safe-screenshots/、confirmations.md
+人工确认：不要把登录态截图直接公开。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -635,6 +682,53 @@
         <p class="eyebrow">Recipes</p>
         <h1>08 Read-only Review of an Authenticated Web Page</h1>
         <p>Read page state in the user's signed-in browser, recording visible issues, no-click controls, and actions needing user confirmation.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The page included export and invite buttons that had to be explicitly avoided.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>readonly-review.md, safe-screenshots/, and confirmations.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/authenticated-readonly-review/13-delivery-capture.svg" alt="08 Read-only Review of an Authenticated Web Page">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>A signed-in page needed information review without changing account, settings, or data.</td><td>Signed-in page, review goal, no-click list, and screenshot redaction rules</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The page included export and invite buttons that had to be explicitly avoided.</td><td>readonly-review.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Do not click unclear controls; list them for confirmation</td><td>no-click-controls.md</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Six read-only checkpoints were completed without form submission or write actions.</td><td>readonly-review.md, safe-screenshots/, and confirmations.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: A signed-in page needed information review without changing account, settings, or data.
+First signal: The page included export and invite buttons that had to be explicitly avoided.
+Correction: Do not click unclear controls; list them for confirmation
+Delivery: readonly-review.md, safe-screenshots/, and confirmations.md
+Human confirmation: Do not publish signed-in screenshots directly.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

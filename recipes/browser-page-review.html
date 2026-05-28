@@ -92,6 +92,53 @@
         <h1>02 浏览器页面巡检与截图证据</h1>
         <p>用本地页面做一次只读巡检，记录桌面与手机视口、控制台状态、截图证据和问题优先级。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>手机截图里表格可滚动，但缺少明显滚动提示。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>page-review.md、screenshots/、console-summary.txt</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/browser-page-review/13-delivery-capture.svg" alt="02 浏览器页面巡检与截图证据">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。</td><td>目标 URL、主路径、视口尺寸、禁止动作</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>手机截图里表格可滚动，但缺少明显滚动提示。</td><td>home-desktop-1440.png</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>截图成为必检证据</td><td>case-mobile-390.png</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。</td><td>page-review.md、screenshots/、console-summary.txt</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。
+第一信号：手机截图里表格可滚动，但缺少明显滚动提示。
+修正：截图成为必检证据
+交付：page-review.md、screenshots/、console-summary.txt
+人工确认：页面可交付，但手机端表格滚动提示建议补强。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -635,6 +682,53 @@ P2 文字瑕疵：2 - 两处按钮文案可缩短
         <p class="eyebrow">Recipes</p>
         <h1>02 Browser Page Review with Screenshot Evidence</h1>
         <p>Run a read-only review of a local page, recording desktop and mobile viewports, console state, screenshot evidence, and issue priority.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The mobile screenshot showed the table could scroll, but the scroll cue was weak.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>page-review.md, screenshots/, and console-summary.txt</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/browser-page-review/13-delivery-capture.svg" alt="02 Browser Page Review with Screenshot Evidence">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>A local page was close to delivery and needed desktop, mobile, console, and table checks.</td><td>Target URL, primary path, viewport sizes, and prohibited actions</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The mobile screenshot showed the table could scroll, but the scroll cue was weak.</td><td>home-desktop-1440.png</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Make screenshots mandatory evidence</td><td>case-mobile-390.png</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>Page-level horizontal overflow was false, console errors were 0, and P0 issues were 0.</td><td>page-review.md, screenshots/, and console-summary.txt</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: A local page was close to delivery and needed desktop, mobile, console, and table checks.
+First signal: The mobile screenshot showed the table could scroll, but the scroll cue was weak.
+Correction: Make screenshots mandatory evidence
+Delivery: page-review.md, screenshots/, and console-summary.txt
+Human confirmation: The page is deliverable, but the mobile table scroll cue should be improved.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 

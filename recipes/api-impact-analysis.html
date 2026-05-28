@@ -92,6 +92,53 @@
         <h1>10 API 变更影响分析</h1>
         <p>把一份接口变更说明转成端点影响表、调用点清单、测试矩阵和发布风险，不直接修改代码。</p>
 
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>现场叙事</h2>
+          <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>第一信号</span>
+              <strong>字段名变化影响了 5 个调用点，其中 2 个在测试里。</strong>
+            </article>
+            <article>
+              <span>终审证据</span>
+              <strong>api-impact.md、call-sites.md、test-matrix.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/api-impact-analysis/13-delivery-capture.svg" alt="10 API 变更影响分析">
+          <figcaption>首屏证据图：结果片段、证据状态、成熟度、终审动作和交接事项放在同一张画面。</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>节点</th><th>现场判断</th><th>证据</th><th>下一步</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>问题触发</td><td>接口字段即将调整，需要判断页面、测试、文档和调用方会受哪些影响。</td><td>变更说明、版本号、端点名、字段名、错误码</td><td>先锁定材料和禁止动作。</td></tr>
+
+            <tr><td>第一信号</td><td>字段名变化影响了 5 个调用点，其中 2 个在测试里。</td><td>api-impact.md</td><td>只把可观察现象写进判断。</td></tr>
+
+            <tr><td>修正动作</td><td>强制输出 call-sites.md</td><td>call-sites.md</td><td>先做最小修正，再复测。</td></tr>
+
+            <tr><td>交付判断</td><td>影响表列出 owner、文件路径、修改建议和验证命令。</td><td>api-impact.md、call-sites.md、test-matrix.md</td><td>留下结果、证据和人工交接。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>触发：接口字段即将调整，需要判断页面、测试、文档和调用方会受哪些影响。
+第一信号：字段名变化影响了 5 个调用点，其中 2 个在测试里。
+修正：强制输出 call-sites.md
+交付：api-impact.md、call-sites.md、test-matrix.md
+人工确认：没有 owner 的调用点不能直接关闭。</code></pre>
+    </section>
+
     <dl class="doc-meta-grid">
 
         <div>
@@ -636,6 +683,53 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
         <p class="eyebrow">Recipes</p>
         <h1>10 API Change Impact Analysis</h1>
         <p>Turn API change notes into endpoint impact, call-site inventory, test matrix, and release risk without editing code directly.</p>
+
+    <section class="field-story-panel">
+      <div class="field-story-grid">
+        <div class="field-story-copy">
+          <h2>Field Story</h2>
+          <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+          <div class="field-story-kpis">
+            <article>
+              <span>First Signal</span>
+              <strong>The field rename affected five call sites, two of them in tests.</strong>
+            </article>
+            <article>
+              <span>Final Evidence</span>
+              <strong>api-impact.md, call-sites.md, and test-matrix.md</strong>
+            </article>
+          </div>
+        </div>
+        <figure class="story-proof-frame">
+          <img src="../assets/case-artifacts/api-impact-analysis/13-delivery-capture.svg" alt="10 API Change Impact Analysis">
+          <figcaption>First-screen proof: result sample, evidence status, maturity, final review, and handoff in one frame.</figcaption>
+        </figure>
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table field-story-table">
+        <thead>
+          <tr><th>Moment</th><th>Field Decision</th><th>Evidence</th><th>Next Step</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Trigger</td><td>An API field change was planned, requiring impact analysis across pages, tests, docs, and callers.</td><td>Change notes, version, endpoint names, fields, and error codes</td><td>Lock material scope and prohibited actions first.</td></tr>
+
+            <tr><td>First Signal</td><td>The field rename affected five call sites, two of them in tests.</td><td>api-impact.md</td><td>Use only observable signals in the decision.</td></tr>
+
+            <tr><td>Correction</td><td>Require call-sites.md</td><td>call-sites.md</td><td>Apply the smallest correction, then retest.</td></tr>
+
+            <tr><td>Delivery Decision</td><td>The impact table listed owner, file path, change suggestion, and verification command.</td><td>api-impact.md, call-sites.md, and test-matrix.md</td><td>Leave result, evidence, and human handoff.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <pre class="output-sample story-brief"><code>Trigger: An API field change was planned, requiring impact analysis across pages, tests, docs, and callers.
+First signal: The field rename affected five call sites, two of them in tests.
+Correction: Require call-sites.md
+Delivery: api-impact.md, call-sites.md, and test-matrix.md
+Human confirmation: Call sites without owners cannot be closed.</code></pre>
+    </section>
 
     <dl class="doc-meta-grid">
 
