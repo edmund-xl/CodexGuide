@@ -1,38 +1,69 @@
 # Codex Everyday Guide
 
-一个面向普通用户、创作者、个人开发者和小团队的 Codex 实践指南。项目采用静态 HTML 生成方式，目录、导航和页面格式参考主流文档站组织方式，但正文、案例、图片、样式和代码均为原创。
+Codex Everyday Guide is a professional, bilingual documentation site for practical Codex workflows.
 
-## 本地使用
+Codex Everyday Guide 是一个面向真实工作流的专业 Codex 双语文档站。
 
-生成静态站点：
+## Positioning / 项目定位
+
+This project is designed for everyday users, creators, individual developers, and small teams who want to use Codex with clear task boundaries, reviewable outputs, and repeatable safety practices.
+
+本项目面向普通用户、创作者、个人开发者和小团队，目标是用清晰的任务边界、可复查的交付物和可重复的安全实践来使用 Codex。
+
+## Documentation Standard / 文档标准
+
+Every generated page follows the same professional structure:
+
+每个生成页面都遵循同一套专业结构：
+
+- Scope and audience / 适用范围与读者
+- Prerequisites / 前置条件
+- Standard procedure / 标准流程
+- Deliverables / 交付物
+- Risk controls / 风险控制
+- Acceptance criteria / 验收标准
+- Chinese-English parallel content / 中英文对照内容
+
+## Local Build / 本地构建
 
 ```bash
 npm run build
+npm run check
+npm run verify
 ```
 
-直接打开：
+Preview with any static server:
 
-```text
-/Users/xinglei/Documents/New project 4/index.html
-```
-
-也可以用任意静态服务器预览：
+可用任意静态服务器预览：
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-## 项目结构
+Then open:
 
-- `scripts/generate-site.mjs`：站点内容、目录和页面生成器。
-- `index.html`：首页。
-- `guide/`：17 节系统教程。
-- `platform/`：入口地图。
-- `configuration/`：配置、安全和审批专题。
-- `practice/`、`reference/`、`contribute/`：实践方法、官方资料和共建路线图。
-- `recipes/`：13 个原创实战案例。
-- `assets/`：原创 SVG 图、Logo 和示意图。
+然后打开：
 
-## 合规边界
+```text
+http://127.0.0.1:4173/index.html
+```
 
-本项目不复制 `codexguide.ai` 或其他第三方项目的正文、代码、图片、截图、提示词模板或案例设定。目标站仅作为布局和目录层级参考；外部群聊入口已移除；实战案例已改为不同场景。详情见 [CLEANROOM.md](CLEANROOM.md)。
+## Project Structure / 项目结构
+
+- `scripts/generate-site.mjs`: bilingual static site generator / 双语静态站点生成器
+- `scripts/verify-site.mjs`: quality gate for bilingual coverage, links, acceptance criteria, and forbidden legacy keywords / 双语覆盖、链接、验收标准和禁用关键词质量检查
+- `guide/`: 17 structured guide chapters / 17 节结构化教程
+- `configuration/`: configuration and security topics / 配置与安全专题
+- `recipes/`: 13 original recipes / 13 个原创实战案例
+- `platform/`, `practice/`, `reference/`, `contribute/`: entry map, operating model, official references, and contribution roadmap / 入口地图、实践方法、官方资料和共建路线图
+- `assets/`: original SVG diagrams / 原创 SVG 图示
+
+## Clean-Room Boundary / 原创边界
+
+The project may use public sites as layout references, but the copy, examples, diagrams, CSS, JavaScript, and recipes in this repository are original.
+
+本项目可以参考公开网站的布局组织方式，但仓库中的正文、案例、图示、CSS、JavaScript 和实战场景均为原创。
+
+Dynamic product facts must be verified against official OpenAI sources before publication.
+
+所有动态产品事实在发布前都必须回到 OpenAI 官方来源核对。

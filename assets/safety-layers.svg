@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-labelledby="title desc">
-  <title id="title">Codex 安全边界分层</title>
-  <desc id="desc">任务说明、项目规则、沙盒审批、验证评审四层边界。</desc>
+  <title id="title">Codex safety layers</title>
+  <desc id="desc">Task brief, project rules, sandbox approvals, and verification review.</desc>
   <rect width="760" height="430" rx="20" fill="#151827"/>
-  <text x="54" y="72" fill="#fff" font-size="30" font-weight="800" font-family="Arial">Codex 安全边界分层</text>
-  <text x="54" y="101" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束任务风险。</text>
+  <text x="54" y="72" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界 / Safety Layers</text>
+  <text x="54" y="101" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
   <g font-family="Arial" font-weight="700">
     <rect x="72" y="150" width="616" height="54" rx="10" fill="#203238" stroke="#6bd2c7"/>
-    <text x="104" y="184" fill="#fff" font-size="18">1. 任务说明</text>
-    <text x="274" y="184" fill="#dce5ef" font-size="15">目标、范围、禁止事项、验收标准</text>
+    <text x="104" y="184" fill="#fff" font-size="18">1. Task brief</text>
+    <text x="274" y="184" fill="#dce5ef" font-size="15">目标 / Scope / Acceptance</text>
     <rect x="98" y="224" width="564" height="54" rx="10" fill="#232a56" stroke="#7187ff"/>
     <text x="132" y="258" fill="#fff" font-size="18">2. AGENTS.md</text>
-    <text x="314" y="258" fill="#dce5ef" font-size="15">项目结构、命令、风格、安全规则</text>
+    <text x="314" y="258" fill="#dce5ef" font-size="15">Commands / Style / Rules</text>
     <rect x="126" y="298" width="508" height="54" rx="10" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="158" y="332" fill="#fff" font-size="18">3. 沙盒与审批</text>
-    <text x="360" y="332" fill="#dce5ef" font-size="15">文件写入、网络、命令执行、授权确认</text>
+    <text x="158" y="332" fill="#fff" font-size="18">3. Approvals</text>
+    <text x="360" y="332" fill="#dce5ef" font-size="15">Files / Network / Commands</text>
     <rect x="154" y="362" width="452" height="44" rx="10" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="186" y="390" fill="#fff" font-size="17">4. 验证与评审</text>
-    <text x="360" y="390" fill="#dce5ef" font-size="14">测试、diff、人工 review、上线检查</text>
+    <text x="186" y="390" fill="#fff" font-size="17">4. Verification</text>
+    <text x="360" y="390" fill="#dce5ef" font-size="14">Tests / diff / review</text>
   </g>
 </svg>

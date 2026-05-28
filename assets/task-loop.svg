@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
-  <title id="title">Codex 高质量任务闭环</title>
-  <desc id="desc">说明、探索、实施、验证、复盘的任务闭环。</desc>
+  <title id="title">Codex task loop</title>
+  <desc id="desc">Brief, discovery, execution, verification, and retrospective.</desc>
   <rect width="900" height="430" rx="20" fill="#151827"/>
-  <text x="70" y="80" fill="#fff" font-size="36" font-weight="800" font-family="Arial">Codex 高质量任务闭环</text>
-  <text x="72" y="116" fill="#d6dde8" font-size="19" font-family="Arial">把一次任务拆成可观察、可验证、可复盘的工程循环。</text>
+  <text x="70" y="74" fill="#fff" font-size="32" font-weight="800" font-family="Arial">任务闭环 / Task Loop</text>
+  <text x="72" y="108" fill="#d6dde8" font-size="17" font-family="Arial">说明、探索、实施、验证、复盘 / Brief, discover, execute, verify, retrospect.</text>
   <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#8690a5" stroke-width="6"/>
   <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#8690a5" stroke-width="6"/>
   <g font-family="Arial" text-anchor="middle">
     <circle cx="195" cy="260" r="78" fill="#203238" stroke="#6bd2c7" stroke-width="4"/>
-    <text x="195" y="251" fill="#fff" font-size="27" font-weight="800">说明</text>
-    <text x="195" y="284" fill="#dce5ef" font-size="17">目标 / 范围 / 约束</text>
+    <text x="195" y="251" fill="#fff" font-size="24" font-weight="800">说明 Brief</text>
+    <text x="195" y="284" fill="#dce5ef" font-size="15">Scope / Constraints</text>
     <circle cx="420" cy="178" r="76" fill="#222b5c" stroke="#7187ff" stroke-width="4"/>
-    <text x="420" y="169" fill="#fff" font-size="27" font-weight="800">探索</text>
-    <text x="420" y="202" fill="#dce5ef" font-size="17">读材料 / 提计划</text>
+    <text x="420" y="169" fill="#fff" font-size="24" font-weight="800">探索 Discover</text>
+    <text x="420" y="202" fill="#dce5ef" font-size="15">Read / Plan</text>
     <circle cx="618" cy="218" r="76" fill="#2c245e" stroke="#9b8cff" stroke-width="4"/>
-    <text x="618" y="209" fill="#fff" font-size="27" font-weight="800">实施</text>
-    <text x="618" y="242" fill="#dce5ef" font-size="17">小步修改 / 控制 diff</text>
+    <text x="618" y="209" fill="#fff" font-size="24" font-weight="800">实施 Execute</text>
+    <text x="618" y="242" fill="#dce5ef" font-size="15">Small diffs</text>
     <circle cx="690" cy="330" r="70" fill="#3a3222" stroke="#f3bd4f" stroke-width="4"/>
-    <text x="690" y="322" fill="#fff" font-size="25" font-weight="800">验证</text>
-    <text x="690" y="352" fill="#dce5ef" font-size="16">测试 / 截图 / 检查</text>
+    <text x="690" y="322" fill="#fff" font-size="23" font-weight="800">验证 Verify</text>
+    <text x="690" y="352" fill="#dce5ef" font-size="15">Evidence</text>
     <circle cx="450" cy="336" r="70" fill="#111522" stroke="#475067" stroke-width="4"/>
-    <text x="450" y="328" fill="#fff" font-size="25" font-weight="800">复盘</text>
-    <text x="450" y="358" fill="#dce5ef" font-size="16">原因 / 模板 / 风险</text>
+    <text x="450" y="328" fill="#fff" font-size="23" font-weight="800">复盘 Retro</text>
+    <text x="450" y="358" fill="#dce5ef" font-size="15">Template / Risk</text>
   </g>
 </svg>

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/generate-site.mjs",
-    "check": "node --check script.js && node --check scripts/generate-site.mjs"
+    "check": "node --check script.js && node --check scripts/generate-site.mjs && node --check scripts/verify-site.mjs && npm run verify",
+    "verify": "node scripts/verify-site.mjs"
   },
   "license": "MIT"
 }
-

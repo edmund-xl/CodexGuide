@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
-  <title id="title">Codex 使用入口地图</title>
-  <desc id="desc">CLI、Cloud、IDE、Desktop App、ChatGPT 与集成生态入口示意。</desc>
+  <title id="title">Codex entry point map</title>
+  <desc id="desc">CLI, Cloud, IDE, Desktop App, ChatGPT, and integrations.</desc>
   <rect width="900" height="430" rx="20" fill="#151827"/>
   <rect x="38" y="38" width="824" height="354" rx="16" fill="#1d2231" stroke="#30384d"/>
-  <text x="70" y="86" fill="#fff" font-size="30" font-weight="700" font-family="Arial">Codex 使用入口地图</text>
-  <text x="70" y="115" fill="#c8d0da" font-size="16" font-family="Arial">同一套编程代理能力，在不同入口里承担不同节奏的任务。</text>
+  <text x="70" y="82" fill="#fff" font-size="28" font-weight="700" font-family="Arial">入口地图 / Entry Point Map</text>
+  <text x="70" y="113" fill="#c8d0da" font-size="16" font-family="Arial">按材料位置、风险等级和验收方式选择入口 / Choose by material, risk, and acceptance evidence.</text>
   <g font-family="Arial" font-weight="700">
     <rect x="70" y="155" width="160" height="92" rx="12" fill="#203238" stroke="#6bd2c7"/>
     <text x="92" y="190" fill="#fff" font-size="23">CLI</text>
-    <text x="92" y="219" fill="#c8d0da" font-size="14">终端内快速迭代</text>
+    <text x="92" y="219" fill="#c8d0da" font-size="14">Local iteration</text>
     <rect x="260" y="155" width="170" height="92" rx="12" fill="#232a56" stroke="#7187ff"/>
     <text x="282" y="190" fill="#fff" font-size="23">Cloud / Web</text>
-    <text x="282" y="219" fill="#c8d0da" font-size="14">长任务与异步回看</text>
+    <text x="282" y="219" fill="#c8d0da" font-size="14">Long-running tasks</text>
     <rect x="462" y="155" width="170" height="92" rx="12" fill="#2a2256" stroke="#9b8cff"/>
     <text x="484" y="190" fill="#fff" font-size="23">IDE</text>
-    <text x="484" y="219" fill="#c8d0da" font-size="14">贴近编辑器上下文</text>
+    <text x="484" y="219" fill="#c8d0da" font-size="14">Editor context</text>
     <rect x="664" y="155" width="166" height="92" rx="12" fill="#382f22" stroke="#f3bd4f"/>
     <text x="686" y="190" fill="#fff" font-size="23">Desktop App</text>
-    <text x="686" y="219" fill="#c8d0da" font-size="14">本地多任务工作台</text>
+    <text x="686" y="219" fill="#c8d0da" font-size="14">Local workbench</text>
     <rect x="172" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
-    <text x="204" y="325" fill="#fff" font-size="18">ChatGPT 中的 Codex</text>
+    <text x="204" y="325" fill="#fff" font-size="18">ChatGPT Codex</text>
     <rect x="478" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
-    <text x="520" y="325" fill="#fff" font-size="18">集成生态</text>
+    <text x="520" y="325" fill="#fff" font-size="18">Integrations</text>
   </g>
 </svg>
