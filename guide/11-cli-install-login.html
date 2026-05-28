@@ -124,6 +124,58 @@
 
 
 
+    <section class="tutorial-lab-panel">
+      <h2>实操验收面板</h2>
+      <p>把本节从阅读变成一次可检查练习：先锁定材料，再执行一个小动作，最后留下证据和失败分支。</p>
+      <div class="tutorial-lab-stats">
+
+          <article>
+            <span>入口</span>
+            <strong>CLI / IDE / 本地仓库</strong>
+          </article>
+
+          <article>
+            <span>材料</span>
+            <strong>演示仓库、测试命令、回退提交</strong>
+          </article>
+
+          <article>
+            <span>证据</span>
+            <strong>diff、命令输出、测试结果</strong>
+          </article>
+
+          <article>
+            <span>完成信号</span>
+            <strong>检查命令通过且 diff 可解释</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table tutorial-evidence-table">
+        <thead>
+          <tr><th>检查点</th><th>动作</th><th>证据</th><th>完成判断</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务单</td><td>目标写成“11 CLI 安装与登录”，限定只处理一个低风险材料。</td><td>brief.txt 或任务消息截图</td><td>范围含材料、禁止动作和验收方式。</td></tr>
+
+            <tr><td>执行记录</td><td>先让 Codex 读结构并给计划，再批准一个小改动。</td><td>plan.md、diff、命令输出</td><td>能看出 Codex 做了什么、为什么做、改了哪里。</td></tr>
+
+            <tr><td>失败分支</td><td>如果结果含糊、越权或无法验收，停止继续扩大任务。</td><td>blocked-note.md 或人工备注</td><td>记录卡点、保留现场、重新缩小任务。</td></tr>
+
+            <tr><td>验收动作</td><td>运行本节相关检查命令或打开 diff 逐项确认。</td><td>test-output.txt / diff-review.md</td><td>有通过项、待确认项和下一步动作。</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>可复用任务单</h3>
+      <pre class="output-sample tutorial-brief"><code>任务：11 CLI 安装与登录
+材料：演示仓库或本地副本
+限制：不发送、不删除、不覆盖原始材料
+步骤：先说明计划，再执行一个小动作，最后列出证据
+验收：给出结果文件、截图或命令输出，并标出待确认项</code></pre>
+    </section>
           <section>
             <h2>适用范围与读者</h2>
             <p>从终端启动 Codex，确认本地仓库和命令执行边界。</p>
@@ -231,6 +283,58 @@
 
 
 
+    <section class="tutorial-lab-panel">
+      <h2>Hands-on Acceptance Panel</h2>
+      <p>Turn this chapter from reading into a checkable exercise: lock the material, run one small action, then leave evidence and failure branches.</p>
+      <div class="tutorial-lab-stats">
+
+          <article>
+            <span>Entry</span>
+            <strong>CLI / IDE / local repository</strong>
+          </article>
+
+          <article>
+            <span>Material</span>
+            <strong>Demo repository, test command, rollback commit</strong>
+          </article>
+
+          <article>
+            <span>Evidence</span>
+            <strong>Diff, command output, test result</strong>
+          </article>
+
+          <article>
+            <span>Done Signal</span>
+            <strong>Checks pass and the diff is explainable</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table tutorial-evidence-table">
+        <thead>
+          <tr><th>Checkpoint</th><th>Action</th><th>Evidence</th><th>Done Decision</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Work Order</td><td>Set the objective to &quot;11 Install and sign in to the CLI&quot; and limit it to one low-risk material.</td><td>brief.txt or task-message screenshot</td><td>Scope includes material, prohibited actions, and acceptance method.</td></tr>
+
+            <tr><td>Run Record</td><td>Ask Codex to inspect structure and plan before approving one small edit.</td><td>plan.md, diff, command output</td><td>It is clear what Codex did, why it did it, and what changed.</td></tr>
+
+            <tr><td>Failure Branch</td><td>If the result is vague, over-scoped, or not checkable, stop expanding the task.</td><td>blocked-note.md or human note</td><td>Record the blocker, keep the state, and narrow the task.</td></tr>
+
+            <tr><td>Acceptance Action</td><td>Run the relevant check command or inspect the diff item by item.</td><td>test-output.txt / diff-review.md</td><td>There are passed items, confirmation items, and a next action.</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <h3>Reusable Work Order</h3>
+      <pre class="output-sample tutorial-brief"><code>Task: 11 Install and sign in to the CLI
+Material: demo repository or local duplicate
+Constraints: do not send, delete, or overwrite original material
+Steps: explain the plan first, run one small action, then list evidence
+Acceptance: provide result file, screenshot, or command output, and mark confirmation items</code></pre>
+    </section>
           <section>
             <h2>Scope and audience</h2>
             <p>Start Codex from the terminal and confirm local repository and command execution boundaries.</p>

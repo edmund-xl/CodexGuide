@@ -1512,6 +1512,71 @@ function statusMeta(audience, duration, risk = b("低到中", "Low to medium")) 
   ];
 }
 
+function tutorialLab(titleZh, titleEn, summaryZh, summaryEn, index = 0) {
+  const isDeveloper = index >= 10;
+  const entry = isDeveloper ? b("CLI / IDE / 本地仓库", "CLI / IDE / local repository") : b("桌面端 / 浏览器 / 本地文件夹", "Desktop app / browser / local folder");
+  const material = isDeveloper ? b("演示仓库、测试命令、回退提交", "Demo repository, test command, rollback commit") : b("脱敏副本、截图、人工清单", "Redacted duplicate, screenshot, manual checklist");
+  const evidence = isDeveloper ? b("diff、命令输出、测试结果", "Diff, command output, test result") : b("任务记录、截图、结果文件", "Task log, screenshot, result file");
+  const done = isDeveloper ? b("检查命令通过且 diff 可解释", "Checks pass and the diff is explainable") : b("结果可打开、可复核、待确认项已标记", "Result opens, is reviewable, and confirmation items are marked");
+
+  return {
+    title: b("实操验收面板", "Hands-on Acceptance Panel"),
+    summary: b(
+      "把本节从阅读变成一次可检查练习：先锁定材料，再执行一个小动作，最后留下证据和失败分支。",
+      "Turn this chapter from reading into a checkable exercise: lock the material, run one small action, then leave evidence and failure branches."
+    ),
+    stats: [
+      [b("入口", "Entry"), entry],
+      [b("材料", "Material"), material],
+      [b("证据", "Evidence"), evidence],
+      [b("完成信号", "Done Signal"), done]
+    ],
+    evidenceRows: [
+      [
+        b("任务单", "Work Order"),
+        b(`目标写成“${titleZh}”，限定只处理一个低风险材料。`, `Set the objective to "${titleEn}" and limit it to one low-risk material.`),
+        b("brief.txt 或任务消息截图", "brief.txt or task-message screenshot"),
+        b("范围含材料、禁止动作和验收方式。", "Scope includes material, prohibited actions, and acceptance method.")
+      ],
+      [
+        b("执行记录", "Run Record"),
+        b(isDeveloper ? "先让 Codex 读结构并给计划，再批准一个小改动。" : "先让 Codex 说明会读取什么，再批准一个小检查或整理动作。", isDeveloper ? "Ask Codex to inspect structure and plan before approving one small edit." : "Ask Codex to state what it will read before approving one small check or cleanup."),
+        b(isDeveloper ? "plan.md、diff、命令输出" : "run-notes.md、截图、结果文件", isDeveloper ? "plan.md, diff, command output" : "run-notes.md, screenshot, result file"),
+        b("能看出 Codex 做了什么、为什么做、改了哪里。", "It is clear what Codex did, why it did it, and what changed.")
+      ],
+      [
+        b("失败分支", "Failure Branch"),
+        b("如果结果含糊、越权或无法验收，停止继续扩大任务。", "If the result is vague, over-scoped, or not checkable, stop expanding the task."),
+        b("blocked-note.md 或人工备注", "blocked-note.md or human note"),
+        b("记录卡点、保留现场、重新缩小任务。", "Record the blocker, keep the state, and narrow the task.")
+      ],
+      [
+        b("验收动作", "Acceptance Action"),
+        b(isDeveloper ? "运行本节相关检查命令或打开 diff 逐项确认。" : "打开结果文件或截图，按清单逐项确认。", isDeveloper ? "Run the relevant check command or inspect the diff item by item." : "Open the result file or screenshot and verify each checklist item."),
+        b(isDeveloper ? "test-output.txt / diff-review.md" : "acceptance-checklist.md", isDeveloper ? "test-output.txt / diff-review.md" : "acceptance-checklist.md"),
+        b("有通过项、待确认项和下一步动作。", "There are passed items, confirmation items, and a next action.")
+      ]
+    ],
+    brief: b(
+      [
+        `任务：${titleZh}`,
+        `材料：${isDeveloper ? "演示仓库或本地副本" : "脱敏文件副本或本地页面"}`,
+        "限制：不发送、不删除、不覆盖原始材料",
+        "步骤：先说明计划，再执行一个小动作，最后列出证据",
+        "验收：给出结果文件、截图或命令输出，并标出待确认项"
+      ].join("\n"),
+      [
+        `Task: ${titleEn}`,
+        `Material: ${isDeveloper ? "demo repository or local duplicate" : "redacted file duplicate or local page"}`,
+        "Constraints: do not send, delete, or overwrite original material",
+        "Steps: explain the plan first, run one small action, then list evidence",
+        "Acceptance: provide result file, screenshot, or command output, and mark confirmation items"
+      ].join("\n")
+    ),
+    summaryLine: b(summaryZh, summaryEn)
+  };
+}
+
 function addOverviewPage() {
   addPage({
     path: "guide/00-overview.html",
@@ -1520,6 +1585,7 @@ function addOverviewPage() {
     group: b("教程", "Guide"),
     summary: b("用三条路线覆盖普通用户、个人开发者和团队落地。读者不需要一次读完整站，应先选择与当前任务最接近的路径。", "Use three routes for everyday users, individual developers, and team adoption. Readers should start with the route closest to the task at hand instead of reading the whole site first."),
     meta: statusMeta(b("普通用户、开发者、团队负责人", "Everyday users, developers, and team leads"), b("15 分钟", "15 minutes")),
+    tutorialLab: tutorialLab("学习路线", "Learning Path", "用三条路线选择第一组可执行页面。", "Choose the first executable pages with three routes.", 0),
     sections: [
       section(
         b("路线一：第一次使用 Codex", "Route 1: First-time Codex user"),
@@ -1816,6 +1882,7 @@ function addTutorialPages() {
       group: b("教程", "Guide"),
       summary: b(summaryZh, summaryEn),
       meta: statusMeta(b(index >= 10 ? "个人开发者、维护者" : "普通用户、创作者、运营人员", index >= 10 ? "Individual developers and maintainers" : "Everyday users, creators, and operators"), b(durationZh, durationEn), b(index >= 10 ? "中" : "低", index >= 10 ? "Medium" : "Low")),
+      tutorialLab: tutorialLab(titleZh, titleEn, summaryZh, summaryEn, index),
       sections: tutorialSections(titleZh, titleEn, summaryZh, summaryEn, durationZh, durationEn, index),
       links: [
         index < tutorials.length - 1
@@ -2634,6 +2701,31 @@ function handoffPanel(recipe, lang) {
     </div>`;
 }
 
+function tutorialLabPanel(lab, lang) {
+  const isZh = lang === "zh";
+  return `
+    <section class="tutorial-lab-panel">
+      <h2>${escapeHtml(textOf(lab.title, lang))}</h2>
+      ${paragraph(lab.summary, lang)}
+      <div class="tutorial-lab-stats">
+        ${lab.stats.map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+      ${tableHtml([
+        b("检查点", "Checkpoint"),
+        b("动作", "Action"),
+        b("证据", "Evidence"),
+        b("完成判断", "Done Decision")
+      ], lab.evidenceRows, lang, "evidence-table tutorial-evidence-table")}
+      <h3>${isZh ? "可复用任务单" : "Reusable Work Order"}</h3>
+      ${codeSample(lab.brief, lang, "output-sample tutorial-brief")}
+    </section>`;
+}
+
 function acceptanceLedgerPanel(recipe, lang) {
   const ledger = acceptanceLedger(recipe);
   const isZh = lang === "zh";
@@ -3445,7 +3537,7 @@ function docPage(page) {
         ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(textOf(page.title, lang))}">` : ""}
         ${page.caseIndex ? caseIndexContent(lang) : ""}
         ${page.caseRecipe ? caseContent(page.caseRecipe, lang) : ""}
-        ${page.sections.map((item) => `
+        ${page.tutorialLab ? tutorialLabPanel(page.tutorialLab, lang) : ""}${page.sections.map((item) => `
           <section>
             <h2>${escapeHtml(textOf(item.title, lang))}</h2>
             ${paragraph(item.body, lang)}

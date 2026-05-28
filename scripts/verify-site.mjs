@@ -282,6 +282,13 @@ for (const file of htmlFiles) {
       }
     }
   }
+  if (file.startsWith("guide/")) {
+    for (const marker of ["实操验收面板", "Hands-on Acceptance Panel", "tutorial-lab-panel", "tutorial-lab-stats", "tutorial-evidence-table", "tutorial-brief", "失败分支", "Failure Branch"]) {
+      if (!html.includes(marker)) {
+        errors.push(`${file}: missing tutorial lab marker ${marker}.`);
+      }
+    }
+  }
   for (const oldSlug of oldRecipeSlugs) {
     if (html.includes(oldSlug)) {
       errors.push(`${file}: contains old recipe slug ${oldSlug}.`);

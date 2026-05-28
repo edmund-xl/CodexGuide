@@ -63,6 +63,10 @@ https://edmund-xl.github.io/CodexGuide/
 
 ![案例总览截图](assets/screenshots/recipes-index.png)
 
+第一次任务教程展示实操验收面板、证据表、失败分支和可复用任务单。
+
+![第一次任务教程截图](assets/screenshots/guide-first-task.png)
+
 部署诊断案例的交付截图展示结果片段、证据状态、成熟度、终审动作和人工交接。
 
 ![部署诊断案例截图](assets/screenshots/case-pages-deploy-diagnosis.png)
@@ -159,6 +163,10 @@ The home page shows the dark product interface, recipe-library status panel, del
 The recipe index shows a tool-tested task matrix split by entry, evidence, deliverable, risk, and maturity, with a recipe-library health report entry.
 
 ![Recipe index screenshot](assets/screenshots/recipes-index.png)
+
+The first-task guide shows the hands-on acceptance panel, evidence table, failure branch, and reusable work order.
+
+![First-task guide screenshot](assets/screenshots/guide-first-task.png)
 
 The deployment diagnosis delivery capture shows result snippets, evidence status, maturity, final review, and human handoff.
 
