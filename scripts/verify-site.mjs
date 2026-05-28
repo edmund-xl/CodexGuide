@@ -3,7 +3,21 @@ import path from "node:path";
 
 const root = process.cwd();
 const expectedHtmlPages = 43;
+const phrase = (...codes) => String.fromCodePoint(...codes);
 const forbiddenPatterns = [
+  ["codex", "guide", "\\.ai"],
+  ["free", "style", "fly"],
+  ["Clean", "-room"],
+  ["clean", "-room"],
+  ["CLEAN", "ROOM"],
+  phrase(0x539f, 0x521b, 0x8fb9, 0x754c),
+  phrase(0x53c2, 0x8003, 0x6765, 0x6e90),
+  phrase(0x6765, 0x6e90, 0x4e0e, 0x81f4, 0x8c22),
+  phrase(0x81f4, 0x8c22),
+  ["Sources", " and ", "Credits"],
+  ["Sources", " and ", "credits"],
+  phrase(0x5916, 0x90e8, 0x8d44, 0x6599),
+  phrase(0x72ec, 0x7acb, 0x7f16, 0x5199),
   ["交", "流", "群"],
   ["codex", "交", "流", "群"],
   ["苍", "何"],
@@ -14,7 +28,7 @@ const forbiddenPatterns = [
   ["Hyper", "Frames"],
   ["飞", "书"],
   ["DK", "File"]
-].map((parts) => new RegExp(parts.join(""), "i"));
+].map((value) => new RegExp(Array.isArray(value) ? value.join("") : value, "i"));
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {

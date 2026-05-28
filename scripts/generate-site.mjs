@@ -7,7 +7,7 @@ const expectedPageCount = 43;
 
 const b = (zh, en) => ({ zh, en });
 
-const officialSources = [
+const officialDocs = [
   {
     label: "OpenAI Codex",
     url: "https://openai.com/codex/",
@@ -67,7 +67,7 @@ const configPages = [
 
 const resourcePages = [
   ["practice/index.html", "实践方法", "Operating model", "把每次任务拆成说明、探索、实施、验证和复盘五段，形成可复用工作法。", "Split every task into brief, discovery, execution, verification, and retrospective to create a reusable operating model."],
-  ["reference/index.html", "官方资料", "Official references", `最后核对：${verifiedDate}。所有功能、价格、限额、模型和安全策略以 OpenAI 官方资料为准。`, `Last checked: ${verifiedDate}. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI sources.`],
+  ["reference/index.html", "官方文档", "Official Documentation", `最后核对：${verifiedDate}。所有功能、价格、限额、模型和安全策略以 OpenAI 官方文档为准。`, `Last checked: ${verifiedDate}. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI documentation.`],
   ["contribute/roadmap.html", "共建路线图", "Contribution roadmap", "用 Issue、PR、验收清单和事实核对流程维护一个可持续开源文档项目。", "Maintain a sustainable open-source documentation project with issues, pull requests, acceptance checklists, and fact checks."]
 ];
 
@@ -85,7 +85,7 @@ const recipes = [
   ["recipes/support-triage.html", "11 Codex × Support Inbox：汇总客服问题", "11 Codex × Support Inbox: Triage support feedback", "把用户反馈归类为缺陷、疑问、账单和体验建议。", "Classify user feedback into defects, questions, billing, and experience suggestions.", "客户支持", "Customer support"],
   ["recipes/markdown-knowledge-base.html", "12 Codex × Markdown KB：重整知识库字段", "12 Codex × Markdown KB: Normalize a Markdown knowledge base", "把散乱笔记迁移成统一 frontmatter 和目录索引。", "Migrate scattered notes into consistent frontmatter and an index.", "知识管理", "Knowledge management"],
   ["recipes/github-release.html", "13 Codex × GitHub Releases：生成发布说明", "13 Codex × GitHub Releases: Generate release notes", "从提交、Issue 和 PR 摘要整理可发布的 changelog。", "Produce a publishable changelog from commits, issues, and PR summaries.", "开源发布", "Open-source release"],
-  ["recipes/credits.html", "参考来源与致谢", "Sources and credits", "说明官方来源、原创边界和可复用许可。", "Document official sources, clean-room boundaries, and reuse license.", "项目治理", "Project governance"]
+  ["recipes/usage-policy.html", "使用规范", "Usage Policy", "说明隐私、安全、人工复核和发布前确认要求。", "Document privacy, safety, human review, and pre-publication confirmation requirements.", "项目治理", "Project governance"]
 ];
 
 const recipeNavPages = [["recipes/index.html", "案例总览", "Recipe index"], ...recipes.map(([pathName, zh, en]) => [pathName, zh, en])];
@@ -238,7 +238,7 @@ function addConfigurationPages() {
       ],
       links: [
         link("guide/15-sandbox-approvals.html", "继续看沙盒与审批", "Continue to sandbox and approvals"),
-        link("reference/index.html", "查看官方资料", "Review official references")
+        link("reference/index.html", "查看官方文档", "Review official documentation")
       ]
     });
   }
@@ -284,29 +284,29 @@ function addResourcePages() {
 
   addPage({
     path: "reference/index.html",
-    title: b("官方资料", "Official References"),
-    navTitle: b("官方资料", "Official References"),
+    title: b("官方文档", "Official Documentation"),
+    navTitle: b("官方文档", "Official Documentation"),
     group: b("资源", "Resources"),
-    summary: b(`最后核对：${verifiedDate}。功能、价格、限额、模型和安全策略必须回到 OpenAI 官方资料核对。`, `Last checked: ${verifiedDate}. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI sources.`),
+    summary: b(`最后核对：${verifiedDate}。功能、价格、限额、模型和安全策略必须回到 OpenAI 官方文档核对。`, `Last checked: ${verifiedDate}. Product behavior, pricing, limits, models, and safety policy must be validated against official OpenAI documentation.`),
     meta: statusMeta(b("文档维护者、团队管理员", "Documentation maintainers and team administrators"), b("15 分钟", "15 minutes"), b("中", "Medium")),
     sections: [
       section(
-        b("资料使用规则", "Source usage policy"),
-        b("本站只概括官方事实，不复刻官方文案。涉及动态信息时必须保留核对日期，并在发布前重新打开官方页面确认。", "This site summarizes official facts but does not reproduce official copy. Dynamic facts must include a verification date and must be checked again before publication."),
+        b("官方文档使用规则", "Official documentation policy"),
+        b("本站只概括产品事实，不复刻官方文案。涉及动态信息时必须保留核对日期，并在发布前重新打开官方页面确认。", "This site summarizes product facts but does not reproduce official copy. Dynamic facts must include a verification date and must be checked again before publication."),
         [
           b("不要把价格、额度、模型默认值写成永久结论。", "Do not present pricing, quota, or default model information as permanent."),
-          b("不要把帮助中心、开发者文档和产品页混为同一类证据。", "Do not treat Help Center, developer docs, and product pages as the same evidence type."),
+          b("不要把帮助中心、开发者文档和产品页混为同一类依据。", "Do not treat Help Center, developer docs, and product pages as the same validation basis."),
           b("高风险建议必须保守，并提示读者遵守组织政策。", "High-risk guidance must be conservative and remind readers to follow organizational policy.")
         ]
       ),
       section(
         b("官方链接", "Official links"),
         b("以下页面用于核对 Codex 定位、CLI、本地权限、云端联网、计划设置和代码生成建议。", "Use the following pages to validate Codex positioning, CLI behavior, local permissions, cloud internet access, plan settings, and code-generation guidance."),
-        officialSources.map((source) => b(`<a href="${source.url}">${source.label}</a>：${source.purpose.zh}`, `<a href="${source.url}">${source.label}</a>: ${source.purpose.en}`))
+        officialDocs.map((item) => b(`<a href="${item.url}">${item.label}</a>：${item.purpose.zh}`, `<a href="${item.url}">${item.label}</a>: ${item.purpose.en}`))
       )
     ],
     links: [
-      link("recipes/credits.html", "来源与致谢", "Sources and credits"),
+      link("recipes/usage-policy.html", "使用规范", "Usage policy"),
       link("contribute/roadmap.html", "参与共建", "Contribute")
     ]
   });
@@ -321,7 +321,7 @@ function addResourcePages() {
     sections: [
       section(
         b("贡献优先级", "Contribution priorities"),
-        b("优先补充能被验证、能被读者复用、能降低风险的内容。不要提交外部项目的复制内容，也不要把外部社交入口作为文档主体。", "Prioritize content that can be verified, reused by readers, and used to reduce risk. Do not submit copied material from outside projects or make external social entry points part of the documentation body."),
+        b("优先补充能被验证、能被读者复用、能降低风险的内容。不要提交未经授权的材料，也不要把外部社交入口作为文档主体。", "Prioritize content that can be verified, reused by readers, and used to reduce risk. Do not submit unauthorized material or make external social entry points part of the documentation body."),
         [
           b("补充每篇教程的真实截图占位和检查证据。", "Add screenshot placeholders and verification evidence for each guide."),
           b("为案例增加输入材料模板。", "Add input-material templates for recipes."),
@@ -330,17 +330,17 @@ function addResourcePages() {
       ),
       section(
         b("PR 验收要求", "Pull request acceptance requirements"),
-        b("每个 PR 都应说明修改意图、事实来源、验证方式和影响范围。内容类 PR 必须同时维护中文和英文。", "Every PR should describe intent, factual sources, verification method, and impact. Content PRs must maintain both Chinese and English."),
+        b("每个 PR 都应说明修改意图、事实依据、验证方式和影响范围。内容类 PR 必须同时维护中文和英文。", "Every PR should describe intent, factual basis, verification method, and impact. Content PRs must maintain both Chinese and English."),
         [
           b("通过本地构建、链接检查和双语覆盖检查。", "Pass local build, link validation, and bilingual coverage checks."),
-          b("新增事实必须附官方来源。", "New factual claims must include official sources."),
-          b("新增案例必须使用原创场景。", "New recipes must use original scenarios.")
+          b("新增事实必须附官方文档依据。", "New factual claims must include official documentation basis."),
+          b("新增案例必须使用自有场景或中性演示材料。", "New recipes must use owned scenarios or neutral demo materials.")
         ]
       )
     ],
     links: [
       link("CONTRIBUTING.md", "贡献指南", "Contributing guide"),
-      link("recipes/credits.html", "来源与致谢", "Sources and credits")
+      link("recipes/usage-policy.html", "使用规范", "Usage policy")
     ]
   });
 }
@@ -364,7 +364,7 @@ function tutorialSections(titleZh, titleEn, summaryZh, summaryEn, durationZh, du
       b("开始前先准备一个受控工作区，并明确哪些内容可以让 Codex 读取或修改。", "Before starting, prepare a controlled workspace and define what Codex may read or modify."),
       [
         b("准备一个非敏感示例文件夹或演示仓库。", "Prepare a non-sensitive sample folder or demo repository."),
-        b("确认可以回退：保留原件、备份或 Git 提交。", "Confirm rollback: keep originals, backups, or a Git commit."),
+        b("确认可以回退：保留原文件、备份或 Git 提交。", "Confirm rollback: keep initial files, backups, or a Git commit."),
         b("准备验收方式：清单、截图、测试、diff 或人工 Review。", "Prepare an acceptance method: checklist, screenshot, test, diff, or human review.")
       ]
     ),
@@ -446,13 +446,13 @@ function recipeSections(recipe, index) {
       b("输入材料必须最小化、可追溯、可删除。不要把完成任务不需要的私人信息交给 Codex。", "Input materials must be minimized, traceable, and removable. Do not provide private information that is not required for the task."),
       [
         b("任务说明：目标、受众、输出格式和限制条件。", "Task brief: objective, audience, output format, and constraints."),
-        b("来源材料：只包含完成案例所需的文件、链接或摘录。", "Source material: only files, links, or excerpts needed for the recipe."),
+        b("任务材料：只包含完成案例所需的文件、链接或摘录。", "Task material: only files, links, or excerpts needed for the recipe."),
         b("验收清单：事实、格式、风险和缺口。", "Acceptance checklist: facts, format, risks, and gaps.")
       ]
     ),
     section(
       b("执行流程", "Workflow"),
-      b("让 Codex 先做结构化分析，再生成草稿。不要让它跳过来源核对或不确定事项标注。", "Ask Codex to perform structured analysis before drafting. Do not let it skip source checks or uncertainty labels."),
+      b("让 Codex 先做结构化分析，再生成草稿。不要让它跳过材料核对或不确定事项标注。", "Ask Codex to perform structured analysis before drafting. Do not let it skip material checks or uncertainty labels."),
       [
         b(`用一句话说明案例：“${titleZh}”。`, `Describe the recipe in one sentence: "${titleEn}".`),
         b("要求 Codex 先列出材料清单和处理步骤。", "Ask Codex to list materials and processing steps first."),
@@ -465,7 +465,7 @@ function recipeSections(recipe, index) {
       b("提示词应像工作单一样清晰，明确 Codex 不能越权补充事实。", "The prompt should read like a work order and explicitly prohibit Codex from inventing unsupported facts."),
       [
         b("请先说明你会读取哪些材料，以及每份材料的用途。", "First state which materials you will read and how each will be used."),
-        b("不要补充来源之外的事实；缺失内容请标注为待确认。", "Do not add facts outside the sources; mark missing content as to be confirmed."),
+        b("不要补充输入材料之外的事实；缺失内容请标注为待确认。", "Do not add facts outside the provided inputs; mark missing content as to be confirmed."),
         b("输出必须包含正文、检查清单和下一步建议。", "The output must include the body, a review checklist, and recommended next steps.")
       ]
     ),
@@ -482,7 +482,7 @@ function recipeSections(recipe, index) {
       b("验收标准", "Acceptance criteria"),
       b("案例完成不等于内容完美，而是达到可审阅、可修改、可追溯的标准。", "A recipe is complete when it is reviewable, editable, and traceable, not when it looks perfect."),
       [
-        b("所有关键事实都能回到来源材料。", "All key facts can be traced back to source material."),
+        b("所有关键事实都能回到输入材料。", "All key facts can be traced back to the provided inputs."),
         b("输出没有未经确认的承诺、金额、日期或账号动作。", "The output contains no unconfirmed promises, amounts, dates, or account actions."),
         b("读者能根据交付物继续人工编辑或发布。", "A human can continue editing or publishing from the deliverable."),
         b("风险和限制被显式列出。", "Risks and limitations are explicitly listed.")
@@ -512,7 +512,7 @@ function addRecipePages() {
       ),
       section(
         b("案例清单", "Recipe list"),
-        b("以下案例使用原创场景，覆盖内容、资料、文件、网页、支持和开源发布流程。", "The following recipes use original scenarios across content, data, files, web quality, support, and open-source release workflows."),
+        b("以下案例使用中性的演示场景，覆盖内容、资料、文件、网页、支持和开源发布流程。", "The following recipes use neutral demo scenarios across content, data, files, web quality, support, and open-source release workflows."),
         recipes.slice(0, 13).map(([pathName, zh, en]) => b(`<a href="${relativeLink("recipes/index.html", pathName)}">${zh}</a>`, `<a href="${relativeLink("recipes/index.html", pathName)}">${en}</a>`))
       )
     ],
@@ -535,38 +535,42 @@ function addRecipePages() {
       links: [
         index < 12
           ? link(recipes[index + 1][0], "下一个案例", "Next recipe")
-          : link("recipes/credits.html", "来源与致谢", "Sources and credits"),
+          : link("recipes/usage-policy.html", "使用规范", "Usage policy"),
         link("recipes/index.html", "返回案例总览", "Back to recipe index")
       ]
     });
   });
 
   addPage({
-    path: "recipes/credits.html",
-    title: b("参考来源与致谢", "Sources and Credits"),
-    navTitle: b("参考来源与致谢", "Sources and Credits"),
+    path: "recipes/usage-policy.html",
+    title: b("使用规范", "Usage Policy"),
+    navTitle: b("使用规范", "Usage Policy"),
     group: b("实战案例", "Recipes"),
-    summary: b("本站内容、案例和视觉资产均为独立编写和制作。外部资料只用于事实核对，不作为页面底稿。", "The content, examples, and visual assets are independently written and produced. External materials are used only for fact checking, not as source drafts."),
+    summary: b("说明隐私、安全、人工复核和发布前确认要求。", "Document privacy, safety, human review, and pre-publication confirmation requirements."),
     meta: statusMeta(b("贡献者、维护者、复用者", "Contributors, maintainers, and reusers"), b("10 分钟", "10 minutes")),
     sections: [
       section(
-        b("原创边界", "Clean-room boundary"),
-        b("本站案例、图片、页面代码和文案均为新写内容。任何第三方实质内容都必须保留对应许可和署名。", "Recipes, images, page code, and copy in this site are newly written. Any substantial third-party material must retain its applicable license and attribution."),
+        b("隐私与材料控制", "Privacy and material control"),
+        b("使用 Codex 前先确认材料是否可以被读取、修改或上传。默认只提供完成任务所需的最小信息。", "Before using Codex, confirm whether the material may be read, changed, or uploaded. Provide only the minimum information required for the task by default."),
         [
-          b("不复制参考站案例、截图、图标、CSS 或页面源码。", "Do not copy reference-site recipes, screenshots, icons, CSS, or page source."),
-          b("不把外部社交入口作为文档主体。", "Do not make external social entry points part of the documentation body."),
-          b("新增案例必须使用原创场景。", "New recipes must use original scenarios.")
+          b("不要提交密钥、客户资料、私人证件、合同原文或内部账号信息。", "Do not submit keys, customer records, private IDs, full contract text, or internal account information."),
+          b("只在必要时允许联网、运行命令或读取额外目录。", "Allow internet access, command execution, or additional directory reads only when necessary."),
+          b("敏感材料应先脱敏，再进入任务流程。", "Sensitive material should be redacted before it enters the task workflow.")
         ]
       ),
       section(
-        b("官方资料", "Official sources"),
-        b("涉及 Codex 功能和安全策略时，请回到官方页面核对。", "For Codex capabilities and safety policy, validate against official pages."),
-        officialSources.map((source) => b(`<a href="${source.url}">${source.label}</a>：${source.purpose.zh}`, `<a href="${source.url}">${source.label}</a>: ${source.purpose.en}`))
+        b("人工复核", "Human review"),
+        b("Codex 可以帮助整理、检查和生成草稿，但对外发布、删除、覆盖、发送和账号操作必须由用户确认。", "Codex can help organize, check, and draft, but publishing, deleting, overwriting, sending, and account actions must be confirmed by the user."),
+        [
+          b("发布前核对事实、数字、日期、链接和承诺。", "Verify facts, numbers, dates, links, and commitments before publication."),
+          b("高风险建议必须附限制条件和人工确认点。", "High-risk guidance must include constraints and human confirmation points."),
+          b("任务结果应保留输出、检查证据和待确认事项。", "Task results should keep outputs, review evidence, and items requiring confirmation.")
+        ]
       )
     ],
     links: [
-      link("CLEANROOM.md", "Clean-room notes", "Clean-room notes"),
-      link("LICENSE", "MIT License", "MIT License")
+      link("reference/index.html", "官方文档", "Official documentation"),
+      link("LICENSE", "开源许可", "Open-source license")
     ]
   });
 }
@@ -745,8 +749,8 @@ function footer(currentPath) {
         <span>基础资料最后核对日期：${verifiedDate}。All product facts last checked on ${verifiedDate}; verify dynamic details against official OpenAI sources.</span>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="${relativeLink(currentPath, "CLEANROOM.md")}">原创边界 / Clean-room</a>
-        <a href="${relativeLink(currentPath, "LICENSE")}">MIT Licensed</a>
+        <a href="${relativeLink(currentPath, "reference/index.html")}">官方文档 / Official Documentation</a>
+        <a href="${relativeLink(currentPath, "LICENSE")}">开源许可 / License</a>
         <a href="${relativeLink(currentPath, "contribute/roadmap.html")}">共建路线图 / Roadmap</a>
       </nav>
     </footer>`;
@@ -797,7 +801,7 @@ function homePage() {
           ${[
             [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
             [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
-            [b("13 个原创案例", "13 original recipes"), b("使用周报、表格、文档站、支持工单和发布说明等不同场景。", "Uses distinct scenarios such as newsletters, spreadsheets, docs sites, support inboxes, and releases.")],
+            [b("13 个实战模板", "13 practical templates"), b("使用周报、表格、文档站、支持工单和发布说明等不同场景。", "Uses distinct scenarios such as newsletters, spreadsheets, docs sites, support inboxes, and releases.")],
             [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
           ].map(([title, text], index) => `<article class="metric-card style-${index + 1}"><h3>${escapeHtml(title.zh)}</h3><small>${escapeHtml(title.en)}</small><p>${escapeHtml(text.zh)}</p><p class="en-muted">${escapeHtml(text.en)}</p></article>`).join("")}
         </div>
@@ -881,7 +885,7 @@ function docPage(page) {
             b("中文和英文信息一致，没有遗漏关键限制。", "Chinese and English content are equivalent and do not omit critical constraints."),
             b("读者能根据本页完成一个可回退的低风险任务。", "A reader can complete a reversible low-risk task using this page."),
             b("任务结束后有输出、证据和待确认事项。", "The task ends with output, evidence, and confirmation items."),
-            b("涉及动态事实时，读者能回到官方来源复核。", "For dynamic facts, the reader can verify against official sources.")
+            b("涉及动态事实时，读者能回到官方文档复核。", "For dynamic facts, the reader can verify against official documentation.")
           ])}
         </section>
         ${page.links?.length ? `

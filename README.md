@@ -51,19 +51,19 @@ http://127.0.0.1:4173/index.html
 ## Project Structure / 项目结构
 
 - `scripts/generate-site.mjs`: bilingual static site generator / 双语静态站点生成器
-- `scripts/verify-site.mjs`: quality gate for bilingual coverage, links, acceptance criteria, and forbidden legacy keywords / 双语覆盖、链接、验收标准和禁用关键词质量检查
+- `scripts/verify-site.mjs`: quality gate for bilingual coverage, links, acceptance criteria, and forbidden keywords / 双语覆盖、链接、验收标准和禁用关键词质量检查
 - `guide/`: 17 structured guide chapters / 17 节结构化教程
 - `configuration/`: configuration and security topics / 配置与安全专题
-- `recipes/`: 13 original recipes / 13 个原创实战案例
-- `platform/`, `practice/`, `reference/`, `contribute/`: entry map, operating model, official references, and contribution roadmap / 入口地图、实践方法、官方资料和共建路线图
-- `assets/`: original SVG diagrams / 原创 SVG 图示
+- `recipes/`: 13 practical recipes / 13 个实战案例
+- `platform/`, `practice/`, `reference/`, `contribute/`: entry map, operating model, official documentation, and contribution roadmap / 入口地图、实践方法、官方文档和共建路线图
+- `assets/`: SVG diagrams / SVG 图示
 
-## Clean-Room Boundary / 原创边界
+## Usage Policy / 使用规范
 
-The project may use public sites as layout references, but the copy, examples, diagrams, CSS, JavaScript, and recipes in this repository are original.
+Use this project with controlled materials, clear review steps, and explicit user approval for risky actions.
 
-本项目可以参考公开网站的布局组织方式，但仓库中的正文、案例、图示、CSS、JavaScript 和实战场景均为原创。
+使用本项目时，请控制输入材料、保留复核步骤，并对高风险动作进行明确人工确认。
 
-Dynamic product facts must be verified against official OpenAI sources before publication.
-
-所有动态产品事实在发布前都必须回到 OpenAI 官方来源核对。
+- Do not place secrets, customer records, private IDs, full contracts, or internal account data into example tasks. / 不要把密钥、客户资料、私人证件、完整合同或内部账号信息放入示例任务。
+- Dynamic product details should be checked against official OpenAI documentation before publication. / 动态产品信息在发布前应回到 OpenAI 官方文档核对。
+- Publishing, deleting, overwriting, sending, and account actions require human confirmation. / 发布、删除、覆盖、发送和账号操作必须人工确认。
