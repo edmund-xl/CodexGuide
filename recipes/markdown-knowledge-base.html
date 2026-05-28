@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>05 Markdown 知识库重整</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：散乱 Markdown 笔记需要按主题、状态和待补事项重整，且保留回退依据。 起始材料被限制在 笔记副本、字段规则、样本文件、目标索引格式，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：同一主题有三个命名方式，部分笔记没有 owner 和 status。 对应的证据落在 missing-fields.md。真正需要修的是“自动猜日期”，现象是 文件名年份被误当成完整日期，因此只执行最小修正：只保留可证明日期，其他标待补。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 sample-diff.patch，最终交付为 重整后的 Markdown 副本、index.md、pending-review.md；仍需人工继续判断的是：原文只移动和补元数据，不删除正文。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>笔记副本、字段规则、样本文件、目标索引格式</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>同一主题有三个命名方式，部分笔记没有 owner 和 status。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>只保留可证明日期，其他标待补</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>12 篇笔记完成统一头部，索引能按主题和待补项检索。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -796,6 +829,39 @@ pending-review.md
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>05 Markdown Knowledge Base Restructure</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: Loose Markdown notes needed organization by topic, state, and missing items while preserving rollback evidence. The starting material was limited to Notes copy, field rules, sample files, and target index format, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: The same topic had three naming styles and some notes had no owner or status. The matching evidence was stored in missing-fields.md. The issue to correct was &quot;Guessed dates&quot;; the symptom was Filename year was treated as full date, so the minimal correction was Keep only provable dates and mark others pending.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was sample-diff.patch; the final deliverable was Restructured Markdown copy, index.md, and pending-review.md. The remaining human decision is: Original text is moved and annotated, not deleted.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Notes copy, field rules, sample files, and target index format</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>The same topic had three naming styles and some notes had no owner or status.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Keep only provable dates and mark others pending</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>Twelve notes received consistent headers, and the index supports topic and missing-item lookup.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>

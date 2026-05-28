@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>08 登录态网页只读检查</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：登录态页面需要检查信息是否完整，但不能修改账号、配置或数据。 起始材料被限制在 已登录页面、检查目标、禁点清单、截图脱敏规则，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：页面含有导出和邀请按钮，必须明确不点击。 对应的证据落在 readonly-review.md。真正需要修的是“误点高风险按钮”，现象是 按钮标签只写继续，后果不清楚，因此只执行最小修正：后果不清楚就不点，列入待确认。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 no-click-controls.md，最终交付为 readonly-review.md、safe-screenshots/、confirmations.md；仍需人工继续判断的是：不要把登录态截图直接公开。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>已登录页面、检查目标、禁点清单、截图脱敏规则</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>页面含有导出和邀请按钮，必须明确不点击。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>后果不清楚就不点，列入待确认</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>完成 6 个只读检查点，未触发表单提交或写入动作。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -790,6 +823,39 @@ handoff=需要账号负责人确认</code></pre>
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>08 Read-only Review of an Authenticated Web Page</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: A signed-in page needed information review without changing account, settings, or data. The starting material was limited to Signed-in page, review goal, no-click list, and screenshot redaction rules, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: The page included export and invite buttons that had to be explicitly avoided. The matching evidence was stored in readonly-review.md. The issue to correct was &quot;Risky click&quot;; the symptom was Button said Continue without clear consequence, so the minimal correction was Do not click unclear controls; list them for confirmation.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was no-click-controls.md; the final deliverable was readonly-review.md, safe-screenshots/, and confirmations.md. The remaining human decision is: Do not publish signed-in screenshots directly.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Signed-in page, review goal, no-click list, and screenshot redaction rules</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>The page included export and invite buttons that had to be explicitly avoided.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Do not click unclear controls; list them for confirmation</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>Six read-only checkpoints were completed without form submission or write actions.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>

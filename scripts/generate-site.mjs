@@ -3022,6 +3022,51 @@ function caseDashboard(recipe, lang) {
     </section>`;
 }
 
+function fieldJournalBlock(recipe, lang) {
+  const trace = operationTrace(recipe);
+  const isZh = lang === "zh";
+  const firstEvidence = recipe.evidenceTable[0];
+  const secondEvidence = recipe.evidenceTable[1];
+  const firstFailure = recipe.failureNotes[0];
+  const handoff = trace.handoff[0] ?? recipe.riskControls[0];
+  const paragraphs = isZh
+    ? [
+        `这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：${textOf(trace.snapshot.trigger, "zh")} 起始材料被限制在 ${textOf(recipe.materialsLabel, "zh")}，同时先写下禁止动作，避免把检查任务扩大成修改任务。`,
+        `第一轮判断没有直接给结论，而是盯住第一个可观察信号：${textOf(trace.snapshot.firstSignal, "zh")} 对应的证据落在 ${textOf(firstEvidence[2], "zh")}。真正需要修的是“${textOf(firstFailure[0], "zh")}”，现象是 ${textOf(firstFailure[1], "zh")}，因此只执行最小修正：${textOf(firstFailure[2], "zh")}。`,
+        `交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 ${textOf(secondEvidence[2], "zh")}，最终交付为 ${textOf(recipe.deliverable, "zh")}；仍需人工继续判断的是：${textOf(handoff, "zh")}`
+      ]
+    : [
+        `This task did not start by asking for a result. It first checked whether the scene was specific enough: ${textOf(trace.snapshot.trigger, "en")} The starting material was limited to ${textOf(recipe.materialsLabel, "en")}, while prohibited actions were written down before execution so a review task would not expand into an edit task.`,
+        `The first pass did not jump to a conclusion. It watched the first observable signal: ${textOf(trace.snapshot.firstSignal, "en")} The matching evidence was stored in ${textOf(firstEvidence[2], "en")}. The issue to correct was "${textOf(firstFailure[0], "en")}"; the symptom was ${textOf(firstFailure[1], "en")}, so the minimal correction was ${textOf(firstFailure[2], "en")}.`,
+        `Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was ${textOf(secondEvidence[2], "en")}; the final deliverable was ${textOf(recipe.deliverable, "en")}. The remaining human decision is: ${textOf(handoff, "en")}`
+      ];
+  const facts = [
+    [b("起始材料", "Start Material"), recipe.materialsLabel],
+    [b("第一信号", "First Signal"), trace.snapshot.firstSignal],
+    [b("最小修正", "Minimal Correction"), firstFailure[2]],
+    [b("交付依据", "Delivery Basis"), trace.snapshot.finalSignal]
+  ];
+
+  return `
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>${isZh ? "现场复盘正文" : "Field Walkthrough"}</span>
+        <strong>${escapeHtml(textOf(recipe.title, lang))}</strong>
+      </div>
+      <div class="field-journal-copy">
+        ${paragraphs.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
+      </div>
+      <div class="field-journal-facts">
+        ${facts.map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+    </div>`;
+}
+
 function fieldStoryPanel(recipe, lang) {
   const trace = operationTrace(recipe);
   const isZh = lang === "zh";
@@ -3080,6 +3125,7 @@ function fieldStoryPanel(recipe, lang) {
             "先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。",
             "Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable."
           ), lang)}
+          ${fieldJournalBlock(recipe, lang)}
           <div class="field-story-kpis">
             <article>
               <span>${isZh ? "第一信号" : "First Signal"}</span>

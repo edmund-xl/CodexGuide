@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>01 演示稿生成与导出核查</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：一份 800 字产品说明需要在当天交给团队做内部评审，要求 7 页以内且能导出。 起始材料被限制在 脱敏产品说明、品牌色、页数限制、必须出现的三条信息，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：第一轮生成 10 页，数据页正文在 1440px 预览里溢出。 对应的证据落在 slide-outline.md。真正需要修的是“页数失控”，现象是 第一轮草稿生成 10 页，超出限制，因此只执行最小修正：先锁 7 页结构，再生成文件。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 deck-draft.pptx，最终交付为 deck-draft.pptx、slide-checklist.md、export-notes.md；仍需人工继续判断的是：演示稿可用于内部评审，不能直接对外发布。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>脱敏产品说明、品牌色、页数限制、必须出现的三条信息</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>第一轮生成 10 页，数据页正文在 1440px 预览里溢出。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>先锁 7 页结构，再生成文件</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>最终 7 页均可打开，四张预览截图无溢出，1 项对外表述保留人工确认。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -790,6 +823,39 @@ fix=锁定 7 页结构，缩短数据页正文，重新导出截图</code></pre>
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>01 Deck Generation and Export Verification</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: An 800-word product brief needed an internal review deck the same day, capped at seven slides and exportable. The starting material was limited to Redacted product brief, brand colors, slide limit, and three required messages, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: The first pass produced ten slides and the data slide overflowed in a 1440px preview. The matching evidence was stored in slide-outline.md. The issue to correct was &quot;Slide count drift&quot;; the symptom was First draft produced ten slides, beyond the limit, so the minimal correction was Lock the seven-slide structure before file generation.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was deck-draft.pptx; the final deliverable was deck-draft.pptx, slide-checklist.md, and export-notes.md. The remaining human decision is: The deck is ready for internal review, not direct external publication.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Redacted product brief, brand colors, slide limit, and three required messages</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>The first pass produced ten slides and the data slide overflowed in a 1440px preview.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Lock the seven-slide structure before file generation</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>The final seven slides opened correctly, four preview screenshots had no overflow, and one external-facing claim stayed under human confirmation.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>

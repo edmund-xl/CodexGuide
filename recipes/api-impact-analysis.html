@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>10 API 变更影响分析</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：接口字段即将调整，需要判断页面、测试、文档和调用方会受哪些影响。 起始材料被限制在 变更说明、版本号、端点名、字段名、错误码，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：字段名变化影响了 5 个调用点，其中 2 个在测试里。 对应的证据落在 api-impact.md。真正需要修的是“只看说明”，现象是 未搜索调用点导致遗漏测试，因此只执行最小修正：强制输出 call-sites.md。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 call-sites.md，最终交付为 api-impact.md、call-sites.md、test-matrix.md；仍需人工继续判断的是：没有 owner 的调用点不能直接关闭。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>变更说明、版本号、端点名、字段名、错误码</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>字段名变化影响了 5 个调用点，其中 2 个在测试里。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>强制输出 call-sites.md</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>影响表列出 owner、文件路径、修改建议和验证命令。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -792,6 +825,39 @@ POST /v1/tasks 的 priority 字段从 string 改为 enum
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>10 API Change Impact Analysis</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: An API field change was planned, requiring impact analysis across pages, tests, docs, and callers. The starting material was limited to Change notes, version, endpoint names, fields, and error codes, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: The field rename affected five call sites, two of them in tests. The matching evidence was stored in api-impact.md. The issue to correct was &quot;Notes only&quot;; the symptom was Call sites were not searched and tests were missed, so the minimal correction was Require call-sites.md.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was call-sites.md; the final deliverable was api-impact.md, call-sites.md, and test-matrix.md. The remaining human decision is: Call sites without owners cannot be closed.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Change notes, version, endpoint names, fields, and error codes</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>The field rename affected five call sites, two of them in tests.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Require call-sites.md</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>The impact table listed owner, file path, change suggestion, and verification command.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>

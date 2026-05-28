@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>03 GitHub Pages 部署失败诊断</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：收到部署失败通知，build 红色、deploy 跳过，需要判断是内容、workflow 还是发布配置问题。 起始材料被限制在 失败截图、run id、workflow 文件、最新提交 SHA，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：邮件只说明失败，无法证明第一个红色步骤在哪里。 对应的证据落在 npm run build。真正需要修的是“只看邮件”，现象是 邮件没有第一个失败步骤，因此只执行最小修正：必须打开 job steps。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 npm run check，最终交付为 deploy-incident.md、修复提交、验证命令记录；仍需人工继续判断的是：只把新 run 作为成功依据，不回头修改旧失败 run 的判断。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>失败截图、run id、workflow 文件、最新提交 SHA</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>邮件只说明失败，无法证明第一个红色步骤在哪里。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>必须打开 job steps</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>新提交触发的 build 与 deploy 均成功，线上案例总览返回 200。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -792,6 +825,39 @@ deploy: skipped
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>03 GitHub Pages Deployment Failure Diagnosis</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: A deploy failure notification showed build red and deploy skipped, requiring separation of content, workflow, and publish configuration issues. The starting material was limited to Failure screenshot, run id, workflow file, and latest commit SHA, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: The email only said the run failed and did not prove the first red step. The matching evidence was stored in npm run build. The issue to correct was &quot;Email-only diagnosis&quot;; the symptom was Email did not show the first failed step, so the minimal correction was Open job steps.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was npm run check; the final deliverable was deploy-incident.md, fix commit, and validation command record. The remaining human decision is: Use only the new run as success evidence; do not reinterpret the old failed run.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Failure screenshot, run id, workflow file, and latest commit SHA</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>The email only said the run failed and did not prove the first red step.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Open job steps</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>The new commit produced successful build and deploy jobs, and the live recipe index returned 200.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>

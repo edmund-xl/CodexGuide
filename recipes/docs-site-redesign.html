@@ -97,6 +97,39 @@
         <div class="field-story-copy">
           <h2>现场叙事</h2>
           <p>先用四个现场信号读懂这次任务：为什么开始、第一处异常是什么、怎么修正、凭什么交付。</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>现场复盘正文</span>
+        <strong>04 本地文档站批量改版</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>这次任务不是从“生成一个结果”开始，而是先判断现场是否足够明确：站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。 起始材料被限制在 生成器、样式表、README、截图目录、发布 workflow，同时先写下禁止动作，避免把检查任务扩大成修改任务。</p><p>第一轮判断没有直接给结论，而是盯住第一个可观察信号：第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。 对应的证据落在 npm run check。真正需要修的是“旧文件残留”，现象是 改 URL 后旧 HTML 仍留在目录中，因此只执行最小修正：删除旧文件并让校验禁止旧路径。</p><p>交付阶段没有只看文件是否生成，而是把复测信号、交付物和人工交接放在一起判断。复测证据是 verify-site.mjs，最终交付为 新版站点、README 截图、质量门禁结果；仍需人工继续判断的是：README 截图必须和当前构建一致。</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>起始材料</span>
+            <strong>生成器、样式表、README、截图目录、发布 workflow</strong>
+          </article>
+
+          <article>
+            <span>第一信号</span>
+            <strong>第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。</strong>
+          </article>
+
+          <article>
+            <span>最小修正</span>
+            <strong>删除旧文件并让校验禁止旧路径</strong>
+          </article>
+
+          <article>
+            <span>交付依据</span>
+            <strong>44 个页面生成通过，案例页有证据表、命令块、评分和材料包。</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>第一信号</span>
@@ -791,6 +824,39 @@ README 需要展示新版截图
         <div class="field-story-copy">
           <h2>Field Story</h2>
           <p>Read the task through four field signals first: why it started, what the first abnormal signal was, how it was corrected, and why it was deliverable.</p>
+
+    <div class="field-journal">
+      <div class="field-journal-head">
+        <span>Field Walkthrough</span>
+        <strong>04 Local Documentation Site Redesign</strong>
+      </div>
+      <div class="field-journal-copy">
+        <p>This task did not start by asking for a result. It first checked whether the scene was specific enough: The site needed to move from a light documentation template to a dark product workbench without breaking publishing. The starting material was limited to Generator, stylesheet, README, screenshot directory, and deploy workflow, while prohibited actions were written down before execution so a review task would not expand into an edit task.</p><p>The first pass did not jump to a conclusion. It watched the first observable signal: After the first redesign, recipe details lacked enough density and the index lacked a task matrix. The matching evidence was stored in npm run check. The issue to correct was &quot;Stale files&quot;; the symptom was Old HTML files remained after URL changes, so the minimal correction was Delete old files and make verification block old paths.</p><p>Delivery was not judged by file existence alone. Retest signal, deliverable, and human handoff were reviewed together. The retest evidence was verify-site.mjs; the final deliverable was Redesigned site, README screenshots, and quality-gate results. The remaining human decision is: README screenshots must match the current build.</p>
+      </div>
+      <div class="field-journal-facts">
+
+          <article>
+            <span>Start Material</span>
+            <strong>Generator, stylesheet, README, screenshot directory, and deploy workflow</strong>
+          </article>
+
+          <article>
+            <span>First Signal</span>
+            <strong>After the first redesign, recipe details lacked enough density and the index lacked a task matrix.</strong>
+          </article>
+
+          <article>
+            <span>Minimal Correction</span>
+            <strong>Delete old files and make verification block old paths</strong>
+          </article>
+
+          <article>
+            <span>Delivery Basis</span>
+            <strong>All 44 pages generated successfully, and recipe pages include evidence tables, command blocks, scorecards, and artifact packs.</strong>
+          </article>
+
+      </div>
+    </div>
           <div class="field-story-kpis">
             <article>
               <span>First Signal</span>
