@@ -40,6 +40,16 @@ python3 -m http.server 4173 --bind 127.0.0.1
 http://127.0.0.1:4173/index.html
 ```
 
+### 页面服务
+
+仓库使用 GitHub Pages 发布静态站点。每次推送 `main` 后，GitHub Actions 会重新构建、检查并发布页面。
+
+发布地址：
+
+```text
+https://edmund-xl.github.io/CodexGuide/
+```
+
 ### 项目结构
 
 - `scripts/generate-site.mjs`: 双语静态站点生成器
@@ -96,6 +106,16 @@ Then open:
 
 ```text
 http://127.0.0.1:4173/index.html
+```
+
+### Page Service
+
+The repository publishes the static site with GitHub Pages. Every push to `main` triggers GitHub Actions to rebuild, check, and deploy the pages.
+
+Published URL:
+
+```text
+https://edmund-xl.github.io/CodexGuide/
 ```
 
 ### Project Structure
