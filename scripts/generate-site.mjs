@@ -71,24 +71,540 @@ const resourcePages = [
   ["contribute/roadmap.html", "共建路线图", "Contribution roadmap", "用 Issue、PR、验收清单和事实核对流程维护一个可持续开源文档项目。", "Maintain a sustainable open-source documentation project with issues, pull requests, acceptance checklists, and fact checks."]
 ];
 
-const recipes = [
-  ["recipes/newsletter-brief.html", "01 Codex × Newsletter：生成周报草稿", "01 Codex × Newsletter: Draft a weekly brief", "把链接、会议摘录和产品更新整理成可审阅周报。", "Turn links, meeting notes, and product updates into a reviewable weekly brief.", "内容运营", "Content operations"],
-  ["recipes/spreadsheet-cleanup.html", "02 Codex × Spreadsheet：清理 CSV 并生成核对表", "02 Codex × Spreadsheet: Clean CSV data and generate checks", "识别重复行、缺失字段和异常金额，输出修正建议。", "Identify duplicates, missing fields, and abnormal amounts, then produce correction guidance.", "数据整理", "Data cleanup"],
-  ["recipes/docs-site-refresh.html", "03 Codex × Docs：批量更新文档站链接", "03 Codex × Docs: Refresh documentation links", "扫描失效链接、替换旧路径，并生成变更清单。", "Scan broken links, replace stale paths, and generate a change log.", "文档维护", "Documentation maintenance"],
-  ["recipes/accessibility-audit.html", "04 Codex × Browser：做页面无障碍巡检", "04 Codex × Browser: Run an accessibility review", "检查标题层级、按钮文案、键盘路径和截图证据。", "Check heading hierarchy, button labels, keyboard paths, and screenshot evidence.", "网页质量", "Web quality"],
-  ["recipes/photo-archive.html", "05 Codex × Local Files：整理照片命名与索引", "05 Codex × Local Files: Organize photo names and index", "把活动照片按日期、场景和用途生成可检索目录。", "Create a searchable archive by date, scene, and usage.", "文件整理", "File organization"],
-  ["recipes/expense-report.html", "06 Codex × Expense Notes：汇总报销材料", "06 Codex × Expense Notes: Prepare expense materials", "从票据说明中抽取金额、用途和待补材料。", "Extract amount, purpose, and missing materials from receipt notes.", "行政财务", "Operations finance"],
-  ["recipes/podcast-notes.html", "07 Codex × Transcript：把访谈稿变成选题库", "07 Codex × Transcript: Turn interviews into an idea bank", "从转录中提取观点、章节、引用和后续选题。", "Extract insights, chapters, quotes, and follow-up topics from transcripts.", "内容策划", "Editorial planning"],
-  ["recipes/api-changelog.html", "08 Codex × API Changelog：追踪接口变更", "08 Codex × API Changelog: Track API changes", "对比版本记录，输出对业务流程的影响清单。", "Compare release notes and summarize impact on business workflows.", "产品技术", "Product engineering"],
-  ["recipes/shop-copy.html", "09 Codex × Product Copy：生成商品说明", "09 Codex × Product Copy: Draft product detail copy", "把规格、卖点和限制条件整理成详情页草稿。", "Convert specs, selling points, and constraints into a product-detail draft.", "电商内容", "Commerce content"],
-  ["recipes/learning-plan.html", "10 Codex × Learning Plan：生成个人学习路线", "10 Codex × Learning Plan: Build a personal study plan", "根据目标、可用时间和资料生成四周学习计划。", "Generate a four-week study plan from goals, time budget, and materials.", "个人成长", "Personal learning"],
-  ["recipes/support-triage.html", "11 Codex × Support Inbox：汇总客服问题", "11 Codex × Support Inbox: Triage support feedback", "把用户反馈归类为缺陷、疑问、账单和体验建议。", "Classify user feedback into defects, questions, billing, and experience suggestions.", "客户支持", "Customer support"],
-  ["recipes/markdown-knowledge-base.html", "12 Codex × Markdown KB：重整知识库字段", "12 Codex × Markdown KB: Normalize a Markdown knowledge base", "把散乱笔记迁移成统一 frontmatter 和目录索引。", "Migrate scattered notes into consistent frontmatter and an index.", "知识管理", "Knowledge management"],
-  ["recipes/github-release.html", "13 Codex × GitHub Releases：生成发布说明", "13 Codex × GitHub Releases: Generate release notes", "从提交、Issue 和 PR 摘要整理可发布的 changelog。", "Produce a publishable changelog from commits, issues, and PR summaries.", "开源发布", "Open-source release"],
-  ["recipes/usage-policy.html", "使用规范", "Usage Policy", "说明隐私、安全、人工复核和发布前确认要求。", "Document privacy, safety, human review, and pre-publication confirmation requirements.", "项目治理", "Project governance"]
+const caseRecipes = [
+  {
+    path: "recipes/newsletter-brief.html",
+    title: b("01 演示稿生成与导出核查", "01 Deck Generation and Export Verification"),
+    navTitle: b("01 演示稿生成核查", "01 Deck export check"),
+    summary: b("把一份产品说明整理成演示稿，并用导出文件、页面截图和逐页检查表确认结果可交付。", "Turn a product brief into a deck, then validate the exported file, screenshots, and slide-by-slide checklist."),
+    domain: b("演示材料", "Presentation work"),
+    entry: b("桌面端 + 演示文档工具", "Desktop app plus presentation tooling"),
+    evidence: b("PPTX 文件、导出预览截图、逐页验收表", "PPTX file, export preview screenshots, and slide acceptance sheet"),
+    risk: b("低到中", "Low to medium"),
+    environment: [
+      b("准备一份 800 字以内的产品说明，去掉客户姓名、报价和内部链接。", "Prepare a product brief under 800 words, with customer names, quotes, and internal links removed."),
+      b("准备品牌色、字号要求、目标页数和必须出现的三条关键信息。", "Prepare brand colors, type-size requirements, target slide count, and three required messages."),
+      b("只允许 Codex 生成草稿和检查清单，不允许直接对外发送。", "Allow Codex to generate drafts and checklists only; do not allow direct external sending.")
+    ],
+    playbook: [
+      b("先让 Codex 把材料拆成受众、主张、证据、行动建议四块。", "Ask Codex to split the brief into audience, claim, evidence, and call-to-action first."),
+      b("要求输出 6-8 页结构，每页包含标题、正文、视觉建议和备注。", "Request a 6-8 slide structure with title, body, visual direction, and speaker notes per slide."),
+      b("生成文件后，要求逐页核查标题长度、术语一致性、空白页、图片占位和导出可读性。", "After generating the file, check every slide for title length, terminology consistency, blank slides, image placeholders, and export readability.")
+    ],
+    steps: [
+      b("第一轮只做大纲，不生成文件；确认每页意图后再进入文件制作。", "Round one produces only the outline; generate the file after each slide intention is confirmed."),
+      b("第二轮生成演示稿，同时保留一个逐页变更表，记录每页用到的输入材料。", "Round two creates the deck while keeping a slide change table that records the input used by each slide."),
+      b("第三轮导出并截图首页、目录页、数据页和结尾页，检查文字是否溢出。", "Round three exports the deck and captures the cover, agenda, data, and closing slides to check text overflow.")
+    ],
+    result: [
+      b("交付物包含 <code>deck-draft.pptx</code>、<code>slide-checklist.md</code> 和四张预览截图。", "Deliverables include <code>deck-draft.pptx</code>, <code>slide-checklist.md</code>, and four preview screenshots."),
+      b("验收表标记每页状态：通过、需改写、需补素材、需人工确认。", "The checklist marks each slide as passed, needs rewrite, needs assets, or requires human confirmation."),
+      b("最终发送前由用户确认品牌、事实、金额、日期和对外承诺。", "Before final sending, the user confirms branding, facts, amounts, dates, and external promises.")
+    ],
+    pitfalls: [
+      b("一次性要求生成完整文件容易出现页数失控；先锁大纲再生成。", "Generating the full file immediately can lose control of slide count; lock the outline first."),
+      b("截图只看封面不够，必须抽查正文密集页和数据页。", "Checking only the cover is insufficient; inspect dense content slides and data slides."),
+      b("视觉建议不能替代版权检查，外部图片必须由用户确认可用。", "Visual suggestions do not replace usage checks; the user must confirm external image usability.")
+    ],
+    taskOrder: [
+      b("请先根据这份产品说明生成 7 页演示稿结构，不要生成文件。", "First create a 7-slide deck structure from this product brief; do not generate the file yet."),
+      b("每页请输出：页标题、核心信息、证据、视觉建议、备注、待确认项。", "For each slide, output title, core message, evidence, visual direction, notes, and confirmation items."),
+      b("确认后再生成文件，并同时生成逐页验收表和导出检查步骤。", "After confirmation, generate the file together with a slide checklist and export validation steps.")
+    ]
+  },
+  {
+    path: "recipes/spreadsheet-cleanup.html",
+    title: b("02 浏览器页面巡检与截图证据", "02 Browser Page Review with Screenshot Evidence"),
+    navTitle: b("02 页面巡检截图", "02 Page screenshot review"),
+    summary: b("用浏览器打开本地或测试页面，检查标题、按钮、表单、移动端布局和截图证据。", "Open a local or staging page in the browser and review headings, buttons, forms, mobile layout, and screenshot evidence."),
+    domain: b("网页质量", "Web quality"),
+    entry: b("桌面端 + 浏览器检查", "Desktop app plus browser inspection"),
+    evidence: b("桌面截图、移动截图、控制台摘要、问题表", "Desktop screenshot, mobile screenshot, console summary, and issue table"),
+    risk: b("低", "Low"),
+    environment: [
+      b("使用本地页面、测试环境页面或已公开页面，不输入账号密码。", "Use a local page, staging page, or public page; do not enter credentials."),
+      b("提前定义要检查的视口：桌面 1440px、平板 900px、手机 390px。", "Define viewports up front: desktop 1440px, tablet 900px, and mobile 390px."),
+      b("准备页面目标：用户要看到什么、点击什么、完成什么。", "Prepare the page goal: what users should see, click, and complete.")
+    ],
+    playbook: [
+      b("先让 Codex 读取页面结构，列出关键区域和交互点。", "Ask Codex to read page structure first and list key regions and interactions."),
+      b("按视口分别截图，不用同一张图替代所有设备。", "Capture screenshots per viewport; do not use one screenshot for all devices."),
+      b("把问题按阻断、影响体验、文字瑕疵、后续优化四类归档。", "Classify issues as blocking, experience impact, copy polish, or follow-up improvement.")
+    ],
+    steps: [
+      b("打开目标地址并确认页面标题、主标题、导航和核心按钮都可见。", "Open the target URL and confirm the page title, main heading, navigation, and primary button are visible."),
+      b("执行一次主路径点击，只记录可见状态，不提交真实交易或表单。", "Run one primary-path click and record visible state without submitting real transactions or forms."),
+      b("切换移动视口，检查导航折叠、按钮换行和长词是否溢出。", "Switch to mobile viewport and check navigation collapse, button wrapping, and long-word overflow.")
+    ],
+    result: [
+      b("输出 <code>page-review.md</code>，每条问题包含位置、现象、截图名、建议和优先级。", "Output <code>page-review.md</code>; each issue includes location, symptom, screenshot name, recommendation, and priority."),
+      b("通过项也要记录，例如导航可用、主按钮可见、移动端无横向滚动。", "Record passing checks too, such as usable navigation, visible primary button, and no horizontal mobile scrolling."),
+      b("截图文件命名使用页面、视口和时间，例如 <code>home-mobile-390.png</code>。", "Screenshot names include page, viewport, and time, such as <code>home-mobile-390.png</code>.")
+    ],
+    pitfalls: [
+      b("不要只看 DOM 文本；视觉重叠、遮挡和空白必须用截图判断。", "Do not inspect DOM text only; overlap, occlusion, and empty areas require screenshots."),
+      b("不要在真实账号页面随意点击提交、购买、删除或授权按钮。", "Do not click submit, purchase, delete, or authorization buttons on real account pages."),
+      b("移动端问题通常来自固定宽度、长按钮文案和表格列宽。", "Mobile issues often come from fixed widths, long button text, and table column widths.")
+    ],
+    taskOrder: [
+      b("请打开这个页面做只读巡检，先说明会检查哪些区域。", "Open this page for read-only review and first state which areas will be checked."),
+      b("请分别检查桌面和手机视口，输出截图清单和问题表。", "Check desktop and mobile viewports separately, then output screenshot inventory and issue table."),
+      b("不要提交表单、不要修改数据、不要触发账号动作。", "Do not submit forms, modify data, or trigger account actions.")
+    ]
+  },
+  {
+    path: "recipes/docs-site-refresh.html",
+    title: b("03 GitHub Pages 部署失败诊断", "03 GitHub Pages Deployment Failure Diagnosis"),
+    navTitle: b("03 Pages 部署诊断", "03 Pages deploy diagnosis"),
+    summary: b("从失败截图、Actions 日志和仓库设置定位 Pages 部署问题，并形成可复用排障记录。", "Use failure screenshots, Actions logs, and repository settings to diagnose a Pages deployment issue and create a reusable incident note."),
+    domain: b("发布排障", "Deployment troubleshooting"),
+    entry: b("本地仓库 + GitHub Actions 日志", "Local repository plus GitHub Actions logs"),
+    evidence: b("失败 run、job 步骤、修复提交、线上 200 检查", "Failed run, job steps, fix commit, and live 200 check"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("准备失败截图、最新提交 SHA、workflow 文件和本地检查命令。", "Prepare the failure screenshot, latest commit SHA, workflow file, and local check commands."),
+      b("确认本地工作区干净，避免把部署修复和无关内容混在同一次提交。", "Confirm the local worktree is clean so deployment fixes are not mixed with unrelated changes."),
+      b("只改 workflow 或仓库 Pages 设置，不改业务内容。", "Change only the workflow or repository Pages setting, not business content.")
+    ],
+    playbook: [
+      b("先区分内容构建失败、artifact 上传失败、Pages 配置失败和部署失败。", "First separate content build failure, artifact upload failure, Pages configuration failure, and deploy failure."),
+      b("从 job steps 看第一个失败步骤，不被最终的 skipped 状态误导。", "Read job steps for the first failed step instead of being misled by final skipped jobs."),
+      b("修复后必须用新 run 验证，旧失败 run 不会自动变绿。", "After fixing, validate with a new run; old failed runs do not become green automatically.")
+    ],
+    steps: [
+      b("本地运行 <code>npm run build</code> 和 <code>npm run check</code>，排除站点内容问题。", "Run <code>npm run build</code> and <code>npm run check</code> locally to rule out site content issues."),
+      b("查看 workflow job：如果构建成功但配置失败，检查 Pages 发布源是否为 Actions。", "Inspect workflow jobs: if build succeeds but configuration fails, check whether Pages source is Actions."),
+      b("提交最小修复并推送，记录 run id、成功步骤和线上地址响应。", "Commit the minimal fix, push it, and record the run id, successful steps, and live URL response.")
+    ],
+    result: [
+      b("排障记录包含：现象、失败步骤、根因、修复、验证命令和线上地址。", "The incident note includes symptom, failed step, root cause, fix, verification commands, and live URL."),
+      b("验收条件是 build 与 deploy 都成功，线上页面返回 <code>200 OK</code>。", "Acceptance requires both build and deploy to pass and the live page to return <code>200 OK</code>."),
+      b("保留修复提交信息，便于以后排查相同问题。", "Keep the fix commit message so similar issues can be diagnosed later.")
+    ],
+    pitfalls: [
+      b("只看邮件摘要不够，必须进入 job steps 找到第一个红色步骤。", "Email summaries are not enough; inspect job steps to find the first red step."),
+      b("如果 Pages 设置没启用，workflow 文件本身可能完全正确但仍失败。", "If Pages is not enabled, the workflow can be correct and still fail."),
+      b("线上缓存可能延迟，先用响应头和页面标题确认部署状态。", "Live cache can lag; validate deploy state with response headers and page title.")
+    ],
+    taskOrder: [
+      b("请根据这次失败 run 先判断失败类型，不要直接修改业务页面。", "Use this failed run to identify the failure type first; do not edit content pages directly."),
+      b("请列出第一个失败步骤、失败信息、最小修复和验证命令。", "List the first failed step, error message, minimal fix, and verification commands."),
+      b("修复完成后请提交、推送，并确认新的 run 与线上地址。", "After fixing, commit, push, and verify the new run and live URL.")
+    ]
+  },
+  {
+    path: "recipes/accessibility-audit.html",
+    title: b("04 本地文档站批量改版", "04 Local Documentation Site Redesign"),
+    navTitle: b("04 文档站批量改版", "04 Docs site redesign"),
+    summary: b("把一个静态文档站统一改成新的产品风格，同时保留页面路径、链接和质量检查。", "Apply a new product style to a static documentation site while preserving paths, links, and quality checks."),
+    domain: b("文档工程", "Documentation engineering"),
+    entry: b("本地仓库 + 静态生成器", "Local repository plus static generator"),
+    evidence: b("diff、构建日志、截图、链接检查", "Diff, build logs, screenshots, and link checks"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("确认生成器、样式表、脚本和截图目录的位置。", "Confirm the generator, stylesheet, scripts, and screenshot directory locations."),
+      b("先锁定不可破坏项：页面数量、URL 路径、发布 workflow、本地服务命令。", "Lock non-breaking requirements first: page count, URL paths, deploy workflow, and local serve command."),
+      b("改视觉前先记录当前质量门禁，避免只顾样式导致链接失效。", "Record current quality gates before visual work so styling does not break links.")
+    ],
+    playbook: [
+      b("先改数据结构和渲染能力，再改 CSS；不要同时重写所有文件。", "Change data structure and rendering first, then CSS; do not rewrite every file at once."),
+      b("每完成一个大块就运行构建，尽早发现模板错误。", "Run the build after each major block to catch template errors early."),
+      b("用截图验证视觉，不只依赖代码审阅。", "Validate visuals with screenshots, not code review alone.")
+    ],
+    steps: [
+      b("改生成器：新增产品化卡片、案例区块、证据表和任务单渲染。", "Update the generator with product cards, recipe blocks, evidence tables, and task-order rendering."),
+      b("改样式：统一深色 tokens、导航、侧栏、卡片、按钮、表格和移动端断点。", "Update styles with dark tokens, navigation, sidebar, cards, buttons, tables, and mobile breakpoints."),
+      b("重新生成截图并更新 README，保证仓库首页也展示新版风格。", "Regenerate screenshots and update README so the repository front page shows the new style.")
+    ],
+    result: [
+      b("保留 43 个 HTML 页面，所有旧路径继续可访问。", "Keep 43 HTML pages and preserve all existing paths."),
+      b("首页、案例页和规范页截图都反映新版深色界面。", "Home, recipe, and policy screenshots all reflect the new dark interface."),
+      b("质量门禁仍覆盖双语顺序、链接、验收标准和禁用语境。", "Quality gates still cover bilingual order, links, acceptance criteria, and blocked wording.")
+    ],
+    pitfalls: [
+      b("只改 CSS 不能解决案例弱的问题，内容结构也要升级。", "CSS alone will not fix weak recipes; content structure must improve too."),
+      b("移动端最容易出问题的是侧栏、表格和长英文标题。", "Mobile issues most often come from sidebars, tables, and long English titles."),
+      b("截图是仓库门面，改版后必须同步更新。", "Screenshots are the repository front door and must be updated after redesign.")
+    ],
+    taskOrder: [
+      b("请先列出不可破坏项，再开始改生成器和样式。", "List non-breaking requirements before changing the generator and styles."),
+      b("每轮修改后运行构建与检查，最终用浏览器截图验收。", "Run build and checks after each round; use browser screenshots for final acceptance."),
+      b("提交前请确认 README 截图、线上路径和本地路径一致。", "Before committing, confirm README screenshots, live paths, and local paths are aligned.")
+    ]
+  },
+  {
+    path: "recipes/photo-archive.html",
+    title: b("05 Markdown 知识库重整", "05 Markdown Knowledge Base Restructure"),
+    navTitle: b("05 知识库重整", "05 Knowledge base cleanup"),
+    summary: b("把散乱 Markdown 笔记整理成统一字段、目录索引和可搜索主题清单。", "Restructure scattered Markdown notes into consistent fields, an index, and searchable topic list."),
+    domain: b("知识管理", "Knowledge management"),
+    entry: b("本地文件 + Markdown 检查", "Local files plus Markdown checks"),
+    evidence: b("字段清单、迁移 diff、索引页、缺口表", "Field inventory, migration diff, index page, and gap table"),
+    risk: b("低到中", "Low to medium"),
+    environment: [
+      b("复制一份笔记目录作为工作副本，避免直接改原始资料。", "Duplicate the notes directory as a working copy before editing original material."),
+      b("选定统一字段：标题、日期、主题、状态、摘要、行动项。", "Choose consistent fields: title, date, topic, status, summary, and action items."),
+      b("先处理 5 篇样本，确认规则后再批量迁移。", "Process five samples first and batch-migrate only after rules are confirmed.")
+    ],
+    playbook: [
+      b("先让 Codex 扫描文件名和标题，输出字段缺失矩阵。", "Ask Codex to scan filenames and headings, then output a missing-field matrix."),
+      b("把迁移规则写成清单：哪些字段可自动推断，哪些必须人工补。", "Write migration rules as a checklist: which fields can be inferred and which require manual input."),
+      b("批量修改后生成索引页，按主题和状态分组。", "After batch edits, generate an index grouped by topic and status.")
+    ],
+    steps: [
+      b("抽样读取笔记，识别命名混乱、标题重复、日期缺失和标签不一致。", "Sample notes to detect naming drift, duplicate headings, missing dates, and inconsistent tags."),
+      b("生成 frontmatter 模板和迁移计划，先展示 diff 再写入。", "Generate the frontmatter template and migration plan, then show diffs before writing."),
+      b("创建 <code>index.md</code>，列出主题、状态、摘要和下一步。", "Create <code>index.md</code> with topic, status, summary, and next action.")
+    ],
+    result: [
+      b("每篇笔记都有统一字段，缺失内容标为待补，不编造。", "Every note has consistent fields; missing content is marked pending, not invented."),
+      b("目录索引可按主题快速找到材料，也能看到过期或未完成项。", "The index supports quick topic lookup and highlights stale or incomplete items."),
+      b("迁移 diff 可复查，必要时能回退单篇文件。", "Migration diffs are reviewable and individual files can be reverted if needed.")
+    ],
+    pitfalls: [
+      b("不要让 Codex 猜具体日期、作者或结论；缺失就标注待确认。", "Do not let Codex guess dates, authors, or conclusions; mark missing fields for confirmation."),
+      b("一次性处理全部文件风险较高，先用样本校准规则。", "Processing all files at once is risky; calibrate rules on samples first."),
+      b("索引页不是目录树复制，应突出状态和下一步。", "The index is not a copied folder tree; it should emphasize status and next actions.")
+    ],
+    taskOrder: [
+      b("请扫描这个 Markdown 目录，先输出字段缺失矩阵和迁移规则。", "Scan this Markdown directory and first output a missing-field matrix and migration rules."),
+      b("请先处理 5 个样本文件，展示 diff 后再等待确认。", "Process five sample files first, show the diff, and wait for confirmation."),
+      b("确认后批量迁移，并生成主题索引和待补清单。", "After confirmation, batch-migrate and generate a topic index plus pending list.")
+    ]
+  },
+  {
+    path: "recipes/expense-report.html",
+    title: b("06 表格数据清洗与异常核对", "06 Spreadsheet Cleanup and Anomaly Review"),
+    navTitle: b("06 表格清洗核对", "06 Spreadsheet review"),
+    summary: b("清理 CSV 或表格数据，输出异常行、修正建议和人工复核清单。", "Clean CSV or spreadsheet data and output anomalous rows, correction suggestions, and a human review checklist."),
+    domain: b("数据整理", "Data cleanup"),
+    entry: b("本地表格文件 + 只读分析", "Local spreadsheet file plus read-only analysis"),
+    evidence: b("清洗前后行数、异常分类、样本行、校验公式", "Before-after row counts, anomaly classes, sample rows, and validation formulas"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("使用脱敏样本，移除真实姓名、电话、证件号和完整地址。", "Use anonymized samples and remove real names, phone numbers, IDs, and full addresses."),
+      b("提前定义关键字段、唯一键、金额范围、日期范围和允许空值。", "Define key fields, unique key, amount range, date range, and allowed blanks."),
+      b("默认先只读分析，确认后再生成清理版本。", "Start with read-only analysis and generate the cleaned version only after confirmation.")
+    ],
+    playbook: [
+      b("第一步只输出数据画像：行数、列数、类型推断、空值、重复。", "Step one outputs only a data profile: row count, columns, inferred types, blanks, and duplicates."),
+      b("第二步列出异常规则，不直接删除行。", "Step two lists anomaly rules without deleting rows."),
+      b("第三步生成清理建议和人工复核表，保留原始行号。", "Step three generates cleanup suggestions and a review sheet while preserving original row numbers.")
+    ],
+    steps: [
+      b("读取列名和前几行样本，确认字段含义与单位。", "Read column names and sample rows to confirm field meaning and units."),
+      b("按重复、缺失、格式、范围、跨字段矛盾五类标记问题。", "Flag issues as duplicate, missing, format, range, or cross-field conflict."),
+      b("输出清理版时保留 <code>original_row</code>，方便追溯。", "When outputting a cleaned version, keep <code>original_row</code> for traceability.")
+    ],
+    result: [
+      b("交付物包含数据画像、异常表、清理建议和待确认行。", "Deliverables include data profile, anomaly table, cleanup suggestions, and rows needing confirmation."),
+      b("清理版不能覆盖原文件，文件名使用 <code>-cleaned</code> 后缀。", "The cleaned file must not overwrite the original; use a <code>-cleaned</code> suffix."),
+      b("金额、日期和业务状态必须由用户最终确认。", "Amounts, dates, and business status must be finally confirmed by the user.")
+    ],
+    pitfalls: [
+      b("不要把空值自动填成平均数，除非业务规则明确要求。", "Do not fill blanks with averages unless business rules explicitly require it."),
+      b("重复行可能是分期、部分退款或拆单，不能直接删除。", "Duplicate rows can represent installments, partial refunds, or split orders; do not delete them directly."),
+      b("列名相似不代表含义相同，先确认单位和口径。", "Similar column names do not mean identical meaning; confirm units and definitions first.")
+    ],
+    taskOrder: [
+      b("请先只读分析这个 CSV，输出数据画像和异常规则。", "First analyze this CSV read-only and output the data profile and anomaly rules."),
+      b("不要覆盖原文件，不要删除行，保留原始行号。", "Do not overwrite the original file, do not delete rows, and preserve original row numbers."),
+      b("确认规则后再生成清理版和人工复核表。", "After the rules are confirmed, generate the cleaned version and human review sheet.")
+    ]
+  },
+  {
+    path: "recipes/podcast-notes.html",
+    title: b("07 设计截图转实现规格", "07 Design Screenshot to Implementation Spec"),
+    navTitle: b("07 截图转规格", "07 Screenshot to spec"),
+    summary: b("把页面截图转成可执行的前端改版规格，明确布局、颜色、状态和验收方式。", "Turn page screenshots into an actionable frontend specification with layout, colors, states, and acceptance checks."),
+    domain: b("前端协作", "Frontend collaboration"),
+    entry: b("截图 + 本地页面预览", "Screenshots plus local page preview"),
+    evidence: b("视觉要点表、组件状态表、改版验收截图", "Visual notes table, component state table, and redesign acceptance screenshots"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("准备目标截图和当前页面截图，标明哪些只是风格方向，哪些必须精确实现。", "Prepare target and current screenshots, marking style direction versus exact requirements."),
+      b("确认不可复制的内容：品牌名、图片、文案和业务数据都必须替换。", "Confirm non-reusable items: brand names, images, copy, and business data must be replaced."),
+      b("列出必须支持的屏幕宽度和主要页面。", "List required screen widths and primary pages.")
+    ],
+    playbook: [
+      b("先描述视觉系统：底色、面板、边框、强调色、字号和间距。", "Describe the visual system first: background, panels, borders, accent color, type size, and spacing."),
+      b("再拆页面结构：顶栏、侧栏、主内容、卡片、表格、按钮、状态。", "Then decompose page structure: top bar, sidebar, main content, cards, tables, buttons, and states."),
+      b("最后输出验收清单，明确哪些地方不能照搬。", "Finally output an acceptance checklist and state which parts must not be copied.")
+    ],
+    steps: [
+      b("从截图提取颜色和密度，只记录设计原则，不记录对方品牌元素。", "Extract colors and density from screenshots, recording design principles rather than another brand's elements."),
+      b("把目标风格映射到本站组件：导航、案例卡、流程块、代码块、截图区。", "Map the target style to this site's components: navigation, recipe cards, workflow blocks, code blocks, and screenshot areas."),
+      b("用桌面和移动截图验收布局，不用主观描述代替验证。", "Validate layout with desktop and mobile screenshots instead of subjective descriptions.")
+    ],
+    result: [
+      b("实现规格包含颜色 tokens、组件清单、响应式规则和页面验收项。", "The implementation spec includes color tokens, component list, responsive rules, and page acceptance items."),
+      b("改版结果不出现目标站品牌、业务数据、图片或页面文案。", "The redesign contains none of the target site's brand, business data, images, or page copy."),
+      b("截图对比只用于检查密度和风格方向，不作为复制依据。", "Screenshot comparison is used only for density and style direction, not as copying basis.")
+    ],
+    pitfalls: [
+      b("不要把截图里的真实业务数值搬进本站。", "Do not move real business values from screenshots into this site."),
+      b("深色风格容易对比度不足，次级文字也要可读。", "Dark style can lose contrast; secondary text must remain readable."),
+      b("卡片圆角、边框和按钮密度要统一，否则会像拼贴。", "Card radius, borders, and button density must be unified or the page feels patchy.")
+    ],
+    taskOrder: [
+      b("请根据这两张截图提炼风格规则，不要复用其中的品牌和业务内容。", "Extract style rules from these two screenshots without reusing their brand or business content."),
+      b("请把规则映射成本站组件改版清单和验收标准。", "Map the rules into this site's component redesign list and acceptance criteria."),
+      b("完成后用桌面和手机截图验证无重叠、无横向溢出。", "After implementation, verify with desktop and mobile screenshots for no overlap and no horizontal overflow.")
+    ]
+  },
+  {
+    path: "recipes/api-changelog.html",
+    title: b("08 登录态网页只读检查", "08 Read-only Review of an Authenticated Web Page"),
+    navTitle: b("08 登录页只读检查", "08 Auth page review"),
+    summary: b("在已有登录态下只读检查页面状态、数据展示和交互入口，不触发账号动作。", "Use an existing signed-in session to read page state, displayed data, and interaction entries without triggering account actions."),
+    domain: b("账号页面检查", "Authenticated page review"),
+    entry: b("用户浏览器 + 只读操作", "User browser plus read-only actions"),
+    evidence: b("可见状态摘要、截图、禁点清单、待确认项", "Visible-state summary, screenshots, no-click list, and confirmation items"),
+    risk: b("中到高", "Medium to high"),
+    environment: [
+      b("用户已在自己的浏览器登录，Codex 不读取密码、Cookie 或本地会话文件。", "The user is already signed in; Codex does not read passwords, cookies, or local session files."),
+      b("先列出禁止动作：提交、购买、授权、删除、转账、邀请、公开发布。", "List prohibited actions first: submit, purchase, authorize, delete, transfer, invite, and publish."),
+      b("只采集屏幕可见信息，敏感数值可打码描述。", "Capture only visible screen information; sensitive values can be masked in notes.")
+    ],
+    playbook: [
+      b("先确认当前 URL、页面标题和用户想检查的目标。", "Confirm current URL, page title, and the user's inspection goal first."),
+      b("读页面状态，不点会改变账户、余额、权限或公开内容的控件。", "Read page state and avoid controls that change account, balance, permissions, or public content."),
+      b("把需要用户决定的动作列为待确认，而不是替用户执行。", "List user decisions as confirmation items instead of executing them.")
+    ],
+    steps: [
+      b("获取当前页面快照，识别导航、数据卡、表格、按钮和警告提示。", "Capture the current page snapshot and identify navigation, data cards, tables, buttons, and warnings."),
+      b("截图前先隐藏或避开不需要展示的个人信息区域。", "Before screenshots, hide or avoid personal information areas that are not needed."),
+      b("输出状态摘要：页面是否正常、关键数据是否显示、是否有报错或空态。", "Output a state summary: whether the page loads, key data displays, and errors or empty states appear.")
+    ],
+    result: [
+      b("报告包含当前状态、可见问题、未执行动作和需要用户确认的下一步。", "The report includes current state, visible issues, actions not executed, and next steps requiring user confirmation."),
+      b("截图只用于页面状态，不包含不必要的个人资料。", "Screenshots are used only for page state and exclude unnecessary personal details."),
+      b("任何写入或高风险按钮都保持未点击。", "All write or high-risk buttons remain unclicked.")
+    ],
+    pitfalls: [
+      b("登录态不等于授权执行账号操作，仍然要逐项确认。", "Being signed in does not authorize account actions; each action still requires confirmation."),
+      b("按钮文字可能不完整，点击前必须理解后果。", "Button labels can be incomplete; understand consequences before clicking."),
+      b("截图可能暴露资产、邮箱或账号 ID，应先判断是否必须展示。", "Screenshots can expose assets, email, or account IDs; decide whether they are necessary first.")
+    ],
+    taskOrder: [
+      b("请只读检查这个已登录页面，先列出禁止点击的控件类型。", "Read-only review this signed-in page and first list the control types that must not be clicked."),
+      b("请输出当前状态、可见问题、截图清单和待确认动作。", "Output current state, visible issues, screenshot inventory, and confirmation actions."),
+      b("不要提交、授权、购买、删除、邀请或公开发布。", "Do not submit, authorize, purchase, delete, invite, or publish.")
+    ]
+  },
+  {
+    path: "recipes/shop-copy.html",
+    title: b("09 文档与 PDF 摘要到证据表", "09 Document and PDF Summary to Evidence Table"),
+    navTitle: b("09 文档证据表", "09 Evidence table"),
+    summary: b("把长文档或 PDF 摘要成可审阅证据表，保留页码、原句线索和不确定项。", "Summarize long documents or PDFs into a reviewable evidence table with page numbers, quote cues, and uncertainties."),
+    domain: b("资料分析", "Document analysis"),
+    entry: b("本地文档 + 表格化摘要", "Local documents plus tabular summary"),
+    evidence: b("证据表、页码、摘录线索、问题清单", "Evidence table, page numbers, excerpt cues, and question list"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("使用允许处理的文档副本，移除合同签名页、证件和私人联系方式。", "Use an allowed document copy and remove signature pages, IDs, and private contact details."),
+      b("定义摘要目标：决策、学习、核查、会议准备或问题发现。", "Define the summary goal: decision, learning, review, meeting prep, or issue discovery."),
+      b("要求输出表格，不只输出自然段摘要。", "Require a table output, not just paragraph summaries.")
+    ],
+    playbook: [
+      b("先让 Codex 建立文档目录和页码范围。", "Ask Codex to build a document outline and page ranges first."),
+      b("每条结论必须配页码、摘录线索和置信度。", "Every conclusion must include page number, excerpt cue, and confidence."),
+      b("不确定项集中列出，便于人工回到原文核查。", "Centralize uncertain items so a human can check the original text.")
+    ],
+    steps: [
+      b("读取目录、标题和首尾页，判断文档结构。", "Read the table of contents, headings, and first/last pages to understand structure."),
+      b("按主题抽取证据：事实、限制、日期、金额、责任、待确认。", "Extract evidence by topic: facts, limits, dates, amounts, responsibilities, and confirmations."),
+      b("生成 <code>evidence-table.md</code>，每行只放一个可核查主张。", "Generate <code>evidence-table.md</code>, with one verifiable claim per row.")
+    ],
+    result: [
+      b("证据表列包含：主题、主张、页码、摘录线索、置信度、待确认。", "Evidence table columns include topic, claim, page, excerpt cue, confidence, and confirmation needed."),
+      b("摘要不能替代原文；关键决策必须回到页码核查。", "The summary does not replace the original; key decisions must be checked against page numbers."),
+      b("长文档按章节分批处理，避免遗漏后半部分。", "Long documents are processed by chapter to avoid missing later sections.")
+    ],
+    pitfalls: [
+      b("不要把没有页码的总结当成证据。", "Do not treat summaries without page numbers as evidence."),
+      b("PDF 文字提取可能错行，金额和日期要特别复核。", "PDF text extraction can break lines; amounts and dates need extra review."),
+      b("一条证据承载多个主张会导致后续难以核查。", "One evidence row carrying multiple claims becomes hard to review later.")
+    ],
+    taskOrder: [
+      b("请先建立文档结构和页码范围，再做摘要。", "Build document structure and page ranges before summarizing."),
+      b("请输出证据表，每条主张必须带页码和摘录线索。", "Output an evidence table; every claim must include page number and excerpt cue."),
+      b("请集中列出不确定项，不要补写文档没有的信息。", "Centralize uncertainties and do not add information absent from the document.")
+    ]
+  },
+  {
+    path: "recipes/learning-plan.html",
+    title: b("10 API 变更影响分析", "10 API Change Impact Analysis"),
+    navTitle: b("10 API 影响分析", "10 API impact"),
+    summary: b("把接口变更说明转成影响范围、改动清单、测试点和上线风险。", "Turn API change notes into impacted areas, change list, test points, and release risk."),
+    domain: b("产品技术", "Product engineering"),
+    entry: b("变更说明 + 本地代码只读扫描", "Change notes plus read-only local code scan"),
+    evidence: b("端点清单、调用位置、测试建议、风险表", "Endpoint list, call sites, test suggestions, and risk table"),
+    risk: b("中到高", "Medium to high"),
+    environment: [
+      b("准备变更说明、版本号、预期上线时间和相关模块名。", "Prepare change notes, version, expected release date, and related module names."),
+      b("本地代码先只读扫描，找调用位置，不直接改实现。", "Scan local code read-only first to find call sites without changing implementation."),
+      b("区分破坏性变更、可选字段、新限制和文档澄清。", "Separate breaking changes, optional fields, new limits, and documentation clarifications.")
+    ],
+    playbook: [
+      b("先把变更拆成端点、字段、鉴权、限额、错误码五类。", "Break changes into endpoints, fields, auth, limits, and error codes first."),
+      b("再搜索本地调用位置，标注直接影响和间接影响。", "Then search local call sites and mark direct and indirect impact."),
+      b("最后输出测试矩阵和发布前确认项。", "Finally output a test matrix and pre-release confirmations.")
+    ],
+    steps: [
+      b("读取变更说明，生成变更表：旧行为、新行为、影响级别。", "Read change notes and create a table: old behavior, new behavior, and impact level."),
+      b("只读搜索端点名、字段名和错误码，列出文件路径与用途。", "Read-only search endpoint names, field names, and error codes; list file paths and usage."),
+      b("生成测试建议：正常路径、缺字段、错误码、超限和回退。", "Generate test suggestions for happy path, missing fields, error codes, limits, and rollback.")
+    ],
+    result: [
+      b("影响分析包含模块、调用点、风险、建议修改和验证方式。", "Impact analysis includes modules, call sites, risks, recommended changes, and validation method."),
+      b("无法确认的接口行为标记为待核对，不写成结论。", "Unconfirmed API behavior is marked for review, not written as a conclusion."),
+      b("上线前必须有人确认版本号、环境和回退方案。", "Before release, someone must confirm version, environment, and rollback plan.")
+    ],
+    pitfalls: [
+      b("只读变更说明不够，必须搜索真实调用位置。", "Reading change notes is not enough; actual call sites must be searched."),
+      b("字段新增也可能破坏解析、类型校验或展示逻辑。", "New fields can still break parsing, type validation, or display logic."),
+      b("不要把未验证的环境行为当成全局行为。", "Do not treat unverified environment behavior as universal.")
+    ],
+    taskOrder: [
+      b("请先把这份接口变更拆成影响表，不要修改代码。", "First split this API change into an impact table; do not edit code."),
+      b("请只读搜索本地调用点，并输出模块、路径和风险。", "Read-only search local call sites and output modules, paths, and risks."),
+      b("请给出测试矩阵和发布前人工确认项。", "Provide a test matrix and human confirmations before release.")
+    ]
+  },
+  {
+    path: "recipes/support-triage.html",
+    title: b("11 发布说明与变更日志生成", "11 Release Notes and Changelog Drafting"),
+    navTitle: b("11 发布说明", "11 Release notes"),
+    summary: b("从提交摘要、Issue 和 PR 信息整理出可发布的版本说明和内部变更日志。", "Create publishable release notes and an internal changelog from commit summaries, issues, and pull requests."),
+    domain: b("版本发布", "Release communication"),
+    entry: b("本地 Git 信息 + 人工复核", "Local Git information plus human review"),
+    evidence: b("提交范围、分类表、草稿、待确认项", "Commit range, category table, draft, and confirmation items"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("确认版本范围，例如上一个 tag 到当前 main。", "Confirm the version range, such as previous tag to current main."),
+      b("准备发布对象：用户、内部团队、维护者或客户支持。", "Prepare target readers: users, internal team, maintainers, or support."),
+      b("敏感功能、未发布功能和客户名称必须人工确认是否可写。", "Sensitive features, unreleased features, and customer names require human confirmation before inclusion.")
+    ],
+    playbook: [
+      b("先把变更分成新增、修复、改进、文档、内部维护。", "First classify changes into added, fixed, improved, docs, and internal maintenance."),
+      b("把技术提交翻译成用户能理解的影响，不夸大结果。", "Translate technical commits into user-visible impact without exaggeration."),
+      b("输出公开版和内部版，避免把内部细节放进公开说明。", "Output public and internal versions so internal details are not placed in public notes.")
+    ],
+    steps: [
+      b("读取提交范围，过滤合并噪音和纯格式化变更。", "Read the commit range and filter merge noise and formatting-only changes."),
+      b("按用户影响排序，高风险修复和破坏性变更提前写。", "Sort by user impact, putting high-risk fixes and breaking changes early."),
+      b("生成草稿后列出需要人工确认的功能名、日期和兼容性描述。", "After drafting, list feature names, dates, and compatibility wording needing human confirmation.")
+    ],
+    result: [
+      b("交付物包含公开发布说明、内部变更日志和待确认清单。", "Deliverables include public release notes, internal changelog, and confirmation checklist."),
+      b("每条公开说明都能回到提交或 Issue。", "Every public note maps back to a commit or issue."),
+      b("发布前由用户确认语气、范围和是否遗漏重要变更。", "Before publication, the user confirms tone, scope, and whether important changes are missing.")
+    ],
+    pitfalls: [
+      b("提交信息通常偏技术，不能直接贴给用户。", "Commit messages are usually too technical to paste directly to users."),
+      b("不要公开未确认的客户、金额、事故细节或路线图承诺。", "Do not publish unconfirmed customer, amount, incident detail, or roadmap promise."),
+      b("修复类变更要写影响和版本，不只写修了问题。", "Fix entries should include impact and version, not only say a bug was fixed.")
+    ],
+    taskOrder: [
+      b("请读取这个版本范围，先输出变更分类表。", "Read this version range and first output a categorized change table."),
+      b("请生成公开版和内部版发布说明，并列出待确认项。", "Generate public and internal release notes and list confirmation items."),
+      b("不要加入提交或 Issue 中没有依据的功能承诺。", "Do not add feature promises not supported by commits or issues.")
+    ]
+  },
+  {
+    path: "recipes/markdown-knowledge-base.html",
+    title: b("12 自动化提醒与定期检查", "12 Automation Reminders and Scheduled Checks"),
+    navTitle: b("12 自动化检查", "12 Scheduled checks"),
+    summary: b("把重复检查任务设计成可暂停、可复核、不会越权执行的自动化流程。", "Design repeated checks as automations that are pausable, reviewable, and unable to overstep authority."),
+    domain: b("自动化治理", "Automation governance"),
+    entry: b("任务规则 + 定期运行", "Task rules plus scheduled runs"),
+    evidence: b("触发条件、输出样例、暂停规则、失败提醒", "Trigger conditions, sample output, pause rules, and failure notifications"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("明确自动化只做检查和提醒，不自动发布、删除、购买或发送。", "Define automation as check-and-remind only; it does not publish, delete, purchase, or send automatically."),
+      b("设定运行频率、时间窗口、输入范围和停止条件。", "Set frequency, time window, input scope, and stop conditions."),
+      b("准备一份标准输出格式，便于每次结果可比较。", "Prepare a standard output format so results can be compared across runs.")
+    ],
+    playbook: [
+      b("先手动跑一次，确认任务说明、权限和结果格式。", "Run manually once to confirm task brief, permissions, and output format."),
+      b("再设定自动化，只让它输出摘要、异常和建议。", "Then schedule automation to output only summaries, anomalies, and suggestions."),
+      b("每条自动化都要有暂停方式和负责人。", "Every automation needs a pause method and an owner.")
+    ],
+    steps: [
+      b("写清楚检查对象、检查频率、异常定义和通知对象。", "Document check target, frequency, anomaly definition, and notification recipient."),
+      b("先生成一份模拟输出，让用户确认是否足够短、准、可行动。", "Generate a mock output so the user can confirm it is concise, accurate, and actionable."),
+      b("上线后记录最近三次结果，判断是否需要调低频率或改规则。", "After launch, review the last three results to decide whether frequency or rules need adjustment.")
+    ],
+    result: [
+      b("自动化输出包含状态、变化、异常、建议和需要人工确认的动作。", "Automation output includes status, changes, anomalies, suggestions, and actions needing human confirmation."),
+      b("如果连续多次没有价值，应暂停或降低频率。", "If it has no value across repeated runs, pause it or reduce frequency."),
+      b("任何会改变外部状态的动作都不放进自动化执行。", "Any action that changes external state is excluded from automated execution.")
+    ],
+    pitfalls: [
+      b("不要把模糊目标做成自动化，先把判断规则写清楚。", "Do not automate vague goals; define judgment rules first."),
+      b("提醒过长会被忽略，输出要固定、短、可扫读。", "Long reminders get ignored; output should be fixed, short, and scannable."),
+      b("自动化不是免审，异常仍要人工判断。", "Automation does not remove review; anomalies still need human judgment.")
+    ],
+    taskOrder: [
+      b("请先把这个重复任务改写成检查规则和标准输出格式。", "First rewrite this recurring task into check rules and a standard output format."),
+      b("请生成一次模拟结果，确认后再建立定期提醒。", "Generate one mock result; schedule reminders only after confirmation."),
+      b("自动化只提醒，不执行发布、删除、发送或付款。", "The automation only reminds; it does not publish, delete, send, or pay.")
+    ]
+  },
+  {
+    path: "recipes/github-release.html",
+    title: b("13 日志报错定位与修复建议", "13 Log Error Diagnosis and Fix Proposal"),
+    navTitle: b("13 日志报错诊断", "13 Log diagnosis"),
+    summary: b("把终端报错、构建日志或服务日志整理成根因假设、验证命令和最小修复建议。", "Turn terminal errors, build logs, or service logs into root-cause hypotheses, verification commands, and minimal fix proposals."),
+    domain: b("排障修复", "Troubleshooting"),
+    entry: b("日志片段 + 本地只读检查", "Log snippets plus local read-only inspection"),
+    evidence: b("错误片段、相关文件、验证命令、修复范围", "Error snippet, related files, verification commands, and fix scope"),
+    risk: b("中", "Medium"),
+    environment: [
+      b("提供完整错误上下文：命令、时间、环境、最近改动和重现步骤。", "Provide complete error context: command, time, environment, recent changes, and reproduction steps."),
+      b("敏感日志先脱敏，尤其是 token、邮箱、路径中的私人信息。", "Redact sensitive logs first, especially tokens, emails, and personal path segments."),
+      b("先只读定位，不直接运行破坏性命令。", "Locate the issue read-only first and do not run destructive commands.")
+    ],
+    playbook: [
+      b("先分离症状、直接错误、可能根因和需要验证的假设。", "Separate symptom, direct error, possible root cause, and hypotheses to validate."),
+      b("用最小命令验证假设，不扩大改动范围。", "Use minimal commands to validate hypotheses without expanding change scope."),
+      b("修复建议必须包含回退方式和验收命令。", "Fix proposals must include rollback method and acceptance commands.")
+    ],
+    steps: [
+      b("读取错误前后 30 行，找到第一个有意义的失败点。", "Read 30 lines around the error and find the first meaningful failure point."),
+      b("搜索相关配置、脚本和依赖声明，确认是否版本、路径或权限问题。", "Search related config, scripts, and dependency declarations to confirm version, path, or permission issues."),
+      b("输出两档建议：最小修复和后续加固。", "Output two tiers of recommendations: minimal fix and follow-up hardening.")
+    ],
+    result: [
+      b("排障记录包含根因排序、验证命令、建议补丁、风险和回退方式。", "The diagnosis includes ranked root causes, verification commands, proposed patch, risk, and rollback method."),
+      b("最小修复只处理当前失败，不顺手重构无关模块。", "The minimal fix addresses the current failure without refactoring unrelated modules."),
+      b("最终验收用原失败命令和相关检查命令复跑。", "Final acceptance reruns the original failing command and related checks.")
+    ],
+    pitfalls: [
+      b("最后一行错误不一定是根因，常常只是连锁失败。", "The last error line is not always the root cause; it is often a cascading failure."),
+      b("不要用清缓存、重装、回滚覆盖真正原因，除非已经验证。", "Do not use cache clearing, reinstall, or rollback to mask the real cause unless verified."),
+      b("破坏性命令必须明确说明后果并等待确认。", "Destructive commands must explain consequences and wait for confirmation.")
+    ],
+    taskOrder: [
+      b("请根据这段日志先输出根因假设，不要直接修改文件。", "Use this log to output root-cause hypotheses first; do not edit files directly."),
+      b("请给出每个假设的验证命令和预期结果。", "Provide validation commands and expected results for each hypothesis."),
+      b("确认根因后再提出最小修复、回退方式和验收命令。", "After confirming the root cause, propose the minimal fix, rollback method, and acceptance commands.")
+    ]
+  }
 ];
 
-const recipeNavPages = [["recipes/index.html", "案例总览", "Recipe index"], ...recipes.map(([pathName, zh, en]) => [pathName, zh, en])];
+const usagePolicyRecipe = {
+  path: "recipes/usage-policy.html",
+  title: b("使用规范", "Usage Policy"),
+  navTitle: b("使用规范", "Usage Policy"),
+  summary: b("说明隐私、安全、人工复核和发布前确认要求。", "Document privacy, safety, human review, and pre-publication confirmation requirements."),
+  domain: b("项目治理", "Project governance")
+};
+
+const recipes = [...caseRecipes, usagePolicyRecipe];
+
+const recipeNavPages = [["recipes/index.html", "案例总览", "Recipe index"], ...recipes.map((item) => [item.path, item.title.zh, item.title.en])];
 const pagesByPath = new Map();
 
 function addPage(page) {
@@ -429,64 +945,63 @@ function addTutorialPages() {
   });
 }
 
-function recipeSections(recipe, index) {
-  const [, titleZh, titleEn, summaryZh, summaryEn, domainZh, domainEn] = recipe;
+function recipeSections(recipe) {
   return [
     section(
-      b("业务目标", "Business objective"),
-      b(summaryZh, summaryEn),
+      b("任务背景", "Task Background"),
+      recipe.summary,
       [
-        b(`领域：${domainZh}。`, `Domain: ${domainEn}.`),
-        b("目标是生成可人工审阅的中间交付物，而不是自动对外发布。", "The goal is to produce a human-reviewable intermediate deliverable, not to publish automatically."),
-        b("所有外部发送、公开发布或账号操作都必须由用户完成。", "All external sending, public publishing, or account actions must be performed by the user.")
+        b(`场景：${recipe.domain.zh}。`, `Scenario: ${recipe.domain.en}.`),
+        b(`入口：${recipe.entry.zh}。`, `Entry: ${recipe.entry.en}.`),
+        b(`证据：${recipe.evidence.zh}。`, `Evidence: ${recipe.evidence.en}.`)
       ]
     ),
     section(
-      b("输入材料", "Input materials"),
-      b("输入材料必须最小化、可追溯、可删除。不要把完成任务不需要的私人信息交给 Codex。", "Input materials must be minimized, traceable, and removable. Do not provide private information that is not required for the task."),
+      b("环境与材料", "Environment and Materials"),
+      b("先把可用环境、允许读取的材料和禁止动作写清楚，再让 Codex 开始处理。", "Define the available environment, allowed materials, and prohibited actions before Codex starts processing."),
+      recipe.environment
+    ),
+    section(
+      b("操作剧本", "Operating Script"),
+      b("把任务拆成可观察的步骤，要求 Codex 先说明处理方式，再产出文件、表格或报告。", "Split the task into observable steps and ask Codex to state the handling method before producing files, tables, or reports."),
+      recipe.playbook
+    ),
+    section(
+      b("关键步骤", "Key Steps"),
+      b("每一步都要留下中间结果，避免只得到一份无法复查的最终文本。", "Every step should leave an intermediate result instead of only producing final text that cannot be reviewed."),
+      recipe.steps
+    ),
+    section(
+      b("过程证据", "Evidence Trail"),
+      b("实战案例的价值不在于说做完了，而在于能展示做了什么、怎么判断、哪里需要人确认。", "The value of a practical recipe is not saying it is done, but showing what was done, how it was judged, and what needs human confirmation."),
       [
-        b("任务说明：目标、受众、输出格式和限制条件。", "Task brief: objective, audience, output format, and constraints."),
-        b("任务材料：只包含完成案例所需的文件、链接或摘录。", "Task material: only files, links, or excerpts needed for the recipe."),
-        b("验收清单：事实、格式、风险和缺口。", "Acceptance checklist: facts, format, risks, and gaps.")
+        b(`本案例的核心证据是：${recipe.evidence.zh}。`, `The core evidence for this recipe is: ${recipe.evidence.en}.`),
+        b("证据文件和截图应使用稳定命名，方便回看和比对。", "Evidence files and screenshots should use stable names for review and comparison."),
+        b("不确定项必须集中记录，不夹在正文里被忽略。", "Uncertainties must be centralized instead of being buried in body text.")
       ]
     ),
     section(
-      b("执行流程", "Workflow"),
-      b("让 Codex 先做结构化分析，再生成草稿。不要让它跳过材料核对或不确定事项标注。", "Ask Codex to perform structured analysis before drafting. Do not let it skip material checks or uncertainty labels."),
-      [
-        b(`用一句话说明案例：“${titleZh}”。`, `Describe the recipe in one sentence: "${titleEn}".`),
-        b("要求 Codex 先列出材料清单和处理步骤。", "Ask Codex to list materials and processing steps first."),
-        b("生成第一版输出后，要求列出不确定项、缺失材料和人工确认点。", "After the first output, ask for uncertainties, missing materials, and human-confirmation points."),
-        b("按验收清单修改，而不是重复生成。", "Revise against the checklist instead of regenerating repeatedly.")
-      ]
+      b("结果样例", "Result Sample"),
+      b("输出必须能被另一个人独立检查，不能只是一段聊天记录。", "The output must be independently reviewable by another person, not just a chat transcript."),
+      recipe.result
     ),
     section(
-      b("提示词合同", "Prompt contract"),
-      b("提示词应像工作单一样清晰，明确 Codex 不能越权补充事实。", "The prompt should read like a work order and explicitly prohibit Codex from inventing unsupported facts."),
-      [
-        b("请先说明你会读取哪些材料，以及每份材料的用途。", "First state which materials you will read and how each will be used."),
-        b("不要补充输入材料之外的事实；缺失内容请标注为待确认。", "Do not add facts outside the provided inputs; mark missing content as to be confirmed."),
-        b("输出必须包含正文、检查清单和下一步建议。", "The output must include the body, a review checklist, and recommended next steps.")
-      ]
+      b("踩坑记录", "Pitfalls"),
+      b("以下问题在真实任务中最容易导致返工，应在任务单里提前写明。", "The following issues most often cause rework in real tasks and should be stated in the work order up front."),
+      recipe.pitfalls
     ),
     section(
-      b("交付物", "Deliverables"),
-      b("案例交付物应可被另一个人独立检查。", "Recipe deliverables should be independently reviewable by another person."),
-      [
-        index % 2 === 0 ? b("一份结构化草稿或变更清单。", "A structured draft or change list.") : b("一份清理后的表格、目录或分类结果。", "A cleaned table, index, or classification result."),
-        b("一份不确定项和待补材料列表。", "A list of uncertainties and missing materials."),
-        b("一份人工验收清单。", "A manual acceptance checklist.")
-      ]
+      b("风险边界", "Risk Boundaries"),
+      b("Codex 可以协助分析、生成和检查，但账号动作、公开发布和高风险改动必须由用户确认。", "Codex can assist with analysis, generation, and checking, but account actions, publication, and high-risk changes require user confirmation."),
+      recipe.taskOrder.slice(-1).concat([
+        b("保留原始材料或原始文件，改动版使用新文件名。", "Keep original materials or files and use a new filename for edited versions."),
+        b("涉及金额、日期、权限、对外承诺和个人信息时，必须人工复核。", "Amounts, dates, permissions, external promises, and personal information must be manually reviewed.")
+      ])
     ),
     section(
-      b("验收标准", "Acceptance criteria"),
-      b("案例完成不等于内容完美，而是达到可审阅、可修改、可追溯的标准。", "A recipe is complete when it is reviewable, editable, and traceable, not when it looks perfect."),
-      [
-        b("所有关键事实都能回到输入材料。", "All key facts can be traced back to the provided inputs."),
-        b("输出没有未经确认的承诺、金额、日期或账号动作。", "The output contains no unconfirmed promises, amounts, dates, or account actions."),
-        b("读者能根据交付物继续人工编辑或发布。", "A human can continue editing or publishing from the deliverable."),
-        b("风险和限制被显式列出。", "Risks and limitations are explicitly listed.")
-      ]
+      b("可复用任务单", "Reusable Work Order"),
+      b("把下面三句复制成任务起点，再替换成自己的材料、约束和验收方式。", "Use the following three lines as the starting work order, then replace them with your own materials, constraints, and acceptance method."),
+      recipe.taskOrder
     )
   ];
 }
@@ -502,39 +1017,38 @@ function addRecipePages() {
     sections: [
       section(
         b("案例阅读方法", "How to read recipes"),
-        b("不要照抄案例提示词。先理解任务结构，再替换成自己的输入材料、限制条件和验收证据。", "Do not copy recipe prompts directly. Understand the task structure first, then replace inputs, constraints, and evidence with your own."),
+        b("每篇案例都按真实任务复盘写法组织。先看任务背景，再看材料、剧本、证据、结果、踩坑和验收方式。", "Each recipe is structured like a real task retrospective. Read task background first, then materials, script, evidence, results, pitfalls, and acceptance."),
         [
-          b("看目标：这个案例最终交付什么。", "Objective: what does this recipe deliver?"),
-          b("看材料：它允许 Codex 读取哪些内容。", "Materials: what is Codex allowed to read?"),
-          b("看边界：哪些动作必须人工确认。", "Boundaries: which actions require human confirmation?"),
-          b("看验证：如何证明结果可用。", "Verification: how do you prove the result is usable?")
+          b("看入口：任务适合桌面端、浏览器、本地仓库还是定期检查。", "Entry: whether the task fits desktop, browser, local repository, or scheduled checks."),
+          b("看证据：截图、diff、表格、日志或导出文件是否足够验收。", "Evidence: whether screenshots, diffs, tables, logs, or exports are sufficient for acceptance."),
+          b("看边界：哪些按钮、账号动作和公开发布必须保留给用户。", "Boundary: which buttons, account actions, and publication steps must stay with the user."),
+          b("看复用：把任务单替换成自己的材料和限制，而不是照搬示例。", "Reuse: replace the work order with your own materials and constraints instead of copying the sample.")
         ]
       ),
       section(
         b("案例清单", "Recipe list"),
-        b("以下案例使用中性的演示场景，覆盖内容、资料、文件、网页、支持和开源发布流程。", "The following recipes use neutral demo scenarios across content, data, files, web quality, support, and open-source release workflows."),
-        recipes.slice(0, 13).map(([pathName, zh, en]) => b(`<a href="${relativeLink("recipes/index.html", pathName)}">${zh}</a>`, `<a href="${relativeLink("recipes/index.html", pathName)}">${en}</a>`))
+        b("以下案例全部使用中性任务材料，覆盖演示稿、浏览器检查、发布排障、文档站改版、知识库、表格、截图规格、登录态只读检查、文档摘要、API、发布说明、自动化和日志排障。", "The recipes use neutral task materials across decks, browser review, deployment diagnosis, documentation redesign, knowledge bases, spreadsheets, screenshot specs, authenticated read-only review, document summaries, API impact, release notes, automation, and log diagnosis."),
+        caseRecipes.map((item) => b(`<a href="${relativeLink("recipes/index.html", item.path)}">${item.title.zh}</a>`, `<a href="${relativeLink("recipes/index.html", item.path)}">${item.title.en}</a>`))
       )
     ],
     links: [
-      link("recipes/newsletter-brief.html", "从周报案例开始", "Start with the newsletter recipe"),
+      link("recipes/newsletter-brief.html", "从演示稿案例开始", "Start with the deck recipe"),
       link("practice/index.html", "先看实践方法", "Review the operating model first")
     ]
   });
 
-  recipes.slice(0, 13).forEach((recipe, index) => {
-    const [pathName, titleZh, titleEn, summaryZh, summaryEn] = recipe;
+  caseRecipes.forEach((recipe, index) => {
     addPage({
-      path: pathName,
-      title: b(titleZh, titleEn),
-      navTitle: b(titleZh, titleEn.replace(/^[0-9]+\s/, "")),
+      path: recipe.path,
+      title: recipe.title,
+      navTitle: recipe.navTitle,
       group: b("实战案例", "Recipes"),
-      summary: b(summaryZh, summaryEn),
-      meta: statusMeta(b("业务人员、创作者、项目维护者", "Operators, creators, and project maintainers"), b("30-45 分钟", "30-45 minutes"), b("低到中", "Low to medium")),
-      sections: recipeSections(recipe, index),
+      summary: recipe.summary,
+      meta: statusMeta(b("业务人员、创作者、项目维护者", "Operators, creators, and project maintainers"), b("35-60 分钟", "35-60 minutes"), recipe.risk),
+      sections: recipeSections(recipe),
       links: [
         index < 12
-          ? link(recipes[index + 1][0], "下一个案例", "Next recipe")
+          ? link(caseRecipes[index + 1].path, "下一个案例", "Next recipe")
           : link("recipes/usage-policy.html", "使用规范", "Usage policy"),
         link("recipes/index.html", "返回案例总览", "Back to recipe index")
       ]
@@ -701,7 +1215,7 @@ function singleLangList(items, lang) {
     <ul class="single-lang-list">
       ${items.map((item) => {
         const text = textOf(item, lang);
-        const render = /<a\s/i.test(text) ? keepHtml : escapeHtml;
+        const render = /<[^>]+>/.test(text) ? keepHtml : escapeHtml;
         return `<li>${render(text)}</li>`;
       }).join("")}
     </ul>`;
@@ -767,7 +1281,7 @@ function homePage() {
   const metrics = [
     [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
     [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
-    [b("13 个实战模板", "13 practical templates"), b("使用周报、表格、文档站、支持工单和发布说明等不同场景。", "Uses distinct scenarios such as newsletters, spreadsheets, docs sites, support inboxes, and releases.")],
+    [b("13 个工具实测案例", "13 tool-tested recipes"), b("覆盖演示稿、浏览器检查、部署排障、知识库、表格和日志诊断。", "Covers decks, browser review, deployment diagnosis, knowledge bases, spreadsheets, and log troubleshooting.")],
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
 
@@ -790,10 +1304,11 @@ function homePage() {
 
   const recipeCards = (lang) => `
     <div class="card-grid four">
-      ${recipes.slice(0, 4).map(([href, zh, en, summaryZh, summaryEn]) => `
-        <a class="plain-card" href="${href}">
-          <h3>${escapeHtml(lang === "zh" ? zh : en)}</h3>
-          <p>${escapeHtml(lang === "zh" ? summaryZh : summaryEn)}</p>
+      ${caseRecipes.slice(0, 4).map((item) => `
+        <a class="plain-card" href="${item.path}">
+          <small>${escapeHtml(textOf(item.domain, lang))}</small>
+          <h3>${escapeHtml(textOf(item.title, lang))}</h3>
+          <p>${escapeHtml(textOf(item.summary, lang))}</p>
         </a>
       `).join("")}
     </div>`;
@@ -810,8 +1325,8 @@ function homePage() {
           <div class="hero-copy">
             <h1>Codex Everyday Guide</h1>
             ${paragraph(b(
-              "面向普通用户、创作者、个人开发者与小团队的专业 Codex 实践文档。本站采用先中文后英文的完整分区结构、可验证流程和安全边界标准。",
-              "Professional Codex documentation for everyday users, creators, individual developers, and small teams. The site uses complete Chinese-first and English-second sections, verifiable procedures, and explicit safety boundaries."
+              "面向普通用户、创作者、个人开发者与小团队的 Codex 实战知识站。本站用深色产品界面组织教程、配置、工具实测案例和安全验收。",
+              "A practical Codex knowledge site for everyday users, creators, individual developers, and small teams. The site uses a dark product interface for guides, configuration, tool-tested recipes, and safety acceptance."
             ), lang)}
             ${homeActions(lang)}
           </div>
@@ -830,8 +1345,8 @@ function homePage() {
           <header class="section-title">
             <h2>${isZh ? "这份文档如何达标" : "How This Documentation Meets the Standard"}</h2>
             ${paragraph(b(
-              "本站不再使用浅层短文模板。每个页面都以专业文档结构组织，读者能明确知道要做什么、需要什么、如何操作、如何验收以及如何控制风险。",
-              "The site no longer uses shallow short-form templates. Each page follows a professional documentation structure so readers know what to do, what they need, how to proceed, how to accept the result, and how to control risk."
+              "每篇页面都以任务仪表盘的方式呈现：目标、入口、材料、过程、证据、风险和验收。读者能直接照着流程完成一次可复查的工作。",
+              "Every page is presented like a task dashboard: goal, entry, materials, process, evidence, risk, and acceptance. Readers can follow the flow to complete reviewable work."
             ), lang)}
           </header>
           ${cardGrid(metrics, lang)}
@@ -868,8 +1383,8 @@ function homePage() {
           <header class="section-title">
             <h2>${isZh ? "精选实战场景" : "Selected Recipes"}</h2>
             ${paragraph(b(
-              "案例库不是提示词清单，而是可复用的任务标准。读者应替换成自己的材料、限制和验收方式。",
-              "The recipe library is not a prompt list; it is a reusable task standard. Readers should replace the materials, constraints, and acceptance method with their own."
+              "案例库不再是提示词清单，而是工具实测复盘。每篇都写清楚环境、步骤、证据、结果、踩坑和可复用任务单。",
+              "The recipe library is no longer a prompt list; it is a set of tool-tested retrospectives. Each recipe documents environment, steps, evidence, results, pitfalls, and a reusable work order."
             ), lang)}
           </header>
           ${recipeCards(lang)}
@@ -960,106 +1475,107 @@ function docPage(page) {
 function writeAssets() {
   write("assets/logo.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
   <title id="title">Codex Everyday Guide</title>
-  <rect x="8" y="8" width="80" height="80" rx="18" fill="#151827"/>
-  <path d="M27 30h31" stroke="#6bd2c7" stroke-width="7" stroke-linecap="round"/>
-  <path d="M27 48h24" stroke="#9b8cff" stroke-width="7" stroke-linecap="round"/>
-  <path d="M27 66h31" stroke="#f3bd4f" stroke-width="7" stroke-linecap="round"/>
-  <path d="M61 37l13 11-13 11" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="8" y="8" width="80" height="80" rx="10" fill="#1e1e1e" stroke="#333"/>
+  <path d="M26 29h28" stroke="#ff922c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M26 48h22" stroke="#e0e0e0" stroke-width="7" stroke-linecap="round"/>
+  <path d="M26 67h32" stroke="#888" stroke-width="7" stroke-linecap="round"/>
+  <path d="M60 38l13 10-13 10" fill="none" stroke="#ff922c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`);
 
   write("assets/hero-workspace.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" preserveAspectRatio="none">
-  <rect width="1440" height="520" fill="#f7f8f9"/>
-  <g opacity=".24" fill="none" stroke="#b9c7c4" stroke-width="3">
-    <rect x="84" y="82" width="280" height="178" rx="18"/>
-    <rect x="1090" y="54" width="280" height="178" rx="18"/>
-    <rect x="925" y="330" width="230" height="146" rx="18"/>
-    <path d="M394 160h198M394 206h148M1118 116h190M1118 158h130M956 382h142"/>
+  <rect width="1440" height="520" fill="#141414"/>
+  <g fill="#1e1e1e" stroke="#333" stroke-width="2">
+    <rect x="92" y="82" width="300" height="170" rx="8"/>
+    <rect x="1038" y="70" width="310" height="176" rx="8"/>
+    <rect x="898" y="326" width="260" height="126" rx="8"/>
   </g>
-  <g opacity=".18">
-    <circle cx="198" cy="332" r="66" fill="#6bd2c7"/>
-    <circle cx="1232" cy="368" r="82" fill="#9b8cff"/>
-    <circle cx="695" cy="112" r="48" fill="#f3bd4f"/>
+  <g fill="none" stroke="#666" stroke-width="3" opacity=".65">
+    <path d="M126 130h180M126 168h230M126 206h140"/>
+    <path d="M1076 124h214M1076 162h160M1076 200h204"/>
+    <path d="M936 374h170M936 408h120"/>
   </g>
+  <path d="M420 252h600" stroke="#333" stroke-width="2"/>
+  <path d="M680 252h84" stroke="#ff922c" stroke-width="5"/>
 </svg>`);
 
   write("assets/entry-map.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
   <title id="title">Codex entry point map</title>
   <desc id="desc">CLI, Cloud, IDE, Desktop App, ChatGPT, and integrations.</desc>
-  <rect width="900" height="430" rx="20" fill="#151827"/>
-  <rect x="38" y="38" width="824" height="354" rx="16" fill="#1d2231" stroke="#30384d"/>
-  <text x="70" y="82" fill="#fff" font-size="28" font-weight="700" font-family="Arial">入口地图</text>
-  <text x="70" y="112" fill="#c8d0da" font-size="18" font-family="Arial">Entry Point Map</text>
-  <text x="70" y="142" fill="#c8d0da" font-size="15" font-family="Arial">按材料位置、风险等级和验收方式选择入口。</text>
-  <text x="70" y="164" fill="#c8d0da" font-size="15" font-family="Arial">Choose by material, risk, and acceptance evidence.</text>
+  <rect width="900" height="430" rx="8" fill="#141414"/>
+  <rect x="38" y="38" width="824" height="354" rx="8" fill="#1e1e1e" stroke="#333"/>
+  <text x="70" y="82" fill="#e0e0e0" font-size="28" font-weight="700" font-family="Arial">入口地图</text>
+  <text x="70" y="112" fill="#888" font-size="18" font-family="Arial">Entry Point Map</text>
+  <text x="70" y="142" fill="#888" font-size="15" font-family="Arial">按材料位置、风险等级和验收方式选择入口。</text>
+  <text x="70" y="164" fill="#888" font-size="15" font-family="Arial">Choose by material, risk, and acceptance evidence.</text>
   <g font-family="Arial" font-weight="700">
-    <rect x="70" y="190" width="160" height="92" rx="12" fill="#203238" stroke="#6bd2c7"/>
-    <text x="92" y="225" fill="#fff" font-size="23">CLI</text>
-    <text x="92" y="254" fill="#c8d0da" font-size="14">Local iteration</text>
-    <rect x="260" y="190" width="170" height="92" rx="12" fill="#232a56" stroke="#7187ff"/>
-    <text x="282" y="225" fill="#fff" font-size="23">Cloud</text>
-    <text x="282" y="254" fill="#c8d0da" font-size="14">Long-running tasks</text>
-    <rect x="462" y="190" width="170" height="92" rx="12" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="484" y="225" fill="#fff" font-size="23">IDE</text>
-    <text x="484" y="254" fill="#c8d0da" font-size="14">Editor context</text>
-    <rect x="664" y="190" width="166" height="92" rx="12" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="686" y="225" fill="#fff" font-size="23">Desktop App</text>
-    <text x="686" y="254" fill="#c8d0da" font-size="14">Local workbench</text>
-    <rect x="172" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
-    <text x="204" y="325" fill="#fff" font-size="18">ChatGPT Codex</text>
-    <rect x="478" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
-    <text x="520" y="325" fill="#fff" font-size="18">Integrations</text>
+    <rect x="70" y="190" width="160" height="92" rx="8" fill="#242424" stroke="#ff922c"/>
+    <text x="92" y="225" fill="#e0e0e0" font-size="23">CLI</text>
+    <text x="92" y="254" fill="#888" font-size="14">Local iteration</text>
+    <rect x="260" y="190" width="170" height="92" rx="8" fill="#242424" stroke="#333"/>
+    <text x="282" y="225" fill="#e0e0e0" font-size="23">Cloud</text>
+    <text x="282" y="254" fill="#888" font-size="14">Long-running tasks</text>
+    <rect x="462" y="190" width="170" height="92" rx="8" fill="#242424" stroke="#333"/>
+    <text x="484" y="225" fill="#e0e0e0" font-size="23">IDE</text>
+    <text x="484" y="254" fill="#888" font-size="14">Editor context</text>
+    <rect x="664" y="190" width="166" height="92" rx="8" fill="#242424" stroke="#333"/>
+    <text x="686" y="225" fill="#e0e0e0" font-size="23">Desktop App</text>
+    <text x="686" y="254" fill="#888" font-size="14">Local workbench</text>
+    <rect x="172" y="290" width="250" height="58" rx="8" fill="#191919" stroke="#333"/>
+    <text x="204" y="325" fill="#e0e0e0" font-size="18">ChatGPT Codex</text>
+    <rect x="478" y="290" width="250" height="58" rx="8" fill="#191919" stroke="#333"/>
+    <text x="520" y="325" fill="#e0e0e0" font-size="18">Integrations</text>
   </g>
 </svg>`);
 
   write("assets/task-loop.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
   <title id="title">Codex task loop</title>
   <desc id="desc">Brief, discovery, execution, verification, and retrospective.</desc>
-  <rect width="900" height="430" rx="20" fill="#151827"/>
-  <text x="70" y="66" fill="#fff" font-size="32" font-weight="800" font-family="Arial">任务闭环</text>
-  <text x="70" y="98" fill="#d6dde8" font-size="20" font-family="Arial">Task Loop</text>
-  <text x="72" y="128" fill="#d6dde8" font-size="16" font-family="Arial">说明、探索、实施、验证、复盘。</text>
-  <text x="72" y="151" fill="#d6dde8" font-size="16" font-family="Arial">Brief, discover, execute, verify, retrospect.</text>
-  <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#8690a5" stroke-width="6"/>
-  <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#8690a5" stroke-width="6"/>
+  <rect width="900" height="430" rx="8" fill="#141414"/>
+  <text x="70" y="66" fill="#e0e0e0" font-size="32" font-weight="800" font-family="Arial">任务闭环</text>
+  <text x="70" y="98" fill="#888" font-size="20" font-family="Arial">Task Loop</text>
+  <text x="72" y="128" fill="#888" font-size="16" font-family="Arial">说明、探索、实施、验证、复盘。</text>
+  <text x="72" y="151" fill="#888" font-size="16" font-family="Arial">Brief, discover, execute, verify, retrospect.</text>
+  <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#333" stroke-width="6"/>
+  <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#333" stroke-width="6"/>
   <g font-family="Arial" text-anchor="middle">
-    <circle cx="195" cy="260" r="78" fill="#203238" stroke="#6bd2c7" stroke-width="4"/>
-    <text x="195" y="254" fill="#fff" font-size="24" font-weight="800">说明</text>
-    <text x="195" y="286" fill="#dce5ef" font-size="16">Brief</text>
-    <circle cx="420" cy="178" r="76" fill="#222b5c" stroke="#7187ff" stroke-width="4"/>
-    <text x="420" y="172" fill="#fff" font-size="24" font-weight="800">探索</text>
-    <text x="420" y="204" fill="#dce5ef" font-size="16">Discover</text>
-    <circle cx="618" cy="218" r="76" fill="#2c245e" stroke="#9b8cff" stroke-width="4"/>
-    <text x="618" y="212" fill="#fff" font-size="24" font-weight="800">实施</text>
-    <text x="618" y="244" fill="#dce5ef" font-size="16">Execute</text>
-    <circle cx="690" cy="330" r="70" fill="#3a3222" stroke="#f3bd4f" stroke-width="4"/>
-    <text x="690" y="325" fill="#fff" font-size="23" font-weight="800">验证</text>
-    <text x="690" y="355" fill="#dce5ef" font-size="16">Verify</text>
-    <circle cx="450" cy="336" r="70" fill="#111522" stroke="#475067" stroke-width="4"/>
-    <text x="450" y="331" fill="#fff" font-size="23" font-weight="800">复盘</text>
-    <text x="450" y="361" fill="#dce5ef" font-size="16">Retro</text>
+    <rect x="121" y="188" width="148" height="112" rx="8" fill="#1e1e1e" stroke="#ff922c" stroke-width="3"/>
+    <text x="195" y="240" fill="#e0e0e0" font-size="24" font-weight="800">说明</text>
+    <text x="195" y="270" fill="#888" font-size="16">Brief</text>
+    <rect x="348" y="120" width="144" height="110" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="420" y="170" fill="#e0e0e0" font-size="24" font-weight="800">探索</text>
+    <text x="420" y="200" fill="#888" font-size="16">Discover</text>
+    <rect x="546" y="164" width="144" height="110" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="618" y="214" fill="#e0e0e0" font-size="24" font-weight="800">实施</text>
+    <text x="618" y="244" fill="#888" font-size="16">Execute</text>
+    <rect x="622" y="286" width="136" height="100" rx="8" fill="#1e1e1e" stroke="#ff922c" stroke-width="3"/>
+    <text x="690" y="330" fill="#e0e0e0" font-size="23" font-weight="800">验证</text>
+    <text x="690" y="358" fill="#888" font-size="16">Verify</text>
+    <rect x="382" y="292" width="136" height="100" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="450" y="336" fill="#e0e0e0" font-size="23" font-weight="800">复盘</text>
+    <text x="450" y="364" fill="#888" font-size="16">Retro</text>
   </g>
 </svg>`);
 
   write("assets/safety-layers.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-labelledby="title desc">
   <title id="title">Codex safety layers</title>
   <desc id="desc">Task brief, project rules, sandbox approvals, and verification review.</desc>
-  <rect width="760" height="430" rx="20" fill="#151827"/>
-  <text x="54" y="62" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界</text>
-  <text x="54" y="92" fill="#d6dde8" font-size="19" font-family="Arial">Safety Layers</text>
-  <text x="54" y="121" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
+  <rect width="760" height="430" rx="8" fill="#141414"/>
+  <text x="54" y="62" fill="#e0e0e0" font-size="28" font-weight="800" font-family="Arial">安全边界</text>
+  <text x="54" y="92" fill="#888" font-size="19" font-family="Arial">Safety Layers</text>
+  <text x="54" y="121" fill="#888" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
   <g font-family="Arial" font-weight="700">
-    <rect x="72" y="150" width="616" height="54" rx="10" fill="#203238" stroke="#6bd2c7"/>
-    <text x="104" y="178" fill="#fff" font-size="18">1. 任务说明</text>
-    <text x="104" y="195" fill="#dce5ef" font-size="14">Task brief</text>
-    <rect x="98" y="224" width="564" height="54" rx="10" fill="#232a56" stroke="#7187ff"/>
-    <text x="132" y="252" fill="#fff" font-size="18">2. AGENTS.md</text>
-    <text x="132" y="269" fill="#dce5ef" font-size="14">Commands, style, rules</text>
-    <rect x="126" y="298" width="508" height="54" rx="10" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="158" y="326" fill="#fff" font-size="18">3. 审批</text>
-    <text x="158" y="343" fill="#dce5ef" font-size="14">Approvals</text>
-    <rect x="154" y="362" width="452" height="44" rx="10" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="186" y="384" fill="#fff" font-size="17">4. 验证</text>
-    <text x="186" y="400" fill="#dce5ef" font-size="13">Verification</text>
+    <rect x="72" y="150" width="616" height="54" rx="8" fill="#1e1e1e" stroke="#ff922c"/>
+    <text x="104" y="178" fill="#e0e0e0" font-size="18">1. 任务说明</text>
+    <text x="104" y="195" fill="#888" font-size="14">Task brief</text>
+    <rect x="98" y="224" width="564" height="54" rx="8" fill="#1e1e1e" stroke="#333"/>
+    <text x="132" y="252" fill="#e0e0e0" font-size="18">2. AGENTS.md</text>
+    <text x="132" y="269" fill="#888" font-size="14">Commands, style, rules</text>
+    <rect x="126" y="298" width="508" height="54" rx="8" fill="#1e1e1e" stroke="#333"/>
+    <text x="158" y="326" fill="#e0e0e0" font-size="18">3. 审批</text>
+    <text x="158" y="343" fill="#888" font-size="14">Approvals</text>
+    <rect x="154" y="362" width="452" height="44" rx="8" fill="#1e1e1e" stroke="#333"/>
+    <text x="186" y="384" fill="#e0e0e0" font-size="17">4. 验证</text>
+    <text x="186" y="400" fill="#888" font-size="13">Verification</text>
   </g>
 </svg>`);
 }

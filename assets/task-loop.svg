@@ -1,28 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
   <title id="title">Codex task loop</title>
   <desc id="desc">Brief, discovery, execution, verification, and retrospective.</desc>
-  <rect width="900" height="430" rx="20" fill="#151827"/>
-  <text x="70" y="66" fill="#fff" font-size="32" font-weight="800" font-family="Arial">任务闭环</text>
-  <text x="70" y="98" fill="#d6dde8" font-size="20" font-family="Arial">Task Loop</text>
-  <text x="72" y="128" fill="#d6dde8" font-size="16" font-family="Arial">说明、探索、实施、验证、复盘。</text>
-  <text x="72" y="151" fill="#d6dde8" font-size="16" font-family="Arial">Brief, discover, execute, verify, retrospect.</text>
-  <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#8690a5" stroke-width="6"/>
-  <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#8690a5" stroke-width="6"/>
+  <rect width="900" height="430" rx="8" fill="#141414"/>
+  <text x="70" y="66" fill="#e0e0e0" font-size="32" font-weight="800" font-family="Arial">任务闭环</text>
+  <text x="70" y="98" fill="#888" font-size="20" font-family="Arial">Task Loop</text>
+  <text x="72" y="128" fill="#888" font-size="16" font-family="Arial">说明、探索、实施、验证、复盘。</text>
+  <text x="72" y="151" fill="#888" font-size="16" font-family="Arial">Brief, discover, execute, verify, retrospect.</text>
+  <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#333" stroke-width="6"/>
+  <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#333" stroke-width="6"/>
   <g font-family="Arial" text-anchor="middle">
-    <circle cx="195" cy="260" r="78" fill="#203238" stroke="#6bd2c7" stroke-width="4"/>
-    <text x="195" y="254" fill="#fff" font-size="24" font-weight="800">说明</text>
-    <text x="195" y="286" fill="#dce5ef" font-size="16">Brief</text>
-    <circle cx="420" cy="178" r="76" fill="#222b5c" stroke="#7187ff" stroke-width="4"/>
-    <text x="420" y="172" fill="#fff" font-size="24" font-weight="800">探索</text>
-    <text x="420" y="204" fill="#dce5ef" font-size="16">Discover</text>
-    <circle cx="618" cy="218" r="76" fill="#2c245e" stroke="#9b8cff" stroke-width="4"/>
-    <text x="618" y="212" fill="#fff" font-size="24" font-weight="800">实施</text>
-    <text x="618" y="244" fill="#dce5ef" font-size="16">Execute</text>
-    <circle cx="690" cy="330" r="70" fill="#3a3222" stroke="#f3bd4f" stroke-width="4"/>
-    <text x="690" y="325" fill="#fff" font-size="23" font-weight="800">验证</text>
-    <text x="690" y="355" fill="#dce5ef" font-size="16">Verify</text>
-    <circle cx="450" cy="336" r="70" fill="#111522" stroke="#475067" stroke-width="4"/>
-    <text x="450" y="331" fill="#fff" font-size="23" font-weight="800">复盘</text>
-    <text x="450" y="361" fill="#dce5ef" font-size="16">Retro</text>
+    <rect x="121" y="188" width="148" height="112" rx="8" fill="#1e1e1e" stroke="#ff922c" stroke-width="3"/>
+    <text x="195" y="240" fill="#e0e0e0" font-size="24" font-weight="800">说明</text>
+    <text x="195" y="270" fill="#888" font-size="16">Brief</text>
+    <rect x="348" y="120" width="144" height="110" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="420" y="170" fill="#e0e0e0" font-size="24" font-weight="800">探索</text>
+    <text x="420" y="200" fill="#888" font-size="16">Discover</text>
+    <rect x="546" y="164" width="144" height="110" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="618" y="214" fill="#e0e0e0" font-size="24" font-weight="800">实施</text>
+    <text x="618" y="244" fill="#888" font-size="16">Execute</text>
+    <rect x="622" y="286" width="136" height="100" rx="8" fill="#1e1e1e" stroke="#ff922c" stroke-width="3"/>
+    <text x="690" y="330" fill="#e0e0e0" font-size="23" font-weight="800">验证</text>
+    <text x="690" y="358" fill="#888" font-size="16">Verify</text>
+    <rect x="382" y="292" width="136" height="100" rx="8" fill="#1e1e1e" stroke="#333" stroke-width="3"/>
+    <text x="450" y="336" fill="#e0e0e0" font-size="23" font-weight="800">复盘</text>
+    <text x="450" y="364" fill="#888" font-size="16">Retro</text>
   </g>
 </svg>
