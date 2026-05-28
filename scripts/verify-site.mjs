@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const expectedHtmlPages = 43;
+const expectedHtmlPages = 44;
 const casePages = [
   "recipes/deck-export-check.html",
   "recipes/browser-page-review.html",
@@ -16,13 +16,16 @@ const casePages = [
   "recipes/api-impact-analysis.html",
   "recipes/release-notes-changelog.html",
   "recipes/automation-scheduled-checks.html",
-  "recipes/log-error-diagnosis.html"
+  "recipes/log-error-diagnosis.html",
+  "recipes/remote-service-health-check.html"
 ];
 const caseArtifactFiles = [
   "01-input-brief.md",
   "02-evidence-table.csv",
   "03-result-sample.md",
   "04-acceptance-runbook.md",
+  "05-execution-transcript.log",
+  "06-delivery-preview.md",
   "evidence-board.svg"
 ];
 const oldRecipeSlugs = [
@@ -57,9 +60,15 @@ const caseRequiredMarkers = [
   "Lab Artifact Pack",
   "现场记录",
   "Run Log",
+  "执行转录",
+  "Execution Transcript",
+  "交付预览",
+  "Delivery Preview",
   "case-dashboard",
   "artifact-grid",
   "case-visual",
+  "execution-transcript",
+  "delivery-preview",
   "evidence-table",
   "command-panel",
   "output-sample",

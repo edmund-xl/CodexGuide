@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：脱敏 healthz 响应、错误窗口、部署版本、只读命令输出
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：curl -i --max-time 10 http://127.0.0.1:8080/healthz
+00:14 观察：健康检查 -> 10:12 开始 HTTP 503，10:20 恢复；状态：已记录
+00:22 运行/人工步骤：rg -n "HTTP 503|db_pool_wait_ms|DB_POOL_SIZE" evidence/ config/
+00:29 观察：配置差异 -> DB_POOL_SIZE 从 12 改为 4，与等待时间升高吻合；状态：高置信
+00:36 发现失败点：急着重启；现象：第一反应是重启服务，但没有证明根因
+00:42 修正动作：先用只读证据排序根因
+00:50 产出交付物：health-report.md、repair-plan.md、rollback-note.md
+00:55 验收判断：根因排序至少覆盖配置、依赖、容量、网络和代码变更。
+
+---
+
+00:00 Read work order and confirm material scope: Redacted healthz response, error window, deployment version, and read-only command output
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: curl -i --max-time 10 http://127.0.0.1:8080/healthz
+00:14 Observation: Health check -> HTTP 503 began at 10:12 and recovered at 10:20; status: Recorded
+00:22 Run/manual step: rg -n "HTTP 503|db_pool_wait_ms|DB_POOL_SIZE" evidence/ config/
+00:29 Observation: Config delta -> DB_POOL_SIZE changed from 12 to 4 and matches increased wait time; status: High confidence
+00:36 Failure found: Restart too early; symptom: The first reaction was to restart service without proving root cause
+00:42 Correction: Rank causes with read-only evidence first
+00:50 Deliverables prepared: health-report.md, repair-plan.md, and rollback-note.md
+00:55 Acceptance decision: Root-cause ranking covers configuration, dependency, capacity, network, and code change.

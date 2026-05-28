@@ -1015,14 +1015,16 @@ main {
   padding: 22px;
 }
 
-.artifact-grid {
+.artifact-grid,
+.delivery-preview {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
   margin-top: 18px;
 }
 
-.artifact-card {
+.artifact-card,
+.delivery-preview article {
   display: flex;
   min-height: 132px;
   min-width: 0;
@@ -1036,7 +1038,8 @@ main {
   border-color: var(--accent);
 }
 
-.artifact-card span {
+.artifact-card span,
+.delivery-preview span {
   color: var(--accent);
   font-family: var(--mono);
   font-size: 0.7rem;
@@ -1044,7 +1047,8 @@ main {
   text-transform: uppercase;
 }
 
-.artifact-card strong {
+.artifact-card strong,
+.delivery-preview strong {
   color: var(--ink);
   font-size: 0.94rem;
   line-height: 1.28;
@@ -1054,6 +1058,15 @@ main {
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.45;
+}
+
+.delivery-preview article {
+  background: rgba(255, 146, 44, 0.07);
+}
+
+.execution-transcript {
+  border-color: rgba(102, 209, 122, 0.38);
+  background: #101510;
 }
 
 .case-visual {
@@ -1340,6 +1353,7 @@ main {
   .doc-meta-grid,
   .case-dashboard,
   .artifact-grid,
+  .delivery-preview,
   .proof-board {
     grid-template-columns: 1fr;
   }

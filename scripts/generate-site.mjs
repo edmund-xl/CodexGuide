@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const verifiedDate = "2026-05-28";
-const expectedPageCount = 43;
+const expectedPageCount = 44;
 const artifactRoot = "assets/case-artifacts";
 
 const b = (zh, en) => ({ zh, en });
@@ -1135,6 +1135,89 @@ Acceptance: npm run build && npm run check`),
       b("请给出每个假设的验证命令和预期结果。", "Provide validation commands and expected results for each hypothesis."),
       b("确认根因后再提出最小修复、回退方式和验收命令。", "After confirming root cause, propose minimal fix, rollback method, and acceptance commands.")
     ]
+  },
+  {
+    path: "recipes/remote-service-health-check.html",
+    title: b("14 远程服务健康检查与修复建议", "14 Remote Service Health Check and Fix Proposal"),
+    navTitle: b("14 远程服务健康检查", "14 Remote service check"),
+    summary: b("用脱敏健康日志和只读命令记录复盘一次服务异常，输出根因排序、修复建议、回退方式和复测清单。", "Use redacted health logs and read-only command records to review a service incident, then output root-cause ranking, fix proposal, rollback path, and retest checklist."),
+    domain: b("服务运维", "Service operations"),
+    audience: b("站点维护者、个人开发者、技术负责人", "Site maintainers, individual developers, and technical leads"),
+    entry: b("日志包 + 只读终端记录", "Log bundle plus read-only terminal record"),
+    materialsLabel: b("脱敏 healthz 响应、错误窗口、部署版本、只读命令输出", "Redacted healthz response, error window, deployment version, and read-only command output"),
+    evidence: b("healthz 响应、错误窗口、配置片段、复测记录", "healthz response, error window, config snippet, and retest record"),
+    deliverable: b("health-report.md、repair-plan.md、rollback-note.md", "health-report.md, repair-plan.md, and rollback-note.md"),
+    duration: b("55-90 分钟", "55-90 minutes"),
+    risk: b("中到高", "Medium to high"),
+    materials: [
+      b("只提供脱敏日志和只读命令输出，不提供真实密钥、主机名、账号或客户数据。", "Provide only redacted logs and read-only command output; do not provide real keys, hostnames, accounts, or customer data."),
+      b("第一轮只做诊断和建议，不执行重启、删除、发布或配置写入。", "The first pass diagnoses and proposes only; it does not restart, delete, deploy, or write configuration."),
+      b("所有修复建议都必须带回退方式、影响范围和复测步骤。", "Every fix proposal must include rollback, impact scope, and retest steps.")
+    ],
+    environment: [
+      b("材料目录：<code>workspace/service-health-demo/</code>，只读记录放在 <code>evidence/</code>。", "Material directory: <code>workspace/service-health-demo/</code>; read-only records live in <code>evidence/</code>."),
+      b("检查窗口：2026-05-28 10:05 到 10:35，版本：<code>web-2026.05.28-2</code>。", "Review window: 2026-05-28 10:05 to 10:35; version: <code>web-2026.05.28-2</code>."),
+      b("输出只给诊断、建议和验收，不自动连接生产环境。", "Output diagnosis, proposal, and acceptance only; do not connect to production automatically.")
+    ],
+    inputSample: b(`异常窗口：10:12-10:19
+healthz: HTTP 503, db_pool_wait_ms=4800
+最近改动：配置里 DB_POOL_SIZE 从 12 改成 4
+限制：只读分析，不重启服务，不修改配置
+目标：判断最可能根因，并给出最小修复和回退方式`,
+`Incident window: 10:12-10:19
+healthz: HTTP 503, db_pool_wait_ms=4800
+Recent change: DB_POOL_SIZE changed from 12 to 4
+Constraint: read-only analysis; do not restart service or edit config
+Goal: identify the most likely root cause and propose minimal fix plus rollback`),
+    playbook: [
+      b("先按时间线整理 healthz、错误日志、部署版本和配置差异。", "First organize healthz, error logs, deployment version, and config delta by timeline."),
+      b("把根因分成配置、依赖、容量、网络和代码变更五类，并逐项给验证方式。", "Group root causes into configuration, dependency, capacity, network, and code change, with validation for each."),
+      b("只输出修复建议和复测清单，等待用户确认后再进入执行阶段。", "Output fix proposal and retest checklist only, then wait for user confirmation before execution.")
+    ],
+    evidenceTable: [
+      [b("健康检查", "Health check"), b("10:12 开始 HTTP 503，10:20 恢复", "HTTP 503 began at 10:12 and recovered at 10:20"), b("evidence/healthz-window.txt", "evidence/healthz-window.txt"), b("已记录", "Recorded")],
+      [b("配置差异", "Config delta"), b("DB_POOL_SIZE 从 12 改为 4，与等待时间升高吻合", "DB_POOL_SIZE changed from 12 to 4 and matches increased wait time"), b("evidence/config-delta.txt", "evidence/config-delta.txt"), b("高置信", "High confidence")],
+      [b("容量指标", "Capacity signal"), b("CPU 和内存没有同步升高", "CPU and memory did not rise at the same time"), b("evidence/metrics-snapshot.txt", "evidence/metrics-snapshot.txt"), b("排除一项", "One cause reduced")],
+      [b("复测方案", "Retest plan"), b("先恢复配置，再复测 healthz 和等待时间", "Restore config first, then retest healthz and wait time"), b("repair-plan.md", "repair-plan.md"), b("待确认", "Needs confirmation")]
+    ],
+    outputSample: b(`health-report.md
+结论：最可能根因为连接池配置过小
+证据：HTTP 503 时间窗与 DB_POOL_SIZE 下调一致，db_pool_wait_ms 从 320 升到 4800
+最小修复：把 DB_POOL_SIZE 恢复到 12，观察 15 分钟
+回退方式：保留当前配置副本，恢复失败时切回上一部署版本
+复测：healthz 返回 200，db_pool_wait_ms 连续 5 分钟低于 500`,
+`health-report.md
+Conclusion: the most likely root cause is an undersized connection pool
+Evidence: HTTP 503 window aligns with DB_POOL_SIZE reduction, and db_pool_wait_ms rose from 320 to 4800
+Minimal fix: restore DB_POOL_SIZE to 12 and observe for 15 minutes
+Rollback: keep a copy of the current config and fall back to the previous deployment if restore fails
+Retest: healthz returns 200 and db_pool_wait_ms stays under 500 for five minutes`),
+    failureNotes: [
+      [b("急着重启", "Restart too early"), b("第一反应是重启服务，但没有证明根因", "The first reaction was to restart service without proving root cause"), b("先用只读证据排序根因", "Rank causes with read-only evidence first")],
+      [b("忽略时间线", "Timeline ignored"), b("只看单条 503 日志，没对齐配置变更", "Only one 503 log was inspected without aligning config change"), b("把日志、版本和配置按分钟对齐", "Align logs, version, and config by minute")],
+      [b("没有回退", "No rollback"), b("修复建议缺少失败时怎么退回", "Fix proposal lacked a fallback if it failed"), b("每条建议都补回退和复测", "Add rollback and retest to every proposal")]
+    ],
+    riskControls: [
+      b("不自动连接生产环境，不运行重启、删除、写配置或发布命令。", "Do not auto-connect to production or run restart, delete, config-write, or deploy commands."),
+      b("日志必须脱敏，主机、账号、密钥、IP 和客户标识都用占位符替换。", "Logs must be redacted; host, account, key, IP, and customer identifiers are replaced with placeholders."),
+      b("修复建议必须区分最小修复、回退方式和后续加固。", "Fix proposals must separate minimal fix, rollback path, and follow-up hardening.")
+    ],
+    commands: [
+      b("curl -i --max-time 10 http://127.0.0.1:8080/healthz", "curl -i --max-time 10 http://127.0.0.1:8080/healthz"),
+      b("rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/", "rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/"),
+      b("人工确认 repair-plan.md 包含影响范围、回退方式和复测窗口。", "Manually confirm repair-plan.md includes impact scope, rollback, and retest window.")
+    ],
+    acceptanceChecks: [
+      b("根因排序至少覆盖配置、依赖、容量、网络和代码变更。", "Root-cause ranking covers configuration, dependency, capacity, network, and code change."),
+      b("每个根因都有证据、反证或待确认状态。", "Every cause has evidence, counter-evidence, or a confirmation state."),
+      b("最小修复不包含无关重构或扩大权限动作。", "The minimal fix contains no unrelated refactor or expanded permission action."),
+      b("复测清单包含 healthz、关键指标、观察窗口和失败回退。", "Retest checklist includes healthz, key metric, observation window, and failure rollback.")
+    ],
+    taskOrder: [
+      b("请根据这组脱敏服务健康材料做只读诊断，先建立时间线。", "Use this redacted service health bundle for read-only diagnosis and build a timeline first."),
+      b("请输出根因排序、证据、反证、最小修复、回退方式和复测清单。", "Output root-cause ranking, evidence, counter-evidence, minimal fix, rollback, and retest checklist."),
+      b("不要重启服务、不要修改配置、不要发布；只交付诊断和建议。", "Do not restart service, edit config, or deploy; deliver diagnosis and proposal only.")
+    ]
   }
 ];
 
@@ -1539,6 +1622,75 @@ function evidenceCsv(recipe) {
   return [header, ...rows].join("\n");
 }
 
+function executionTranscript(recipe, lang) {
+  const isZh = lang === "zh";
+  const firstCommand = textOf(recipe.commands[0], lang);
+  const secondCommand = textOf(recipe.commands[1], lang);
+  const firstEvidence = recipe.evidenceTable[0].map((cell) => textOf(cell, lang));
+  const secondEvidence = recipe.evidenceTable[1].map((cell) => textOf(cell, lang));
+  const firstFailure = recipe.failureNotes[0].map((cell) => textOf(cell, lang));
+  const acceptance = textOf(recipe.acceptanceChecks[0], lang);
+
+  return isZh
+    ? `00:00 读取任务单，确认材料范围：${textOf(recipe.materialsLabel, lang)}
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：${firstCommand}
+00:14 观察：${firstEvidence[0]} -> ${firstEvidence[1]}；状态：${firstEvidence[3]}
+00:22 运行/人工步骤：${secondCommand}
+00:29 观察：${secondEvidence[0]} -> ${secondEvidence[1]}；状态：${secondEvidence[3]}
+00:36 发现失败点：${firstFailure[0]}；现象：${firstFailure[1]}
+00:42 修正动作：${firstFailure[2]}
+00:50 产出交付物：${textOf(recipe.deliverable, lang)}
+00:55 验收判断：${acceptance}`
+    : `00:00 Read work order and confirm material scope: ${textOf(recipe.materialsLabel, lang)}
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: ${firstCommand}
+00:14 Observation: ${firstEvidence[0]} -> ${firstEvidence[1]}; status: ${firstEvidence[3]}
+00:22 Run/manual step: ${secondCommand}
+00:29 Observation: ${secondEvidence[0]} -> ${secondEvidence[1]}; status: ${secondEvidence[3]}
+00:36 Failure found: ${firstFailure[0]}; symptom: ${firstFailure[1]}
+00:42 Correction: ${firstFailure[2]}
+00:50 Deliverables prepared: ${textOf(recipe.deliverable, lang)}
+00:55 Acceptance decision: ${acceptance}`;
+}
+
+function deliveryPreviewMarkdown(recipe) {
+  return `# ${recipe.title.zh} - 交付预览
+
+## 中文
+
+### 最终交付
+- ${recipe.deliverable.zh}
+
+### 关键证据
+- ${recipe.evidenceTable[0][0].zh}：${recipe.evidenceTable[0][1].zh}
+- ${recipe.evidenceTable[1][0].zh}：${recipe.evidenceTable[1][1].zh}
+
+### 主要修正
+- ${recipe.failureNotes[0][0].zh}：${recipe.failureNotes[0][2].zh}
+
+### 终审动作
+- ${recipe.acceptanceChecks[0].zh}
+- ${recipe.acceptanceChecks[1].zh}
+
+## English
+
+### Final Deliverable
+- ${recipe.deliverable.en}
+
+### Key Evidence
+- ${recipe.evidenceTable[0][0].en}: ${recipe.evidenceTable[0][1].en}
+- ${recipe.evidenceTable[1][0].en}: ${recipe.evidenceTable[1][1].en}
+
+### Main Correction
+- ${recipe.failureNotes[0][0].en}: ${recipe.failureNotes[0][2].en}
+
+### Final Review Actions
+- ${recipe.acceptanceChecks[0].en}
+- ${recipe.acceptanceChecks[1].en}
+`;
+}
+
 function artifactDefinitions(recipe) {
   const titleZh = textOf(recipe.title, "zh");
   return [
@@ -1569,6 +1721,20 @@ function artifactDefinitions(recipe) {
       kind: b("验收", "Acceptance"),
       description: b("集中保存复跑命令、人工检查点、失败修正和风险边界。", "Keep rerun commands, manual checks, corrections, and risk boundaries together."),
       body: `# ${titleZh} - 验收 Runbook\n\n## 中文\n\n### 命令与人工步骤\n${recipe.commands.map((item) => `- \`${item.zh}\``).join("\n")}\n\n### 验收标准\n${recipe.acceptanceChecks.map((item) => `- ${item.zh}`).join("\n")}\n\n### 失败与修正\n${recipe.failureNotes.map((row) => `- ${row[0].zh}：${row[1].zh}；${row[2].zh}`).join("\n")}\n\n## English\n\n### Commands and Manual Steps\n${recipe.commands.map((item) => `- \`${item.en}\``).join("\n")}\n\n### Acceptance Criteria\n${recipe.acceptanceChecks.map((item) => `- ${item.en}`).join("\n")}\n\n### Failures and Corrections\n${recipe.failureNotes.map((row) => `- ${row[0].en}: ${row[1].en}; ${row[2].en}`).join("\n")}\n`
+    },
+    {
+      file: "05-execution-transcript.log",
+      label: b("执行转录", "Execution Transcript"),
+      kind: b("过程", "Process"),
+      description: b("按分钟记录关键命令、观察、失败点、修正和终审判断。", "Record key commands, observations, failure, correction, and final decision by minute."),
+      body: `${executionTranscript(recipe, "zh")}\n\n---\n\n${executionTranscript(recipe, "en")}\n`
+    },
+    {
+      file: "06-delivery-preview.md",
+      label: b("交付预览", "Delivery Preview"),
+      kind: b("交付", "Delivery"),
+      description: b("把最终交付、关键证据、主要修正和终审动作压缩成一页。", "Condense final deliverable, key evidence, main correction, and review actions into one page."),
+      body: deliveryPreviewMarkdown(recipe)
     },
     {
       file: "evidence-board.svg",
@@ -1628,8 +1794,8 @@ function caseArtifactSection(recipe, lang) {
     <section>
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook 和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <figure class="case-visual">
@@ -1665,6 +1831,25 @@ function commandPanel(recipe, lang) {
     <div class="command-panel">
       <strong>${lang === "zh" ? "验收命令与人工步骤" : "Acceptance commands and manual steps"}</strong>
       ${recipe.commands.map((item) => `<code>${escapeHtml(textOf(item, lang))}</code>`).join("")}
+    </div>`;
+}
+
+function deliveryPreview(recipe, lang) {
+  const items = [
+    [b("最终交付", "Final Deliverable"), recipe.deliverable],
+    [b("关键证据", "Key Evidence"), recipe.evidenceTable[0][1]],
+    [b("主要修正", "Main Correction"), recipe.failureNotes[0][2]],
+    [b("终审动作", "Final Review"), recipe.acceptanceChecks[0]]
+  ];
+
+  return `
+    <div class="delivery-preview">
+      ${items.map(([label, value]) => `
+        <article>
+          <span>${escapeHtml(textOf(label, lang))}</span>
+          <strong>${escapeHtml(textOf(value, lang))}</strong>
+        </article>
+      `).join("")}
     </div>`;
 }
 
@@ -1722,9 +1907,19 @@ function caseContent(recipe, lang) {
       ${tableHtml(runHeaders, runLogRows(recipe), lang, "evidence-table run-log-table")}
     </section>
     <section>
+      <h2>${isZh ? "执行转录" : "Execution Transcript"}</h2>
+      ${paragraph(b("执行转录把关键命令、观察、失败点、修正动作和终审判断串成连续记录，方便复盘具体过程。", "The transcript turns key commands, observations, failure, correction, and final decision into a continuous record for process review."), lang)}
+      ${codeSample(b(executionTranscript(recipe, "zh"), executionTranscript(recipe, "en")), lang, "output-sample execution-transcript")}
+    </section>
+    <section>
       <h2>${isZh ? "过程证据" : "Evidence Trail"}</h2>
       ${paragraph(b("下面的表格记录本次任务如何判断完成，而不是只描述最终结果。", "The table below records how this task judged completion instead of only describing the final result."), lang)}
       ${tableHtml(evidenceHeaders, recipe.evidenceTable, lang)}
+    </section>
+    <section>
+      <h2>${isZh ? "交付预览" : "Delivery Preview"}</h2>
+      ${paragraph(b("交付预览把结果、证据、修正和终审动作放在同一屏，便于快速判断能不能交给下一个人复核。", "The delivery preview puts result, evidence, correction, and final review on one screen so another person can quickly judge reviewability."), lang)}
+      ${deliveryPreview(recipe, lang)}
     </section>
     <section>
       <h2>${isZh ? "结果样例" : "Result Sample"}</h2>
@@ -1793,7 +1988,7 @@ function addRecipePages() {
     title: b("案例总览", "Recipe Index"),
     navTitle: b("案例总览", "Recipe Index"),
     group: b("实战案例", "Recipes"),
-    summary: b("13 个案例按真实任务复盘组织，重点展示输入、证据、结果、失败修正和验收方式。", "Thirteen recipes are organized as real task retrospectives, highlighting input, evidence, result, correction, and acceptance method."),
+    summary: b("14 个案例按真实任务复盘组织，重点展示输入、证据、结果、失败修正和验收方式。", "Fourteen recipes are organized as real task retrospectives, highlighting input, evidence, result, correction, and acceptance method."),
     meta: statusMeta(b("所有希望把 Codex 接入真实工作的读者", "Readers who want to apply Codex to real work"), b("20 分钟", "20 minutes")),
     caseIndex: true,
     sections: [],
@@ -1814,7 +2009,7 @@ function addRecipePages() {
       caseRecipe: recipe,
       sections: [],
       links: [
-        index < 12
+        index < caseRecipes.length - 1
           ? link(caseRecipes[index + 1].path, "下一个案例", "Next recipe")
           : link("recipes/usage-policy.html", "使用规范", "Usage policy"),
         link("recipes/index.html", "返回案例总览", "Back to recipe index")
@@ -2048,11 +2243,11 @@ function homePage() {
   const metrics = [
     [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
     [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
-    [b("13 个工具实测案例", "13 tool-tested recipes"), b("覆盖演示稿、浏览器检查、部署排障、知识库、表格和日志诊断。", "Covers decks, browser review, deployment diagnosis, knowledge bases, spreadsheets, and log troubleshooting.")],
+    [b("14 个工具实测案例", "14 tool-tested recipes"), b("覆盖演示稿、浏览器检查、部署排障、知识库、表格、日志诊断和服务健康检查。", "Covers decks, browser review, deployment diagnosis, knowledge bases, spreadsheets, log troubleshooting, and service health checks.")],
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b("13 组", "13 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook 和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, and evidence board.")],
+    [b("材料包", "Artifact pack"), b("14 组", "14 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -2422,7 +2617,7 @@ function caseEvidenceSvg(recipe) {
   <text x="724" y="94" fill="#888" font-family="Arial" font-size="13" font-weight="800">RISK</text>
   <text x="724" y="118" fill="#e0e0e0" font-family="Arial" font-size="20" font-weight="900">${escapeXml(textOf(recipe.risk, "zh"))}</text>
   ${rowSvg}
-  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the linked brief, CSV, result sample, and runbook before adapting this recipe.</text>
+  <text x="58" y="466" fill="#666" font-family="Arial" font-size="14">Open the brief, CSV, result sample, runbook, transcript, and preview before adapting this recipe.</text>
 </svg>`;
 }
 

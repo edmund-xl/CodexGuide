@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：脱敏 PDF、摘要目标、页码规则、输出字段
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：人工检查 evidence-table.md 每行是否包含页码和摘录线索。
+00:14 观察：结构识别 -> 识别 4 个章节，页码 1-18；状态：通过
+00:22 运行/人工步骤：rg -n "待确认|低|中" evidence-table.md open-questions.md
+00:29 观察：证据抽取 -> 得到 23 条单主张证据；状态：通过
+00:36 发现失败点：无页码摘要；现象：初稿只有三段摘要，无法复核
+00:42 修正动作：改成证据表并强制页码
+00:50 产出交付物：evidence-table.md、open-questions.md、summary-brief.md
+00:55 验收判断：证据表每行只有一个主张，且带页码。
+
+---
+
+00:00 Read work order and confirm material scope: Redacted PDF, summary goal, page-numbering rules, and output fields
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: Manually check every evidence-table.md row for page number and excerpt cue.
+00:14 Observation: Structure mapping -> Identified four sections across pages 1-18; status: Pass
+00:22 Run/manual step: rg -n "待确认|Low|Medium" evidence-table.md open-questions.md
+00:29 Observation: Evidence extraction -> Extracted 23 single-claim evidence rows; status: Pass
+00:36 Failure found: No page numbers; symptom: First draft had only three paragraphs and could not be checked
+00:42 Correction: Convert to an evidence table with required page numbers
+00:50 Deliverables prepared: evidence-table.md, open-questions.md, and summary-brief.md
+00:55 Acceptance decision: Each evidence-table row has one claim and a page number.

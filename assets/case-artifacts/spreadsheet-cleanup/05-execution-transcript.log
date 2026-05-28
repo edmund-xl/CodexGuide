@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：脱敏 CSV、字段说明、金额和日期规则
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：wc -l orders-redacted.csv
+00:14 观察：数据画像 -> 4 行、5 列，order_id 有重复，date 有缺失；状态：通过
+00:22 运行/人工步骤：head -n 5 orders-redacted.csv
+00:29 观察：重复检测 -> order_id=1002 出现 2 次，金额符号不一致；状态：待复核
+00:36 发现失败点：误删重复行；现象：重复 order_id 可能是拆单或退款
+00:42 修正动作：只标记异常，不自动删除
+00:50 产出交付物：data-profile.md、anomalies.csv、review-sheet.csv
+00:55 验收判断：数据画像写清行数、列数、空值、重复和范围异常。
+
+---
+
+00:00 Read work order and confirm material scope: Redacted CSV, field notes, amount and date rules
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: wc -l orders-redacted.csv
+00:14 Observation: Data profile -> 4 rows, 5 columns, duplicate order_id, missing date; status: Pass
+00:22 Run/manual step: head -n 5 orders-redacted.csv
+00:29 Observation: Duplicate check -> order_id=1002 appears twice with inconsistent amount signs; status: Needs review
+00:36 Failure found: Deleted duplicate row; symptom: Duplicate order_id may be split order or refund
+00:42 Correction: Flag anomalies without deleting
+00:50 Deliverables prepared: data-profile.md, anomalies.csv, and review-sheet.csv
+00:55 Acceptance decision: Data profile states row count, column count, blanks, duplicates, and range anomalies.

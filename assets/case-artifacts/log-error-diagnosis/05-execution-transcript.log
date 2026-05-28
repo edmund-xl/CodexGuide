@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：错误上下文、失败命令、环境、最近改动、重现步骤
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：npm run check
+00:14 观察：症状 -> 检查脚本报告 old-page.html 断链；状态：已记录
+00:22 运行/人工步骤：rg -n "old-page|missing local target|recipes/" scripts recipes README.md
+00:29 观察：根因假设 -> 导航或搜索索引仍指向旧 URL；状态：待验证
+00:36 发现失败点：只看最后一行；现象：最后一行是连锁失败，不是根因
+00:42 修正动作：读取错误前后上下文
+00:50 产出交付物：diagnosis.md、validation-plan.md、fix-proposal.md
+00:55 验收判断：诊断记录包含症状、直接错误、根因假设、验证结果和最小修复。
+
+---
+
+00:00 Read work order and confirm material scope: Error context, failing command, environment, recent changes, and reproduction steps
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: npm run check
+00:14 Observation: Symptom -> Check script reports broken old-page.html link; status: Recorded
+00:22 Run/manual step: rg -n "old-page|missing local target|recipes/" scripts recipes README.md
+00:29 Observation: Hypothesis -> Navigation or search index still points to old URL; status: To validate
+00:36 Failure found: Last line only; symptom: The last line was a cascading failure, not root cause
+00:42 Correction: Read context around the error
+00:50 Deliverables prepared: diagnosis.md, validation-plan.md, and fix-proposal.md
+00:55 Acceptance decision: Diagnosis includes symptom, direct error, root-cause hypotheses, validation result, and minimal fix.

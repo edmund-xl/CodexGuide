@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：脱敏产品说明、品牌色、页数限制、必须出现的三条信息
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md
+00:14 观察：大纲锁定 -> 7 页结构，无价格、无客户名；状态：通过
+00:22 运行/人工步骤：人工打开 deck-draft.pptx，确认 7 页均可显示且备注不为空。
+00:29 观察：文件导出 -> PPTX 可打开，页数为 7；状态：通过
+00:36 发现失败点：页数失控；现象：第一轮草稿生成 10 页，超出限制
+00:42 修正动作：先锁 7 页结构，再生成文件
+00:50 产出交付物：deck-draft.pptx、slide-checklist.md、export-notes.md
+00:55 验收判断：交付物齐全，文件名不覆盖原始材料。
+
+---
+
+00:00 Read work order and confirm material scope: Redacted product brief, brand colors, slide limit, and three required messages
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md
+00:14 Observation: Outline locked -> Seven-slide structure, no pricing, no customer names; status: Pass
+00:22 Run/manual step: Open deck-draft.pptx manually and confirm all seven slides display and notes are not empty.
+00:29 Observation: File export -> PPTX opens and contains seven slides; status: Pass
+00:36 Failure found: Slide count drift; symptom: First draft produced ten slides, beyond the limit
+00:42 Correction: Lock the seven-slide structure before file generation
+00:50 Deliverables prepared: deck-draft.pptx, slide-checklist.md, and export-notes.md
+00:55 Acceptance decision: Deliverables are complete and do not overwrite source material.

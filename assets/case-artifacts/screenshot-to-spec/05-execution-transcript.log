@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：目标截图、当前截图、可复用限制、视口清单
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：人工检查 1440x1000 截图：导航、主内容、证据表、按钮无重叠。
+00:14 观察：颜色规则 -> 底色、面板、边框、强调色已映射到 CSS token；状态：通过
+00:22 运行/人工步骤：人工检查 390x900 截图：无页面级横向溢出，长命令可读。
+00:29 观察：组件状态 -> 导航、按钮、卡片、表格、代码块均有状态说明；状态：通过
+00:36 发现失败点：风格描述太粗；现象：只写深色后台风无法执行
+00:42 修正动作：拆成 token、组件和验收项
+00:50 产出交付物：implementation-spec.md、component-checklist.md、acceptance-shots/
+00:55 验收判断：规格包含 token、组件、状态、响应式规则和验收项。
+
+---
+
+00:00 Read work order and confirm material scope: Target screenshot, current screenshot, reuse constraints, and viewport list
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: Manually inspect 1440x1000 screenshots: nav, content, evidence table, and buttons have no overlap.
+00:14 Observation: Color rules -> Background, panels, borders, and accent mapped to CSS tokens; status: Pass
+00:22 Run/manual step: Manually inspect 390x900 screenshots: no page-level horizontal overflow and long commands remain readable.
+00:29 Observation: Component states -> Navigation, buttons, cards, tables, and code blocks have state notes; status: Pass
+00:36 Failure found: Style note too broad; symptom: Saying dark dashboard was not actionable
+00:42 Correction: Split into tokens, components, and acceptance checks
+00:50 Deliverables prepared: implementation-spec.md, component-checklist.md, and acceptance-shots/
+00:55 Acceptance decision: Spec includes tokens, components, states, responsive rules, and acceptance items.

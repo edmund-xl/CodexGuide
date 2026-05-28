@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：检查对象、频率、异常定义、标准输出、暂停条件
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/
+00:14 观察：规则 -> 检查 3 个页面，均需返回 200；状态：通过
+00:22 运行/人工步骤：curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html
+00:29 观察：模拟输出 -> 结果控制在 8 行内，含异常和建议；状态：通过
+00:36 发现失败点：目标太泛；现象：检查网站是否正常无法判断
+00:42 修正动作：改为 URL、状态码和页面标记
+00:50 产出交付物：automation-brief.md、mock-result.md、pause-rules.md
+00:55 验收判断：任务规则可被执行，异常定义明确。
+
+---
+
+00:00 Read work order and confirm material scope: Check target, frequency, anomaly definition, standard output, and pause condition
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/
+00:14 Observation: Rules -> Check three pages and each must return 200; status: Pass
+00:22 Run/manual step: curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html
+00:29 Observation: Mock output -> Result stays within eight lines and includes anomalies and suggestions; status: Pass
+00:36 Failure found: Goal too vague; symptom: Check whether site is OK was not measurable
+00:42 Correction: Use URL, status code, and page marker
+00:50 Deliverables prepared: automation-brief.md, mock-result.md, and pause-rules.md
+00:55 Acceptance decision: Task rules are executable and anomaly definition is explicit.

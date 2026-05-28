@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：笔记副本、字段规则、样本文件、目标索引格式
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：rg --files notes-working | sort
+00:14 观察：扫描 -> 发现 18 篇笔记，11 篇缺 date，6 篇缺 status；状态：通过
+00:22 运行/人工步骤：rg -n "^title:|^date:|^topic:|^status:" notes-working
+00:29 观察：样本迁移 -> 5 篇样本生成 frontmatter，未猜缺失日期；状态：通过
+00:36 发现失败点：自动猜日期；现象：文件名年份被误当成完整日期
+00:42 修正动作：只保留可证明日期，其他标待补
+00:50 产出交付物：重整后的 Markdown 副本、index.md、pending-review.md
+00:55 验收判断：每篇笔记都有统一字段或明确待补标记。
+
+---
+
+00:00 Read work order and confirm material scope: Notes copy, field rules, sample files, and target index format
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: rg --files notes-working | sort
+00:14 Observation: Scan -> Found 18 notes, 11 missing date, 6 missing status; status: Pass
+00:22 Run/manual step: rg -n "^title:|^date:|^topic:|^status:" notes-working
+00:29 Observation: Sample migration -> Five samples gained frontmatter without guessed dates; status: Pass
+00:36 Failure found: Guessed dates; symptom: Filename year was treated as full date
+00:42 Correction: Keep only provable dates and mark others pending
+00:50 Deliverables prepared: Restructured Markdown copy, index.md, and pending-review.md
+00:55 Acceptance decision: Every note has consistent fields or explicit pending markers.

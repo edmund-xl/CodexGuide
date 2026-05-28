@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：变更说明、版本号、端点名、字段名、错误码
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：rg -n "GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429" src tests docs
+00:14 观察：端点变更 -> GET /v1/tasks 新增 archived 状态；状态：需要测试
+00:22 运行/人工步骤：rg -n "archived|priority" tests src
+00:29 观察：字段变更 -> priority 从 string 变 enum，类型校验受影响；状态：需要修改
+00:36 发现失败点：只看说明；现象：未搜索调用点导致遗漏测试
+00:42 修正动作：强制输出 call-sites.md
+00:50 产出交付物：api-impact.md、call-sites.md、test-matrix.md
+00:55 验收判断：影响表覆盖端点、字段、鉴权、限额和错误码。
+
+---
+
+00:00 Read work order and confirm material scope: Change notes, version, endpoint names, fields, and error codes
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: rg -n "GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429" src tests docs
+00:14 Observation: Endpoint change -> GET /v1/tasks adds archived status; status: Needs test
+00:22 Run/manual step: rg -n "archived|priority" tests src
+00:29 Observation: Field change -> priority changes from string to enum and affects type validation; status: Needs change
+00:36 Failure found: Notes only; symptom: Call sites were not searched and tests were missed
+00:42 Correction: Require call-sites.md
+00:50 Deliverables prepared: api-impact.md, call-sites.md, and test-matrix.md
+00:55 Acceptance decision: Impact table covers endpoints, fields, auth, limits, and error codes.

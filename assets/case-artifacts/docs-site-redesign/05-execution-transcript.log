@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：生成器、样式表、README、截图目录、发布 workflow
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：npm run build
+00:14 观察：页面数量 -> HTML 页面仍为 43；状态：通过
+00:22 运行/人工步骤：npm run check
+00:29 观察：链接 -> 导航、搜索、README 链接均指向现有文件；状态：通过
+00:36 发现失败点：旧文件残留；现象：改 URL 后旧 HTML 仍留在目录中
+00:42 修正动作：删除旧文件并让校验禁止旧路径
+00:50 产出交付物：新版站点、README 截图、质量门禁结果
+00:55 验收判断：43 个 HTML 页面全部生成并通过链接检查。
+
+---
+
+00:00 Read work order and confirm material scope: Generator, stylesheet, README, screenshot directory, and deploy workflow
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: npm run build
+00:14 Observation: Page count -> HTML page count remains 43; status: Pass
+00:22 Run/manual step: npm run check
+00:29 Observation: Links -> Navigation, search, and README links point to existing files; status: Pass
+00:36 Failure found: Stale files; symptom: Old HTML files remained after URL changes
+00:42 Correction: Delete old files and make verification block old paths
+00:50 Deliverables prepared: Redesigned site, README screenshots, and quality-gate results
+00:55 Acceptance decision: All 43 HTML pages are generated and pass link checks.

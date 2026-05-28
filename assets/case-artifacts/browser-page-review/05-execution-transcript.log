@@ -1,0 +1,23 @@
+00:00 读取任务单，确认材料范围：目标 URL、主路径、视口尺寸、禁止动作
+00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
+00:08 运行/人工步骤：curl -I -L --max-time 15 http://127.0.0.1:4173/
+00:14 观察：桌面首屏 -> 主标题、侧栏和任务状态面板可见；状态：通过
+00:22 运行/人工步骤：浏览器桌面视口：1440x1000，截图 home-desktop-1440.png。
+00:29 观察：手机视口 -> 无横向滚动，导航按钮可展开；状态：通过
+00:36 发现失败点：只看 DOM；现象：DOM 文本正常但手机截图里按钮换行拥挤
+00:42 修正动作：截图成为必检证据
+00:50 产出交付物：page-review.md、screenshots/、console-summary.txt
+00:55 验收判断：目标 URL 返回 200，关键资源未缺失。
+
+---
+
+00:00 Read work order and confirm material scope: Target URL, primary path, viewport sizes, and prohibited actions
+00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
+00:08 Run/manual step: curl -I -L --max-time 15 http://127.0.0.1:4173/
+00:14 Observation: Desktop first view -> Main heading, sidebar, and task status panel are visible; status: Pass
+00:22 Run/manual step: Browser desktop viewport: 1440x1000, capture home-desktop-1440.png.
+00:29 Observation: Mobile viewport -> No horizontal scrolling; nav button expands; status: Pass
+00:36 Failure found: DOM-only review; symptom: DOM text was fine but mobile screenshot showed cramped button wrapping
+00:42 Correction: Make screenshots mandatory evidence
+00:50 Deliverables prepared: page-review.md, screenshots/, and console-summary.txt
+00:55 Acceptance decision: Target URL returns 200 and key assets are not missing.
