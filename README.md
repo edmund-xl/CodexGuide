@@ -28,16 +28,17 @@ npm run check
 npm run verify
 ```
 
-可用任意静态服务器预览：
+启动本地页面服务：
 
 ```bash
-python3 -m http.server 4173 --bind 127.0.0.1
+npm run serve
 ```
 
-然后打开：
+然后打开任一地址：
 
 ```text
-http://127.0.0.1:4173/index.html
+http://127.0.0.1:4173/
+http://127.0.0.1:4173/CodexGuide/
 ```
 
 ### 页面服务
@@ -96,16 +97,17 @@ npm run check
 npm run verify
 ```
 
-Preview with any static server:
+Start the local page service:
 
 ```bash
-python3 -m http.server 4173 --bind 127.0.0.1
+npm run serve
 ```
 
-Then open:
+Then open either URL:
 
 ```text
-http://127.0.0.1:4173/index.html
+http://127.0.0.1:4173/
+http://127.0.0.1:4173/CodexGuide/
 ```
 
 ### Page Service
