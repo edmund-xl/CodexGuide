@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页 | Codex Everyday Guide</title>
+    <meta name="description" content="面向普通用户、创作者、个人开发者和小团队的 Codex 实践指南。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="home-page">
+    
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Codex Everyday Guide 首页">
+        <img src="assets/logo.svg" alt="" width="42" height="42">
+        <strong>Codex Everyday</strong>
+      </a>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="topNav">目录</button>
+      <nav class="top-nav" id="topNav" aria-label="主导航">
+        <a href="index.html" aria-current="page">首页</a>
+        <a href="guide/00-overview.html">学习路线</a>
+        <a href="platform/index.html">入口地图</a>
+        
+    <details class="nav-dropdown">
+      <summary>配置</summary>
+      <div class="dropdown-menu">
+        <a href="configuration/index.html">配置总览</a><a href="configuration/cli-options.html">CLI 选项与命令</a><a href="configuration/config-file.html">config.toml 任务配置</a><a href="configuration/mcp-skills-subagents.html">MCP、Skills 与 Subagents</a><a href="configuration/security-admin.html">安全与审批</a>
+      </div>
+    </details>
+        
+    <details class="nav-dropdown">
+      <summary>资源</summary>
+      <div class="dropdown-menu">
+        <a href="practice/index.html">实践方法</a><a href="reference/index.html">官方资料</a><a href="contribute/roadmap.html">共建路线图</a>
+      </div>
+    </details>
+        
+    <details class="nav-dropdown">
+      <summary>教程</summary>
+      <div class="dropdown-menu">
+        <a href="guide/01-desktop-install.html">01 安装并打开桌面端</a><a href="guide/02-account-plan.html">02 准备账号、计划与使用边界</a><a href="guide/03-app-tour.html">03 认识桌面 App 的任务界面</a><a href="guide/04-mobile-handoff.html">04 手机发起、桌面接手</a><a href="guide/05-first-task.html">05 完成第一个低风险任务</a><a href="guide/06-queue-parallel.html">06 排队、并行与任务节奏</a><a href="guide/07-permission-review.html">07 权限弹窗怎么判断</a><a href="guide/08-skill-plugin-library.html">08 用 Skills 与插件扩展任务</a><a href="guide/09-automation-checks.html">09 自动化前的确认清单</a><a href="guide/10-personal-workbench.html">10 搭建个人任务工作台</a><a href="guide/11-cli-install-login.html">11 CLI 安装与登录</a><a href="guide/12-cli-first-edit.html">12 第一次让 Codex 改一个小项目</a><a href="guide/13-vscode-flow.html">13 在 VS Code 中协同修改</a><a href="guide/14-project-rules.html">14 用 AGENTS.md 写项目规则</a><a href="guide/15-sandbox-approvals.html">15 沙盒、审批与回退</a><a href="guide/16-cloud-tasks.html">16 云端任务与本地接力</a><a href="guide/17-troubleshooting.html">17 排障手册</a>
+      </div>
+    </details>
+        
+    <details class="nav-dropdown">
+      <summary>实战案例</summary>
+      <div class="dropdown-menu">
+        <a href="recipes/index.html">案例总览</a><a href="recipes/newsletter-brief.html">01 Codex × Newsletter：用资料包生成周报草稿</a><a href="recipes/spreadsheet-cleanup.html">02 Codex × Spreadsheet：清理 CSV 并生成核对表</a><a href="recipes/docs-site-refresh.html">03 Codex × Docs：批量更新文档站链接</a><a href="recipes/accessibility-audit.html">04 Codex × Browser：做页面无障碍巡检</a><a href="recipes/photo-archive.html">05 Codex × Local Files：整理照片命名与索引</a><a href="recipes/expense-report.html">06 Codex × Expense Notes：汇总报销材料</a><a href="recipes/podcast-notes.html">07 Codex × Transcript：把访谈稿变成选题库</a><a href="recipes/api-changelog.html">08 Codex × API Changelog：追踪接口变更</a><a href="recipes/shop-copy.html">09 Codex × Product Copy：生成商品说明</a><a href="recipes/learning-plan.html">10 Codex × Learning Plan：生成个人学习路线</a><a href="recipes/support-triage.html">11 Codex × Support Inbox：汇总客服问题</a><a href="recipes/markdown-knowledge-base.html">12 Codex × Markdown KB：重整知识库字段</a><a href="recipes/github-release.html">13 Codex × GitHub Releases：生成发布说明</a><a href="recipes/credits.html">参考来源与致谢</a>
+      </div>
+    </details>
+      </nav>
+      <div class="header-actions">
+        <a class="icon-link" href="https://github.com/" aria-label="GitHub">GH</a>
+        <button class="search-trigger" type="button" data-open-search>搜索 <kbd>⌘</kbd><kbd>K</kbd></button>
+      </div>
+    </header>
+    
+    <main>
+      <section class="hero">
+        <div class="hero-art">
+          <img src="assets/logo.svg" alt="Codex Everyday Guide Logo">
+        </div>
+        <div class="hero-copy">
+          <h1>Codex Everyday Guide</h1>
+          <p>面向普通用户、创作者、个人开发者与小团队的 Codex 实践指南。从第一次上手，到把 Codex 接入真实工作流。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="guide/00-overview.html">从学习路线开始</a>
+            <a class="button secondary" href="platform/index.html">选择使用入口</a>
+            <a class="button secondary" href="recipes/index.html">浏览实战案例</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-grid" aria-label="站点能力">
+        <article><h2>桌面 App 入门路径</h2><p>从客户端打开到第一个任务，帮助新手先跑通完整闭环。</p></article><article><h2>CLI 本地提效</h2><p>覆盖本地仓库、命令执行、测试验证、提交说明和排障流程。</p></article><article><h2>Skills 与插件</h2><p>梳理 MCP、Skills、Subagents、浏览器和自动化能力的组合方式。</p></article><article><h2>安全与权限</h2><p>解释沙盒、审批、网络、凭据和团队使用时的边界设置。</p></article><article><h2>移动协同</h2><p>用手机记录任务，再回到桌面端检查和交付。</p></article><article><h2>原创案例库</h2><p>收录 13 个可迁移案例，覆盖内容、资料、网页、支持和发布流程。</p></article><article><h2>团队沉淀</h2><p>提供 AGENTS.md、任务模板、复盘结构和团队推广方法。</p></article><article><h2>配置与排障</h2><p>汇总配置文件、CLI 选项、常见错误和恢复路径。</p></article>
+      </section>
+
+      
+    <section class="home-section">
+      <header class="section-title">
+        <h2>这份教程适合谁</h2>
+        <p>它不是命令速查表，而是一份围绕真实工作流组织的实践指南。它帮助不同背景的人回答三个问题：从哪个入口开始，怎样把需求交给 Codex，怎样确认交付可靠。</p>
+      </header>
+      <div class="card-grid four">
+        <article class="metric-card style-1"><h3>17 节系统指南</h3><p>从桌面 App、CLI、IDE 到 Cloud，按阶段建立完整使用习惯。</p></article><article class="metric-card style-2"><h3>13 个原创案例</h3><p>把 Codex 放进周报、表格、文档站、知识库、发布说明等真实场景。</p></article><article class="metric-card style-3"><h3>4 类配置主题</h3><p>覆盖 CLI 选项、config.toml、MCP/Skills/Subagents 与安全管理。</p></article><article class="metric-card style-4"><h3>3 组实践方法</h3><p>任务设计、非开发工作流、团队 playbook，帮助你把经验沉淀下来。</p></article>
+      </div>
+    </section>
+
+      <section class="path-section">
+        <header class="section-title">
+          <h2>三条推荐学习路径</h2>
+          <p>不同起点不需要读同一条路。先选与你当前工作最贴近的路径，再回头补全基础概念。</p>
+        </header>
+        <div class="path-cards">
+          <article><span>01</span><h3>第一次使用 Codex</h3><p>安装并熟悉桌面端，完成一个低风险任务。</p><small>适合初学者、运营、写作者</small></article><article><span>02</span><h3>个人开发者本地提效</h3><p>在 CLI 或 IDE 中读项目、改代码、跑检查。</p><small>适合前端、后端、开源维护者</small></article><article><span>03</span><h3>团队落地与规范</h3><p>用项目规则、权限边界和案例库统一协作方式。</p><small>适合技术负责人、内部工具负责人</small></article>
+        </div>
+      </section>
+
+      <section class="split-section">
+        <div>
+          <h2>先选对入口</h2>
+          <p>Codex 的能力会出现在 App、CLI、Cloud、IDE、ChatGPT 和集成生态里。入口不同，任务节奏也不同：本地小步修改适合 CLI，长任务和并行任务适合 Cloud，贴近编辑器的解释与局部改动适合 IDE，跨工具流程适合 App 和插件体系。</p>
+          <div class="inline-actions">
+            <a class="button ghost" href="platform/index.html">查看入口地图</a>
+            <a class="button ghost" href="guide/03-app-tour.html">了解桌面 App</a>
+            <a class="button ghost" href="guide/13-vscode-flow.html">VS Code 使用方式</a>
+          </div>
+        </div>
+        <img class="section-image" src="assets/entry-map.svg" alt="Codex 使用入口地图">
+      </section>
+
+      <section class="loop-section">
+        <header>
+          <h2>把一次任务做成闭环</h2>
+          <p>好用 Codex 的关键不是把 prompt 写得花哨，而是让它始终知道目标、范围、约束、验证方式和交付格式。</p>
+        </header>
+        <div class="loop-cards">
+          <article>说明：目标、范围、约束和输出</article><article>探索：读材料、找入口和提计划</article><article>实施：小步修改并汇报状态</article><article>验证：测试、截图、日志和人工检查</article><article>沉淀：模板、案例和团队规则</article>
+        </div>
+        <img src="assets/task-loop.svg" alt="Codex 高质量任务闭环">
+      </section>
+
+      <section class="case-section">
+        <header class="section-title">
+          <h2>精选实战场景</h2>
+          <p>案例库不是展示清单，而是可改写的任务样本。你可以直接换成自己的项目、工具、账号和验证方式。</p>
+        </header>
+        <div class="card-grid four">
+          <a class="plain-card" href="recipes/newsletter-brief.html"><h3>01 Codex × Newsletter：用资料包生成周报草稿</h3><p>把零散链接、会议摘录和产品更新整理成一版可审阅周报。</p></a><a class="plain-card" href="recipes/spreadsheet-cleanup.html"><h3>02 Codex × Spreadsheet：清理 CSV 并生成核对表</h3><p>识别重复行、缺失字段和异常金额，再输出修正建议。</p></a><a class="plain-card" href="recipes/docs-site-refresh.html"><h3>03 Codex × Docs：批量更新文档站链接</h3><p>扫描失效链接、替换旧路径，并生成变更清单。</p></a><a class="plain-card" href="recipes/accessibility-audit.html"><h3>04 Codex × Browser：做页面无障碍巡检</h3><p>用浏览器检查标题层级、按钮文案、键盘路径和截图证据。</p></a>
+        </div>
+      </section>
+
+      <section class="split-section project-section">
+        <img class="section-image" src="assets/safety-layers.svg" alt="Codex 安全边界分层">
+        <div>
+          <h2>为真实项目准备</h2>
+          <p>当 Codex 进入真实项目，真正重要的是边界、复现和共识。教程会把每次任务拆成可检查的输入与输出，减少“看起来完成了，但没人敢交付”的时刻。</p>
+          <ul class="checked-list">
+            <li>用 AGENTS.md 写清项目命令、代码风格和禁止事项。</li>
+            <li>用沙盒与审批管理文件、网络、凭据和高风险命令。</li>
+            <li>用团队 playbook 统一任务模板、复盘结构和案例沉淀。</li>
+            <li>用排障手册快速定位登录、权限、依赖和执行异常。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="start-section">
+        <h2>建议从这里开始</h2>
+        <p>如果你只有二十分钟，先完成桌面端路线的前五节；如果你已经在项目里写代码，直接从 CLI 安装和第一次本地任务开始。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="guide/00-overview.html">进入学习路线</a>
+          <a class="button secondary" href="configuration/index.html">查看配置专题</a>
+          <a class="button secondary" href="contribute/roadmap.html">参与共建</a>
+        </div>
+      </section>
+    </main>
+    <button class="back-top" type="button" data-back-top aria-label="返回顶部">↑</button>
+    
+    <footer class="site-footer">
+      <div>
+        <strong>Codex Everyday Guide</strong>
+        <span>基础资料最后核对日期：2026-05-28。功能、价格、可用性和安全策略以 OpenAI 官方资料为准。</span>
+      </div>
+      <nav aria-label="页脚导航">
+        <a href="CLEANROOM.md">原创边界</a>
+        <a href="LICENSE">MIT Licensed</a>
+        <a href="contribute/roadmap.html">共建路线图</a>
+      </nav>
+    </footer>
+    
+    <dialog class="search-dialog" id="siteSearch">
+      <form method="dialog" class="search-head">
+        <strong>搜索文档</strong>
+        <button type="submit" aria-label="关闭搜索">×</button>
+      </form>
+      <input id="siteSearchInput" type="search" placeholder="输入：权限、入口、案例、CLI">
+      <div class="search-results"><a data-search-item="学习路线 教程 三条路线覆盖普通用户、个人开发者和团队落地。你不需要一次读完整站，先选与你当前任务最接近的路径。" href="guide/00-overview.html"><strong>学习路线</strong><span>教程</span></a><a data-search-item="入口地图 入口 同一个 Codex 能力，在不同入口里的节奏不同。先选入口，再设计任务。" href="platform/index.html"><strong>入口地图</strong><span>入口</span></a><a data-search-item="配置总览 配置 把配置理解成任务边界，而不是炫技清单。普通用户只需要先掌握模型、权限、网络、项目规则四件事。" href="configuration/index.html"><strong>配置总览</strong><span>配置</span></a><a data-search-item="CLI 选项与命令 配置 CLI 适合在本地目录里读文件、改代码、跑检查。第一次使用时，先让 Codex 解释它准备运行的命令。" href="configuration/cli-options.html"><strong>CLI 选项与命令</strong><span>配置</span></a><a data-search-item="config.toml 任务配置 配置 配置文件适合沉淀常用模型、审批模式和工具偏好。不要把密钥或私人凭据写进配置示例。" href="configuration/config-file.html"><strong>config.toml 任务配置</strong><span>配置</span></a><a data-search-item="MCP、Skills 与 Subagents 配置 MCP 连接工具，Skills 沉淀工作方法，Subagents 拆分复杂任务。先用最少工具跑通，再逐步扩展。" href="configuration/mcp-skills-subagents.html"><strong>MCP、Skills 与 Subagents</strong><span>配置</span></a><a data-search-item="安全与审批 配置 安全配置的目标是让任务可解释、可撤回、可审计。文件、网络、命令和凭据都要有边界。" href="configuration/security-admin.html"><strong>安全与审批</strong><span>配置</span></a><a data-search-item="实践方法 资源 把每次任务拆成说明、探索、实施、验证、复盘五段，Codex 才能稳定交付。" href="practice/index.html"><strong>实践方法</strong><span>资源</span></a><a data-search-item="官方资料 资源 最后核对：2026-05-28。涉及功能、价格、限额、模型、数据控制和安全策略时，以 OpenAI 官方资料为准。" href="reference/index.html"><strong>官方资料</strong><span>资源</span></a><a data-search-item="共建路线图 资源 这是面向 GitHub 开源维护的路线图，不包含外部群聊入口。贡献以 Issue、PR 和可验证内容为主。" href="contribute/roadmap.html"><strong>共建路线图</strong><span>资源</span></a><a data-search-item="01 安装并打开桌面端 教程 准备一个低风险桌面任务，让第一次体验只围绕文件副本和可检查输出。" href="guide/01-desktop-install.html"><strong>01 安装并打开桌面端</strong><span>教程</span></a><a data-search-item="02 准备账号、计划与使用边界 教程 确认你使用的计划、数据控制和适合尝试的任务类型。" href="guide/02-account-plan.html"><strong>02 准备账号、计划与使用边界</strong><span>教程</span></a><a data-search-item="03 认识桌面 App 的任务界面 教程 理解任务区、文件区、权限提示、差异预览和结果回看。" href="guide/03-app-tour.html"><strong>03 认识桌面 App 的任务界面</strong><span>教程</span></a><a data-search-item="04 手机发起、桌面接手 教程 把随手想到的任务从手机记录下来，再回到电脑完成核查。" href="guide/04-mobile-handoff.html"><strong>04 手机发起、桌面接手</strong><span>教程</span></a><a data-search-item="05 完成第一个低风险任务 教程 用一份资料副本跑通说明、执行、验证和复盘。" href="guide/05-first-task.html"><strong>05 完成第一个低风险任务</strong><span>教程</span></a><a data-search-item="06 排队、并行与任务节奏 教程 区分顺序任务、并行任务和需要等待用户确认的任务。" href="guide/06-queue-parallel.html"><strong>06 排队、并行与任务节奏</strong><span>教程</span></a><a data-search-item="07 权限弹窗怎么判断 教程 用文件、命令、网络和账号四类问题判断是否授权。" href="guide/07-permission-review.html"><strong>07 权限弹窗怎么判断</strong><span>教程</span></a><a data-search-item="08 用 Skills 与插件扩展任务 教程 理解 Skills、MCP 和插件如何把 Codex 接入更多工作流。" href="guide/08-skill-plugin-library.html"><strong>08 用 Skills 与插件扩展任务</strong><span>教程</span></a><a data-search-item="09 自动化前的确认清单 教程 把重复任务变成自动化之前，先定义触发条件、退出条件和失败提醒。" href="guide/09-automation-checks.html"><strong>09 自动化前的确认清单</strong><span>教程</span></a><a data-search-item="10 搭建个人任务工作台 教程 用固定文件夹、模板和检查清单沉淀自己的常用任务。" href="guide/10-personal-workbench.html"><strong>10 搭建个人任务工作台</strong><span>教程</span></a><a data-search-item="11 CLI 安装与登录 教程 从终端启动 Codex，理解它能读取、修改并运行所选目录中的代码。" href="guide/11-cli-install-login.html"><strong>11 CLI 安装与登录</strong><span>教程</span></a><a data-search-item="12 第一次让 Codex 改一个小项目 教程 让 Codex 先计划，再小步修改，最后用测试或页面检查验收。" href="guide/12-cli-first-edit.html"><strong>12 第一次让 Codex 改一个小项目</strong><span>教程</span></a><a data-search-item="13 在 VS Code 中协同修改 教程 在编辑器里使用 Codex 解释局部代码、提出补丁和整理提交说明。" href="guide/13-vscode-flow.html"><strong>13 在 VS Code 中协同修改</strong><span>教程</span></a><a data-search-item="14 用 AGENTS.md 写项目规则 教程 把项目命令、风格、禁区和验收方式写进仓库说明。" href="guide/14-project-rules.html"><strong>14 用 AGENTS.md 写项目规则</strong><span>教程</span></a><a data-search-item="15 沙盒、审批与回退 教程 建立文件、网络、凭据和高风险命令的审批边界。" href="guide/15-sandbox-approvals.html"><strong>15 沙盒、审批与回退</strong><span>教程</span></a><a data-search-item="16 云端任务与本地接力 教程 把长任务交给云端执行，再在本地检查差异和结果。" href="guide/16-cloud-tasks.html"><strong>16 云端任务与本地接力</strong><span>教程</span></a><a data-search-item="17 排障手册 教程 按登录、权限、依赖、网络、执行和输出质量定位问题。" href="guide/17-troubleshooting.html"><strong>17 排障手册</strong><span>教程</span></a><a data-search-item="案例总览 实战案例 案例库提供可改写的任务样本。每个案例都换成你自己的材料、工具和验收方式。" href="recipes/index.html"><strong>案例总览</strong><span>实战案例</span></a><a data-search-item="01 Codex × Newsletter：用资料包生成周报草稿 实战案例 把零散链接、会议摘录和产品更新整理成一版可审阅周报。" href="recipes/newsletter-brief.html"><strong>01 Codex × Newsletter：用资料包生成周报草稿</strong><span>实战案例</span></a><a data-search-item="02 Codex × Spreadsheet：清理 CSV 并生成核对表 实战案例 识别重复行、缺失字段和异常金额，再输出修正建议。" href="recipes/spreadsheet-cleanup.html"><strong>02 Codex × Spreadsheet：清理 CSV 并生成核对表</strong><span>实战案例</span></a><a data-search-item="03 Codex × Docs：批量更新文档站链接 实战案例 扫描失效链接、替换旧路径，并生成变更清单。" href="recipes/docs-site-refresh.html"><strong>03 Codex × Docs：批量更新文档站链接</strong><span>实战案例</span></a><a data-search-item="04 Codex × Browser：做页面无障碍巡检 实战案例 用浏览器检查标题层级、按钮文案、键盘路径和截图证据。" href="recipes/accessibility-audit.html"><strong>04 Codex × Browser：做页面无障碍巡检</strong><span>实战案例</span></a><a data-search-item="05 Codex × Local Files：整理照片命名与索引 实战案例 把活动照片按日期、场景和用途生成可检索目录。" href="recipes/photo-archive.html"><strong>05 Codex × Local Files：整理照片命名与索引</strong><span>实战案例</span></a><a data-search-item="06 Codex × Expense Notes：汇总报销材料 实战案例 从票据说明中抽取金额、用途和待补材料。" href="recipes/expense-report.html"><strong>06 Codex × Expense Notes：汇总报销材料</strong><span>实战案例</span></a><a data-search-item="07 Codex × Transcript：把访谈稿变成选题库 实战案例 从长转录中提取观点、金句、章节和后续选题。" href="recipes/podcast-notes.html"><strong>07 Codex × Transcript：把访谈稿变成选题库</strong><span>实战案例</span></a><a data-search-item="08 Codex × API Changelog：追踪接口变更 实战案例 对比版本记录，输出对业务流程的影响清单。" href="recipes/api-changelog.html"><strong>08 Codex × API Changelog：追踪接口变更</strong><span>实战案例</span></a><a data-search-item="09 Codex × Product Copy：生成商品说明 实战案例 把规格、卖点和限制条件整理成电商详情草稿。" href="recipes/shop-copy.html"><strong>09 Codex × Product Copy：生成商品说明</strong><span>实战案例</span></a><a data-search-item="10 Codex × Learning Plan：生成个人学习路线 实战案例 根据目标、可用时间和资料生成四周学习计划。" href="recipes/learning-plan.html"><strong>10 Codex × Learning Plan：生成个人学习路线</strong><span>实战案例</span></a><a data-search-item="11 Codex × Support Inbox：汇总客服问题 实战案例 把用户反馈归类为 Bug、疑问、账单和体验建议。" href="recipes/support-triage.html"><strong>11 Codex × Support Inbox：汇总客服问题</strong><span>实战案例</span></a><a data-search-item="12 Codex × Markdown KB：重整知识库字段 实战案例 把散乱笔记迁移成统一 frontmatter 和目录索引。" href="recipes/markdown-knowledge-base.html"><strong>12 Codex × Markdown KB：重整知识库字段</strong><span>实战案例</span></a><a data-search-item="13 Codex × GitHub Releases：生成发布说明 实战案例 从提交、Issue 和 PR 摘要整理可发布的 changelog。" href="recipes/github-release.html"><strong>13 Codex × GitHub Releases：生成发布说明</strong><span>实战案例</span></a><a data-search-item="参考来源与致谢 实战案例 本站是原创开源文档项目。第三方站点只作为布局和目录参考，不复用其内容资产。" href="recipes/credits.html"><strong>参考来源与致谢</strong><span>实战案例</span></a></div>
+    </dialog>
+    <script src="script.js"></script>
+  </body>
+</html>
