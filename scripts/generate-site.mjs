@@ -3211,10 +3211,49 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
+  const heroStats = [
+    [b("案例材料", "Artifacts"), b(String(caseRecipes.length * caseArtifactCount()), String(caseRecipes.length * caseArtifactCount())), b("14 个案例材料包", "14 recipe packs")],
+    [b("成熟度", "Maturity"), b(String(averageMaturityScore()), String(averageMaturityScore())), b("案例库平均分", "Library average")],
+    [b("交付截图", "Captures"), b(String(caseRecipes.length), String(caseRecipes.length)), b("每篇一张证据画面", "One evidence frame each")],
+    [b("页面", "Pages"), b(String(expectedPageCount), String(expectedPageCount)), b("双语静态页面", "Bilingual static pages")]
+  ];
+  const heroLinks = [
+    [b("第一次跑通", "First Run"), "guide/05-first-task.html", b("按低风险材料完成一轮说明、执行和验收。", "Complete one low-risk brief, execution, and acceptance loop.")],
+    [b("实测任务矩阵", "Task Matrix"), "recipes/index.html", b("按入口、风险、证据和成熟度选择案例。", "Choose recipes by entry, risk, evidence, and maturity.")],
+    [b("权限判断", "Permission Review"), "guide/07-permission-review.html", b("先判断文件、命令、网络和账号动作。", "Judge file, command, network, and account actions first.")]
+  ];
+
+  const homeOpsPanel = (lang) => `
+    <div class="home-ops-panel" aria-label="${lang === "zh" ? "案例库状态面板" : "Recipe library status panel"}">
+      <div class="ops-panel-head">
+        <span>${lang === "zh" ? "实战库状态" : "Recipe Library"}</span>
+        <strong>${lang === "zh" ? "可复核交付" : "Reviewable Delivery"}</strong>
+      </div>
+      <div class="ops-stats">
+        ${heroStats.map(([label, value, detail]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+            <small>${escapeHtml(textOf(detail, lang))}</small>
+          </article>
+        `).join("")}
+      </div>
+      <figure class="ops-capture">
+        <img src="assets/case-artifacts/pages-deploy-diagnosis/13-delivery-capture.svg" alt="${lang === "zh" ? "部署诊断交付截图" : "Deployment diagnosis delivery capture"}">
+      </figure>
+      <div class="ops-links">
+        ${heroLinks.map(([label, href, detail]) => `
+          <a href="${href}">
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <small>${escapeHtml(textOf(detail, lang))}</small>
+          </a>
+        `).join("")}
+      </div>
+    </div>`;
 
   const homeActions = (lang) => `
     <div class="hero-actions">
@@ -3273,9 +3312,7 @@ function homePage() {
       <section class="language-section home-language-section${isZh ? "" : " english-section"}" lang="${isZh ? "zh-CN" : "en"}" data-language-section="${lang}">
         <p class="language-kicker">${isZh ? "中文" : "English"}</p>
         <section class="hero">
-          <div class="hero-art">
-            <img src="assets/logo.svg" alt="Codex Everyday Guide Logo">
-          </div>
+          ${homeOpsPanel(lang)}
           <div class="hero-copy">
             <h1>Codex Everyday Guide</h1>
             ${paragraph(b(

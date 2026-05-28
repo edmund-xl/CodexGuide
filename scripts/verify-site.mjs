@@ -275,6 +275,13 @@ for (const file of htmlFiles) {
       }
     }
   }
+  if (file === "index.html") {
+    for (const marker of ["home-ops-panel", "ops-stats", "ops-capture", "ops-links", "13-delivery-capture.svg"]) {
+      if (!html.includes(marker)) {
+        errors.push(`${file}: missing home dashboard marker ${marker}.`);
+      }
+    }
+  }
   for (const oldSlug of oldRecipeSlugs) {
     if (html.includes(oldSlug)) {
       errors.push(`${file}: contains old recipe slug ${oldSlug}.`);

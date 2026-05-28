@@ -55,7 +55,7 @@ https://edmund-xl.github.io/CodexGuide/
 
 ### 页面截图
 
-首页展示深色产品界面、中文优先内容结构和主要入口。
+首页展示深色产品界面、案例库状态面板、交付截图预览和主要入口。
 
 ![首页截图](assets/screenshots/home.png)
 
@@ -152,7 +152,7 @@ https://edmund-xl.github.io/CodexGuide/
 
 ### Screenshots
 
-The home page shows the dark product interface, Chinese-first content structure, and primary entry points.
+The home page shows the dark product interface, recipe-library status panel, delivery capture preview, and primary entry points.
 
 ![Home page screenshot](assets/screenshots/home.png)
 
