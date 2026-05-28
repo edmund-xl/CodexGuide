@@ -1,0 +1,15 @@
+local-redesign-check.txt
+pages_before=43 pages_after=43
+theme=light-template -> dark-product
+broken_links=0
+mobile_overflow=0
+fix=先改生成器和 tokens，再统一重建页面
+
+---
+
+local-redesign-check.txt
+pages_before=43 pages_after=43
+theme=light-template -> dark-product
+broken_links=0
+mobile_overflow=0
+fix=update generator and tokens first, then rebuild pages consistently

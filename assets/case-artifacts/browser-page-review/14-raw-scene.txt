@@ -1,0 +1,13 @@
+page-review.tsv
+viewport	selector	issue	evidence
+1440x900	.header	主按钮与说明距离过近	desktop-home.png
+390x900	.card-grid	第二张卡片换行后高度失衡	mobile-home.png
+decision	只记录视觉问题，不改登录态、不提交表单
+
+---
+
+page-review.tsv
+viewport	selector	issue	evidence
+1440x900	.header	primary button too close to copy	desktop-home.png
+390x900	.card-grid	second card height drifts after wrap	mobile-home.png
+decision	record visual issues only; no signed-in change or form submit

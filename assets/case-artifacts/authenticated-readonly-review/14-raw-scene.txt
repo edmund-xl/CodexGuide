@@ -1,0 +1,15 @@
+signed-in-review.log
+mode=read_only
+allowed=截图、可见字段、链接状态
+blocked=点击保存、导出客户资料、修改账号设置
+finding=筛选器状态与表格数量不一致
+handoff=需要账号负责人确认
+
+---
+
+signed-in-review.log
+mode=read_only
+allowed=screenshot, visible fields, link state
+blocked=click save, export customer records, change account settings
+finding=filter state does not match table count
+handoff=account owner confirmation required

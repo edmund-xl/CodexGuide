@@ -1,0 +1,15 @@
+anomalies.csv
+original_row,order_id,field,value,issue
+3,1002,amount,-20.00,paid order has negative amount
+4,1002,order_id,1002,duplicate key
+5,1003,date,,missing required date
+decision=保留 original_row，不覆盖原 CSV
+
+---
+
+anomalies.csv
+original_row,order_id,field,value,issue
+3,1002,amount,-20.00,paid order has negative amount
+4,1002,order_id,1002,duplicate key
+5,1003,date,,missing required date
+decision=keep original_row and do not overwrite the source CSV

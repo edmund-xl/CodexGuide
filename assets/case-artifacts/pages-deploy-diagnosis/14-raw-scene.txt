@@ -1,0 +1,15 @@
+workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=邮件只说明失败，无法证明第一个红色步骤在哪里
+checked=job steps, workflow file, latest sha
+fix=更新 Pages Actions 配置并补 build/check 步骤
+
+---
+
+workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=email only says failed; first red step is unknown
+checked=job steps, workflow file, latest sha
+fix=update Pages Actions configuration and add build/check steps

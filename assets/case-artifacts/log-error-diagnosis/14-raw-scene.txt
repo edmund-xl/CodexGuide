@@ -1,0 +1,15 @@
+service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=错误信息指向旧路径，但堆栈显示还有多个入口残留
+hypothesis=config path mismatch
+validation=rg old/path && npm run check
+fix=更新配置片段并补复跑记录
+
+---
+
+service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=message points to old path, but stack shows multiple remaining entries
+hypothesis=config path mismatch
+validation=rg old/path && npm run check
+fix=update config fragment and keep rerun record

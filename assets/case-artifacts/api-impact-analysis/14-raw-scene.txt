@@ -1,0 +1,17 @@
+api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=补兼容层和回归用例
+
+---
+
+api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=add compatibility layer and regression case

@@ -1,0 +1,13 @@
+scheduled-check-run.txt
+schedule=weekday 09:00
+exit_condition=no new failures and no stale issue over 3 days
+first_run=missing failure notification channel
+fix=补失败提醒、停止条件和人工接手人
+
+---
+
+scheduled-check-run.txt
+schedule=weekday 09:00
+exit_condition=no new failures and no stale issue over 3 days
+first_run=missing failure notification channel
+fix=add failure notification, stop condition, and human owner

@@ -313,7 +313,7 @@ healthz: HTTP 503, db_pool_wait_ms=4800
 
     <section id="zh-lab-artifact-pack">
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -395,6 +395,18 @@ healthz: HTTP 503, db_pool_wait_ms=4800
           <small>用截图式画面展示交付物、关键证据、修正动作和人工终审。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/14-raw-scene.txt">
+          <span>现场</span>
+          <strong>原始现场片段</strong>
+          <small>保存任务开始时看到的最小日志、表格、diff 或检查记录。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg">
+          <span>截图</span>
+          <strong>现场捕获</strong>
+          <small>把原始现场片段渲染成可打开的截图式证据画面。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -406,6 +418,10 @@ healthz: HTTP 503, db_pool_wait_ms=4800
         <figure class="case-visual">
           <img src="../assets/case-artifacts/remote-service-health-check/11-field-snapshot.svg" alt="14 远程服务健康检查与修复建议">
           <figcaption>现场图把触发场景、关键动作、观察输出和人工交接放进同一张工作台画面。</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg" alt="14 远程服务健康检查与修复建议">
+          <figcaption>现场捕获把原始日志、表格或 diff 片段做成可打开的证据画面。</figcaption>
         </figure>
         <figure class="case-visual">
           <img src="../assets/case-artifacts/remote-service-health-check/evidence-board.svg" alt="14 远程服务健康检查与修复建议">
@@ -605,7 +621,7 @@ healthz: HTTP 503, db_pool_wait_ms=4800
 
           <article>
             <span>材料文件</span>
-            <strong>14</strong>
+            <strong>16</strong>
           </article>
 
           <article>
@@ -956,7 +972,7 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
 
     <section id="en-lab-artifact-pack">
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -1038,6 +1054,18 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
           <small>Show deliverable, key evidence, correction, and final human review in a screenshot-style visual.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/14-raw-scene.txt">
+          <span>Scene</span>
+          <strong>Raw Scene Excerpt</strong>
+          <small>Keep the smallest log, table, diff, or check record visible at task start.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg">
+          <span>Capture</span>
+          <strong>Run Proof Capture</strong>
+          <small>Render the raw scene excerpt as an openable screenshot-style evidence frame.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -1049,6 +1077,10 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
         <figure class="case-visual">
           <img src="../assets/case-artifacts/remote-service-health-check/11-field-snapshot.svg" alt="14 Remote Service Health Check and Fix Proposal">
           <figcaption>The field snapshot puts trigger, key actions, observed output, and human handoff into one workbench visual.</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/remote-service-health-check/15-run-proof-capture.svg" alt="14 Remote Service Health Check and Fix Proposal">
+          <figcaption>The run proof capture turns the raw log, table, or diff excerpt into an openable evidence frame.</figcaption>
         </figure>
         <figure class="case-visual">
           <img src="../assets/case-artifacts/remote-service-health-check/evidence-board.svg" alt="14 Remote Service Health Check and Fix Proposal">
@@ -1248,7 +1280,7 @@ Retest: healthz returns 200 and db_pool_wait_ms stays under 500 for five minutes
 
           <article>
             <span>Artifact Files</span>
-            <strong>14</strong>
+            <strong>16</strong>
           </article>
 
           <article>

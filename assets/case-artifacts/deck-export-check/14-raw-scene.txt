@@ -1,0 +1,13 @@
+deck-export.log
+slide_count=10 expected=7 status=fail
+overflow=data-slide body_height=118 card_height=92
+human_review=试用期、隐私表述、版权素材
+fix=锁定 7 页结构，缩短数据页正文，重新导出截图
+
+---
+
+deck-export.log
+slide_count=10 expected=7 status=fail
+overflow=data-slide body_height=118 card_height=92
+human_review=trial, privacy wording, licensed assets
+fix=lock seven-slide structure, shorten data slide body, export screenshots again

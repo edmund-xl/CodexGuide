@@ -33,6 +33,8 @@ const caseArtifactFiles = [
   "11-field-snapshot.svg",
   "12-acceptance-ledger.json",
   "13-delivery-capture.svg",
+  "14-raw-scene.txt",
+  "15-run-proof-capture.svg",
   "evidence-board.svg"
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
@@ -108,6 +110,10 @@ const caseRequiredMarkers = [
   "原始现场片段",
   "Raw Scene Excerpt",
   "raw-scene",
+  "14-raw-scene.txt",
+  "现场捕获",
+  "Run Proof Capture",
+  "15-run-proof-capture.svg",
   "复盘导航",
   "Recap Navigator",
   "case-recap-nav",
@@ -235,8 +241,8 @@ if (!files.includes(caseLibraryManifest)) {
       if (!item.fieldSnapshot || !item.acceptanceLedger) {
         errors.push(`Recipe library manifest missing field snapshot or acceptance ledger for ${item.slug}.`);
       }
-      if (!item.deliveryCapture) {
-        errors.push(`Recipe library manifest missing delivery capture for ${item.slug}.`);
+      if (!item.deliveryCapture || !item.rawScene || !item.rawSceneCapture) {
+        errors.push(`Recipe library manifest missing delivery capture or raw scene proof for ${item.slug}.`);
       }
       if (item.artifactCount !== caseArtifactFiles.length) {
         errors.push(`Recipe library manifest artifact count mismatch for ${item.slug}.`);
@@ -258,14 +264,20 @@ if (!files.includes(caseLibraryHealth)) {
   if (health.artifactCount !== casePages.length * caseArtifactFiles.length) {
     errors.push(`Recipe library health total artifact count mismatch: ${health.artifactCount}`);
   }
-  if (health.fieldSnapshots !== casePages.length || health.acceptanceLedgers !== casePages.length || health.deliveryCaptures !== casePages.length) {
+  if (
+    health.fieldSnapshots !== casePages.length ||
+    health.acceptanceLedgers !== casePages.length ||
+    health.deliveryCaptures !== casePages.length ||
+    health.rawScenes !== casePages.length ||
+    health.rawSceneCaptures !== casePages.length
+  ) {
     errors.push("Recipe library health visual or ledger counts are invalid.");
   }
   if (!Array.isArray(health.cases) || health.cases.length !== casePages.length) {
     errors.push("Recipe library health cases array is invalid.");
   } else {
     for (const item of health.cases) {
-      if (!item.fieldSnapshot || !item.acceptanceLedger || !item.deliveryCapture) {
+      if (!item.fieldSnapshot || !item.acceptanceLedger || !item.deliveryCapture || !item.rawScene || !item.rawSceneCapture) {
         errors.push(`Recipe library health missing visual proof paths for ${item.slug}.`);
       }
       if (item.artifactCount !== caseArtifactFiles.length) {

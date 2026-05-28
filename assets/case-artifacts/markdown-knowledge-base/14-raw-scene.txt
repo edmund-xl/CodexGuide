@@ -1,0 +1,13 @@
+missing-fields.md
+file,title,date,topic,status,next_action
+2025-ideas.md,duplicate,missing,idea,unknown,confirm owner
+meeting-ai.md,present,missing,meeting,active,add date
+draft-launch.md,present,present,launch,unclear,confirm status
+
+---
+
+missing-fields.md
+file,title,date,topic,status,next_action
+2025-ideas.md,duplicate,missing,idea,unknown,confirm owner
+meeting-ai.md,present,missing,meeting,active,add date
+draft-launch.md,present,present,launch,unclear,confirm status

@@ -1,0 +1,13 @@
+release-draft-check.md
+commits=18
+grouped=feature, fix, docs, internal
+blocked=含内部任务号、未确认发布日期、风险描述过强
+fix=改写为用户可读摘要，待确认项单列
+
+---
+
+release-draft-check.md
+commits=18
+grouped=feature, fix, docs, internal
+blocked=internal ticket IDs, unconfirmed release date, over-strong risk wording
+fix=rewrite as user-readable summary and separate confirmation items

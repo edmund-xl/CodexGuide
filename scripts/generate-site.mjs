@@ -2467,6 +2467,8 @@ function caseLibraryManifest() {
       fieldSnapshot: `${artifactBase(recipe)}/11-field-snapshot.svg`,
       acceptanceLedger: `${artifactBase(recipe)}/12-acceptance-ledger.json`,
       deliveryCapture: `${artifactBase(recipe)}/13-delivery-capture.svg`,
+      rawScene: `${artifactBase(recipe)}/14-raw-scene.txt`,
+      rawSceneCapture: `${artifactBase(recipe)}/15-run-proof-capture.svg`,
       title: {
         zh: recipe.title.zh,
         en: recipe.title.en
@@ -2506,6 +2508,8 @@ function libraryHealthReport() {
     fieldSnapshots: caseRecipes.length,
     acceptanceLedgers: caseRecipes.length,
     deliveryCaptures: caseRecipes.length,
+    rawScenes: caseRecipes.length,
+    rawSceneCaptures: caseRecipes.length,
     highRiskCases: highRiskCases.length,
     starterCases: starterCases.length,
     completenessChecks: [
@@ -2522,6 +2526,8 @@ function libraryHealthReport() {
       "field snapshot",
       "acceptance ledger",
       "delivery capture",
+      "raw scene excerpt",
+      "run proof capture",
       "evidence board"
     ],
     cases: caseRecipes.map((recipe) => ({
@@ -2539,6 +2545,8 @@ function libraryHealthReport() {
       fieldSnapshot: `${artifactBase(recipe)}/11-field-snapshot.svg`,
       acceptanceLedger: `${artifactBase(recipe)}/12-acceptance-ledger.json`,
       deliveryCapture: `${artifactBase(recipe)}/13-delivery-capture.svg`,
+      rawScene: `${artifactBase(recipe)}/14-raw-scene.txt`,
+      rawSceneCapture: `${artifactBase(recipe)}/15-run-proof-capture.svg`,
       readyForReuse: caseMaturityScore(recipe) >= 93 && recipe.evidenceTable.length >= 4 && recipe.commands.length >= 3
     }))
   };
@@ -2734,6 +2742,8 @@ function acceptanceLedger(recipe) {
       "11-field-snapshot.svg",
       "12-acceptance-ledger.json",
       "13-delivery-capture.svg",
+      "14-raw-scene.txt",
+      "15-run-proof-capture.svg",
       "evidence-board.svg"
     ]
   };
@@ -2838,6 +2848,20 @@ function artifactDefinitions(recipe) {
       body: ""
     },
     {
+      file: "14-raw-scene.txt",
+      label: b("原始现场片段", "Raw Scene Excerpt"),
+      kind: b("现场", "Scene"),
+      description: b("保存任务开始时看到的最小日志、表格、diff 或检查记录。", "Keep the smallest log, table, diff, or check record visible at task start."),
+      body: `${rawSceneSnippet(recipe, "zh")}\n\n---\n\n${rawSceneSnippet(recipe, "en")}\n`
+    },
+    {
+      file: "15-run-proof-capture.svg",
+      label: b("现场捕获", "Run Proof Capture"),
+      kind: b("截图", "Capture"),
+      description: b("把原始现场片段渲染成可打开的截图式证据画面。", "Render the raw scene excerpt as an openable screenshot-style evidence frame."),
+      body: rawSceneCaptureSvg(recipe)
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -2895,14 +2919,18 @@ function caseArtifactSection(recipe, lang) {
     <section id="${lang}-lab-artifact-pack">
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <div class="case-visual-grid">
         <figure class="case-visual">
           <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/11-field-snapshot.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
           <figcaption>${isZh ? "现场图把触发场景、关键动作、观察输出和人工交接放进同一张工作台画面。" : "The field snapshot puts trigger, key actions, observed output, and human handoff into one workbench visual."}</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/15-run-proof-capture.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "现场捕获把原始日志、表格或 diff 片段做成可打开的证据画面。" : "The run proof capture turns the raw log, table, or diff excerpt into an openable evidence frame."}</figcaption>
         </figure>
         <figure class="case-visual">
           <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
@@ -3313,7 +3341,7 @@ function caseLibraryHealthContent(lang) {
   ];
   const completionRows = [
     [b("输入能否替换", "Replaceable Input"), b("输入任务单 + 可复用任务单", "Input brief + reusable work order"), b("材料、路径、限制和禁止动作要能替换。", "Materials, paths, constraints, and prohibited actions must be replaceable.")],
-    [b("过程能否复盘", "Reviewable Process"), b("执行转录 + 命令回放 + 现场图", "Transcript + command replay + field snapshot"), b("要能看见第一信号、修正动作和完成信号。", "First signal, correction, and done signal must be visible.")],
+    [b("过程能否复盘", "Reviewable Process"), b("执行转录 + 命令回放 + 原始现场 + 现场捕获", "Transcript + command replay + raw scene + proof capture"), b("要能看见第一信号、修正动作和完成信号。", "First signal, correction, and done signal must be visible.")],
     [b("结果能否验收", "Acceptable Result"), b("证据表 + 交付截图 + 验收总账", "Evidence table + delivery capture + acceptance ledger"), b("要能用证据行、截图式画面、命令和人工交接判断完成。", "Completion must be judged by evidence rows, screenshot-style visual, commands, and handoff.")],
     [b("风险能否交接", "Transferable Risk"), b("风险边界 + 人工交接", "Risk boundaries + human handoff"), b("高风险动作必须有负责人继续判断。", "High-risk actions must have an owner for continued judgment.")]
   ];
@@ -3824,7 +3852,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账、交付截图、原始现场片段、现场捕获和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, delivery capture, raw scene excerpt, run proof capture, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -4355,6 +4383,69 @@ function caseDeliveryCaptureSvg(recipe) {
   <text x="472" y="456" fill="#e0e0e0" font-family="Arial" font-size="15" font-weight="800">${escapeXml(compactSvgText(textOf(handoff, "zh"), 34))}</text>
 
   <text x="74" y="506" fill="#666" font-family="Arial" font-size="13">The delivery capture is a visual handoff: result, evidence status, final review, and owner action in one frame.</text>
+</svg>`;
+}
+
+function rawSceneCaptureSvg(recipe) {
+  const slug = artifactSlug(recipe);
+  const lines = rawSceneSnippet(recipe, "zh")
+    .split("\n")
+    .map((line) => line.trimEnd())
+    .filter(Boolean)
+    .slice(0, 9);
+  const lineRows = lines.map((line, index) => {
+    const y = 204 + index * 30;
+    const tone = /fail|error|failed|skipped|异常|失败|缺失|overflow|duplicate|missing/i.test(line)
+      ? "#ff6b6b"
+      : /pass|success|ok|通过|已|200|done/i.test(line)
+        ? "#66d17a"
+        : "#888";
+    return `
+      <g>
+        <text x="80" y="${y}" fill="#666" font-family="Menlo, Consolas, monospace" font-size="13">${String(index + 1).padStart(2, "0")}</text>
+        <circle cx="122" cy="${y - 4}" r="4" fill="${tone}"/>
+        <text x="142" y="${y}" fill="#e0e0e0" font-family="Menlo, Consolas, monospace" font-size="15">${escapeXml(compactSvgText(line.replaceAll("\t", "    "), 72))}</text>
+      </g>`;
+  }).join("");
+  const evidenceRows = recipe.evidenceTable.slice(0, 3).map((row, index) => {
+    const y = 462 + index * 40;
+    return `
+      <g>
+        <rect x="60" y="${y - 24}" width="800" height="32" rx="7" fill="${index % 2 === 0 ? "#202020" : "#242424"}" stroke="#333"/>
+        <text x="80" y="${y - 3}" fill="#ff922c" font-family="Arial" font-size="12" font-weight="900">${escapeXml(compactSvgText(textOf(row[0], "zh"), 16))}</text>
+        <text x="240" y="${y - 3}" fill="#e0e0e0" font-family="Arial" font-size="13" font-weight="800">${escapeXml(compactSvgText(textOf(row[1], "zh"), 42))}</text>
+        <text x="680" y="${y - 3}" fill="#888" font-family="Arial" font-size="12">${escapeXml(compactSvgText(textOf(row[2], "zh"), 18))}</text>
+      </g>`;
+  }).join("");
+  const firstCommand = textOf(recipe.commands[0], "zh");
+  const secondCommand = textOf(recipe.commands[1], "zh");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(textOf(recipe.title, "zh"))} - 现场捕获</title>
+  <desc id="desc">Screenshot-style proof capture built from the raw scene excerpt of a practical Codex task.</desc>
+  <rect width="920" height="640" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="572" rx="10" fill="#191919" stroke="#333"/>
+  <rect x="58" y="58" width="804" height="50" rx="8" fill="#101010" stroke="#333"/>
+  <circle cx="84" cy="84" r="6" fill="#ff6b6b"/>
+  <circle cx="106" cy="84" r="6" fill="#f5c542"/>
+  <circle cx="128" cy="84" r="6" fill="#66d17a"/>
+  <text x="160" y="89" fill="#888" font-family="Menlo, Consolas, monospace" font-size="13">${escapeXml(slug)}/raw-scene</text>
+
+  <text x="58" y="146" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">RUN PROOF CAPTURE</text>
+  <text x="58" y="180" fill="#e0e0e0" font-family="Arial" font-size="26" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.title, "zh"), 34))}</text>
+  <text x="614" y="150" fill="#888" font-family="Arial" font-size="12" font-weight="900">RISK</text>
+  <text x="614" y="176" fill="#ff922c" font-family="Arial" font-size="22" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.risk, "zh"), 12))}</text>
+
+  <rect x="58" y="196" width="804" height="222" rx="9" fill="#11130f" stroke="#363020"/>
+  ${lineRows}
+
+  <rect x="58" y="438" width="804" height="120" rx="9" fill="#1e1e1e" stroke="#333"/>
+  <text x="80" y="430" fill="#888" font-family="Arial" font-size="12" font-weight="900">EVIDENCE CROSS-CHECK</text>
+  ${evidenceRows}
+
+  <rect x="58" y="572" width="804" height="34" rx="8" fill="#101010" stroke="#333"/>
+  <text x="76" y="594" fill="#666" font-family="Menlo, Consolas, monospace" font-size="12">$ ${escapeXml(compactSvgText(firstCommand, 48))}</text>
+  <text x="500" y="594" fill="#666" font-family="Menlo, Consolas, monospace" font-size="12">$ ${escapeXml(compactSvgText(secondCommand, 42))}</text>
 </svg>`;
 }
 

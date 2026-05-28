@@ -1,0 +1,15 @@
+evidence-table-draft.csv
+page,claim,evidence,status
+2,上线时间为 2026-05,段落 2.1,confirmed
+4,费用下降 20%,截图缺少口径,needs_review
+7,负责人为运营组,附件 A,confirmed
+decision=只摘录证据，不补写缺失结论
+
+---
+
+evidence-table-draft.csv
+page,claim,evidence,status
+2,launch date is 2026-05,section 2.1,confirmed
+4,cost dropped 20%,screenshot lacks definition,needs_review
+7,owner is operations group,appendix A,confirmed
+decision=extract evidence only; do not invent missing conclusions

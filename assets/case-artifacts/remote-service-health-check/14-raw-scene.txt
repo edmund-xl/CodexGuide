@@ -1,0 +1,13 @@
+health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=错误率升高，重启不是第一步
+decision=只读终端记录，输出修复建议和回退判断
+
+---
+
+health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=error rate is rising; restart is not the first step
+decision=read terminal records only, then output repair proposal and rollback judgment
