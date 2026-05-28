@@ -30,6 +30,7 @@ const caseArtifactFiles = [
   "08-quality-scorecard.json",
   "09-operation-replay.md",
   "10-human-handoff.md",
+  "11-field-snapshot.svg",
   "evidence-board.svg"
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
@@ -65,6 +66,8 @@ const caseRequiredMarkers = [
   "Reusable Work Order",
   "实测材料包",
   "Lab Artifact Pack",
+  "现场图",
+  "Field Snapshot",
   "实测快照",
   "Run Snapshot",
   "命令回放",
@@ -82,6 +85,7 @@ const caseRequiredMarkers = [
   "case-dashboard",
   "artifact-grid",
   "case-visual",
+  "case-visual-grid",
   "run-snapshot",
   "replay-table",
   "handoff-panel",

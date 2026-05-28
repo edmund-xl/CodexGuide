@@ -2289,6 +2289,13 @@ function artifactDefinitions(recipe) {
       body: humanHandoffMarkdown(recipe)
     },
     {
+      file: "11-field-snapshot.svg",
+      label: b("现场图", "Field Snapshot"),
+      kind: b("现场", "Field"),
+      description: b("用终端、输出和交接提示压缩展示一次任务现场。", "Compress one task run into terminal, output, and handoff signals."),
+      body: ""
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -2346,14 +2353,20 @@ function caseArtifactSection(recipe, lang) {
     <section>
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
-      <figure class="case-visual">
-        <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
-        <figcaption>${isZh ? "证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。" : "The evidence board compresses material, process, result, and acceptance state into one visual."}</figcaption>
-      </figure>
+      <div class="case-visual-grid">
+        <figure class="case-visual">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/11-field-snapshot.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "现场图把触发场景、关键动作、观察输出和人工交接放进同一张工作台画面。" : "The field snapshot puts trigger, key actions, observed output, and human handoff into one workbench visual."}</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="${relativeLink(recipe.path, `${artifactBase(recipe)}/evidence-board.svg`)}" alt="${escapeHtml(textOf(recipe.title, lang))}">
+          <figcaption>${isZh ? "证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。" : "The evidence board compresses material, process, result, and acceptance state into one visual."}</figcaption>
+        </figure>
+      </div>
     </section>`;
 }
 
@@ -2932,7 +2945,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -3317,14 +3330,60 @@ function caseEvidenceSvg(recipe) {
 </svg>`;
 }
 
+function caseFieldSnapshotSvg(recipe) {
+  const trace = operationTrace(recipe);
+  const replay = trace.replay;
+  const terminalRows = replay.map((row, index) => {
+    const y = 204 + index * 64;
+    return `
+      <g>
+        <text x="72" y="${y}" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ ${escapeXml(compactSvgText(textOf(row[1], "zh"), 58))}</text>
+        <text x="72" y="${y + 25}" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">${escapeXml(compactSvgText(textOf(row[2], "zh"), 64))}</text>
+      </g>`;
+  }).join("");
+  const handoffRows = trace.handoff.slice(0, 3).map((item, index) => {
+    const y = 250 + index * 58;
+    return `
+      <g>
+        <rect x="592" y="${y - 28}" width="252" height="42" rx="7" fill="${index === 0 ? "#2c241d" : "#202020"}" stroke="#333"/>
+        <text x="610" y="${y - 3}" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">${escapeXml(compactSvgText(textOf(item, "zh"), 24))}</text>
+      </g>`;
+  }).join("");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(textOf(recipe.title, "zh"))} - 现场图</title>
+  <desc id="desc">A terminal-style field snapshot for a practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="78" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">FIELD SNAPSHOT</text>
+  <text x="58" y="115" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">${escapeXml(compactSvgText(textOf(recipe.title, "zh"), 34))}</text>
+  <text x="58" y="146" fill="#888" font-family="Arial" font-size="15">${escapeXml(compactSvgText(textOf(trace.snapshot.trigger, "zh"), 76))}</text>
+
+  <rect x="58" y="172" width="484" height="250" rx="9" fill="#101510" stroke="#2b5d35"/>
+  <circle cx="82" cy="191" r="5" fill="#ff6b6b"/>
+  <circle cx="102" cy="191" r="5" fill="#f5c542"/>
+  <circle cx="122" cy="191" r="5" fill="#66d17a"/>
+  ${terminalRows}
+
+  <rect x="572" y="172" width="292" height="250" rx="9" fill="#1e1e1e" stroke="#333"/>
+  <text x="592" y="205" fill="#ff922c" font-family="Arial" font-size="13" font-weight="900">HANDOFF</text>
+  ${handoffRows}
+
+  <rect x="58" y="438" width="806" height="28" rx="6" fill="#242424" stroke="#333"/>
+  <text x="76" y="457" fill="#888" font-family="Arial" font-size="13">done: ${escapeXml(compactSvgText(textOf(trace.snapshot.finalSignal, "zh"), 88))}</text>
+</svg>`;
+}
+
 function writeCaseArtifacts() {
   fs.rmSync(path.join(root, artifactRoot), { recursive: true, force: true });
   write(`${artifactRoot}/index.json`, JSON.stringify(caseLibraryManifest(), null, 2));
   for (const recipe of caseRecipes) {
     for (const item of artifactDefinitions(recipe)) {
       const filePath = `${artifactBase(recipe)}/${item.file}`;
-      if (item.file.endsWith(".svg")) {
+      if (item.file === "evidence-board.svg") {
         write(filePath, caseEvidenceSvg(recipe));
+      } else if (item.file === "11-field-snapshot.svg") {
+        write(filePath, caseFieldSnapshotSvg(recipe));
       } else {
         write(filePath, item.body);
       }

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">06 表格数据清洗与异常核对 - 现场图</title>
+  <desc id="desc">A terminal-style field snapshot for a practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="78" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">FIELD SNAPSHOT</text>
+  <text x="58" y="115" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">06 表格数据清洗与异常核对</text>
+  <text x="58" y="146" fill="#888" font-family="Arial" font-size="15">脱敏订单 CSV 出现空状态、异常金额和重复行，需要形成可复核清理建议。</text>
+
+  <rect x="58" y="172" width="484" height="250" rx="9" fill="#101510" stroke="#2b5d35"/>
+  <circle cx="82" cy="191" r="5" fill="#ff6b6b"/>
+  <circle cx="102" cy="191" r="5" fill="#f5c542"/>
+  <circle cx="122" cy="191" r="5" fill="#66d17a"/>
+
+      <g>
+        <text x="72" y="204" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ 读取 orders-redacted.csv 并统计字段</text>
+        <text x="72" y="229" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">rows=240, invalid_amount=6, duplicates=4</text>
+      </g>
+      <g>
+        <text x="72" y="268" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ 生成 anomalies.csv</text>
+        <text x="72" y="293" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">classes=4, needs_review=18</text>
+      </g>
+      <g>
+        <text x="72" y="332" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ 写入 review-sheet.csv</text>
+        <text x="72" y="357" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">all_rows_keep_original_index=true</text>
+      </g>
+
+  <rect x="572" y="172" width="292" height="250" rx="9" fill="#1e1e1e" stroke="#333"/>
+  <text x="592" y="205" fill="#ff922c" font-family="Arial" font-size="13" font-weight="900">HANDOFF</text>
+
+      <g>
+        <rect x="592" y="222" width="252" height="42" rx="7" fill="#2c241d" stroke="#333"/>
+        <text x="610" y="247" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">不直接覆盖原 CSV。</text>
+      </g>
+      <g>
+        <rect x="592" y="280" width="252" height="42" rx="7" fill="#202020" stroke="#333"/>
+        <text x="610" y="305" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">金额和状态修正必须由业务负责人确认。</text>
+      </g>
+      <g>
+        <rect x="592" y="338" width="252" height="42" rx="7" fill="#202020" stroke="#333"/>
+        <text x="610" y="363" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">复核表保留原始行号，便于追溯。</text>
+      </g>
+
+  <rect x="58" y="438" width="806" height="28" rx="6" fill="#242424" stroke="#333"/>
+  <text x="76" y="457" fill="#888" font-family="Arial" font-size="13">done: 异常被分为 4 类，所有建议都保留原始行号。</text>
+</svg>

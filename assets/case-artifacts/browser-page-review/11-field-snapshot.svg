@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">02 浏览器页面巡检与截图证据 - 现场图</title>
+  <desc id="desc">A terminal-style field snapshot for a practical Codex task.</desc>
+  <rect width="920" height="520" rx="8" fill="#141414"/>
+  <rect x="34" y="34" width="852" height="452" rx="10" fill="#191919" stroke="#333"/>
+  <text x="58" y="78" fill="#ff922c" font-family="Arial" font-size="15" font-weight="900">FIELD SNAPSHOT</text>
+  <text x="58" y="115" fill="#e0e0e0" font-family="Arial" font-size="27" font-weight="900">02 浏览器页面巡检与截图证据</text>
+  <text x="58" y="146" fill="#888" font-family="Arial" font-size="15">本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。</text>
+
+  <rect x="58" y="172" width="484" height="250" rx="9" fill="#101510" stroke="#2b5d35"/>
+  <circle cx="82" cy="191" r="5" fill="#ff6b6b"/>
+  <circle cx="102" cy="191" r="5" fill="#f5c542"/>
+  <circle cx="122" cy="191" r="5" fill="#66d17a"/>
+
+      <g>
+        <text x="72" y="204" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ curl -I -L --max-time 15 http://127.0.0.1:4173/</text>
+        <text x="72" y="229" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">HTTP/1.1 200 OK</text>
+      </g>
+      <g>
+        <text x="72" y="268" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ 390x900 检查 scrollWidth 与 innerWidth</text>
+        <text x="72" y="293" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">page_overflow=false, table_scroll=true</text>
+      </g>
+      <g>
+        <text x="72" y="332" fill="#66d17a" font-family="Menlo, Consolas, monospace" font-size="15">$ 按 P0/P1/P2 写入 page-review.md</text>
+        <text x="72" y="357" fill="#b8b8b8" font-family="Menlo, Consolas, monospace" font-size="14">P0=0, P1=1, P2=2</text>
+      </g>
+
+  <rect x="572" y="172" width="292" height="250" rx="9" fill="#1e1e1e" stroke="#333"/>
+  <text x="592" y="205" fill="#ff922c" font-family="Arial" font-size="13" font-weight="900">HANDOFF</text>
+
+      <g>
+        <rect x="592" y="222" width="252" height="42" rx="7" fill="#2c241d" stroke="#333"/>
+        <text x="610" y="247" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">页面可交付，但手机端表格滚动提示建议补强。</text>
+      </g>
+      <g>
+        <rect x="592" y="280" width="252" height="42" rx="7" fill="#202020" stroke="#333"/>
+        <text x="610" y="305" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">截图只覆盖指定路径，未点击写入型控件。</text>
+      </g>
+      <g>
+        <rect x="592" y="338" width="252" height="42" rx="7" fill="#202020" stroke="#333"/>
+        <text x="610" y="363" fill="#e0e0e0" font-family="Arial" font-size="14" font-weight="700">后续改版时保留同一组视口，避免截图不可比。</text>
+      </g>
+
+  <rect x="58" y="438" width="806" height="28" rx="6" fill="#242424" stroke="#333"/>
+  <text x="76" y="457" fill="#888" font-family="Arial" font-size="13">done: 页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。</text>
+</svg>

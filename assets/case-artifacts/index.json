@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-05-28",
   "caseCount": 14,
-  "artifactCount": 154,
-  "artifactFilesPerCase": 11,
+  "artifactCount": 168,
+  "artifactFilesPerCase": 12,
   "averageMaturityScore": 94,
   "cases": [
     {
@@ -22,7 +22,7 @@
         "en": "Low to medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "导出文件、四张预览截图、逐页验收表",
         "en": "Exported file, four preview screenshots, and slide acceptance table"
@@ -49,7 +49,7 @@
         "en": "Low"
       },
       "maturityScore": 95,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "桌面截图、手机截图、控制台摘要、问题表",
         "en": "Desktop screenshot, mobile screenshot, console summary, and issue table"
@@ -76,7 +76,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "失败步骤、修复提交、新 run、线上 200 响应",
         "en": "Failed step, fix commit, new run, and live 200 response"
@@ -103,7 +103,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "diff、构建日志、链接检查、桌面与手机截图",
         "en": "Diff, build log, link check, desktop and mobile screenshots"
@@ -130,7 +130,7 @@
         "en": "Low to medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "字段缺失矩阵、样本 diff、索引页、待补清单",
         "en": "Missing-field matrix, sample diff, index page, and pending list"
@@ -157,7 +157,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "数据画像、异常表、样本行、校验公式",
         "en": "Data profile, anomaly table, sample rows, and validation formulas"
@@ -184,7 +184,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "视觉规则表、组件映射表、验收截图",
         "en": "Visual rule table, component mapping table, and acceptance screenshots"
@@ -211,7 +211,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "可见状态摘要、脱敏截图、禁点清单、待确认动作",
         "en": "Visible state summary, redacted screenshots, no-click list, and confirmation actions"
@@ -238,7 +238,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "证据表、页码、摘录线索、问题清单",
         "en": "Evidence table, page numbers, excerpt cues, and question list"
@@ -265,7 +265,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "端点清单、调用位置、测试建议、风险表",
         "en": "Endpoint list, call sites, test suggestions, and risk table"
@@ -292,7 +292,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "提交范围、分类表、草稿、待确认项",
         "en": "Commit range, category table, draft, and confirmation items"
@@ -319,7 +319,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "触发条件、模拟输出、暂停规则、失败提醒",
         "en": "Trigger conditions, mock output, pause rules, and failure notification"
@@ -346,7 +346,7 @@
         "en": "Medium"
       },
       "maturityScore": 94,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "错误片段、相关文件、验证命令、修复范围",
         "en": "Error snippet, related files, validation commands, and fix scope"
@@ -373,7 +373,7 @@
         "en": "Medium to high"
       },
       "maturityScore": 93,
-      "artifactCount": 11,
+      "artifactCount": 12,
       "evidence": {
         "zh": "healthz 响应、错误窗口、配置片段、复测记录",
         "en": "healthz response, error window, config snippet, and retest record"

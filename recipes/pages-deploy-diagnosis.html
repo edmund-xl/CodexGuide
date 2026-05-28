@@ -218,7 +218,7 @@ deploy: skipped
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -282,6 +282,12 @@ deploy: skipped
           <small>列出交给用户或负责人继续判断的事项。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg">
+          <span>现场</span>
+          <strong>现场图</strong>
+          <small>用终端、输出和交接提示压缩展示一次任务现场。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -289,10 +295,16 @@ deploy: skipped
         </a>
 
     </div>
-      <figure class="case-visual">
-        <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages 部署失败诊断">
-        <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
-      </figure>
+      <div class="case-visual-grid">
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg" alt="03 GitHub Pages 部署失败诊断">
+          <figcaption>现场图把触发场景、关键动作、观察输出和人工交接放进同一张工作台画面。</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages 部署失败诊断">
+          <figcaption>证据看板把这次任务的材料、过程、结果和验收状态压缩到一张图里。</figcaption>
+        </figure>
+      </div>
     </section>
     <section>
       <h2>操作剧本</h2>
@@ -686,7 +698,7 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -750,6 +762,12 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
           <small>List items that require the user or owner to continue judgment.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg">
+          <span>Field</span>
+          <strong>Field Snapshot</strong>
+          <small>Compress one task run into terminal, output, and handoff signals.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -757,10 +775,16 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
         </a>
 
     </div>
-      <figure class="case-visual">
-        <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages Deployment Failure Diagnosis">
-        <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
-      </figure>
+      <div class="case-visual-grid">
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/pages-deploy-diagnosis/11-field-snapshot.svg" alt="03 GitHub Pages Deployment Failure Diagnosis">
+          <figcaption>The field snapshot puts trigger, key actions, observed output, and human handoff into one workbench visual.</figcaption>
+        </figure>
+        <figure class="case-visual">
+          <img src="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg" alt="03 GitHub Pages Deployment Failure Diagnosis">
+          <figcaption>The evidence board compresses material, process, result, and acceptance state into one visual.</figcaption>
+        </figure>
+      </div>
     </section>
     <section>
       <h2>Operating Script</h2>

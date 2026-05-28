@@ -1341,6 +1341,17 @@ main {
   overflow: hidden;
 }
 
+.case-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.case-visual-grid .case-visual {
+  margin: 0;
+}
+
 .case-visual img {
   display: block;
   width: 100%;
@@ -1638,6 +1649,7 @@ main {
   .case-library-stats,
   .case-card-grid,
   .artifact-grid,
+  .case-visual-grid,
   .delivery-preview,
   .score-grid,
   .quality-scorecard,
