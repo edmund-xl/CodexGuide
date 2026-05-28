@@ -214,6 +214,15 @@
       </div>
     </section>
     <section>
+      <h2>原始现场片段</h2>
+      <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
+      <pre class="output-sample raw-scene"><code>health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=错误率升高，重启不是第一步
+decision=只读终端记录，输出修复建议和回退判断</code></pre>
+    </section>
+    <section>
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -806,6 +815,15 @@ Human confirmation: Read-only checks must not restart, scale, or change configur
         <span>Site maintainers, individual developers, and technical leads</span>
         <span>Medium to high</span>
       </div>
+    </section>
+    <section>
+      <h2>Raw Scene Excerpt</h2>
+      <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
+      <pre class="output-sample raw-scene"><code>health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=error rate is rising; restart is not the first step
+decision=read terminal records only, then output repair proposal and rollback judgment</code></pre>
     </section>
     <section>
       <h2>Input Materials</h2>

@@ -1761,6 +1761,11 @@ main {
   background: #101510;
 }
 
+.raw-scene {
+  border-color: rgba(241, 200, 107, 0.4);
+  background: #15130e;
+}
+
 .case-visual {
   margin: 16px 0 0;
   overflow: hidden;

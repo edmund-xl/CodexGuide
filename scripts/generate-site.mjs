@@ -2109,6 +2109,222 @@ function executionTranscript(recipe, lang) {
 00:55 Acceptance decision: ${acceptance}`;
 }
 
+function rawSceneSnippet(recipe, lang) {
+  const slug = artifactSlug(recipe);
+  const isZh = lang === "zh";
+  const firstFailure = recipe.failureNotes[0].map((cell) => textOf(cell, lang));
+  const secondFailure = recipe.failureNotes[1].map((cell) => textOf(cell, lang));
+  const firstEvidence = recipe.evidenceTable[0].map((cell) => textOf(cell, lang));
+  const secondEvidence = recipe.evidenceTable[1].map((cell) => textOf(cell, lang));
+  const firstCommand = textOf(recipe.commands[0], lang);
+  const secondCommand = textOf(recipe.commands[1], lang);
+
+  const templates = {
+    "deck-export-check": {
+      zh: `deck-export.log
+slide_count=10 expected=7 status=fail
+overflow=data-slide body_height=118 card_height=92
+human_review=试用期、隐私表述、版权素材
+fix=锁定 7 页结构，缩短数据页正文，重新导出截图`,
+      en: `deck-export.log
+slide_count=10 expected=7 status=fail
+overflow=data-slide body_height=118 card_height=92
+human_review=trial, privacy wording, licensed assets
+fix=lock seven-slide structure, shorten data slide body, export screenshots again`
+    },
+    "browser-page-review": {
+      zh: `page-review.tsv
+viewport\tselector\tissue\tevidence
+1440x900\t.header\t主按钮与说明距离过近\tdesktop-home.png
+390x900\t.card-grid\t第二张卡片换行后高度失衡\tmobile-home.png
+decision\t只记录视觉问题，不改登录态、不提交表单`,
+      en: `page-review.tsv
+viewport\tselector\tissue\tevidence
+1440x900\t.header\tprimary button too close to copy\tdesktop-home.png
+390x900\t.card-grid\tsecond card height drifts after wrap\tmobile-home.png
+decision\trecord visual issues only; no signed-in change or form submit`
+    },
+    "pages-deploy-diagnosis": {
+      zh: `workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=邮件只说明失败，无法证明第一个红色步骤在哪里
+checked=job steps, workflow file, latest sha
+fix=更新 Pages Actions 配置并补 build/check 步骤`,
+      en: `workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=email only says failed; first red step is unknown
+checked=job steps, workflow file, latest sha
+fix=update Pages Actions configuration and add build/check steps`
+    },
+    "docs-site-redesign": {
+      zh: `local-redesign-check.txt
+pages_before=43 pages_after=43
+theme=light-template -> dark-product
+broken_links=0
+mobile_overflow=0
+fix=先改生成器和 tokens，再统一重建页面`,
+      en: `local-redesign-check.txt
+pages_before=43 pages_after=43
+theme=light-template -> dark-product
+broken_links=0
+mobile_overflow=0
+fix=update generator and tokens first, then rebuild pages consistently`
+    },
+    "markdown-knowledge-base": {
+      zh: `missing-fields.md
+file,title,date,topic,status,next_action
+2025-ideas.md,duplicate,missing,idea,unknown,confirm owner
+meeting-ai.md,present,missing,meeting,active,add date
+draft-launch.md,present,present,launch,unclear,confirm status`,
+      en: `missing-fields.md
+file,title,date,topic,status,next_action
+2025-ideas.md,duplicate,missing,idea,unknown,confirm owner
+meeting-ai.md,present,missing,meeting,active,add date
+draft-launch.md,present,present,launch,unclear,confirm status`
+    },
+    "spreadsheet-cleanup": {
+      zh: `anomalies.csv
+original_row,order_id,field,value,issue
+3,1002,amount,-20.00,paid order has negative amount
+4,1002,order_id,1002,duplicate key
+5,1003,date,,missing required date
+decision=保留 original_row，不覆盖原 CSV`,
+      en: `anomalies.csv
+original_row,order_id,field,value,issue
+3,1002,amount,-20.00,paid order has negative amount
+4,1002,order_id,1002,duplicate key
+5,1003,date,,missing required date
+decision=keep original_row and do not overwrite the source CSV`
+    },
+    "screenshot-to-spec": {
+      zh: `screenshot-spec-check.md
+frame=mobile-settings.png
+observed=主按钮宽度 343px，底部安全区 24px
+unknown=字体 token、真实图标资源、暗色 hover 状态
+handoff=未知项不猜，写入待设计确认`,
+      en: `screenshot-spec-check.md
+frame=mobile-settings.png
+observed=primary button width 343px, bottom safe area 24px
+unknown=font token, real icon assets, dark hover state
+handoff=do not guess unknowns; send to design confirmation`
+    },
+    "authenticated-readonly-review": {
+      zh: `signed-in-review.log
+mode=read_only
+allowed=截图、可见字段、链接状态
+blocked=点击保存、导出客户资料、修改账号设置
+finding=筛选器状态与表格数量不一致
+handoff=需要账号负责人确认`,
+      en: `signed-in-review.log
+mode=read_only
+allowed=screenshot, visible fields, link state
+blocked=click save, export customer records, change account settings
+finding=filter state does not match table count
+handoff=account owner confirmation required`
+    },
+    "document-evidence-table": {
+      zh: `evidence-table-draft.csv
+page,claim,evidence,status
+2,上线时间为 2026-05,段落 2.1,confirmed
+4,费用下降 20%,截图缺少口径,needs_review
+7,负责人为运营组,附件 A,confirmed
+decision=只摘录证据，不补写缺失结论`,
+      en: `evidence-table-draft.csv
+page,claim,evidence,status
+2,launch date is 2026-05,section 2.1,confirmed
+4,cost dropped 20%,screenshot lacks definition,needs_review
+7,owner is operations group,appendix A,confirmed
+decision=extract evidence only; do not invent missing conclusions`
+    },
+    "api-impact-analysis": {
+      zh: `api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=补兼容层和回归用例`,
+      en: `api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=add compatibility layer and regression case`
+    },
+    "release-notes-changelog": {
+      zh: `release-draft-check.md
+commits=18
+grouped=feature, fix, docs, internal
+blocked=含内部任务号、未确认发布日期、风险描述过强
+fix=改写为用户可读摘要，待确认项单列`,
+      en: `release-draft-check.md
+commits=18
+grouped=feature, fix, docs, internal
+blocked=internal ticket IDs, unconfirmed release date, over-strong risk wording
+fix=rewrite as user-readable summary and separate confirmation items`
+    },
+    "automation-scheduled-checks": {
+      zh: `scheduled-check-run.txt
+schedule=weekday 09:00
+exit_condition=no new failures and no stale issue over 3 days
+first_run=missing failure notification channel
+fix=补失败提醒、停止条件和人工接手人`,
+      en: `scheduled-check-run.txt
+schedule=weekday 09:00
+exit_condition=no new failures and no stale issue over 3 days
+first_run=missing failure notification channel
+fix=add failure notification, stop condition, and human owner`
+    },
+    "log-error-diagnosis": {
+      zh: `service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=错误信息指向旧路径，但堆栈显示还有多个入口残留
+hypothesis=config path mismatch
+validation=rg old/path && npm run check
+fix=更新配置片段并补复跑记录`,
+      en: `service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=message points to old path, but stack shows multiple remaining entries
+hypothesis=config path mismatch
+validation=rg old/path && npm run check
+fix=update config fragment and keep rerun record`
+    },
+    "remote-service-health-check": {
+      zh: `health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=错误率升高，重启不是第一步
+decision=只读终端记录，输出修复建议和回退判断`,
+      en: `health-window.log
+10:12 error_rate=3.8% p95=1320ms status=degraded
+10:19 error_rate=5.1% p95=1490ms status=degraded
+first_signal=error rate is rising; restart is not the first step
+decision=read terminal records only, then output repair proposal and rollback judgment`
+    }
+  };
+
+  const fallback = isZh
+    ? `${slug}-scene.txt
+first_failure=${firstFailure[0]} | ${firstFailure[1]}
+first_evidence=${firstEvidence[0]} | ${firstEvidence[1]} | ${firstEvidence[2]}
+second_evidence=${secondEvidence[0]} | ${secondEvidence[1]} | ${secondEvidence[2]}
+first_command=${firstCommand}
+second_command=${secondCommand}
+correction=${secondFailure[2]}`
+    : `${slug}-scene.txt
+first_failure=${firstFailure[0]} | ${firstFailure[1]}
+first_evidence=${firstEvidence[0]} | ${firstEvidence[1]} | ${firstEvidence[2]}
+second_evidence=${secondEvidence[0]} | ${secondEvidence[1]} | ${secondEvidence[2]}
+first_command=${firstCommand}
+second_command=${secondCommand}
+correction=${secondFailure[2]}`;
+
+  return templates[slug]?.[lang] || fallback;
+}
+
 function deliveryPreviewMarkdown(recipe) {
   return `# ${recipe.title.zh} - 交付预览
 
@@ -3135,6 +3351,14 @@ function caseContent(recipe, lang) {
         <span>${escapeHtml(textOf(recipe.audience, lang))}</span>
         <span>${escapeHtml(textOf(recipe.risk, lang))}</span>
       </div>
+    </section>
+    <section>
+      <h2>${isZh ? "原始现场片段" : "Raw Scene Excerpt"}</h2>
+      ${paragraph(b(
+        "这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。",
+        "This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance."
+      ), lang)}
+      ${codeSample(b(rawSceneSnippet(recipe, "zh"), rawSceneSnippet(recipe, "en")), lang, "output-sample raw-scene")}
     </section>
     <section>
       <h2>${isZh ? "输入材料" : "Input Materials"}</h2>

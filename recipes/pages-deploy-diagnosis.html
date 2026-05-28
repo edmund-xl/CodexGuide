@@ -214,6 +214,16 @@
       </div>
     </section>
     <section>
+      <h2>原始现场片段</h2>
+      <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
+      <pre class="output-sample raw-scene"><code>workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=邮件只说明失败，无法证明第一个红色步骤在哪里
+checked=job steps, workflow file, latest sha
+fix=更新 Pages Actions 配置并补 build/check 步骤</code></pre>
+    </section>
+    <section>
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -805,6 +815,16 @@ Human confirmation: Use only the new run as success evidence; do not reinterpret
         <span>Project maintainers and documentation site owners</span>
         <span>Medium</span>
       </div>
+    </section>
+    <section>
+      <h2>Raw Scene Excerpt</h2>
+      <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
+      <pre class="output-sample raw-scene"><code>workflow-run.txt
+build: failed
+deploy: skipped
+first_signal=email only says failed; first red step is unknown
+checked=job steps, workflow file, latest sha
+fix=update Pages Actions configuration and add build/check steps</code></pre>
     </section>
     <section>
       <h2>Input Materials</h2>

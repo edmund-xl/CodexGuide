@@ -214,6 +214,16 @@
       </div>
     </section>
     <section>
+      <h2>原始现场片段</h2>
+      <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
+      <pre class="output-sample raw-scene"><code>service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=错误信息指向旧路径，但堆栈显示还有多个入口残留
+hypothesis=config path mismatch
+validation=rg old/path &amp;&amp; npm run check
+fix=更新配置片段并补复跑记录</code></pre>
+    </section>
+    <section>
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -805,6 +815,16 @@ Human confirmation: Do not opportunistically refactor unrelated code.</code></pr
         <span>Project maintainers, individual developers, and technical support</span>
         <span>Medium</span>
       </div>
+    </section>
+    <section>
+      <h2>Raw Scene Excerpt</h2>
+      <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
+      <pre class="output-sample raw-scene"><code>service-error.log
+ERROR route=/checkout code=500 trace=redacted
+first_signal=message points to old path, but stack shows multiple remaining entries
+hypothesis=config path mismatch
+validation=rg old/path &amp;&amp; npm run check
+fix=update config fragment and keep rerun record</code></pre>
     </section>
     <section>
       <h2>Input Materials</h2>

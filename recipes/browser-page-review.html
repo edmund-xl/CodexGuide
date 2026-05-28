@@ -214,6 +214,15 @@
       </div>
     </section>
     <section>
+      <h2>原始现场片段</h2>
+      <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
+      <pre class="output-sample raw-scene"><code>page-review.tsv
+viewport	selector	issue	evidence
+1440x900	.header	主按钮与说明距离过近	desktop-home.png
+390x900	.card-grid	第二张卡片换行后高度失衡	mobile-home.png
+decision	只记录视觉问题，不改登录态、不提交表单</code></pre>
+    </section>
+    <section>
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -803,6 +812,15 @@ Human confirmation: The page is deliverable, but the mobile table scroll cue sho
         <span>Site maintainers, operators, and frontend collaborators</span>
         <span>Low</span>
       </div>
+    </section>
+    <section>
+      <h2>Raw Scene Excerpt</h2>
+      <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
+      <pre class="output-sample raw-scene"><code>page-review.tsv
+viewport	selector	issue	evidence
+1440x900	.header	primary button too close to copy	desktop-home.png
+390x900	.card-grid	second card height drifts after wrap	mobile-home.png
+decision	record visual issues only; no signed-in change or form submit</code></pre>
     </section>
     <section>
       <h2>Input Materials</h2>

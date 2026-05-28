@@ -214,6 +214,17 @@
       </div>
     </section>
     <section>
+      <h2>原始现场片段</h2>
+      <p>这一段保留任务开始时看到的最小现场材料。它不是最终结论，而是后续判断、修正和验收的起点。</p>
+      <pre class="output-sample raw-scene"><code>api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=补兼容层和回归用例</code></pre>
+    </section>
+    <section>
       <h2>输入材料</h2>
       <p>本次任务先锁定可读取材料、禁止动作和输出格式，再开始生成或检查。</p>
 
@@ -804,6 +815,17 @@ Human confirmation: Call sites without owners cannot be closed.</code></pre>
         <span>Individual developers, maintainers, and technical product leads</span>
         <span>Medium to high</span>
       </div>
+    </section>
+    <section>
+      <h2>Raw Scene Excerpt</h2>
+      <p>This excerpt keeps the smallest scene material visible at task start. It is not the final conclusion; it is the starting point for decisions, corrections, and acceptance.</p>
+      <pre class="output-sample raw-scene"><code>api-diff.txt
+- response.user.name
++ response.profile.display_name
++ response.profile.timezone
+breaking=true
+affected=client parser, docs example, contract test
+next=add compatibility layer and regression case</code></pre>
     </section>
     <section>
       <h2>Input Materials</h2>
