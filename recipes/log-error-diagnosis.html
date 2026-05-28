@@ -185,10 +185,38 @@
       <li>根因排序：配置、依赖、路径、权限、网络、代码变更。</li><li>每个假设都要有验证命令和预期结果。</li><li>修复建议分最小修复和后续加固，不顺手重构无关模块。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>本地检查失败，需要从日志定位最小修复，不扩大到无关重构。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>失败命令、日志片段、文件搜索、最小补丁、复跑命令。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>错误信息指向旧路径，但搜索结果显示还有多个入口残留。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>只改路径映射和入口链接，复跑检查通过。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -240,6 +268,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -257,6 +297,27 @@
       <ol class="case-timeline">
         <li>先分离症状、直接错误、可能根因和待验证假设。</li><li>读取错误前后上下文，再搜索相关路径、脚本和生成器数据。</li><li>确认根因后提出最小修复、回退方式和复跑命令。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>失败复现</td><td>npm run check</td><td>missing local target recipes/old-case.html</td><td>check-failure.log</td></tr>
+
+            <tr><td>定位</td><td>rg &quot;old-case|caseRecipes&quot; scripts recipes</td><td>matches=4, generator=1</td><td>search-results.txt</td></tr>
+
+            <tr><td>复测</td><td>npm run build &amp;&amp; npm run check</td><td>verify passed, changed_files=2</td><td>retest.log</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -448,6 +509,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>不要顺手重构无关代码。</li><li>修复说明必须包含失败命令和复跑命令。</li><li>如果日志不足，先补采样日志再下结论。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -581,10 +653,38 @@ Constraint: locate broken link first; do not roll back all changes</code></pre>
       <li>Root-cause order: configuration, dependency, path, permission, network, and code change.</li><li>Every hypothesis needs a validation command and expected result.</li><li>Fix proposal separates minimal fix and follow-up hardening without refactoring unrelated modules.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>A local check failed and needed minimal diagnosis from logs without expanding into unrelated refactors.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Failed command, log excerpt, file search, minimal patch, and rerun command.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The error pointed to an old path, and search results showed several stale entries.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>Only path mapping and entry links were changed, and the rerun passed.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Constraint: locate broken link first; do not roll back all changes</code></pre>
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/log-error-diagnosis/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Constraint: locate broken link first; do not roll back all changes</code></pre>
       <ol class="case-timeline">
         <li>Separate symptom, direct error, possible root cause, and hypotheses to validate first.</li><li>Read context around the error, then search related paths, scripts, and generator data.</li><li>After confirming root cause, propose minimal fix, rollback method, and rerun commands.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Failure reproduction</td><td>npm run check</td><td>missing local target recipes/old-case.html</td><td>check-failure.log</td></tr>
+
+            <tr><td>Locate</td><td>rg &quot;old-case|caseRecipes&quot; scripts recipes</td><td>matches=4, generator=1</td><td>search-results.txt</td></tr>
+
+            <tr><td>Retest</td><td>npm run build &amp;&amp; npm run check</td><td>verify passed, changed_files=2</td><td>retest.log</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -842,6 +975,17 @@ Acceptance: npm run build &amp;&amp; npm run check</code></pre>
     <ul class="case-checklist risk-list">
       <li>Destructive commands must explain consequences and wait for user confirmation.</li><li>Do not use broad rollback to mask root cause unless current changes are confirmed unsalvageable.</li><li>Logs are redacted before entering reports or screenshots.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Do not opportunistically refactor unrelated code.</li><li>The fix note must include the failing command and rerun command.</li><li>If logs are insufficient, collect more log samples before concluding.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

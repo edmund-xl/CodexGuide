@@ -186,10 +186,38 @@
       <li>工作目录：<code>workspace/deck-demo/</code>，输出目录：<code>workspace/deck-demo/out/</code>。</li><li>导出检查覆盖首页、目录页、数据页和结尾页四张截图。</li><li>高风险内容为金额、日期、承诺语和版权素材，全部标记为人工确认。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>一份 800 字产品说明需要在当天交给团队做内部评审，要求 7 页以内且能导出。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>桌面任务、演示稿导出器、四张截图、逐页验收表。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>第一轮生成 10 页，数据页正文在 1440px 预览里溢出。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>最终 7 页均可打开，四张预览截图无溢出，1 项对外表述保留人工确认。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@
       <ol class="case-timeline">
         <li>先生成 7 页结构表，逐页确认标题、主张、证据和备注，再允许制作文件。</li><li>生成文件时同步生成 &lt;code&gt;slide-checklist.md&lt;/code&gt;，每页记录输入材料、风险点和验收状态。</li><li>导出后逐张截图检查标题长度、正文溢出、备注缺失和图片占位。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>结构锁定</td><td>人工确认 7 页大纲后再生成文件</td><td>outline=7 slides, pending_confirmations=3</td><td>slide-outline.md</td></tr>
+
+            <tr><td>导出复核</td><td>打开 deck-draft.pptx 并抽查 4 张 PNG</td><td>slides=7, screenshots=4, overflow=0</td><td>screenshots/cover.png</td></tr>
+
+            <tr><td>人工交接</td><td>检查试用期、隐私表述和版权素材</td><td>needs_human_review=1</td><td>export-notes.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -447,6 +508,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>演示稿可用于内部评审，不能直接对外发布。</li><li>用户需要确认试用期、隐私表述和素材授权。</li><li>若要改成正式销售材料，先补真实数据和品牌终审。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -581,10 +653,38 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       <li>Workspace: <code>workspace/deck-demo/</code>; output directory: <code>workspace/deck-demo/out/</code>.</li><li>Export review covers four screenshots: cover, agenda, data slide, and closing slide.</li><li>High-risk items are amounts, dates, commitments, and licensed assets; all are marked for human confirmation.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>An 800-word product brief needed an internal review deck the same day, capped at seven slides and exportable.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Desktop task, deck exporter, four screenshots, and slide-by-slide acceptance table.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The first pass produced ten slides and the data slide overflowed in a 1440px preview.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>The final seven slides opened correctly, four preview screenshots had no overflow, and one external-facing claim stayed under human confirmation.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/deck-export-check/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
       <ol class="case-timeline">
         <li>Create a seven-slide structure table first, confirming title, claim, evidence, and notes before file generation.</li><li>Generate &lt;code&gt;slide-checklist.md&lt;/code&gt; alongside the file, recording input material, risk, and acceptance status per slide.</li><li>After export, inspect screenshots for title length, text overflow, missing notes, and image placeholders.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Structure lock</td><td>Generate the file only after the seven-slide outline is approved</td><td>outline=7 slides, pending_confirmations=3</td><td>slide-outline.md</td></tr>
+
+            <tr><td>Export review</td><td>Open deck-draft.pptx and inspect four PNG previews</td><td>slides=7, screenshots=4, overflow=0</td><td>screenshots/cover.png</td></tr>
+
+            <tr><td>Human handoff</td><td>Check trial wording, privacy wording, and licensed assets</td><td>needs_human_review=1</td><td>export-notes.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -840,6 +973,17 @@ Constraints: no customer names, no pricing, no autonomous decision claims</code>
     <ul class="case-checklist risk-list">
       <li>Do not use real customers, amounts, contract IDs, marks, or unauthorized assets.</li><li>All external promises, privacy wording, and dates are confirmed by the user before sending.</li><li>The original brief stays read-only; generated files use new names.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>The deck is ready for internal review, not direct external publication.</li><li>The user must confirm trial wording, privacy wording, and asset rights.</li><li>To turn it into sales material, add real data and brand approval first.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

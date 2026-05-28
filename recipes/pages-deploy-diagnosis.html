@@ -187,10 +187,38 @@ deploy: skipped
       <li>仓库分支：<code>main</code>，发布方式：GitHub Pages Actions。</li><li>本地质量门禁：<code>npm run build</code>、<code>npm run check</code>、<code>git diff --check</code>。</li><li>线上验收：目标地址返回 <code>200 OK</code>，页面包含本次标题或新内容标记。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>收到部署失败通知，build 红色、deploy 跳过，需要判断是内容、workflow 还是发布配置问题。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>本地构建、本地检查、Actions job、线上响应头。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>邮件只说明失败，无法证明第一个红色步骤在哪里。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>新提交触发的 build 与 deploy 均成功，线上案例总览返回 200。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -242,6 +270,18 @@ deploy: skipped
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -259,6 +299,27 @@ deploy: skipped
       <ol class="case-timeline">
         <li>先区分内容构建失败、artifact 上传失败、Pages 配置失败和部署失败。</li><li>进入 job steps 找第一个红色步骤，不被最终 skipped 状态误导。</li><li>修复后用新 run 验证，旧失败 run 不会自动变绿。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>本地复现</td><td>npm run build &amp;&amp; npm run check</td><td>Generated 44 bilingual pages; verify passed</td><td>deploy-incident.md</td></tr>
+
+            <tr><td>远端确认</td><td>读取最新 Actions run 的 jobs</td><td>build=success, deploy=success</td><td>new-run.txt</td></tr>
+
+            <tr><td>线上验收</td><td>curl -I -L --max-time 20 /recipes/index.html</td><td>HTTP/2 200, content-type=text/html</td><td>live-headers.txt</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -289,7 +350,7 @@ deploy: skipped
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：失败截图、run id、workflow 文件、最新提交 SHA
 00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
 00:08 运行/人工步骤：npm run build &amp;&amp; npm run check &amp;&amp; git diff --check
-00:14 观察：本地构建 -&gt; 43 个页面生成成功；状态：通过
+00:14 观察：本地构建 -&gt; 44 个页面生成成功；状态：通过
 00:22 运行/人工步骤：git status --short --branch
 00:29 观察：本地检查 -&gt; 双语、链接、验收、禁用词通过；状态：通过
 00:36 发现失败点：只看邮件；现象：邮件没有第一个失败步骤
@@ -308,7 +369,7 @@ deploy: skipped
         </thead>
         <tbody>
 
-            <tr><td>本地构建</td><td>43 个页面生成成功</td><td>npm run build</td><td>通过</td></tr>
+            <tr><td>本地构建</td><td>44 个页面生成成功</td><td>npm run build</td><td>通过</td></tr>
 
             <tr><td>本地检查</td><td>双语、链接、验收、禁用词通过</td><td>npm run check</td><td>通过</td></tr>
 
@@ -333,7 +394,7 @@ deploy: skipped
 
         <article>
           <span>关键证据</span>
-          <strong>43 个页面生成成功</strong>
+          <strong>44 个页面生成成功</strong>
         </article>
 
         <article>
@@ -446,6 +507,17 @@ deploy: skipped
     <ul class="case-checklist risk-list">
       <li>部署修复与内容改动分开提交，便于回退。</li><li>不使用强制覆盖远端历史，除非用户单独确认。</li><li>每次推送后等待新 run 完成，再宣布线上成功。</li>
     </ul>
+    </section>
+    <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>只把新 run 作为成功依据，不回头修改旧失败 run 的判断。</li><li>发布修复和内容改动尽量分开，便于回滚。</li><li>宣布完成前必须同时确认 Actions 与线上地址。</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>验收标准</h2>
@@ -583,10 +655,38 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
       <li>Repository branch: <code>main</code>; publishing method: GitHub Pages Actions.</li><li>Local quality gates: <code>npm run build</code>, <code>npm run check</code>, and <code>git diff --check</code>.</li><li>Live acceptance: target URL returns <code>200 OK</code> and contains the current title or new content marker.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>A deploy failure notification showed build red and deploy skipped, requiring separation of content, workflow, and publish configuration issues.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Local build, local check, Actions job, and live response headers.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The email only said the run failed and did not prove the first red step.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>The new commit produced successful build and deploy jobs, and the live recipe index returned 200.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -638,6 +738,18 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/pages-deploy-diagnosis/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -655,6 +767,27 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
       <ol class="case-timeline">
         <li>First separate content build failure, artifact upload failure, Pages configuration failure, and deploy failure.</li><li>Open job steps and find the first red step instead of being misled by the final skipped status.</li><li>After fixing, validate with a new run; old failed runs do not turn green automatically.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Local reproduction</td><td>npm run build &amp;&amp; npm run check</td><td>Generated 44 bilingual pages; verify passed</td><td>deploy-incident.md</td></tr>
+
+            <tr><td>Remote confirmation</td><td>Read the jobs for the latest Actions run</td><td>build=success, deploy=success</td><td>new-run.txt</td></tr>
+
+            <tr><td>Live acceptance</td><td>curl -I -L --max-time 20 /recipes/index.html</td><td>HTTP/2 200, content-type=text/html</td><td>live-headers.txt</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -685,7 +818,7 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Failure screenshot, run id, workflow file, and latest commit SHA
 00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
 00:08 Run/manual step: npm run build &amp;&amp; npm run check &amp;&amp; git diff --check
-00:14 Observation: Local build -&gt; 43 pages generated successfully; status: Pass
+00:14 Observation: Local build -&gt; 44 pages generated successfully; status: Pass
 00:22 Run/manual step: git status --short --branch
 00:29 Observation: Local check -&gt; Bilingual, links, acceptance, and blocked words passed; status: Pass
 00:36 Failure found: Email-only diagnosis; symptom: Email did not show the first failed step
@@ -704,7 +837,7 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
         </thead>
         <tbody>
 
-            <tr><td>Local build</td><td>43 pages generated successfully</td><td>npm run build</td><td>Pass</td></tr>
+            <tr><td>Local build</td><td>44 pages generated successfully</td><td>npm run build</td><td>Pass</td></tr>
 
             <tr><td>Local check</td><td>Bilingual, links, acceptance, and blocked words passed</td><td>npm run check</td><td>Pass</td></tr>
 
@@ -729,7 +862,7 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
 
         <article>
           <span>Key Evidence</span>
-          <strong>43 pages generated successfully</strong>
+          <strong>44 pages generated successfully</strong>
         </article>
 
         <article>
@@ -842,6 +975,17 @@ Verification: new run build=success, deploy=success; live URL=200 OK</code></pre
     <ul class="case-checklist risk-list">
       <li>Keep deploy fixes and content changes in separate commits for rollback.</li><li>Do not force-overwrite remote history unless the user explicitly confirms.</li><li>After each push, wait for the new run to finish before declaring live success.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Use only the new run as success evidence; do not reinterpret the old failed run.</li><li>Keep publish fixes and content edits separate where possible for rollback.</li><li>Before declaring completion, confirm both Actions and the live URL.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

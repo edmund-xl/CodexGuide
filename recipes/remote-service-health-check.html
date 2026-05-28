@@ -186,10 +186,38 @@ healthz: HTTP 503, db_pool_wait_ms=4800
       <li>材料目录：<code>workspace/service-health-demo/</code>，只读记录放在 <code>evidence/</code>。</li><li>检查窗口：2026-05-28 10:05 到 10:35，版本：<code>web-2026.05.28-2</code>。</li><li>输出只给诊断、建议和验收，不自动连接生产环境。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>远程服务短时间内多次 5xx，需要只读确认健康状态并提出最小修复建议。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>健康端点、时间窗口、日志摘要、回滚建议、人工审批。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>10:12 到 10:19 错误率升高，重启不是第一步。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>只读确认超时集中在一个下游调用，给出限流和回滚两条建议。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@ healthz: HTTP 503, db_pool_wait_ms=4800
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@ healthz: HTTP 503, db_pool_wait_ms=4800
       <ol class="case-timeline">
         <li>先按时间线整理 healthz、错误日志、部署版本和配置差异。</li><li>把根因分成配置、依赖、容量、网络和代码变更五类，并逐项给验证方式。</li><li>只输出修复建议和复测清单，等待用户确认后再进入执行阶段。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>健康检查</td><td>curl -fsS /healthz</td><td>status=degraded, latency_p95=1800ms</td><td>healthz.txt</td></tr>
+
+            <tr><td>日志窗口</td><td>读取 10:12-10:19 脱敏日志摘要</td><td>5xx=37, timeout_service=billing-sync</td><td>log-window.md</td></tr>
+
+            <tr><td>建议</td><td>生成 incident-note.md</td><td>actions=rate-limit, rollback; approval_required=true</td><td>incident-note.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -449,6 +510,17 @@ healthz: HTTP 503, db_pool_wait_ms=4800
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>只读检查不能擅自重启、扩容或改配置。</li><li>修复建议要写清风险和回退路径。</li><li>如果要执行生产动作，先让负责人确认。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -583,10 +655,38 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
       <li>Material directory: <code>workspace/service-health-demo/</code>; read-only records live in <code>evidence/</code>.</li><li>Review window: 2026-05-28 10:05 to 10:35; version: <code>web-2026.05.28-2</code>.</li><li>Output diagnosis, proposal, and acceptance only; do not connect to production automatically.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>A remote service produced repeated 5xx responses, requiring read-only health confirmation and minimal fix suggestions.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Health endpoint, time window, log summary, rollback suggestion, and human approval.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>Error rate rose from 10:12 to 10:19, and restart was not the first step.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>Read-only checks showed timeouts concentrated in one downstream call, producing rate-limit and rollback options.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -638,6 +738,18 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/remote-service-health-check/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -655,6 +767,27 @@ Goal: identify the most likely root cause and propose minimal fix plus rollback<
       <ol class="case-timeline">
         <li>First organize healthz, error logs, deployment version, and config delta by timeline.</li><li>Group root causes into configuration, dependency, capacity, network, and code change, with validation for each.</li><li>Output fix proposal and retest checklist only, then wait for user confirmation before execution.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Health check</td><td>curl -fsS /healthz</td><td>status=degraded, latency_p95=1800ms</td><td>healthz.txt</td></tr>
+
+            <tr><td>Log window</td><td>Read redacted logs from 10:12-10:19</td><td>5xx=37, timeout_service=billing-sync</td><td>log-window.md</td></tr>
+
+            <tr><td>Recommendation</td><td>Generate incident-note.md</td><td>actions=rate-limit, rollback; approval_required=true</td><td>incident-note.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -844,6 +977,17 @@ Retest: healthz returns 200 and db_pool_wait_ms stays under 500 for five minutes
     <ul class="case-checklist risk-list">
       <li>Do not auto-connect to production or run restart, delete, config-write, or deploy commands.</li><li>Logs must be redacted; host, account, key, IP, and customer identifiers are replaced with placeholders.</li><li>Fix proposals must separate minimal fix, rollback path, and follow-up hardening.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Read-only checks must not restart, scale, or change configuration without approval.</li><li>Fix suggestions must state risk and rollback path.</li><li>Production actions require owner confirmation first.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

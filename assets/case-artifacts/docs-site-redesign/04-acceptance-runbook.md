@@ -8,7 +8,7 @@
 - `curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/`
 
 ### 验收标准
-- 43 个 HTML 页面全部生成并通过链接检查。
+- 44 个 HTML 页面全部生成并通过链接检查。
 - 旧案例路径不再出现在仓库内容或生成页面中。
 - 桌面和手机截图无文字重叠、无页面级横向溢出。
 - README 截图与当前站点界面一致。
@@ -26,7 +26,7 @@
 - `curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/`
 
 ### Acceptance Criteria
-- All 43 HTML pages are generated and pass link checks.
+- All 44 HTML pages are generated and pass link checks.
 - Old recipe paths no longer appear in repository content or generated pages.
 - Desktop and mobile screenshots show no text overlap and no page-level horizontal overflow.
 - README screenshots match the current site interface.

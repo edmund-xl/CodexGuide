@@ -186,10 +186,38 @@
       <li>运行频率以低打扰为默认：每日一次或每周一次。</li><li>标准输出只包含状态、变化、异常、建议和待确认动作。</li><li>连续三次无有效信息时，降低频率或暂停。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>重复检查任务容易遗漏，需要转成定期提醒并保留失败处理方式。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>任务说明、频率、退出条件、失败通知、人工确认。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>原始需求只有“每天看一下”，没有说什么时候停。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>自动化记录包含频率、检查内容、停止条件和失败摘要格式。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@
       <ol class="case-timeline">
         <li>先把模糊任务改写成检查规则和停止条件。</li><li>生成一次模拟输出，让用户确认长度、语气和行动性。</li><li>建立自动化时只保存任务本身，频率和目标由调度配置承担。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>任务拆解</td><td>写清检查对象、时间、成功/失败条件</td><td>target=1, cadence=daily, stop_condition=defined</td><td>automation-brief.md</td></tr>
+
+            <tr><td>提醒配置</td><td>创建定期检查任务</td><td>status=active, next_run_recorded=true</td><td>schedule-record.md</td></tr>
+
+            <tr><td>失败处理</td><td>定义失败摘要模板</td><td>fields=trigger, evidence, action_needed</td><td>failure-template.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -447,6 +508,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>自动化不能替代需要人工判断的动作。</li><li>没有退出条件的定期任务不要长期保留。</li><li>失败提醒应说明证据和下一步，而不是只报错。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -581,10 +653,38 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
       <li>Default frequency is low interruption: daily or weekly.</li><li>Standard output contains only status, changes, anomalies, suggestions, and confirmation actions.</li><li>If three consecutive runs have no value, reduce frequency or pause.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>A repeated check was easy to miss and needed a scheduled reminder with failure handling.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Task brief, cadence, exit condition, failure notification, and human confirmation.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The original ask only said 'check daily' and did not define when to stop.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>The automation record includes cadence, checks, stop condition, and failure-summary format.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/automation-scheduled-checks/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Constraint: check and remind only; do not auto-fix or auto-commit</code></pre>
       <ol class="case-timeline">
         <li>Rewrite the vague task into check rules and stop conditions first.</li><li>Generate one mock output so the user can confirm length, tone, and actionability.</li><li>When creating automation, keep the prompt focused on the task while schedule config owns frequency and destination.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Task split</td><td>Define target, time, success, and failure conditions</td><td>target=1, cadence=daily, stop_condition=defined</td><td>automation-brief.md</td></tr>
+
+            <tr><td>Reminder setup</td><td>Create scheduled check task</td><td>status=active, next_run_recorded=true</td><td>schedule-record.md</td></tr>
+
+            <tr><td>Failure handling</td><td>Define failure summary template</td><td>fields=trigger, evidence, action_needed</td><td>failure-template.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -840,6 +973,17 @@ Suggestion: no action this week; if three weeks stay clean, switch to biweekly</
     <ul class="case-checklist risk-list">
       <li>Automation reminds only and does not publish, delete, send, pay, or commit.</li><li>On failure, output reason and suggestion without expanding permissions.</li><li>Frequency and recipient can be paused or adjusted anytime.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Automation cannot replace actions requiring human judgment.</li><li>Do not keep scheduled tasks without an exit condition indefinitely.</li><li>Failure alerts should include evidence and next action, not just an error.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

@@ -15,7 +15,7 @@
 ```text
 改版约束
 底色 #141414，面板 #1e1e1e / #242424，边框 #333，强调色 #ff922c
-页面数量保持 43
+页面数量保持 44
 README 需要展示新版截图
 本地路径和线上路径都要可访问
 ```
@@ -35,7 +35,7 @@ Redesign a static documentation site into a dark product workspace and prove the
 ```text
 Redesign constraints
 Background #141414, panels #1e1e1e / #242424, border #333, accent #ff922c
-Keep 43 pages
+Keep 44 pages
 README must show updated screenshots
 Local and live paths must be accessible
 ```

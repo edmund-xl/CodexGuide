@@ -186,10 +186,38 @@
       <li>文档超过 20 页时按章节分批，避免后半部分被忽略。</li><li>表格字段：主题、主张、页码、摘录线索、置信度、待确认。</li><li>金额、日期、责任和限制条件必须单独成行。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>多份文档摘要需要转成证据表，要求能追溯到页码和原句位置。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>PDF/文档摘要、证据行、页码、置信度标签。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>初稿把事实和推断混在同一列，无法复核。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>每行证据都有页码、摘录、判断和人工复核状态。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@
       <ol class="case-timeline">
         <li>先建立文档结构和页码范围，再抽取主张。</li><li>每行只放一个可核查主张，避免一行混多个结论。</li><li>不确定项集中进入问题清单，方便人工回到原文核查。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>材料盘点</td><td>列出 docs/ 中可读文件</td><td>files=5, scanned_pdf=1 needs manual OCR</td><td>document-inventory.md</td></tr>
+
+            <tr><td>证据抽取</td><td>生成 evidence-table.md</td><td>rows=18, missing_page=0</td><td>evidence-table.md</td></tr>
+
+            <tr><td>推断隔离</td><td>把建议移入 summary-notes.md</td><td>fact_rows=18, inference_rows=5</td><td>summary-notes.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -447,6 +508,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>无法读取的扫描页不做事实结论。</li><li>表格结论必须能回到页码和摘录。</li><li>摘要可作为草稿，不能替代人工阅读原文。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -581,10 +653,38 @@ Output: evidence table + three-paragraph meeting brief + question list</code></p
       <li>For documents over 20 pages, process by section to avoid missing later pages.</li><li>Table fields: topic, claim, page, excerpt cue, confidence, and confirmation needed.</li><li>Amounts, dates, responsibilities, and constraints must each get their own row.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>Several document summaries needed an evidence table traceable to page numbers and original wording.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>PDF/document summaries, evidence rows, page numbers, and confidence labels.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The first draft mixed facts and inference in one column, making review difficult.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>Every evidence row had a page, excerpt, judgment, and human review status.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Output: evidence table + three-paragraph meeting brief + question list</code></p
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/document-evidence-table/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Output: evidence table + three-paragraph meeting brief + question list</code></p
       <ol class="case-timeline">
         <li>Build document structure and page ranges before extracting claims.</li><li>Put one verifiable claim per row to avoid mixing multiple conclusions.</li><li>Centralize uncertainties in a question list so humans can check the original text.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Material inventory</td><td>List readable files under docs/</td><td>files=5, scanned_pdf=1 needs manual OCR</td><td>document-inventory.md</td></tr>
+
+            <tr><td>Evidence extraction</td><td>Generate evidence-table.md</td><td>rows=18, missing_page=0</td><td>evidence-table.md</td></tr>
+
+            <tr><td>Inference separation</td><td>Move suggestions into summary-notes.md</td><td>fact_rows=18, inference_rows=5</td><td>summary-notes.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -840,6 +973,17 @@ Output: evidence table + three-paragraph meeting brief + question list</code></p
     <ul class="case-checklist risk-list">
       <li>The summary does not replace the original; key decisions must be checked against page numbers.</li><li>Missing pages, blurry scans, and extraction failures go into the question list.</li><li>Do not add information absent from the document or turn low confidence into conclusion.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Do not make factual claims from unreadable scanned pages.</li><li>Table claims must trace back to page and excerpt.</li><li>The summary is a draft aid, not a replacement for human reading.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

@@ -186,10 +186,38 @@
       <li>改版规格以本站 token 为准：底色、面板、边框、主文字、次级文字、强调色。</li><li>所有组件必须写明默认、悬停、当前页、禁用或风险状态。</li><li>验收不依赖主观描述，必须有截图或像素级布局检查。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>只有目标截图和当前页面截图，需要转成开发可执行的组件规格。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>截图标注、组件映射、状态表、验收截图。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>截图里按钮、筛选栏和表格密度没有文字规格。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>输出 8 个组件、5 个状态、3 个断点的实现清单。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@
       <ol class="case-timeline">
         <li>先提取设计规则：颜色、边框、间距、信息密度、按钮尺寸和表格风格。</li><li>再映射到本站组件，逐项说明要改什么、不改什么。</li><li>最后用桌面和手机截图验收，不用一句像某种风格代替规格。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>截图读取</td><td>标注 target.png 与 current.png</td><td>regions=11, uncertain=2</td><td>annotation-table.md</td></tr>
+
+            <tr><td>规格生成</td><td>输出 implementation-spec.md</td><td>components=8, states=5, breakpoints=3</td><td>implementation-spec.md</td></tr>
+
+            <tr><td>验收</td><td>列出截图验收点</td><td>acceptance_shots=desktop,mobile,dense-table</td><td>component-checklist.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -447,6 +508,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>截图不能证明交互状态，缺失状态必须标为待确认。</li><li>规格只写可实现信息，不臆测业务规则。</li><li>实现后必须用同一视口重新截图对比。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -581,10 +653,38 @@ Output: spec, component table, desktop and mobile acceptance screenshots</code><
       <li>The redesign spec uses this site's tokens: background, panels, borders, primary text, secondary text, and accent.</li><li>Every component states default, hover, current page, disabled, or risk states.</li><li>Acceptance does not rely on subjective description; it requires screenshots or pixel-level layout checks.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>Only target and current screenshots were available, requiring an implementable component specification.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Screenshot annotation, component mapping, state table, and acceptance screenshots.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>Buttons, filters, and table density were visible in screenshots but lacked written specs.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>The output included an implementation checklist for eight components, five states, and three breakpoints.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Output: spec, component table, desktop and mobile acceptance screenshots</code><
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/screenshot-to-spec/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Output: spec, component table, desktop and mobile acceptance screenshots</code><
       <ol class="case-timeline">
         <li>First extract design rules: color, border, spacing, density, button sizing, and table style.</li><li>Then map rules to this site's components and state what changes and what stays.</li><li>Finally validate with desktop and mobile screenshots instead of replacing the spec with a broad style phrase.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Screenshot reading</td><td>Annotate target.png and current.png</td><td>regions=11, uncertain=2</td><td>annotation-table.md</td></tr>
+
+            <tr><td>Spec generation</td><td>Write implementation-spec.md</td><td>components=8, states=5, breakpoints=3</td><td>implementation-spec.md</td></tr>
+
+            <tr><td>Acceptance</td><td>List screenshot acceptance points</td><td>acceptance_shots=desktop,mobile,dense-table</td><td>component-checklist.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -840,6 +973,17 @@ Output: spec, component table, desktop and mobile acceptance screenshots</code><
     <ul class="case-checklist risk-list">
       <li>Do not reuse brand, images, copy, business data, or page names from target screenshots.</li><li>The spec describes only this site's own components and implementation rules.</li><li>Screenshot acceptance checks only layout quality, readability, and responsiveness.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>Screenshots cannot prove interaction states, so missing states must be marked for confirmation.</li><li>The spec records implementable details, not guessed business rules.</li><li>After implementation, recapture the same viewports for comparison.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

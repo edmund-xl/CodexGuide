@@ -493,6 +493,81 @@ main {
   color: var(--muted);
 }
 
+.case-route-section {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.case-route-section h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.45rem;
+}
+
+.task-route-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.task-route-card {
+  display: flex;
+  min-width: 0;
+  min-height: 250px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.task-route-card span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.task-route-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.task-route-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.task-route-card div {
+  display: grid;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.task-route-card a {
+  display: block;
+  padding: 8px 9px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: var(--panel-3);
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.task-route-card a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .path-cards {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -821,24 +896,35 @@ main {
   border-top: 0;
 }
 
+.run-snapshot {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
 .case-dashboard div,
 .case-index-hero,
 .command-panel,
 .output-sample,
 .artifact-card,
-.case-visual {
+.case-visual,
+.run-snapshot article,
+.handoff-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
 
-.case-dashboard div {
+.case-dashboard div,
+.run-snapshot article {
   min-width: 0;
   padding: 13px;
 }
 
 .case-dashboard span,
-.command-panel strong {
+.command-panel strong,
+.run-snapshot span {
   display: block;
   margin-bottom: 7px;
   color: var(--accent);
@@ -848,7 +934,8 @@ main {
   text-transform: uppercase;
 }
 
-.case-dashboard strong {
+.case-dashboard strong,
+.run-snapshot strong {
   display: block;
   color: var(--ink);
   font-size: 0.92rem;
@@ -1240,6 +1327,10 @@ main {
   min-width: 860px;
 }
 
+.replay-table {
+  min-width: 900px;
+}
+
 .execution-transcript {
   border-color: rgba(102, 209, 122, 0.38);
   background: #101510;
@@ -1290,6 +1381,20 @@ main {
 .work-order {
   border-color: rgba(255, 146, 44, 0.5);
   background: rgba(255, 146, 44, 0.07);
+}
+
+.handoff-panel {
+  margin-top: 16px;
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(255, 146, 44, 0.08), rgba(36, 36, 36, 0.96));
+}
+
+.handoff-list {
+  margin: 0;
+}
+
+.handoff-list li {
+  background: rgba(255, 146, 44, 0.08);
 }
 
 .command-panel {
@@ -1526,8 +1631,10 @@ main {
   .card-grid.four,
   .path-cards,
   .loop-cards,
+  .task-route-board,
   .doc-meta-grid,
   .case-dashboard,
+  .run-snapshot,
   .case-library-stats,
   .case-card-grid,
   .artifact-grid,

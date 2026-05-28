@@ -185,10 +185,38 @@
       <li>分类：新增、修复、改进、文档、内部维护、破坏性变更。</li><li>每条公开说明都要能回到提交或 Issue。</li><li>发布前确认语气、范围、版本号、日期和遗漏项。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>版本发布前需要从提交和工单整理发布说明，同时区分用户可见变化和内部变更。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>提交范围、变更分组、风险标记、待确认条目。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>原始提交里混有重构、修复和文案调整，不能直接贴给用户。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>输出用户版、内部版和待确认清单三份内容。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -240,6 +268,18 @@
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -257,6 +297,27 @@
       <ol class="case-timeline">
         <li>先读取提交范围并过滤合并噪音、格式化和纯依赖维护。</li><li>按用户影响分类，再把技术语言改写成用户能理解的结果。</li><li>输出公开版、内部版和发布前确认清单。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>范围确认</td><td>git log --oneline v0.8.0..HEAD</td><td>commits=23, merge_commits=2</td><td>commit-range.txt</td></tr>
+
+            <tr><td>分组</td><td>按 Added/Changed/Fixed/Risk 分组</td><td>public_items=9, internal_items=6</td><td>release-notes.md</td></tr>
+
+            <tr><td>终审</td><td>列出数字、客户影响和发布时间待确认</td><td>needs_confirmation=4</td><td>release-review.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -452,6 +513,17 @@
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>用户版不暴露内部工单号。</li><li>风险项先给维护者看，不直接写进公告。</li><li>发布日期和影响范围必须人工确认。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -585,10 +657,38 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       <li>Categories: added, fixed, improved, docs, internal maintenance, and breaking changes.</li><li>Every public note must map back to a commit or issue.</li><li>Before publication, confirm tone, scope, version, date, and omissions.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>Before release, commits and tickets needed release notes that separate user-visible changes from internal changes.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Commit range, change grouping, risk labels, and confirmation items.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>Raw commits mixed refactors, fixes, and copy edits, so they could not be pasted to users.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>The output included user-facing notes, internal notes, and a confirmation list.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -640,6 +740,18 @@ Constraint: do not present unconfirmed features as promises</code></pre>
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/release-notes-changelog/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -657,6 +769,27 @@ Constraint: do not present unconfirmed features as promises</code></pre>
       <ol class="case-timeline">
         <li>Read the commit range first and filter merge noise, formatting-only work, and pure dependency maintenance.</li><li>Classify by user impact, then rewrite technical wording into user-understandable results.</li><li>Output public version, internal version, and pre-publication confirmation checklist.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Range confirmation</td><td>git log --oneline v0.8.0..HEAD</td><td>commits=23, merge_commits=2</td><td>commit-range.txt</td></tr>
+
+            <tr><td>Grouping</td><td>Group by Added/Changed/Fixed/Risk</td><td>public_items=9, internal_items=6</td><td>release-notes.md</td></tr>
+
+            <tr><td>Final review</td><td>List numbers, customer impact, and release date for confirmation</td><td>needs_confirmation=4</td><td>release-review.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -850,6 +983,17 @@ Constraint: do not present unconfirmed features as promises</code></pre>
     <ul class="case-checklist risk-list">
       <li>Do not publish unconfirmed customer, amount, incident detail, or roadmap promise.</li><li>Public version removes internal module names, debug paths, and sensitive context.</li><li>The user confirms version, date, tone, and scope before publication.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>The user-facing version does not expose internal ticket IDs.</li><li>Risk items go to maintainers first, not directly into announcements.</li><li>Release date and impact scope require human confirmation.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

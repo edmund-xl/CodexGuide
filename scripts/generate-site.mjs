@@ -274,7 +274,7 @@ Constraint: do not edit content pages; first identify whether workflow, artifact
       b("修复后用新 run 验证，旧失败 run 不会自动变绿。", "After fixing, validate with a new run; old failed runs do not turn green automatically.")
     ],
     evidenceTable: [
-      [b("本地构建", "Local build"), b("43 个页面生成成功", "43 pages generated successfully"), b("npm run build", "npm run build"), b("通过", "Pass")],
+      [b("本地构建", "Local build"), b("44 个页面生成成功", "44 pages generated successfully"), b("npm run build", "npm run build"), b("通过", "Pass")],
       [b("本地检查", "Local check"), b("双语、链接、验收、禁用词通过", "Bilingual, links, acceptance, and blocked words passed"), b("npm run check", "npm run check"), b("通过", "Pass")],
       [b("失败定位", "Failure location"), b("第一个失败点在 Pages 配置或 artifact 步骤", "First failure located in Pages configuration or artifact step"), b("job steps", "job steps"), b("已定位", "Located")],
       [b("线上验收", "Live acceptance"), b("新 run build/deploy 成功，线上返回 200", "New run build/deploy passed and live URL returned 200"), b("curl -I -L", "curl -I -L"), b("通过", "Pass")]
@@ -341,12 +341,12 @@ Verification: new run build=success, deploy=success; live URL=200 OK`),
     ],
     inputSample: b(`改版约束
 底色 #141414，面板 #1e1e1e / #242424，边框 #333，强调色 #ff922c
-页面数量保持 43
+页面数量保持 44
 README 需要展示新版截图
 本地路径和线上路径都要可访问`,
 `Redesign constraints
 Background #141414, panels #1e1e1e / #242424, border #333, accent #ff922c
-Keep 43 pages
+Keep 44 pages
 README must show updated screenshots
 Local and live paths must be accessible`),
     playbook: [
@@ -355,18 +355,18 @@ Local and live paths must be accessible`),
       b("视觉验收必须用浏览器截图，不只看代码。", "Visual acceptance requires browser screenshots, not code review alone.")
     ],
     evidenceTable: [
-      [b("页面数量", "Page count"), b("HTML 页面仍为 43", "HTML page count remains 43"), b("npm run check", "npm run check"), b("通过", "Pass")],
+      [b("页面数量", "Page count"), b("HTML 页面仍为 44", "HTML page count remains 44"), b("npm run check", "npm run check"), b("通过", "Pass")],
       [b("链接", "Links"), b("导航、搜索、README 链接均指向现有文件", "Navigation, search, and README links point to existing files"), b("verify-site.mjs", "verify-site.mjs"), b("通过", "Pass")],
       [b("移动端", "Mobile"), b("390px 下无页面横向溢出", "No page-level horizontal overflow at 390px"), b("mobile screenshots", "mobile screenshots"), b("通过", "Pass")],
       [b("截图", "Screenshots"), b("README 五张截图均为新版深色界面", "All five README screenshots show the redesigned dark interface"), b("assets/screenshots/", "assets/screenshots/"), b("通过", "Pass")]
     ],
     outputSample: b(`改版结果
-- 43 个页面重新生成
+- 44 个页面重新生成
 - 案例页新增任务状态面板、证据表、命令块和验收清单
 - README 更新首页、案例总览、两个案例页、使用规范页截图
 - 本地根路径和 /CodexGuide/ 均返回 200`,
 `Redesign result
-- 43 pages regenerated
+- 44 pages regenerated
 - Recipe pages gain task status panels, evidence tables, command blocks, and acceptance checklists
 - README updates home, recipe index, two recipe pages, and usage policy screenshots
 - Local root and /CodexGuide/ both return 200`),
@@ -386,7 +386,7 @@ Local and live paths must be accessible`),
       b("curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/", "curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/")
     ],
     acceptanceChecks: [
-      b("43 个 HTML 页面全部生成并通过链接检查。", "All 43 HTML pages are generated and pass link checks."),
+      b("44 个 HTML 页面全部生成并通过链接检查。", "All 44 HTML pages are generated and pass link checks."),
       b("旧案例路径不再出现在仓库内容或生成页面中。", "Old recipe paths no longer appear in repository content or generated pages."),
       b("桌面和手机截图无文字重叠、无页面级横向溢出。", "Desktop and mobile screenshots show no text overlap and no page-level horizontal overflow."),
       b("README 截图与当前站点界面一致。", "README screenshots match the current site interface.")
@@ -1229,6 +1229,261 @@ const usagePolicyRecipe = {
   domain: b("项目治理", "Project governance")
 };
 
+const operationTraceMap = {
+  "deck-export-check": {
+    snapshot: {
+      trigger: b("一份 800 字产品说明需要在当天交给团队做内部评审，要求 7 页以内且能导出。", "An 800-word product brief needed an internal review deck the same day, capped at seven slides and exportable."),
+      toolchain: b("桌面任务、演示稿导出器、四张截图、逐页验收表。", "Desktop task, deck exporter, four screenshots, and slide-by-slide acceptance table."),
+      firstSignal: b("第一轮生成 10 页，数据页正文在 1440px 预览里溢出。", "The first pass produced ten slides and the data slide overflowed in a 1440px preview."),
+      finalSignal: b("最终 7 页均可打开，四张预览截图无溢出，1 项对外表述保留人工确认。", "The final seven slides opened correctly, four preview screenshots had no overflow, and one external-facing claim stayed under human confirmation.")
+    },
+    replay: [
+      [b("结构锁定", "Structure lock"), b("人工确认 7 页大纲后再生成文件", "Generate the file only after the seven-slide outline is approved"), b("outline=7 slides, pending_confirmations=3", "outline=7 slides, pending_confirmations=3"), b("slide-outline.md", "slide-outline.md")],
+      [b("导出复核", "Export review"), b("打开 deck-draft.pptx 并抽查 4 张 PNG", "Open deck-draft.pptx and inspect four PNG previews"), b("slides=7, screenshots=4, overflow=0", "slides=7, screenshots=4, overflow=0"), b("screenshots/cover.png", "screenshots/cover.png")],
+      [b("人工交接", "Human handoff"), b("检查试用期、隐私表述和版权素材", "Check trial wording, privacy wording, and licensed assets"), b("needs_human_review=1", "needs_human_review=1"), b("export-notes.md", "export-notes.md")]
+    ],
+    handoff: [
+      b("演示稿可用于内部评审，不能直接对外发布。", "The deck is ready for internal review, not direct external publication."),
+      b("用户需要确认试用期、隐私表述和素材授权。", "The user must confirm trial wording, privacy wording, and asset rights."),
+      b("若要改成正式销售材料，先补真实数据和品牌终审。", "To turn it into sales material, add real data and brand approval first.")
+    ]
+  },
+  "browser-page-review": {
+    snapshot: {
+      trigger: b("本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。", "A local page was close to delivery and needed desktop, mobile, console, and table checks."),
+      toolchain: b("本地服务、浏览器视口、控制台摘要、截图清单。", "Local server, browser viewports, console summary, and screenshot inventory."),
+      firstSignal: b("手机截图里表格可滚动，但缺少明显滚动提示。", "The mobile screenshot showed the table could scroll, but the scroll cue was weak."),
+      finalSignal: b("页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。", "Page-level horizontal overflow was false, console errors were 0, and P0 issues were 0.")
+    },
+    replay: [
+      [b("服务确认", "Service check"), b("curl -I -L --max-time 15 http://127.0.0.1:4173/", "curl -I -L --max-time 15 http://127.0.0.1:4173/"), b("HTTP/1.1 200 OK", "HTTP/1.1 200 OK"), b("console-summary.txt", "console-summary.txt")],
+      [b("手机视口", "Mobile viewport"), b("390x900 检查 scrollWidth 与 innerWidth", "Check scrollWidth and innerWidth at 390x900"), b("page_overflow=false, table_scroll=true", "page_overflow=false, table_scroll=true"), b("case-mobile-390.png", "case-mobile-390.png")],
+      [b("问题归档", "Issue filing"), b("按 P0/P1/P2 写入 page-review.md", "Write P0/P1/P2 issues to page-review.md"), b("P0=0, P1=1, P2=2", "P0=0, P1=1, P2=2"), b("page-review.md", "page-review.md")]
+    ],
+    handoff: [
+      b("页面可交付，但手机端表格滚动提示建议补强。", "The page is deliverable, but the mobile table scroll cue should be improved."),
+      b("截图只覆盖指定路径，未点击写入型控件。", "Screenshots cover only the specified path; write actions were not clicked."),
+      b("后续改版时保留同一组视口，避免截图不可比。", "Keep the same viewports in later redesigns so screenshots remain comparable.")
+    ]
+  },
+  "pages-deploy-diagnosis": {
+    snapshot: {
+      trigger: b("收到部署失败通知，build 红色、deploy 跳过，需要判断是内容、workflow 还是发布配置问题。", "A deploy failure notification showed build red and deploy skipped, requiring separation of content, workflow, and publish configuration issues."),
+      toolchain: b("本地构建、本地检查、Actions job、线上响应头。", "Local build, local check, Actions job, and live response headers."),
+      firstSignal: b("邮件只说明失败，无法证明第一个红色步骤在哪里。", "The email only said the run failed and did not prove the first red step."),
+      finalSignal: b("新提交触发的 build 与 deploy 均成功，线上案例总览返回 200。", "The new commit produced successful build and deploy jobs, and the live recipe index returned 200.")
+    },
+    replay: [
+      [b("本地复现", "Local reproduction"), b("npm run build && npm run check", "npm run build && npm run check"), b("Generated 44 bilingual pages; verify passed", "Generated 44 bilingual pages; verify passed"), b("deploy-incident.md", "deploy-incident.md")],
+      [b("远端确认", "Remote confirmation"), b("读取最新 Actions run 的 jobs", "Read the jobs for the latest Actions run"), b("build=success, deploy=success", "build=success, deploy=success"), b("new-run.txt", "new-run.txt")],
+      [b("线上验收", "Live acceptance"), b("curl -I -L --max-time 20 /recipes/index.html", "curl -I -L --max-time 20 /recipes/index.html"), b("HTTP/2 200, content-type=text/html", "HTTP/2 200, content-type=text/html"), b("live-headers.txt", "live-headers.txt")]
+    ],
+    handoff: [
+      b("只把新 run 作为成功依据，不回头修改旧失败 run 的判断。", "Use only the new run as success evidence; do not reinterpret the old failed run."),
+      b("发布修复和内容改动尽量分开，便于回滚。", "Keep publish fixes and content edits separate where possible for rollback."),
+      b("宣布完成前必须同时确认 Actions 与线上地址。", "Before declaring completion, confirm both Actions and the live URL.")
+    ]
+  },
+  "docs-site-redesign": {
+    snapshot: {
+      trigger: b("站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。", "The site needed to move from a light documentation template to a dark product workbench without breaking publishing."),
+      toolchain: b("静态生成器、样式 tokens、页面数量检查、README 截图。", "Static generator, style tokens, page-count checks, and README screenshots."),
+      firstSignal: b("第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。", "After the first redesign, recipe details lacked enough density and the index lacked a task matrix."),
+      finalSignal: b("44 个页面生成通过，案例页有证据表、命令块、评分和材料包。", "All 44 pages generated successfully, and recipe pages include evidence tables, command blocks, scorecards, and artifact packs.")
+    },
+    replay: [
+      [b("构建", "Build"), b("npm run build", "npm run build"), b("Generated 44 bilingual pages and SVG assets", "Generated 44 bilingual pages and SVG assets"), b("build.log", "build.log")],
+      [b("质量门禁", "Quality gate"), b("npm run check", "npm run check"), b("44 HTML pages verified", "44 HTML pages verified"), b("verify.log", "verify.log")],
+      [b("视觉抽查", "Visual check"), b("桌面与手机视口检查首页、案例总览和案例页", "Check home, recipe index, and recipe detail on desktop and mobile"), b("overflow=false, broken_images=0", "overflow=false, broken_images=0"), b("README screenshots", "README screenshots")]
+    ],
+    handoff: [
+      b("README 截图必须和当前构建一致。", "README screenshots must match the current build."),
+      b("每次生成后都要重新跑链接和禁用词检查。", "Run link and blocked-term checks after each generation."),
+      b("视觉改版不应改变原始发布路径。", "Visual redesign should not change the publish path.")
+    ]
+  },
+  "markdown-knowledge-base": {
+    snapshot: {
+      trigger: b("散乱 Markdown 笔记需要按主题、状态和待补事项重整，且保留回退依据。", "Loose Markdown notes needed organization by topic, state, and missing items while preserving rollback evidence."),
+      toolchain: b("文件清单、frontmatter 检查、主题索引、样本 diff。", "File inventory, frontmatter check, topic index, and sample diff."),
+      firstSignal: b("同一主题有三个命名方式，部分笔记没有 owner 和 status。", "The same topic had three naming styles and some notes had no owner or status."),
+      finalSignal: b("12 篇笔记完成统一头部，索引能按主题和待补项检索。", "Twelve notes received consistent headers, and the index supports topic and missing-item lookup.")
+    },
+    replay: [
+      [b("盘点", "Inventory"), b("find notes-working -name '*.md'", "find notes-working -name '*.md'"), b("12 files, 5 missing frontmatter", "12 files, 5 missing frontmatter"), b("inventory.txt", "inventory.txt")],
+      [b("重整", "Restructure"), b("生成 topic-index.md 和 pending-review.md", "Generate topic-index.md and pending-review.md"), b("topics=4, pending=7", "topics=4, pending=7"), b("topic-index.md", "topic-index.md")],
+      [b("回退依据", "Rollback basis"), b("保留 sample.diff", "Keep sample.diff"), b("renamed=3, content_deleted=0", "renamed=3, content_deleted=0"), b("sample.diff", "sample.diff")]
+    ],
+    handoff: [
+      b("原文只移动和补元数据，不删除正文。", "Original text is moved and annotated, not deleted."),
+      b("待补事项单独列出，不能伪装成已完成知识。", "Missing items are listed separately, not presented as completed knowledge."),
+      b("合并前由用户抽查至少 3 篇笔记。", "The user should spot-check at least three notes before merging.")
+    ]
+  },
+  "spreadsheet-cleanup": {
+    snapshot: {
+      trigger: b("脱敏订单 CSV 出现空状态、异常金额和重复行，需要形成可复核清理建议。", "A redacted order CSV had blank statuses, abnormal amounts, and duplicates needing reviewable cleanup suggestions."),
+      toolchain: b("CSV 画像、异常表、原始行号、人工复核列。", "CSV profiling, anomaly table, original row numbers, and human review columns."),
+      firstSignal: b("总行数与有效订单数不一致，金额列存在负数和文本值。", "Total rows and valid orders did not match, and the amount column contained negatives and text values."),
+      finalSignal: b("异常被分为 4 类，所有建议都保留原始行号。", "Anomalies were split into four classes, with original row numbers preserved for every suggestion.")
+    },
+    replay: [
+      [b("画像", "Profile"), b("读取 orders-redacted.csv 并统计字段", "Read orders-redacted.csv and profile fields"), b("rows=240, invalid_amount=6, duplicates=4", "rows=240, invalid_amount=6, duplicates=4"), b("data-profile.md", "data-profile.md")],
+      [b("异常分类", "Anomaly classification"), b("生成 anomalies.csv", "Generate anomalies.csv"), b("classes=4, needs_review=18", "classes=4, needs_review=18"), b("anomalies.csv", "anomalies.csv")],
+      [b("复核表", "Review sheet"), b("写入 review-sheet.csv", "Write review-sheet.csv"), b("all_rows_keep_original_index=true", "all_rows_keep_original_index=true"), b("review-sheet.csv", "review-sheet.csv")]
+    ],
+    handoff: [
+      b("不直接覆盖原 CSV。", "Do not overwrite the original CSV."),
+      b("金额和状态修正必须由业务负责人确认。", "Amount and status corrections require owner confirmation."),
+      b("复核表保留原始行号，便于追溯。", "The review sheet keeps original row numbers for traceability.")
+    ]
+  },
+  "screenshot-to-spec": {
+    snapshot: {
+      trigger: b("只有目标截图和当前页面截图，需要转成开发可执行的组件规格。", "Only target and current screenshots were available, requiring an implementable component specification."),
+      toolchain: b("截图标注、组件映射、状态表、验收截图。", "Screenshot annotation, component mapping, state table, and acceptance screenshots."),
+      firstSignal: b("截图里按钮、筛选栏和表格密度没有文字规格。", "Buttons, filters, and table density were visible in screenshots but lacked written specs."),
+      finalSignal: b("输出 8 个组件、5 个状态、3 个断点的实现清单。", "The output included an implementation checklist for eight components, five states, and three breakpoints.")
+    },
+    replay: [
+      [b("截图读取", "Screenshot reading"), b("标注 target.png 与 current.png", "Annotate target.png and current.png"), b("regions=11, uncertain=2", "regions=11, uncertain=2"), b("annotation-table.md", "annotation-table.md")],
+      [b("规格生成", "Spec generation"), b("输出 implementation-spec.md", "Write implementation-spec.md"), b("components=8, states=5, breakpoints=3", "components=8, states=5, breakpoints=3"), b("implementation-spec.md", "implementation-spec.md")],
+      [b("验收", "Acceptance"), b("列出截图验收点", "List screenshot acceptance points"), b("acceptance_shots=desktop,mobile,dense-table", "acceptance_shots=desktop,mobile,dense-table"), b("component-checklist.md", "component-checklist.md")]
+    ],
+    handoff: [
+      b("截图不能证明交互状态，缺失状态必须标为待确认。", "Screenshots cannot prove interaction states, so missing states must be marked for confirmation."),
+      b("规格只写可实现信息，不臆测业务规则。", "The spec records implementable details, not guessed business rules."),
+      b("实现后必须用同一视口重新截图对比。", "After implementation, recapture the same viewports for comparison.")
+    ]
+  },
+  "authenticated-readonly-review": {
+    snapshot: {
+      trigger: b("登录态页面需要检查信息是否完整，但不能修改账号、配置或数据。", "A signed-in page needed information review without changing account, settings, or data."),
+      toolchain: b("只读路径、动作白名单、截图遮挡、人工确认点。", "Read-only path, action allowlist, screenshot masking, and human confirmations."),
+      firstSignal: b("页面含有导出和邀请按钮，必须明确不点击。", "The page included export and invite buttons that had to be explicitly avoided."),
+      finalSignal: b("完成 6 个只读检查点，未触发表单提交或写入动作。", "Six read-only checkpoints were completed without form submission or write actions.")
+    },
+    replay: [
+      [b("动作确认", "Action confirmation"), b("列出允许点击区域与禁止按钮", "List allowed areas and prohibited buttons"), b("allowed=nav,filter,details; blocked=invite,export,save", "allowed=nav,filter,details; blocked=invite,export,save"), b("readonly-plan.md", "readonly-plan.md")],
+      [b("页面核查", "Page check"), b("只查看详情面板和状态标签", "View only detail panels and status labels"), b("checks=6, writes=0", "checks=6, writes=0"), b("readonly-evidence.csv", "readonly-evidence.csv")],
+      [b("隐私处理", "Privacy handling"), b("截图前遮挡账号标识", "Mask account identifiers before screenshots"), b("masked_fields=3", "masked_fields=3"), b("masked-screenshot.png", "masked-screenshot.png")]
+    ],
+    handoff: [
+      b("不要把登录态截图直接公开。", "Do not publish signed-in screenshots directly."),
+      b("所有账号操作必须由用户亲自确认。", "All account actions require direct user confirmation."),
+      b("检查结论只覆盖已查看页面。", "Findings cover only pages that were inspected.")
+    ]
+  },
+  "document-evidence-table": {
+    snapshot: {
+      trigger: b("多份文档摘要需要转成证据表，要求能追溯到页码和原句位置。", "Several document summaries needed an evidence table traceable to page numbers and original wording."),
+      toolchain: b("PDF/文档摘要、证据行、页码、置信度标签。", "PDF/document summaries, evidence rows, page numbers, and confidence labels."),
+      firstSignal: b("初稿把事实和推断混在同一列，无法复核。", "The first draft mixed facts and inference in one column, making review difficult."),
+      finalSignal: b("每行证据都有页码、摘录、判断和人工复核状态。", "Every evidence row had a page, excerpt, judgment, and human review status.")
+    },
+    replay: [
+      [b("材料盘点", "Material inventory"), b("列出 docs/ 中可读文件", "List readable files under docs/"), b("files=5, scanned_pdf=1 needs manual OCR", "files=5, scanned_pdf=1 needs manual OCR"), b("document-inventory.md", "document-inventory.md")],
+      [b("证据抽取", "Evidence extraction"), b("生成 evidence-table.md", "Generate evidence-table.md"), b("rows=18, missing_page=0", "rows=18, missing_page=0"), b("evidence-table.md", "evidence-table.md")],
+      [b("推断隔离", "Inference separation"), b("把建议移入 summary-notes.md", "Move suggestions into summary-notes.md"), b("fact_rows=18, inference_rows=5", "fact_rows=18, inference_rows=5"), b("summary-notes.md", "summary-notes.md")]
+    ],
+    handoff: [
+      b("无法读取的扫描页不做事实结论。", "Do not make factual claims from unreadable scanned pages."),
+      b("表格结论必须能回到页码和摘录。", "Table claims must trace back to page and excerpt."),
+      b("摘要可作为草稿，不能替代人工阅读原文。", "The summary is a draft aid, not a replacement for human reading.")
+    ]
+  },
+  "api-impact-analysis": {
+    snapshot: {
+      trigger: b("接口字段即将调整，需要判断页面、测试、文档和调用方会受哪些影响。", "An API field change was planned, requiring impact analysis across pages, tests, docs, and callers."),
+      toolchain: b("schema diff、调用点搜索、测试清单、迁移说明。", "Schema diff, caller search, test checklist, and migration notes."),
+      firstSignal: b("字段名变化影响了 5 个调用点，其中 2 个在测试里。", "The field rename affected five call sites, two of them in tests."),
+      finalSignal: b("影响表列出 owner、文件路径、修改建议和验证命令。", "The impact table listed owner, file path, change suggestion, and verification command.")
+    },
+    replay: [
+      [b("差异读取", "Diff read"), b("读取 schema-before.json 与 schema-after.json", "Read schema-before.json and schema-after.json"), b("removed=1, added=1, renamed_candidate=1", "removed=1, added=1, renamed_candidate=1"), b("schema-diff.md", "schema-diff.md")],
+      [b("调用点搜索", "Caller search"), b("rg \"legacy_status|status_code\" src test docs", "rg \"legacy_status|status_code\" src test docs"), b("matches=5, tests=2, docs=1", "matches=5, tests=2, docs=1"), b("call-sites.csv", "call-sites.csv")],
+      [b("验收清单", "Acceptance list"), b("生成 migration-checklist.md", "Generate migration-checklist.md"), b("owners=3, commands=4", "owners=3, commands=4"), b("migration-checklist.md", "migration-checklist.md")]
+    ],
+    handoff: [
+      b("没有 owner 的调用点不能直接关闭。", "Call sites without owners cannot be closed."),
+      b("字段兼容策略需要产品和后端共同确认。", "The compatibility policy needs product and backend confirmation."),
+      b("影响分析完成不等于代码已经修改。", "Impact analysis completion does not mean code has been changed.")
+    ]
+  },
+  "release-notes-changelog": {
+    snapshot: {
+      trigger: b("版本发布前需要从提交和工单整理发布说明，同时区分用户可见变化和内部变更。", "Before release, commits and tickets needed release notes that separate user-visible changes from internal changes."),
+      toolchain: b("提交范围、变更分组、风险标记、待确认条目。", "Commit range, change grouping, risk labels, and confirmation items."),
+      firstSignal: b("原始提交里混有重构、修复和文案调整，不能直接贴给用户。", "Raw commits mixed refactors, fixes, and copy edits, so they could not be pasted to users."),
+      finalSignal: b("输出用户版、内部版和待确认清单三份内容。", "The output included user-facing notes, internal notes, and a confirmation list.")
+    },
+    replay: [
+      [b("范围确认", "Range confirmation"), b("git log --oneline v0.8.0..HEAD", "git log --oneline v0.8.0..HEAD"), b("commits=23, merge_commits=2", "commits=23, merge_commits=2"), b("commit-range.txt", "commit-range.txt")],
+      [b("分组", "Grouping"), b("按 Added/Changed/Fixed/Risk 分组", "Group by Added/Changed/Fixed/Risk"), b("public_items=9, internal_items=6", "public_items=9, internal_items=6"), b("release-notes.md", "release-notes.md")],
+      [b("终审", "Final review"), b("列出数字、客户影响和发布时间待确认", "List numbers, customer impact, and release date for confirmation"), b("needs_confirmation=4", "needs_confirmation=4"), b("release-review.md", "release-review.md")]
+    ],
+    handoff: [
+      b("用户版不暴露内部工单号。", "The user-facing version does not expose internal ticket IDs."),
+      b("风险项先给维护者看，不直接写进公告。", "Risk items go to maintainers first, not directly into announcements."),
+      b("发布日期和影响范围必须人工确认。", "Release date and impact scope require human confirmation.")
+    ]
+  },
+  "automation-scheduled-checks": {
+    snapshot: {
+      trigger: b("重复检查任务容易遗漏，需要转成定期提醒并保留失败处理方式。", "A repeated check was easy to miss and needed a scheduled reminder with failure handling."),
+      toolchain: b("任务说明、频率、退出条件、失败通知、人工确认。", "Task brief, cadence, exit condition, failure notification, and human confirmation."),
+      firstSignal: b("原始需求只有“每天看一下”，没有说什么时候停。", "The original ask only said 'check daily' and did not define when to stop."),
+      finalSignal: b("自动化记录包含频率、检查内容、停止条件和失败摘要格式。", "The automation record includes cadence, checks, stop condition, and failure-summary format.")
+    },
+    replay: [
+      [b("任务拆解", "Task split"), b("写清检查对象、时间、成功/失败条件", "Define target, time, success, and failure conditions"), b("target=1, cadence=daily, stop_condition=defined", "target=1, cadence=daily, stop_condition=defined"), b("automation-brief.md", "automation-brief.md")],
+      [b("提醒配置", "Reminder setup"), b("创建定期检查任务", "Create scheduled check task"), b("status=active, next_run_recorded=true", "status=active, next_run_recorded=true"), b("schedule-record.md", "schedule-record.md")],
+      [b("失败处理", "Failure handling"), b("定义失败摘要模板", "Define failure summary template"), b("fields=trigger, evidence, action_needed", "fields=trigger, evidence, action_needed"), b("failure-template.md", "failure-template.md")]
+    ],
+    handoff: [
+      b("自动化不能替代需要人工判断的动作。", "Automation cannot replace actions requiring human judgment."),
+      b("没有退出条件的定期任务不要长期保留。", "Do not keep scheduled tasks without an exit condition indefinitely."),
+      b("失败提醒应说明证据和下一步，而不是只报错。", "Failure alerts should include evidence and next action, not just an error.")
+    ]
+  },
+  "log-error-diagnosis": {
+    snapshot: {
+      trigger: b("本地检查失败，需要从日志定位最小修复，不扩大到无关重构。", "A local check failed and needed minimal diagnosis from logs without expanding into unrelated refactors."),
+      toolchain: b("失败命令、日志片段、文件搜索、最小补丁、复跑命令。", "Failed command, log excerpt, file search, minimal patch, and rerun command."),
+      firstSignal: b("错误信息指向旧路径，但搜索结果显示还有多个入口残留。", "The error pointed to an old path, and search results showed several stale entries."),
+      finalSignal: b("只改路径映射和入口链接，复跑检查通过。", "Only path mapping and entry links were changed, and the rerun passed.")
+    },
+    replay: [
+      [b("失败复现", "Failure reproduction"), b("npm run check", "npm run check"), b("missing local target recipes/old-case.html", "missing local target recipes/old-case.html"), b("check-failure.log", "check-failure.log")],
+      [b("定位", "Locate"), b("rg \"old-case|caseRecipes\" scripts recipes", "rg \"old-case|caseRecipes\" scripts recipes"), b("matches=4, generator=1", "matches=4, generator=1"), b("search-results.txt", "search-results.txt")],
+      [b("复测", "Retest"), b("npm run build && npm run check", "npm run build && npm run check"), b("verify passed, changed_files=2", "verify passed, changed_files=2"), b("retest.log", "retest.log")]
+    ],
+    handoff: [
+      b("不要顺手重构无关代码。", "Do not opportunistically refactor unrelated code."),
+      b("修复说明必须包含失败命令和复跑命令。", "The fix note must include the failing command and rerun command."),
+      b("如果日志不足，先补采样日志再下结论。", "If logs are insufficient, collect more log samples before concluding.")
+    ]
+  },
+  "remote-service-health-check": {
+    snapshot: {
+      trigger: b("远程服务短时间内多次 5xx，需要只读确认健康状态并提出最小修复建议。", "A remote service produced repeated 5xx responses, requiring read-only health confirmation and minimal fix suggestions."),
+      toolchain: b("健康端点、时间窗口、日志摘要、回滚建议、人工审批。", "Health endpoint, time window, log summary, rollback suggestion, and human approval."),
+      firstSignal: b("10:12 到 10:19 错误率升高，重启不是第一步。", "Error rate rose from 10:12 to 10:19, and restart was not the first step."),
+      finalSignal: b("只读确认超时集中在一个下游调用，给出限流和回滚两条建议。", "Read-only checks showed timeouts concentrated in one downstream call, producing rate-limit and rollback options.")
+    },
+    replay: [
+      [b("健康检查", "Health check"), b("curl -fsS /healthz", "curl -fsS /healthz"), b("status=degraded, latency_p95=1800ms", "status=degraded, latency_p95=1800ms"), b("healthz.txt", "healthz.txt")],
+      [b("日志窗口", "Log window"), b("读取 10:12-10:19 脱敏日志摘要", "Read redacted logs from 10:12-10:19"), b("5xx=37, timeout_service=billing-sync", "5xx=37, timeout_service=billing-sync"), b("log-window.md", "log-window.md")],
+      [b("建议", "Recommendation"), b("生成 incident-note.md", "Generate incident-note.md"), b("actions=rate-limit, rollback; approval_required=true", "actions=rate-limit, rollback; approval_required=true"), b("incident-note.md", "incident-note.md")]
+    ],
+    handoff: [
+      b("只读检查不能擅自重启、扩容或改配置。", "Read-only checks must not restart, scale, or change configuration without approval."),
+      b("修复建议要写清风险和回退路径。", "Fix suggestions must state risk and rollback path."),
+      b("如果要执行生产动作，先让负责人确认。", "Production actions require owner confirmation first.")
+    ]
+  }
+};
+
 const recipes = [...caseRecipes, usagePolicyRecipe];
 
 const recipeNavPages = [["recipes/index.html", "案例总览", "Recipe index"], ...recipes.map((item) => [item.path, item.title.zh, item.title.en])];
@@ -1603,6 +1858,26 @@ function artifactSlug(recipe) {
   return path.posix.basename(recipe.path, ".html");
 }
 
+function operationTrace(recipe) {
+  const slug = artifactSlug(recipe);
+  const trace = operationTraceMap[slug];
+  if (trace) return trace;
+  return {
+    snapshot: {
+      trigger: recipe.summary,
+      toolchain: recipe.entry,
+      firstSignal: recipe.failureNotes[0][1],
+      finalSignal: recipe.acceptanceChecks[0]
+    },
+    replay: [
+      [b("范围确认", "Scope confirmation"), recipe.commands[0], recipe.evidenceTable[0][1], recipe.evidenceTable[0][2]],
+      [b("复测", "Retest"), recipe.commands[1], recipe.evidenceTable[1][1], recipe.evidenceTable[1][2]],
+      [b("交接", "Handoff"), recipe.commands[2], recipe.outputSample, recipe.deliverable]
+    ],
+    handoff: recipe.riskControls
+  };
+}
+
 function artifactBase(recipe) {
   return `${artifactRoot}/${artifactSlug(recipe)}`;
 }
@@ -1727,6 +2002,56 @@ function riskLabel(key, lang) {
   return textOf(labels[key] || labels.medium, lang);
 }
 
+const caseRouteGroups = [
+  {
+    label: b("排障", "Troubleshoot"),
+    title: b("我有失败截图、日志或线上异常", "I have a failure screenshot, logs, or a live incident"),
+    summary: b("先看发布、日志和远程健康检查案例，学习如何锁定第一信号、保留证据、给出最小修复。", "Start with deployment, log, and remote health recipes to lock the first signal, preserve evidence, and propose the smallest fix."),
+    slugs: ["pages-deploy-diagnosis", "log-error-diagnosis", "remote-service-health-check"]
+  },
+  {
+    label: b("网页", "Web"),
+    title: b("我需要检查页面、截图或登录态信息", "I need to review a page, screenshot, or signed-in view"),
+    summary: b("用页面巡检、截图转规格和登录态只读检查，把视觉问题与禁止动作拆开。", "Use page review, screenshot-to-spec, and signed-in read-only review to separate visual issues from prohibited actions."),
+    slugs: ["browser-page-review", "screenshot-to-spec", "authenticated-readonly-review"]
+  },
+  {
+    label: b("资料", "Files"),
+    title: b("我有文档、表格或知识库要整理", "I have documents, spreadsheets, or notes to organize"),
+    summary: b("优先看证据表、表格清洗和 Markdown 重整，把原始行号、页码和待补项保留下来。", "Start with evidence tables, spreadsheet cleanup, and Markdown restructuring while preserving row numbers, pages, and missing items."),
+    slugs: ["document-evidence-table", "spreadsheet-cleanup", "markdown-knowledge-base"]
+  },
+  {
+    label: b("发布", "Ship"),
+    title: b("我要交付内容、发布说明或定期检查", "I need to ship content, release notes, or scheduled checks"),
+    summary: b("用演示稿、发布说明和自动化案例，把交付物、人工确认和停止条件写清楚。", "Use deck, release-note, and automation recipes to define deliverables, human confirmation, and stop conditions."),
+    slugs: ["deck-export-check", "release-notes-changelog", "automation-scheduled-checks"]
+  }
+];
+
+function caseBySlug(slug) {
+  return caseRecipes.find((recipe) => artifactSlug(recipe) === slug);
+}
+
+function caseRouteBoard(currentPath, lang) {
+  return `
+    <div class="task-route-board">
+      ${caseRouteGroups.map((group) => `
+        <article class="task-route-card">
+          <span>${escapeHtml(textOf(group.label, lang))}</span>
+          <h3>${escapeHtml(textOf(group.title, lang))}</h3>
+          <p>${escapeHtml(textOf(group.summary, lang))}</p>
+          <div>
+            ${group.slugs.map((slug) => {
+              const recipe = caseBySlug(slug);
+              return `<a href="${relativeLink(currentPath, recipe.path)}">${escapeHtml(textOf(recipe.navTitle, lang))}</a>`;
+            }).join("")}
+          </div>
+        </article>
+      `).join("")}
+    </div>`;
+}
+
 function caseArtifactCount() {
   return artifactDefinitions(caseRecipes[0]).length;
 }
@@ -1840,6 +2165,56 @@ function scorecardJson(recipe) {
   }, null, 2);
 }
 
+function operationReplayMarkdown(recipe) {
+  const trace = operationTrace(recipe);
+  const rowsZh = trace.replay
+    .map((row) => `| ${row[0].zh} | ${row[1].zh.replace(/\n/g, "<br>")} | ${row[2].zh.replace(/\n/g, "<br>")} | ${row[3].zh} |`)
+    .join("\n");
+  const rowsEn = trace.replay
+    .map((row) => `| ${row[0].en} | ${row[1].en.replace(/\n/g, "<br>")} | ${row[2].en.replace(/\n/g, "<br>")} | ${row[3].en} |`)
+    .join("\n");
+  return `# ${recipe.title.zh} - 操作回放
+
+## 中文
+
+### 实测快照
+- 触发场景：${trace.snapshot.trigger.zh}
+- 工具链：${trace.snapshot.toolchain.zh}
+- 第一信号：${trace.snapshot.firstSignal.zh}
+- 完成信号：${trace.snapshot.finalSignal.zh}
+
+| 阶段 | 命令/动作 | 观察输出 | 证据文件 |
+| --- | --- | --- | --- |
+${rowsZh}
+
+## English
+
+### Run Snapshot
+- Trigger: ${trace.snapshot.trigger.en}
+- Toolchain: ${trace.snapshot.toolchain.en}
+- First Signal: ${trace.snapshot.firstSignal.en}
+- Done Signal: ${trace.snapshot.finalSignal.en}
+
+| Stage | Command / Action | Observed Output | Evidence File |
+| --- | --- | --- | --- |
+${rowsEn}
+`;
+}
+
+function humanHandoffMarkdown(recipe) {
+  const trace = operationTrace(recipe);
+  return `# ${recipe.title.zh} - 人工交接清单
+
+## 中文
+
+${trace.handoff.map((item) => `- ${item.zh}`).join("\n")}
+
+## English
+
+${trace.handoff.map((item) => `- ${item.en}`).join("\n")}
+`;
+}
+
 function artifactDefinitions(recipe) {
   const titleZh = textOf(recipe.title, "zh");
   return [
@@ -1900,6 +2275,20 @@ function artifactDefinitions(recipe) {
       body: scorecardJson(recipe)
     },
     {
+      file: "09-operation-replay.md",
+      label: b("操作回放", "Operation Replay"),
+      kind: b("回放", "Replay"),
+      description: b("把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。", "Connect trigger, key actions, observed output, and evidence files into one reviewable chain."),
+      body: operationReplayMarkdown(recipe)
+    },
+    {
+      file: "10-human-handoff.md",
+      label: b("人工交接", "Human Handoff"),
+      kind: b("交接", "Handoff"),
+      description: b("列出交给用户或负责人继续判断的事项。", "List items that require the user or owner to continue judgment."),
+      body: humanHandoffMarkdown(recipe)
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -1957,8 +2346,8 @@ function caseArtifactSection(recipe, lang) {
     <section>
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <figure class="case-visual">
@@ -2045,6 +2434,43 @@ function qualityScorecard(recipe, lang) {
     </div>`;
 }
 
+function runSnapshotPanel(recipe, lang) {
+  const trace = operationTrace(recipe);
+  const items = [
+    [b("触发场景", "Trigger"), trace.snapshot.trigger],
+    [b("工具链", "Toolchain"), trace.snapshot.toolchain],
+    [b("第一信号", "First Signal"), trace.snapshot.firstSignal],
+    [b("完成信号", "Done Signal"), trace.snapshot.finalSignal]
+  ];
+
+  return `
+    <div class="run-snapshot">
+      ${items.map(([label, value]) => `
+        <article>
+          <span>${escapeHtml(textOf(label, lang))}</span>
+          <strong>${escapeHtml(textOf(value, lang))}</strong>
+        </article>
+      `).join("")}
+    </div>`;
+}
+
+function operationReplayTable(recipe, lang) {
+  const headers = [
+    b("阶段", "Stage"),
+    b("命令/动作", "Command / Action"),
+    b("观察输出", "Observed Output"),
+    b("证据文件", "Evidence File")
+  ];
+  return tableHtml(headers, operationTrace(recipe).replay, lang, "evidence-table replay-table");
+}
+
+function handoffPanel(recipe, lang) {
+  return `
+    <div class="handoff-panel">
+      ${checklist(operationTrace(recipe).handoff, lang, "case-checklist handoff-list")}
+    </div>`;
+}
+
 function caseContent(recipe, lang) {
   const evidenceHeaders = [
     b("检查点", "Checkpoint"),
@@ -2086,12 +2512,22 @@ function caseContent(recipe, lang) {
       <h2>${isZh ? "运行环境" : "Run Environment"}</h2>
       ${checklist(recipe.environment, lang, "case-checklist")}
     </section>
+    <section>
+      <h2>${isZh ? "实测快照" : "Run Snapshot"}</h2>
+      ${paragraph(b("这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。", "This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable."), lang)}
+      ${runSnapshotPanel(recipe, lang)}
+    </section>
     ${caseArtifactSection(recipe, lang)}
     <section>
       <h2>${isZh ? "操作剧本" : "Operating Script"}</h2>
       <ol class="case-timeline">
         ${recipe.playbook.map((item) => `<li>${escapeHtml(textOf(item, lang))}</li>`).join("")}
       </ol>
+    </section>
+    <section>
+      <h2>${isZh ? "命令回放" : "Command Replay"}</h2>
+      ${paragraph(b("命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。", "Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain."), lang)}
+      ${operationReplayTable(recipe, lang)}
     </section>
     <section>
       <h2>${isZh ? "现场记录" : "Run Log"}</h2>
@@ -2135,6 +2571,11 @@ function caseContent(recipe, lang) {
     <section>
       <h2>${isZh ? "风险边界" : "Risk Boundaries"}</h2>
       ${checklist(recipe.riskControls, lang, "case-checklist risk-list")}
+    </section>
+    <section>
+      <h2>${isZh ? "人工交接" : "Human Handoff"}</h2>
+      ${paragraph(b("这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。", "This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision."), lang)}
+      ${handoffPanel(recipe, lang)}
     </section>
     <section>
       <h2>${isZh ? "验收标准" : "Acceptance Criteria"}</h2>
@@ -2188,6 +2629,14 @@ function caseIndexContent(lang) {
         <article><span>${isZh ? "平均成熟度" : "Average Maturity"}</span><strong>${averageMaturityScore()}</strong></article>
         <article><span>${isZh ? "每篇材料" : "Files Per Recipe"}</span><strong>${caseArtifactCount()}</strong></article>
       </div>
+      <section class="case-route-section">
+        <h2>${isZh ? "按任务入口选择" : "Choose by Task Entry"}</h2>
+        ${paragraph(b(
+          "如果你不是来顺序阅读，先按手头材料选择入口。每条路径都指向最能体现现场证据的案例。",
+          "If you are not reading sequentially, start by the material in front of you. Each route points to recipes with strong field evidence."
+        ), lang)}
+        ${caseRouteBoard("recipes/index.html", lang)}
+      </section>
       <div class="case-filter-bar" aria-label="${isZh ? "案例筛选" : "Recipe filters"}">
         ${filters.map(([value, label], index) => `<button type="button" data-case-filter="${value}"${index === 0 ? ' aria-pressed="true"' : ' aria-pressed="false"'}>${escapeHtml(textOf(label, lang))}</button>`).join("")}
       </div>
@@ -2477,13 +2926,13 @@ function homePage() {
     [b("安全治理", "Safety governance"), b("文件、命令、网络、凭据和团队规则统一纳入审批与复盘。", "Files, commands, network access, credentials, and team policy are handled through approvals and retrospectives.")]
   ];
   const metrics = [
-    [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
+    [b("44 个双语页面", "44 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
     [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
     [b("14 个工具实测案例", "14 tool-tested recipes"), b("覆盖演示稿、浏览器检查、部署排障、知识库、表格、日志诊断和服务健康检查。", "Covers decks, browser review, deployment diagnosis, knowledge bases, spreadsheets, log troubleshooting, and service health checks.")],
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b("14 组 / 126 个文件", "14 sets / 126 files"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -2579,6 +3028,17 @@ function homePage() {
         </section>
 
         ${proofSection(lang)}
+
+        <section class="home-section">
+          <header class="section-title">
+            <h2>${isZh ? "按手头任务直接进入" : "Jump in by the Task at Hand"}</h2>
+            ${paragraph(b(
+              "不是所有读者都需要从第一章开始。先判断你手上是失败截图、网页、资料文件还是发布任务，再进入对应案例。",
+              "Not every reader should start from chapter one. Decide whether you have a failure screenshot, web page, file set, or shipping task, then open the matching recipes."
+            ), lang)}
+          </header>
+          ${caseRouteBoard("index.html", lang)}
+        </section>
 
         <section class="split-section">
           <div>

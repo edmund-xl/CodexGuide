@@ -185,10 +185,38 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
       <li>服务地址：<code>http://127.0.0.1:4173/</code>。</li><li>检查页面：首页、案例总览、一个案例详情、使用规范页。</li><li>问题分级：阻断、影响体验、文字瑕疵、后续优化。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>本地服务、浏览器视口、控制台摘要、截图清单。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>手机截图里表格可滚动，但缺少明显滚动提示。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -240,6 +268,18 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -257,6 +297,27 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
       <ol class="case-timeline">
         <li>先读取页面标题、主标题、导航和核心按钮，确认可见层级。</li><li>分别截图桌面和手机视口，不能用一张截图代替全部设备。</li><li>记录控制台错误、网络失败和横向溢出结果。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>服务确认</td><td>curl -I -L --max-time 15 http://127.0.0.1:4173/</td><td>HTTP/1.1 200 OK</td><td>console-summary.txt</td></tr>
+
+            <tr><td>手机视口</td><td>390x900 检查 scrollWidth 与 innerWidth</td><td>page_overflow=false, table_scroll=true</td><td>case-mobile-390.png</td></tr>
+
+            <tr><td>问题归档</td><td>按 P0/P1/P2 写入 page-review.md</td><td>P0=0, P1=1, P2=2</td><td>page-review.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -446,6 +507,17 @@ P2 文字瑕疵：2 - 两处按钮文案可缩短
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>页面可交付，但手机端表格滚动提示建议补强。</li><li>截图只覆盖指定路径，未点击写入型控件。</li><li>后续改版时保留同一组视口，避免截图不可比。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
@@ -579,10 +651,38 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
       <li>Service URL: <code>http://127.0.0.1:4173/</code>.</li><li>Checked pages: home, recipe index, one recipe detail, and usage policy.</li><li>Issue levels: blocking, experience impact, copy polish, and follow-up improvement.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>A local page was close to delivery and needed desktop, mobile, console, and table checks.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Local server, browser viewports, console summary, and screenshot inventory.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>The mobile screenshot showed the table could scroll, but the scroll cue was weak.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>Page-level horizontal overflow was false, console errors were 0, and P0 issues were 0.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -634,6 +734,18 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -651,6 +763,27 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
       <ol class="case-timeline">
         <li>Read page title, main heading, navigation, and primary buttons first to confirm visible hierarchy.</li><li>Capture desktop and mobile screenshots separately; one screenshot cannot represent all devices.</li><li>Record console errors, network failures, and horizontal overflow results.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Service check</td><td>curl -I -L --max-time 15 http://127.0.0.1:4173/</td><td>HTTP/1.1 200 OK</td><td>console-summary.txt</td></tr>
+
+            <tr><td>Mobile viewport</td><td>Check scrollWidth and innerWidth at 390x900</td><td>page_overflow=false, table_scroll=true</td><td>case-mobile-390.png</td></tr>
+
+            <tr><td>Issue filing</td><td>Write P0/P1/P2 issues to page-review.md</td><td>P0=0, P1=1, P2=2</td><td>page-review.md</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -838,6 +971,17 @@ Passed checks: local service 200, no desktop overlap, no mobile page overflow</c
     <ul class="case-checklist risk-list">
       <li>Read page state only; do not submit, delete, purchase, or authorize.</li><li>Before screenshots, confirm no unnecessary personal data or account identifiers are visible.</li><li>Record reviewable observations only; do not infer results for paths not clicked.</li>
     </ul>
+    </section>
+    <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>The page is deliverable, but the mobile table scroll cue should be improved.</li><li>Screenshots cover only the specified path; write actions were not clicked.</li><li>Keep the same viewports in later redesigns so screenshots remain comparable.</li>
+    </ul>
+    </div>
     </section>
     <section>
       <h2>Acceptance Criteria</h2>

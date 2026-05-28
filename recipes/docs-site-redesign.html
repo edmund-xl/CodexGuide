@@ -175,7 +175,7 @@
     </ul>
       <pre class="output-sample"><code>改版约束
 底色 #141414，面板 #1e1e1e / #242424，边框 #333，强调色 #ff922c
-页面数量保持 43
+页面数量保持 44
 README 需要展示新版截图
 本地路径和线上路径都要可访问</code></pre>
     </section>
@@ -186,10 +186,38 @@ README 需要展示新版截图
       <li>生成命令：<code>npm run build</code>，检查命令：<code>npm run check</code>。</li><li>本地服务同时支持根路径和 <code>/CodexGuide/</code> 路径。</li><li>验收截图覆盖首页、案例总览、案例详情和使用规范页。</li>
     </ul>
     </section>
+    <section>
+      <h2>实测快照</h2>
+      <p>这一屏只放能证明任务实际跑过的现场信号：为什么开始、用了什么、第一处异常是什么、最后凭什么交付。</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>触发场景</span>
+          <strong>站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。</strong>
+        </article>
+
+        <article>
+          <span>工具链</span>
+          <strong>静态生成器、样式 tokens、页面数量检查、README 截图。</strong>
+        </article>
+
+        <article>
+          <span>第一信号</span>
+          <strong>第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。</strong>
+        </article>
+
+        <article>
+          <span>完成信号</span>
+          <strong>44 个页面生成通过，案例页有证据表、命令块、评分和材料包。</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -241,6 +269,18 @@ README 需要展示新版截图
           <small>用材料边界、证据强度、复测清晰度和交付成熟度量化本案例。</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/09-operation-replay.md">
+          <span>回放</span>
+          <strong>操作回放</strong>
+          <small>把触发场景、关键动作、观察输出和证据文件串成一条可复核链路。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/10-human-handoff.md">
+          <span>交接</span>
+          <strong>人工交接</strong>
+          <small>列出交给用户或负责人继续判断的事项。</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/evidence-board.svg">
           <span>视觉</span>
           <strong>证据看板</strong>
@@ -258,6 +298,27 @@ README 需要展示新版截图
       <ol class="case-timeline">
         <li>先改数据结构和渲染组件，再改 CSS，最后更新截图和 README。</li><li>每完成一个大块就运行构建，尽早发现模板错误。</li><li>视觉验收必须用浏览器截图，不只看代码。</li>
       </ol>
+    </section>
+    <section>
+      <h2>命令回放</h2>
+      <p>命令回放把动作、观察输出和证据文件放在同一张表里。读者可以直接判断这次任务是否有可复核链路。</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>阶段</th><th>命令/动作</th><th>观察输出</th><th>证据文件</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>构建</td><td>npm run build</td><td>Generated 44 bilingual pages and SVG assets</td><td>build.log</td></tr>
+
+            <tr><td>质量门禁</td><td>npm run check</td><td>44 HTML pages verified</td><td>verify.log</td></tr>
+
+            <tr><td>视觉抽查</td><td>桌面与手机视口检查首页、案例总览和案例页</td><td>overflow=false, broken_images=0</td><td>README screenshots</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>现场记录</h2>
@@ -288,13 +349,13 @@ README 需要展示新版截图
       <pre class="output-sample execution-transcript"><code>00:00 读取任务单，确认材料范围：生成器、样式表、README、截图目录、发布 workflow
 00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
 00:08 运行/人工步骤：npm run build
-00:14 观察：页面数量 -&gt; HTML 页面仍为 43；状态：通过
+00:14 观察：页面数量 -&gt; HTML 页面仍为 44；状态：通过
 00:22 运行/人工步骤：npm run check
 00:29 观察：链接 -&gt; 导航、搜索、README 链接均指向现有文件；状态：通过
 00:36 发现失败点：旧文件残留；现象：改 URL 后旧 HTML 仍留在目录中
 00:42 修正动作：删除旧文件并让校验禁止旧路径
 00:50 产出交付物：新版站点、README 截图、质量门禁结果
-00:55 验收判断：43 个 HTML 页面全部生成并通过链接检查。</code></pre>
+00:55 验收判断：44 个 HTML 页面全部生成并通过链接检查。</code></pre>
     </section>
     <section>
       <h2>过程证据</h2>
@@ -307,7 +368,7 @@ README 需要展示新版截图
         </thead>
         <tbody>
 
-            <tr><td>页面数量</td><td>HTML 页面仍为 43</td><td>npm run check</td><td>通过</td></tr>
+            <tr><td>页面数量</td><td>HTML 页面仍为 44</td><td>npm run check</td><td>通过</td></tr>
 
             <tr><td>链接</td><td>导航、搜索、README 链接均指向现有文件</td><td>verify-site.mjs</td><td>通过</td></tr>
 
@@ -332,7 +393,7 @@ README 需要展示新版截图
 
         <article>
           <span>关键证据</span>
-          <strong>HTML 页面仍为 43</strong>
+          <strong>HTML 页面仍为 44</strong>
         </article>
 
         <article>
@@ -342,7 +403,7 @@ README 需要展示新版截图
 
         <article>
           <span>终审动作</span>
-          <strong>43 个 HTML 页面全部生成并通过链接检查。</strong>
+          <strong>44 个 HTML 页面全部生成并通过链接检查。</strong>
         </article>
 
     </div>
@@ -363,10 +424,10 @@ README 需要展示新版截图
             <tr><td>过程修正</td><td>搜索结果仍显示旧摘要</td><td>统一从新 page 数据生成搜索文本</td><td>verify-site.mjs</td></tr>
 
             <tr><td>交付后</td><td>改版结果
-- 43 个页面重新生成
+- 44 个页面重新生成
 - 案例页新增任务状态面板、证据表、命令块和验收清单
 - README 更新首页、案例总览、两个案例页、使用规范页截图
-- 本地根路径和 /CodexGuide/ 均返回 200</td><td>43 个 HTML 页面全部生成并通过链接检查。</td><td>新版站点、README 截图、质量门禁结果</td></tr>
+- 本地根路径和 /CodexGuide/ 均返回 200</td><td>44 个 HTML 页面全部生成并通过链接检查。</td><td>新版站点、README 截图、质量门禁结果</td></tr>
 
         </tbody>
       </table>
@@ -414,7 +475,7 @@ README 需要展示新版截图
       <h2>结果样例</h2>
       <p>结果样例保留可复核字段、文件名和待确认项，便于另一个人接手检查。</p>
       <pre class="output-sample"><code>改版结果
-- 43 个页面重新生成
+- 44 个页面重新生成
 - 案例页新增任务状态面板、证据表、命令块和验收清单
 - README 更新首页、案例总览、两个案例页、使用规范页截图
 - 本地根路径和 /CodexGuide/ 均返回 200</code></pre>
@@ -447,10 +508,21 @@ README 需要展示新版截图
     </ul>
     </section>
     <section>
+      <h2>人工交接</h2>
+      <p>这一段明确哪些内容还需要用户或负责人判断，避免把自动整理结果误当成最终决定。</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>README 截图必须和当前构建一致。</li><li>每次生成后都要重新跑链接和禁用词检查。</li><li>视觉改版不应改变原始发布路径。</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>验收标准</h2>
 
     <ul class="acceptance-checklist">
-      <li>43 个 HTML 页面全部生成并通过链接检查。</li><li>旧案例路径不再出现在仓库内容或生成页面中。</li><li>桌面和手机截图无文字重叠、无页面级横向溢出。</li><li>README 截图与当前站点界面一致。</li>
+      <li>44 个 HTML 页面全部生成并通过链接检查。</li><li>旧案例路径不再出现在仓库内容或生成页面中。</li><li>桌面和手机截图无文字重叠、无页面级横向溢出。</li><li>README 截图与当前站点界面一致。</li>
     </ul>
 
     <div class="command-panel">
@@ -570,7 +642,7 @@ README 需要展示新版截图
     </ul>
       <pre class="output-sample"><code>Redesign constraints
 Background #141414, panels #1e1e1e / #242424, border #333, accent #ff922c
-Keep 43 pages
+Keep 44 pages
 README must show updated screenshots
 Local and live paths must be accessible</code></pre>
     </section>
@@ -581,10 +653,38 @@ Local and live paths must be accessible</code></pre>
       <li>Build command: <code>npm run build</code>; check command: <code>npm run check</code>.</li><li>Local service supports both root path and <code>/CodexGuide/</code>.</li><li>Acceptance screenshots cover home, recipe index, recipe detail, and usage policy.</li>
     </ul>
     </section>
+    <section>
+      <h2>Run Snapshot</h2>
+      <p>This panel keeps only field signals that prove the task actually ran: why it started, what was used, the first abnormal signal, and why it was deliverable.</p>
+
+    <div class="run-snapshot">
+
+        <article>
+          <span>Trigger</span>
+          <strong>The site needed to move from a light documentation template to a dark product workbench without breaking publishing.</strong>
+        </article>
+
+        <article>
+          <span>Toolchain</span>
+          <strong>Static generator, style tokens, page-count checks, and README screenshots.</strong>
+        </article>
+
+        <article>
+          <span>First Signal</span>
+          <strong>After the first redesign, recipe details lacked enough density and the index lacked a task matrix.</strong>
+        </article>
+
+        <article>
+          <span>Done Signal</span>
+          <strong>All 44 pages generated successfully, and recipe pages include evidence tables, command blocks, scorecards, and artifact packs.</strong>
+        </article>
+
+    </div>
+    </section>
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -636,6 +736,18 @@ Local and live paths must be accessible</code></pre>
           <small>Quantify the recipe by material boundary, evidence strength, retest clarity, and delivery maturity.</small>
         </a>
 
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/09-operation-replay.md">
+          <span>Replay</span>
+          <strong>Operation Replay</strong>
+          <small>Connect trigger, key actions, observed output, and evidence files into one reviewable chain.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/10-human-handoff.md">
+          <span>Handoff</span>
+          <strong>Human Handoff</strong>
+          <small>List items that require the user or owner to continue judgment.</small>
+        </a>
+
         <a class="artifact-card" href="../assets/case-artifacts/docs-site-redesign/evidence-board.svg">
           <span>Visual</span>
           <strong>Evidence Board</strong>
@@ -653,6 +765,27 @@ Local and live paths must be accessible</code></pre>
       <ol class="case-timeline">
         <li>Change data structure and rendering components first, then CSS, then screenshots and README.</li><li>Run the build after each major block to catch template errors early.</li><li>Visual acceptance requires browser screenshots, not code review alone.</li>
       </ol>
+    </section>
+    <section>
+      <h2>Command Replay</h2>
+      <p>Command replay puts action, observed output, and evidence file in one table so readers can judge whether the task has a reviewable chain.</p>
+
+    <div class="table-wrap">
+      <table class="evidence-table replay-table">
+        <thead>
+          <tr><th>Stage</th><th>Command / Action</th><th>Observed Output</th><th>Evidence File</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>Build</td><td>npm run build</td><td>Generated 44 bilingual pages and SVG assets</td><td>build.log</td></tr>
+
+            <tr><td>Quality gate</td><td>npm run check</td><td>44 HTML pages verified</td><td>verify.log</td></tr>
+
+            <tr><td>Visual check</td><td>Check home, recipe index, and recipe detail on desktop and mobile</td><td>overflow=false, broken_images=0</td><td>README screenshots</td></tr>
+
+        </tbody>
+      </table>
+    </div>
     </section>
     <section>
       <h2>Run Log</h2>
@@ -683,13 +816,13 @@ Local and live paths must be accessible</code></pre>
       <pre class="output-sample execution-transcript"><code>00:00 Read work order and confirm material scope: Generator, stylesheet, README, screenshot directory, and deploy workflow
 00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
 00:08 Run/manual step: npm run build
-00:14 Observation: Page count -&gt; HTML page count remains 43; status: Pass
+00:14 Observation: Page count -&gt; HTML page count remains 44; status: Pass
 00:22 Run/manual step: npm run check
 00:29 Observation: Links -&gt; Navigation, search, and README links point to existing files; status: Pass
 00:36 Failure found: Stale files; symptom: Old HTML files remained after URL changes
 00:42 Correction: Delete old files and make verification block old paths
 00:50 Deliverables prepared: Redesigned site, README screenshots, and quality-gate results
-00:55 Acceptance decision: All 43 HTML pages are generated and pass link checks.</code></pre>
+00:55 Acceptance decision: All 44 HTML pages are generated and pass link checks.</code></pre>
     </section>
     <section>
       <h2>Evidence Trail</h2>
@@ -702,7 +835,7 @@ Local and live paths must be accessible</code></pre>
         </thead>
         <tbody>
 
-            <tr><td>Page count</td><td>HTML page count remains 43</td><td>npm run check</td><td>Pass</td></tr>
+            <tr><td>Page count</td><td>HTML page count remains 44</td><td>npm run check</td><td>Pass</td></tr>
 
             <tr><td>Links</td><td>Navigation, search, and README links point to existing files</td><td>verify-site.mjs</td><td>Pass</td></tr>
 
@@ -727,7 +860,7 @@ Local and live paths must be accessible</code></pre>
 
         <article>
           <span>Key Evidence</span>
-          <strong>HTML page count remains 43</strong>
+          <strong>HTML page count remains 44</strong>
         </article>
 
         <article>
@@ -737,7 +870,7 @@ Local and live paths must be accessible</code></pre>
 
         <article>
           <span>Final Review</span>
-          <strong>All 43 HTML pages are generated and pass link checks.</strong>
+          <strong>All 44 HTML pages are generated and pass link checks.</strong>
         </article>
 
     </div>
@@ -758,10 +891,10 @@ Local and live paths must be accessible</code></pre>
             <tr><td>Correction</td><td>Search results still showed old summaries</td><td>Generate search text from new page data</td><td>verify-site.mjs</td></tr>
 
             <tr><td>After</td><td>Redesign result
-- 43 pages regenerated
+- 44 pages regenerated
 - Recipe pages gain task status panels, evidence tables, command blocks, and acceptance checklists
 - README updates home, recipe index, two recipe pages, and usage policy screenshots
-- Local root and /CodexGuide/ both return 200</td><td>All 43 HTML pages are generated and pass link checks.</td><td>Redesigned site, README screenshots, and quality-gate results</td></tr>
+- Local root and /CodexGuide/ both return 200</td><td>All 44 HTML pages are generated and pass link checks.</td><td>Redesigned site, README screenshots, and quality-gate results</td></tr>
 
         </tbody>
       </table>
@@ -809,7 +942,7 @@ Local and live paths must be accessible</code></pre>
       <h2>Result Sample</h2>
       <p>The result sample keeps reviewable fields, filenames, and confirmation items so another person can inspect it.</p>
       <pre class="output-sample"><code>Redesign result
-- 43 pages regenerated
+- 44 pages regenerated
 - Recipe pages gain task status panels, evidence tables, command blocks, and acceptance checklists
 - README updates home, recipe index, two recipe pages, and usage policy screenshots
 - Local root and /CodexGuide/ both return 200</code></pre>
@@ -842,10 +975,21 @@ Local and live paths must be accessible</code></pre>
     </ul>
     </section>
     <section>
+      <h2>Human Handoff</h2>
+      <p>This section states what still requires user or owner judgment, so automated organization is not mistaken for a final decision.</p>
+
+    <div class="handoff-panel">
+
+    <ul class="case-checklist handoff-list">
+      <li>README screenshots must match the current build.</li><li>Run link and blocked-term checks after each generation.</li><li>Visual redesign should not change the publish path.</li>
+    </ul>
+    </div>
+    </section>
+    <section>
       <h2>Acceptance Criteria</h2>
 
     <ul class="acceptance-checklist">
-      <li>All 43 HTML pages are generated and pass link checks.</li><li>Old recipe paths no longer appear in repository content or generated pages.</li><li>Desktop and mobile screenshots show no text overlap and no page-level horizontal overflow.</li><li>README screenshots match the current site interface.</li>
+      <li>All 44 HTML pages are generated and pass link checks.</li><li>Old recipe paths no longer appear in repository content or generated pages.</li><li>Desktop and mobile screenshots show no text overlap and no page-level horizontal overflow.</li><li>README screenshots match the current site interface.</li>
     </ul>
 
     <div class="command-panel">

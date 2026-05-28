@@ -1,7 +1,7 @@
 00:00 读取任务单，确认材料范围：失败截图、run id、workflow 文件、最新提交 SHA
 00:04 锁定禁止动作：不覆盖原文件，不扩大权限，不跳过人工确认
 00:08 运行/人工步骤：npm run build && npm run check && git diff --check
-00:14 观察：本地构建 -> 43 个页面生成成功；状态：通过
+00:14 观察：本地构建 -> 44 个页面生成成功；状态：通过
 00:22 运行/人工步骤：git status --short --branch
 00:29 观察：本地检查 -> 双语、链接、验收、禁用词通过；状态：通过
 00:36 发现失败点：只看邮件；现象：邮件没有第一个失败步骤
@@ -14,7 +14,7 @@
 00:00 Read work order and confirm material scope: Failure screenshot, run id, workflow file, and latest commit SHA
 00:04 Locked prohibited actions: do not overwrite originals, expand permissions, or skip human confirmation
 00:08 Run/manual step: npm run build && npm run check && git diff --check
-00:14 Observation: Local build -> 43 pages generated successfully; status: Pass
+00:14 Observation: Local build -> 44 pages generated successfully; status: Pass
 00:22 Run/manual step: git status --short --branch
 00:29 Observation: Local check -> Bilingual, links, acceptance, and blocked words passed; status: Pass
 00:36 Failure found: Email-only diagnosis; symptom: Email did not show the first failed step
