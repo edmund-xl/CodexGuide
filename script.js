@@ -5,6 +5,8 @@ const searchItems = Array.from(document.querySelectorAll("[data-search-item]"));
 const menuButton = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("#topNav");
 const backTop = document.querySelector("[data-back-top]");
+const caseFilterButtons = Array.from(document.querySelectorAll("[data-case-filter]"));
+const caseCards = Array.from(document.querySelectorAll("[data-case-risk]"));
 
 function openSearch() {
   if (!searchDialog) return;
@@ -45,4 +47,14 @@ menuButton?.addEventListener("click", () => {
 
 backTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+caseFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const value = button.dataset.caseFilter || "all";
+    caseFilterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    caseCards.forEach((card) => {
+      card.hidden = value !== "all" && card.dataset.caseRisk !== value;
+    });
+  });
 });

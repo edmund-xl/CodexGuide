@@ -30,6 +30,7 @@ const caseArtifactFiles = [
   "08-quality-scorecard.json",
   "evidence-board.svg"
 ];
+const caseLibraryManifest = "assets/case-artifacts/index.json";
 const oldRecipeSlugs = [
   "newsletter-brief.html",
   "docs-site-refresh.html",
@@ -153,6 +154,24 @@ for (const casePage of casePages) {
   }
 }
 
+if (!files.includes(caseLibraryManifest)) {
+  errors.push(`Missing recipe library manifest: ${caseLibraryManifest}`);
+} else {
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, caseLibraryManifest), "utf8"));
+  if (manifest.caseCount !== casePages.length) {
+    errors.push(`Recipe library manifest case count mismatch: ${manifest.caseCount}`);
+  }
+  if (manifest.artifactFilesPerCase !== caseArtifactFiles.length) {
+    errors.push(`Recipe library manifest artifact count mismatch: ${manifest.artifactFilesPerCase}`);
+  }
+  if (manifest.artifactCount !== casePages.length * caseArtifactFiles.length) {
+    errors.push(`Recipe library manifest total artifact count mismatch: ${manifest.artifactCount}`);
+  }
+  if (!Array.isArray(manifest.cases) || manifest.cases.length !== casePages.length) {
+    errors.push("Recipe library manifest cases array is invalid.");
+  }
+}
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   const zhIndex = html.indexOf('data-language-section="zh"');
@@ -176,6 +195,13 @@ for (const file of htmlFiles) {
     for (const marker of caseRequiredMarkers) {
       if (!html.includes(marker)) {
         errors.push(`${file}: missing case marker ${marker}.`);
+      }
+    }
+  }
+  if (file === "recipes/index.html") {
+    for (const marker of ["case-library-stats", "case-filter-bar", "case-index-card", "data-case-filter", "data-case-risk"]) {
+      if (!html.includes(marker)) {
+        errors.push(`${file}: missing recipe index marker ${marker}.`);
       }
     }
   }

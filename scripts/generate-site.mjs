@@ -1707,6 +1707,67 @@ function caseMaturityScore(recipe) {
   return Math.round(scores.reduce((sum, item) => sum + item, 0) / scores.length);
 }
 
+function averageMaturityScore() {
+  return Math.round(caseRecipes.reduce((sum, recipe) => sum + caseMaturityScore(recipe), 0) / caseRecipes.length);
+}
+
+function riskKey(recipe) {
+  const risk = textOf(recipe.risk, "zh");
+  if (risk.includes("高")) return "high";
+  if (risk.includes("中")) return "medium";
+  return "low";
+}
+
+function riskLabel(key, lang) {
+  const labels = {
+    low: b("低风险", "Low risk"),
+    medium: b("中风险", "Medium risk"),
+    high: b("高风险", "High risk")
+  };
+  return textOf(labels[key] || labels.medium, lang);
+}
+
+function caseArtifactCount() {
+  return artifactDefinitions(caseRecipes[0]).length;
+}
+
+function caseLibraryManifest() {
+  return {
+    generatedAt: verifiedDate,
+    caseCount: caseRecipes.length,
+    artifactCount: caseRecipes.length * caseArtifactCount(),
+    artifactFilesPerCase: caseArtifactCount(),
+    averageMaturityScore: averageMaturityScore(),
+    cases: caseRecipes.map((recipe) => ({
+      slug: artifactSlug(recipe),
+      path: recipe.path,
+      title: {
+        zh: recipe.title.zh,
+        en: recipe.title.en
+      },
+      domain: {
+        zh: recipe.domain.zh,
+        en: recipe.domain.en
+      },
+      risk: {
+        key: riskKey(recipe),
+        zh: recipe.risk.zh,
+        en: recipe.risk.en
+      },
+      maturityScore: caseMaturityScore(recipe),
+      artifactCount: caseArtifactCount(),
+      evidence: {
+        zh: recipe.evidence.zh,
+        en: recipe.evidence.en
+      },
+      deliverable: {
+        zh: recipe.deliverable.zh,
+        en: recipe.deliverable.en
+      }
+    }))
+  };
+}
+
 function beforeAfterRows(recipe) {
   return [
     [
@@ -2090,6 +2151,8 @@ function caseContent(recipe, lang) {
 function caseIndexContent(lang) {
   const headers = [
     b("案例", "Recipe"),
+    b("成熟度", "Maturity"),
+    b("材料", "Artifacts"),
     b("入口", "Entry"),
     b("证据", "Evidence"),
     b("交付物", "Deliverable"),
@@ -2097,20 +2160,52 @@ function caseIndexContent(lang) {
   ];
   const rows = caseRecipes.map((item) => [
     b(`<a href="${relativeLink("recipes/index.html", item.path)}">${item.title.zh}</a>`, `<a href="${relativeLink("recipes/index.html", item.path)}">${item.title.en}</a>`),
+    b(String(caseMaturityScore(item)), String(caseMaturityScore(item))),
+    b(String(caseArtifactCount()), String(caseArtifactCount())),
     item.entry,
     item.evidence,
     item.deliverable,
     item.risk
   ]);
   const isZh = lang === "zh";
+  const filters = [
+    ["all", b("全部", "All")],
+    ["low", b("低风险", "Low")],
+    ["medium", b("中风险", "Medium")],
+    ["high", b("高风险", "High")]
+  ];
 
   return `
     <section class="case-index-hero">
       <h2>${isZh ? "实测任务矩阵" : "Tool-Tested Task Matrix"}</h2>
       ${paragraph(b(
-        "每个案例都按入口、材料、证据、交付物和风险拆开。先选最接近自己任务的行，再进入详情页复制任务单。",
-        "Each recipe is split by entry, materials, evidence, deliverable, and risk. Pick the row closest to your task, then open the detail page and adapt the work order."
+        "每个案例都按入口、材料、证据、交付物、风险和成熟度拆开。先选最接近自己任务的卡片，再进入详情页复制任务单和材料包。",
+        "Each recipe is split by entry, artifacts, evidence, deliverable, risk, and maturity. Pick the card closest to your task, then open the detail page and adapt its work order and artifact pack."
       ), lang)}
+      <div class="case-library-stats">
+        <article><span>${isZh ? "案例数量" : "Recipes"}</span><strong>${caseRecipes.length}</strong></article>
+        <article><span>${isZh ? "材料文件" : "Artifacts"}</span><strong>${caseRecipes.length * caseArtifactCount()}</strong></article>
+        <article><span>${isZh ? "平均成熟度" : "Average Maturity"}</span><strong>${averageMaturityScore()}</strong></article>
+        <article><span>${isZh ? "每篇材料" : "Files Per Recipe"}</span><strong>${caseArtifactCount()}</strong></article>
+      </div>
+      <div class="case-filter-bar" aria-label="${isZh ? "案例筛选" : "Recipe filters"}">
+        ${filters.map(([value, label], index) => `<button type="button" data-case-filter="${value}"${index === 0 ? ' aria-pressed="true"' : ' aria-pressed="false"'}>${escapeHtml(textOf(label, lang))}</button>`).join("")}
+      </div>
+      <div class="case-card-grid">
+        ${caseRecipes.map((item) => `
+          <a class="case-index-card" data-case-risk="${riskKey(item)}" href="${relativeLink("recipes/index.html", item.path)}">
+            <span>${escapeHtml(textOf(item.domain, lang))}</span>
+            <h3>${escapeHtml(textOf(item.title, lang))}</h3>
+            <p>${escapeHtml(textOf(item.summary, lang))}</p>
+            <dl>
+              <div><dt>${isZh ? "成熟度" : "Maturity"}</dt><dd>${caseMaturityScore(item)}</dd></div>
+              <div><dt>${isZh ? "材料" : "Files"}</dt><dd>${caseArtifactCount()}</dd></div>
+              <div><dt>${isZh ? "风险" : "Risk"}</dt><dd>${escapeHtml(riskLabel(riskKey(item), lang))}</dd></div>
+            </dl>
+            <small>${escapeHtml(textOf(item.deliverable, lang))}</small>
+          </a>
+        `).join("")}
+      </div>
       ${tableHtml(headers, rows, lang, "evidence-table case-matrix")}
     </section>
     <section>
@@ -2388,7 +2483,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b("14 组", "14 sets"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board.")],
+    [b("材料包", "Artifact pack"), b("14 组 / 126 个文件", "14 sets / 126 files"), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];
@@ -2764,6 +2859,7 @@ function caseEvidenceSvg(recipe) {
 
 function writeCaseArtifacts() {
   fs.rmSync(path.join(root, artifactRoot), { recursive: true, force: true });
+  write(`${artifactRoot}/index.json`, JSON.stringify(caseLibraryManifest(), null, 2));
   for (const recipe of caseRecipes) {
     for (const item of artifactDefinitions(recipe)) {
       const filePath = `${artifactBase(recipe)}/${item.file}`;

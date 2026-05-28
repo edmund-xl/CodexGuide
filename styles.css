@@ -1015,6 +1015,131 @@ main {
   padding: 22px;
 }
 
+.case-library-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.case-library-stats article,
+.case-index-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.case-library-stats article {
+  min-width: 0;
+  padding: 14px;
+}
+
+.case-library-stats span,
+.case-index-card span,
+.case-index-card dt {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.case-library-stats strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.case-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.case-filter-bar button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.case-filter-bar button[aria-pressed="true"],
+.case-filter-bar button:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #000;
+}
+
+.case-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.case-index-card {
+  display: flex;
+  min-width: 0;
+  min-height: 250px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.case-index-card:hover {
+  border-color: var(--accent);
+}
+
+.case-index-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.case-index-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.case-index-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: auto 0 0;
+}
+
+.case-index-card dl div {
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: var(--panel-3);
+}
+
+.case-index-card dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.case-index-card small {
+  color: var(--subtle);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .artifact-grid,
 .delivery-preview,
 .score-grid {
@@ -1403,6 +1528,8 @@ main {
   .loop-cards,
   .doc-meta-grid,
   .case-dashboard,
+  .case-library-stats,
+  .case-card-grid,
   .artifact-grid,
   .delivery-preview,
   .score-grid,
@@ -1432,6 +1559,10 @@ main {
 
   .site-footer {
     flex-direction: column;
+  }
+
+  .case-index-card dl {
+    grid-template-columns: 1fr;
   }
 }
 
