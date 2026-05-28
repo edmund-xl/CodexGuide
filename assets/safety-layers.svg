@@ -2,20 +2,21 @@
   <title id="title">Codex safety layers</title>
   <desc id="desc">Task brief, project rules, sandbox approvals, and verification review.</desc>
   <rect width="760" height="430" rx="20" fill="#151827"/>
-  <text x="54" y="72" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界 / Safety Layers</text>
-  <text x="54" y="101" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
+  <text x="54" y="62" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界</text>
+  <text x="54" y="92" fill="#d6dde8" font-size="19" font-family="Arial">Safety Layers</text>
+  <text x="54" y="121" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
   <g font-family="Arial" font-weight="700">
     <rect x="72" y="150" width="616" height="54" rx="10" fill="#203238" stroke="#6bd2c7"/>
-    <text x="104" y="184" fill="#fff" font-size="18">1. Task brief</text>
-    <text x="274" y="184" fill="#dce5ef" font-size="15">目标 / Scope / Acceptance</text>
+    <text x="104" y="178" fill="#fff" font-size="18">1. 任务说明</text>
+    <text x="104" y="195" fill="#dce5ef" font-size="14">Task brief</text>
     <rect x="98" y="224" width="564" height="54" rx="10" fill="#232a56" stroke="#7187ff"/>
-    <text x="132" y="258" fill="#fff" font-size="18">2. AGENTS.md</text>
-    <text x="314" y="258" fill="#dce5ef" font-size="15">Commands / Style / Rules</text>
+    <text x="132" y="252" fill="#fff" font-size="18">2. AGENTS.md</text>
+    <text x="132" y="269" fill="#dce5ef" font-size="14">Commands, style, rules</text>
     <rect x="126" y="298" width="508" height="54" rx="10" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="158" y="332" fill="#fff" font-size="18">3. Approvals</text>
-    <text x="360" y="332" fill="#dce5ef" font-size="15">Files / Network / Commands</text>
+    <text x="158" y="326" fill="#fff" font-size="18">3. 审批</text>
+    <text x="158" y="343" fill="#dce5ef" font-size="14">Approvals</text>
     <rect x="154" y="362" width="452" height="44" rx="10" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="186" y="390" fill="#fff" font-size="17">4. Verification</text>
-    <text x="360" y="390" fill="#dce5ef" font-size="14">Tests / diff / review</text>
+    <text x="186" y="384" fill="#fff" font-size="17">4. 验证</text>
+    <text x="186" y="400" fill="#dce5ef" font-size="13">Verification</text>
   </g>
 </svg>

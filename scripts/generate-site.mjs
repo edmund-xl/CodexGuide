@@ -593,7 +593,7 @@ function ensureDir(filePath) {
 
 function write(filePath, content) {
   ensureDir(filePath);
-  fs.writeFileSync(path.join(root, filePath), content, "utf8");
+  fs.writeFileSync(path.join(root, filePath), content.replace(/[ \t]+$/gm, ""), "utf8");
 }
 
 function relativeLink(from, to) {
@@ -605,7 +605,7 @@ function relativeLink(from, to) {
 }
 
 function navLink(from, target, label) {
-  return `<a href="${relativeLink(from, target)}"${from === target ? ' aria-current="page"' : ""}><span class="nav-zh">${escapeHtml(label.zh)}</span><span class="nav-en">${escapeHtml(label.en)}</span></a>`;
+  return `<a href="${relativeLink(from, target)}"${from === target ? ' aria-current="page"' : ""}>${escapeHtml(label.zh)}</a>`;
 }
 
 function getPage(pathName) {
@@ -620,7 +620,7 @@ function navLabel(pathName, fallbackZh, fallbackEn) {
 function topNav(currentPath) {
   const group = (label, links) => `
     <details class="nav-dropdown">
-      <summary><span>${escapeHtml(label.zh)}</span><small>${escapeHtml(label.en)}</small></summary>
+      <summary><span>${escapeHtml(label.zh)}</span></summary>
       <div class="dropdown-menu">
         ${links.map(([href, zh, en]) => navLink(currentPath, href, navLabel(href, zh, en))).join("")}
       </div>
@@ -632,7 +632,7 @@ function topNav(currentPath) {
         <img src="${relativeLink(currentPath, "assets/logo.svg")}" alt="" width="42" height="42">
         <strong>Codex Everyday</strong>
       </a>
-      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="topNav">目录 Menu</button>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="topNav">目录</button>
       <nav class="top-nav" id="topNav" aria-label="Main navigation">
         ${navLink(currentPath, "index.html", b("首页", "Home"))}
         ${navLink(currentPath, "guide/00-overview.html", navLabel("guide/00-overview.html", "学习路线", "Learning Path"))}
@@ -644,7 +644,7 @@ function topNav(currentPath) {
       </nav>
       <div class="header-actions">
         <a class="icon-link" href="https://github.com/edmund-xl/CodexGuide" aria-label="GitHub">GH</a>
-        <button class="search-trigger" type="button" data-open-search>搜索 Search <kbd>⌘</kbd><kbd>K</kbd></button>
+        <button class="search-trigger" type="button" data-open-search>搜索 <kbd>⌘</kbd><kbd>K</kbd></button>
       </div>
     </header>`;
 }
@@ -652,16 +652,16 @@ function topNav(currentPath) {
 function searchDialog(currentPath) {
   const items = pages.map((page) => {
     const text = `${page.title.zh} ${page.title.en} ${page.group.zh} ${page.group.en} ${page.summary.zh} ${page.summary.en}`;
-    return `<a data-search-item="${escapeHtml(text)}" href="${relativeLink(currentPath, page.path)}"><strong>${escapeHtml(page.title.zh)}</strong><span>${escapeHtml(page.title.en)}</span></a>`;
+    return `<a data-search-item="${escapeHtml(text)}" href="${relativeLink(currentPath, page.path)}"><strong>${escapeHtml(page.title.zh)}</strong></a>`;
   }).join("");
 
   return `
     <dialog class="search-dialog" id="siteSearch">
       <form method="dialog" class="search-head">
-        <strong>搜索文档 / Search documentation</strong>
-        <button type="submit" aria-label="关闭搜索 / Close search">×</button>
+        <strong>搜索文档</strong>
+        <button type="submit" aria-label="关闭搜索">×</button>
       </form>
-      <input id="siteSearchInput" type="search" placeholder="输入：权限、entry、recipe、CLI">
+      <input id="siteSearchInput" type="search" placeholder="输入：权限、入口、案例、CLI">
       <div class="search-results">${items}</div>
     </dialog>`;
 }
@@ -679,42 +679,41 @@ function sidebar(currentPath) {
     <aside class="doc-sidebar">
       ${groups.map(([label, links]) => `
         <section>
-          <h2><span>${escapeHtml(label.zh)}</span><small>${escapeHtml(label.en)}</small></h2>
+          <h2>${escapeHtml(label.zh)}</h2>
           ${links.map(([href, zh, en]) => navLink(currentPath, href, navLabel(href, zh, en))).join("")}
         </section>
       `).join("")}
     </aside>`;
 }
 
-function bilingualPair(zh, en, options = {}) {
+function textOf(value, lang) {
+  return typeof value === "object" && value ? value[lang] : value;
+}
+
+function paragraph(value, lang, options = {}) {
+  const text = textOf(value, lang);
   const render = options.html ? keepHtml : escapeHtml;
-  return `
-    <div class="bilingual-pair" data-bilingual="true">
-      <div class="lang-card zh-card">
-        <span class="lang-label">中文</span>
-        <p>${render(zh)}</p>
-      </div>
-      <div class="lang-card en-card">
-        <span class="lang-label">English</span>
-        <p>${render(en)}</p>
-      </div>
-    </div>`;
+  return `<p>${render(text)}</p>`;
 }
 
-function bilingualList(items) {
+function singleLangList(items, lang) {
   return `
-    <div class="bilingual-list">
-      ${items.map((item) => bilingualPair(item.zh, item.en, { html: /<a\s/i.test(item.zh) || /<a\s/i.test(item.en) })).join("")}
-    </div>`;
+    <ul class="single-lang-list">
+      ${items.map((item) => {
+        const text = textOf(item, lang);
+        const render = /<a\s/i.test(text) ? keepHtml : escapeHtml;
+        return `<li>${render(text)}</li>`;
+      }).join("")}
+    </ul>`;
 }
 
-function metaGrid(meta) {
+function metaGrid(meta, lang) {
   return `
     <dl class="doc-meta-grid">
       ${meta.map((item) => `
         <div>
-          <dt>${escapeHtml(item.label.zh)}<span>${escapeHtml(item.label.en)}</span></dt>
-          <dd>${escapeHtml(item.value.zh)}<span>${escapeHtml(item.value.en)}</span></dd>
+          <dt>${escapeHtml(textOf(item.label, lang))}</dt>
+          <dd>${escapeHtml(textOf(item.value, lang))}</dd>
         </div>
       `).join("")}
     </dl>`;
@@ -746,12 +745,13 @@ function footer(currentPath) {
     <footer class="site-footer">
       <div>
         <strong>Codex Everyday Guide</strong>
-        <span>基础资料最后核对日期：${verifiedDate}。All product facts last checked on ${verifiedDate}; verify dynamic details against official OpenAI sources.</span>
+        <span>基础资料最后核对日期：${verifiedDate}。动态信息请以 OpenAI 官方文档为准。</span>
+        <span class="footer-en">Product facts last checked on ${verifiedDate}. Verify dynamic details against official OpenAI documentation.</span>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="${relativeLink(currentPath, "reference/index.html")}">官方文档 / Official Documentation</a>
-        <a href="${relativeLink(currentPath, "LICENSE")}">开源许可 / License</a>
-        <a href="${relativeLink(currentPath, "contribute/roadmap.html")}">共建路线图 / Roadmap</a>
+        <a href="${relativeLink(currentPath, "reference/index.html")}">官方文档</a>
+        <a href="${relativeLink(currentPath, "LICENSE")}">开源许可</a>
+        <a href="${relativeLink(currentPath, "contribute/roadmap.html")}">共建路线图</a>
       </nav>
     </footer>`;
 }
@@ -760,92 +760,127 @@ function homePage() {
   const currentPath = "index.html";
   const featureCards = [
     [b("专业任务标准", "Professional task standard"), b("每篇文档都包含范围、前置条件、流程、交付物、风险控制和验收标准。", "Every page includes scope, prerequisites, procedure, deliverables, risk controls, and acceptance criteria.")],
-    [b("双语对照", "Bilingual reference"), b("中文和英文并列呈现，适合个人学习、团队培训和公开开源维护。", "Chinese and English are presented side by side for individual learning, team enablement, and open-source maintenance.")],
+    [b("双语分区", "Separated bilingual sections"), b("页面先呈现完整中文，再呈现完整英文，适合学习、培训和维护。", "Each page presents the complete Chinese section first, followed by the complete English section for learning, training, and maintenance.")],
     [b("可验证交付", "Verifiable delivery"), b("强调测试、截图、diff、清单和人工 Review，而不是只追求生成速度。", "Emphasizes tests, screenshots, diffs, checklists, and human review rather than generation speed alone.")],
     [b("安全治理", "Safety governance"), b("文件、命令、网络、凭据和团队规则统一纳入审批与复盘。", "Files, commands, network access, credentials, and team policy are handled through approvals and retrospectives.")]
   ];
+  const metrics = [
+    [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
+    [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
+    [b("13 个实战模板", "13 practical templates"), b("使用周报、表格、文档站、支持工单和发布说明等不同场景。", "Uses distinct scenarios such as newsletters, spreadsheets, docs sites, support inboxes, and releases.")],
+    [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
+  ];
+
+  const homeActions = (lang) => `
+    <div class="hero-actions">
+      <a class="button primary" href="guide/00-overview.html">${lang === "zh" ? "学习路线" : "Learning Path"}</a>
+      <a class="button secondary" href="platform/index.html">${lang === "zh" ? "入口地图" : "Entry Map"}</a>
+      <a class="button secondary" href="recipes/index.html">${lang === "zh" ? "实战案例" : "Recipes"}</a>
+    </div>`;
+
+  const cardGrid = (items, lang, cardClass = "metric-card") => `
+    <div class="card-grid four">
+      ${items.map(([title, text], index) => `
+        <article class="${cardClass} style-${index + 1}">
+          <h3>${escapeHtml(textOf(title, lang))}</h3>
+          <p>${escapeHtml(textOf(text, lang))}</p>
+        </article>
+      `).join("")}
+    </div>`;
+
+  const recipeCards = (lang) => `
+    <div class="card-grid four">
+      ${recipes.slice(0, 4).map(([href, zh, en, summaryZh, summaryEn]) => `
+        <a class="plain-card" href="${href}">
+          <h3>${escapeHtml(lang === "zh" ? zh : en)}</h3>
+          <p>${escapeHtml(lang === "zh" ? summaryZh : summaryEn)}</p>
+        </a>
+      `).join("")}
+    </div>`;
+
+  const homeLanguageSection = (lang) => {
+    const isZh = lang === "zh";
+    return `
+      <section class="language-section home-language-section${isZh ? "" : " english-section"}" lang="${isZh ? "zh-CN" : "en"}" data-language-section="${lang}">
+        <p class="language-kicker">${isZh ? "中文" : "English"}</p>
+        <section class="hero">
+          <div class="hero-art">
+            <img src="assets/logo.svg" alt="Codex Everyday Guide Logo">
+          </div>
+          <div class="hero-copy">
+            <h1>Codex Everyday Guide</h1>
+            ${paragraph(b(
+              "面向普通用户、创作者、个人开发者与小团队的专业 Codex 实践文档。本站采用先中文后英文的完整分区结构、可验证流程和安全边界标准。",
+              "Professional Codex documentation for everyday users, creators, individual developers, and small teams. The site uses complete Chinese-first and English-second sections, verifiable procedures, and explicit safety boundaries."
+            ), lang)}
+            ${homeActions(lang)}
+          </div>
+        </section>
+
+        <section class="feature-grid" aria-label="${isZh ? "文档标准" : "Documentation standard"}">
+          ${featureCards.map(([title, text]) => `
+            <article>
+              <h2>${escapeHtml(textOf(title, lang))}</h2>
+              <p>${escapeHtml(textOf(text, lang))}</p>
+            </article>
+          `).join("")}
+        </section>
+
+        <section class="home-section">
+          <header class="section-title">
+            <h2>${isZh ? "这份文档如何达标" : "How This Documentation Meets the Standard"}</h2>
+            ${paragraph(b(
+              "本站不再使用浅层短文模板。每个页面都以专业文档结构组织，读者能明确知道要做什么、需要什么、如何操作、如何验收以及如何控制风险。",
+              "The site no longer uses shallow short-form templates. Each page follows a professional documentation structure so readers know what to do, what they need, how to proceed, how to accept the result, and how to control risk."
+            ), lang)}
+          </header>
+          ${cardGrid(metrics, lang)}
+        </section>
+
+        <section class="split-section">
+          <div>
+            <h2>${isZh ? "先选对入口" : "Choose the Right Entry Point"}</h2>
+            ${paragraph(b(
+              "Codex 的能力会出现在 App、CLI、Cloud、IDE、ChatGPT 和集成生态中。专业使用方式是先根据材料位置、风险等级和验收方式选择入口。",
+              "Codex capabilities appear across App, CLI, Cloud, IDE, ChatGPT, and integrations. A professional workflow chooses the entry point based on material location, risk level, and acceptance method."
+            ), lang)}
+            <div class="inline-actions">
+              <a class="button ghost" href="platform/index.html">${isZh ? "入口地图" : "Entry Map"}</a>
+              <a class="button ghost" href="guide/03-app-tour.html">${isZh ? "桌面端" : "Desktop"}</a>
+              <a class="button ghost" href="guide/11-cli-install-login.html">CLI</a>
+            </div>
+          </div>
+          <img class="section-image" src="assets/entry-map.svg" alt="${isZh ? "Codex 入口地图" : "Codex entry point map"}">
+        </section>
+
+        <section class="loop-section">
+          <header>
+            <h2>${isZh ? "把一次任务做成闭环" : "Make Every Task a Closed Loop"}</h2>
+            ${paragraph(b(
+              "高质量任务由说明、探索、实施、验证和复盘组成。没有验收证据的任务不应被视为完成。",
+              "A high-quality task includes brief, discovery, execution, verification, and retrospective. A task without acceptance evidence should not be considered complete."
+            ), lang)}
+          </header>
+          <img src="assets/task-loop.svg" alt="${isZh ? "Codex 任务闭环" : "Codex task loop"}">
+        </section>
+
+        <section class="case-section">
+          <header class="section-title">
+            <h2>${isZh ? "精选实战场景" : "Selected Recipes"}</h2>
+            ${paragraph(b(
+              "案例库不是提示词清单，而是可复用的任务标准。读者应替换成自己的材料、限制和验收方式。",
+              "The recipe library is not a prompt list; it is a reusable task standard. Readers should replace the materials, constraints, and acceptance method with their own."
+            ), lang)}
+          </header>
+          ${recipeCards(lang)}
+        </section>
+      </section>`;
+  };
 
   const body = `
     <main>
-      <section class="hero">
-        <div class="hero-art">
-          <img src="assets/logo.svg" alt="Codex Everyday Guide Logo">
-        </div>
-        <div class="hero-copy">
-          <h1>Codex Everyday Guide</h1>
-          ${bilingualPair(
-            "面向普通用户、创作者、个人开发者与小团队的专业 Codex 实践文档。本站采用中英文对照、可验证流程和安全边界标准。",
-            "Professional Codex documentation for everyday users, creators, individual developers, and small teams. The site uses bilingual content, verifiable procedures, and explicit safety boundaries."
-          )}
-          <div class="hero-actions">
-            <a class="button primary" href="guide/00-overview.html">学习路线 / Learning Path</a>
-            <a class="button secondary" href="platform/index.html">入口地图 / Entry Map</a>
-            <a class="button secondary" href="recipes/index.html">实战案例 / Recipes</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="feature-grid" aria-label="Documentation standard">
-        ${featureCards.map(([title, text]) => `<article><h2>${escapeHtml(title.zh)}</h2><small>${escapeHtml(title.en)}</small><p>${escapeHtml(text.zh)}</p><p class="en-muted">${escapeHtml(text.en)}</p></article>`).join("")}
-      </section>
-
-      <section class="home-section">
-        <header class="section-title">
-          <h2>这份文档如何达标 / How This Documentation Meets the Standard</h2>
-          ${bilingualPair(
-            "本站不再使用浅层短文模板。每个页面都以专业文档结构组织，读者能明确知道要做什么、需要什么、如何操作、如何验收以及如何控制风险。",
-            "The site no longer uses shallow short-form templates. Each page follows a professional documentation structure so readers know what to do, what they need, how to proceed, how to accept the result, and how to control risk."
-          )}
-        </header>
-        <div class="card-grid four">
-          ${[
-            [b("43 个双语页面", "43 bilingual pages"), b("首页、教程、配置、案例和资源页全部生成双语内容。", "Home, guide, configuration, recipe, and resource pages all generate bilingual content.")],
-            [b("17 节系统教程", "17 guide chapters"), b("覆盖桌面端、CLI、IDE、项目规则、沙盒、云端任务和排障。", "Covers desktop, CLI, IDE, project rules, sandbox, cloud tasks, and troubleshooting.")],
-            [b("13 个实战模板", "13 practical templates"), b("使用周报、表格、文档站、支持工单和发布说明等不同场景。", "Uses distinct scenarios such as newsletters, spreadsheets, docs sites, support inboxes, and releases.")],
-            [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
-          ].map(([title, text], index) => `<article class="metric-card style-${index + 1}"><h3>${escapeHtml(title.zh)}</h3><small>${escapeHtml(title.en)}</small><p>${escapeHtml(text.zh)}</p><p class="en-muted">${escapeHtml(text.en)}</p></article>`).join("")}
-        </div>
-      </section>
-
-      <section class="split-section">
-        <div>
-          <h2>先选对入口 / Choose the Right Entry Point</h2>
-          ${bilingualPair(
-            "Codex 的能力会出现在 App、CLI、Cloud、IDE、ChatGPT 和集成生态中。专业使用方式是先根据材料位置、风险等级和验收方式选择入口。",
-            "Codex capabilities appear across App, CLI, Cloud, IDE, ChatGPT, and integrations. A professional workflow chooses the entry point based on material location, risk level, and acceptance method."
-          )}
-          <div class="inline-actions">
-            <a class="button ghost" href="platform/index.html">入口地图 / Entry Map</a>
-            <a class="button ghost" href="guide/03-app-tour.html">桌面端 / Desktop</a>
-            <a class="button ghost" href="guide/11-cli-install-login.html">CLI</a>
-          </div>
-        </div>
-        <img class="section-image" src="assets/entry-map.svg" alt="Codex entry point map">
-      </section>
-
-      <section class="loop-section">
-        <header>
-          <h2>把一次任务做成闭环 / Make Every Task a Closed Loop</h2>
-          ${bilingualPair(
-            "高质量任务由说明、探索、实施、验证和复盘组成。没有验收证据的任务不应被视为完成。",
-            "A high-quality task includes brief, discovery, execution, verification, and retrospective. A task without acceptance evidence should not be considered complete."
-          )}
-        </header>
-        <img src="assets/task-loop.svg" alt="Codex task loop">
-      </section>
-
-      <section class="case-section">
-        <header class="section-title">
-          <h2>精选实战场景 / Selected Recipes</h2>
-          ${bilingualPair(
-            "案例库不是提示词清单，而是可复用的任务标准。读者应替换成自己的材料、限制和验收方式。",
-            "The recipe library is not a prompt list; it is a reusable task standard. Readers should replace the materials, constraints, and acceptance method with their own."
-          )}
-        </header>
-        <div class="card-grid four">
-          ${recipes.slice(0, 4).map(([href, zh, en, summaryZh, summaryEn]) => `<a class="plain-card" href="${href}"><h3>${escapeHtml(zh)}</h3><small>${escapeHtml(en)}</small><p>${escapeHtml(summaryZh)}</p><p class="en-muted">${escapeHtml(summaryEn)}</p></a>`).join("")}
-        </div>
-      </section>
+      ${homeLanguageSection("zh")}
+      ${homeLanguageSection("en")}
     </main>`;
 
   return layout({
@@ -859,40 +894,58 @@ function homePage() {
 
 function docPage(page) {
   const currentPath = page.path;
+  const acceptance = {
+    title: b("文档质量验收标准", "Documentation Quality Acceptance Criteria"),
+    body: b(
+      "本页只有在读者能按步骤执行、识别风险、产出交付物并完成验收时才算达标。",
+      "This page meets the documentation standard only when readers can follow the procedure, identify risks, produce deliverables, and complete acceptance checks."
+    ),
+    bullets: [
+      b("中文和英文信息一致，没有遗漏关键限制。", "Chinese and English content are equivalent and do not omit critical constraints."),
+      b("读者能根据本页完成一个可回退的低风险任务。", "A reader can complete a reversible low-risk task using this page."),
+      b("任务结束后有输出、证据和待确认事项。", "The task ends with output, evidence, and confirmation items."),
+      b("涉及动态事实时，读者能回到官方文档复核。", "For dynamic facts, the reader can verify against official documentation.")
+    ]
+  };
+
+  const relatedLinks = (links, lang) => links?.length ? `
+    <nav class="next-links" aria-label="${lang === "zh" ? "相关链接" : "Related links"}">
+      ${links.map((item) => `<a href="${relativeLink(currentPath, item.path)}">${escapeHtml(textOf(item.label, lang))}</a>`).join("")}
+    </nav>
+  ` : "";
+
+  const languageSection = (lang) => {
+    const isZh = lang === "zh";
+    return `
+      <section class="language-section${isZh ? "" : " english-section"}" lang="${isZh ? "zh-CN" : "en"}" data-language-section="${lang}">
+        <p class="language-kicker">${isZh ? "中文" : "English"}</p>
+        <p class="eyebrow">${escapeHtml(textOf(page.group, lang))}</p>
+        <h1>${escapeHtml(textOf(page.title, lang))}</h1>
+        ${paragraph(page.summary, lang)}
+        ${metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")), lang)}
+        ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(textOf(page.title, lang))}">` : ""}
+        ${page.sections.map((item) => `
+          <section>
+            <h2>${escapeHtml(textOf(item.title, lang))}</h2>
+            ${paragraph(item.body, lang)}
+            ${item.bullets?.length ? singleLangList(item.bullets, lang) : ""}
+          </section>
+        `).join("")}
+        <section>
+          <h2>${escapeHtml(textOf(acceptance.title, lang))}</h2>
+          ${paragraph(acceptance.body, lang)}
+          ${singleLangList(acceptance.bullets, lang)}
+        </section>
+        ${relatedLinks(page.links, lang)}
+      </section>`;
+  };
+
   const body = `
     <main class="doc-layout">
       ${sidebar(currentPath)}
       <article class="doc-content">
-        <p class="eyebrow">${escapeHtml(page.group.zh)} / ${escapeHtml(page.group.en)}</p>
-        <h1><span>${escapeHtml(page.title.zh)}</span><small>${escapeHtml(page.title.en)}</small></h1>
-        ${bilingualPair(page.summary.zh, page.summary.en)}
-        ${metaGrid(page.meta || statusMeta(b("所有读者", "All readers"), b("20 分钟", "20 minutes")))}
-        ${page.image ? `<img class="doc-hero-image" src="${relativeLink(currentPath, `assets/${page.image}`)}" alt="${escapeHtml(page.title.en)}">` : ""}
-        ${page.sections.map((item) => `
-          <section>
-            <h2><span>${escapeHtml(item.title.zh)}</span><small>${escapeHtml(item.title.en)}</small></h2>
-            ${bilingualPair(item.body.zh, item.body.en)}
-            ${item.bullets?.length ? bilingualList(item.bullets) : ""}
-          </section>
-        `).join("")}
-        <section>
-          <h2><span>文档质量验收标准</span><small>Documentation quality acceptance criteria</small></h2>
-          ${bilingualPair(
-            "本页只有在读者能按步骤执行、识别风险、产出交付物并完成验收时才算达标。",
-            "This page meets the documentation standard only when readers can follow the procedure, identify risks, produce deliverables, and complete acceptance checks."
-          )}
-          ${bilingualList([
-            b("中文和英文信息一致，没有遗漏关键限制。", "Chinese and English content are equivalent and do not omit critical constraints."),
-            b("读者能根据本页完成一个可回退的低风险任务。", "A reader can complete a reversible low-risk task using this page."),
-            b("任务结束后有输出、证据和待确认事项。", "The task ends with output, evidence, and confirmation items."),
-            b("涉及动态事实时，读者能回到官方文档复核。", "For dynamic facts, the reader can verify against official documentation.")
-          ])}
-        </section>
-        ${page.links?.length ? `
-          <nav class="next-links" aria-label="Related links">
-            ${page.links.map((item) => `<a href="${relativeLink(currentPath, item.path)}"><span>${escapeHtml(item.label.zh)}</span><small>${escapeHtml(item.label.en)}</small></a>`).join("")}
-          </nav>
-        ` : ""}
+        ${languageSection("zh")}
+        ${languageSection("en")}
       </article>
     </main>`;
 
@@ -934,21 +987,23 @@ function writeAssets() {
   <desc id="desc">CLI, Cloud, IDE, Desktop App, ChatGPT, and integrations.</desc>
   <rect width="900" height="430" rx="20" fill="#151827"/>
   <rect x="38" y="38" width="824" height="354" rx="16" fill="#1d2231" stroke="#30384d"/>
-  <text x="70" y="82" fill="#fff" font-size="28" font-weight="700" font-family="Arial">入口地图 / Entry Point Map</text>
-  <text x="70" y="113" fill="#c8d0da" font-size="16" font-family="Arial">按材料位置、风险等级和验收方式选择入口 / Choose by material, risk, and acceptance evidence.</text>
+  <text x="70" y="82" fill="#fff" font-size="28" font-weight="700" font-family="Arial">入口地图</text>
+  <text x="70" y="112" fill="#c8d0da" font-size="18" font-family="Arial">Entry Point Map</text>
+  <text x="70" y="142" fill="#c8d0da" font-size="15" font-family="Arial">按材料位置、风险等级和验收方式选择入口。</text>
+  <text x="70" y="164" fill="#c8d0da" font-size="15" font-family="Arial">Choose by material, risk, and acceptance evidence.</text>
   <g font-family="Arial" font-weight="700">
-    <rect x="70" y="155" width="160" height="92" rx="12" fill="#203238" stroke="#6bd2c7"/>
-    <text x="92" y="190" fill="#fff" font-size="23">CLI</text>
-    <text x="92" y="219" fill="#c8d0da" font-size="14">Local iteration</text>
-    <rect x="260" y="155" width="170" height="92" rx="12" fill="#232a56" stroke="#7187ff"/>
-    <text x="282" y="190" fill="#fff" font-size="23">Cloud / Web</text>
-    <text x="282" y="219" fill="#c8d0da" font-size="14">Long-running tasks</text>
-    <rect x="462" y="155" width="170" height="92" rx="12" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="484" y="190" fill="#fff" font-size="23">IDE</text>
-    <text x="484" y="219" fill="#c8d0da" font-size="14">Editor context</text>
-    <rect x="664" y="155" width="166" height="92" rx="12" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="686" y="190" fill="#fff" font-size="23">Desktop App</text>
-    <text x="686" y="219" fill="#c8d0da" font-size="14">Local workbench</text>
+    <rect x="70" y="190" width="160" height="92" rx="12" fill="#203238" stroke="#6bd2c7"/>
+    <text x="92" y="225" fill="#fff" font-size="23">CLI</text>
+    <text x="92" y="254" fill="#c8d0da" font-size="14">Local iteration</text>
+    <rect x="260" y="190" width="170" height="92" rx="12" fill="#232a56" stroke="#7187ff"/>
+    <text x="282" y="225" fill="#fff" font-size="23">Cloud</text>
+    <text x="282" y="254" fill="#c8d0da" font-size="14">Long-running tasks</text>
+    <rect x="462" y="190" width="170" height="92" rx="12" fill="#2a2256" stroke="#9b8cff"/>
+    <text x="484" y="225" fill="#fff" font-size="23">IDE</text>
+    <text x="484" y="254" fill="#c8d0da" font-size="14">Editor context</text>
+    <rect x="664" y="190" width="166" height="92" rx="12" fill="#382f22" stroke="#f3bd4f"/>
+    <text x="686" y="225" fill="#fff" font-size="23">Desktop App</text>
+    <text x="686" y="254" fill="#c8d0da" font-size="14">Local workbench</text>
     <rect x="172" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
     <text x="204" y="325" fill="#fff" font-size="18">ChatGPT Codex</text>
     <rect x="478" y="290" width="250" height="58" rx="10" fill="#171b29" stroke="#33394d"/>
@@ -960,26 +1015,28 @@ function writeAssets() {
   <title id="title">Codex task loop</title>
   <desc id="desc">Brief, discovery, execution, verification, and retrospective.</desc>
   <rect width="900" height="430" rx="20" fill="#151827"/>
-  <text x="70" y="74" fill="#fff" font-size="32" font-weight="800" font-family="Arial">任务闭环 / Task Loop</text>
-  <text x="72" y="108" fill="#d6dde8" font-size="17" font-family="Arial">说明、探索、实施、验证、复盘 / Brief, discover, execute, verify, retrospect.</text>
+  <text x="70" y="66" fill="#fff" font-size="32" font-weight="800" font-family="Arial">任务闭环</text>
+  <text x="70" y="98" fill="#d6dde8" font-size="20" font-family="Arial">Task Loop</text>
+  <text x="72" y="128" fill="#d6dde8" font-size="16" font-family="Arial">说明、探索、实施、验证、复盘。</text>
+  <text x="72" y="151" fill="#d6dde8" font-size="16" font-family="Arial">Brief, discover, execute, verify, retrospect.</text>
   <path d="M250 262C315 145 470 128 568 206" fill="none" stroke="#8690a5" stroke-width="6"/>
   <path d="M604 239c42 90-33 168-160 166-108-2-202-55-224-124" fill="none" stroke="#8690a5" stroke-width="6"/>
   <g font-family="Arial" text-anchor="middle">
     <circle cx="195" cy="260" r="78" fill="#203238" stroke="#6bd2c7" stroke-width="4"/>
-    <text x="195" y="251" fill="#fff" font-size="24" font-weight="800">说明 Brief</text>
-    <text x="195" y="284" fill="#dce5ef" font-size="15">Scope / Constraints</text>
+    <text x="195" y="254" fill="#fff" font-size="24" font-weight="800">说明</text>
+    <text x="195" y="286" fill="#dce5ef" font-size="16">Brief</text>
     <circle cx="420" cy="178" r="76" fill="#222b5c" stroke="#7187ff" stroke-width="4"/>
-    <text x="420" y="169" fill="#fff" font-size="24" font-weight="800">探索 Discover</text>
-    <text x="420" y="202" fill="#dce5ef" font-size="15">Read / Plan</text>
+    <text x="420" y="172" fill="#fff" font-size="24" font-weight="800">探索</text>
+    <text x="420" y="204" fill="#dce5ef" font-size="16">Discover</text>
     <circle cx="618" cy="218" r="76" fill="#2c245e" stroke="#9b8cff" stroke-width="4"/>
-    <text x="618" y="209" fill="#fff" font-size="24" font-weight="800">实施 Execute</text>
-    <text x="618" y="242" fill="#dce5ef" font-size="15">Small diffs</text>
+    <text x="618" y="212" fill="#fff" font-size="24" font-weight="800">实施</text>
+    <text x="618" y="244" fill="#dce5ef" font-size="16">Execute</text>
     <circle cx="690" cy="330" r="70" fill="#3a3222" stroke="#f3bd4f" stroke-width="4"/>
-    <text x="690" y="322" fill="#fff" font-size="23" font-weight="800">验证 Verify</text>
-    <text x="690" y="352" fill="#dce5ef" font-size="15">Evidence</text>
+    <text x="690" y="325" fill="#fff" font-size="23" font-weight="800">验证</text>
+    <text x="690" y="355" fill="#dce5ef" font-size="16">Verify</text>
     <circle cx="450" cy="336" r="70" fill="#111522" stroke="#475067" stroke-width="4"/>
-    <text x="450" y="328" fill="#fff" font-size="23" font-weight="800">复盘 Retro</text>
-    <text x="450" y="358" fill="#dce5ef" font-size="15">Template / Risk</text>
+    <text x="450" y="331" fill="#fff" font-size="23" font-weight="800">复盘</text>
+    <text x="450" y="361" fill="#dce5ef" font-size="16">Retro</text>
   </g>
 </svg>`);
 
@@ -987,21 +1044,22 @@ function writeAssets() {
   <title id="title">Codex safety layers</title>
   <desc id="desc">Task brief, project rules, sandbox approvals, and verification review.</desc>
   <rect width="760" height="430" rx="20" fill="#151827"/>
-  <text x="54" y="72" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界 / Safety Layers</text>
-  <text x="54" y="101" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
+  <text x="54" y="62" fill="#fff" font-size="28" font-weight="800" font-family="Arial">安全边界</text>
+  <text x="54" y="92" fill="#d6dde8" font-size="19" font-family="Arial">Safety Layers</text>
+  <text x="54" y="121" fill="#d6dde8" font-size="16" font-family="Arial">用项目规则、运行环境和人工验证共同约束风险。</text>
   <g font-family="Arial" font-weight="700">
     <rect x="72" y="150" width="616" height="54" rx="10" fill="#203238" stroke="#6bd2c7"/>
-    <text x="104" y="184" fill="#fff" font-size="18">1. Task brief</text>
-    <text x="274" y="184" fill="#dce5ef" font-size="15">目标 / Scope / Acceptance</text>
+    <text x="104" y="178" fill="#fff" font-size="18">1. 任务说明</text>
+    <text x="104" y="195" fill="#dce5ef" font-size="14">Task brief</text>
     <rect x="98" y="224" width="564" height="54" rx="10" fill="#232a56" stroke="#7187ff"/>
-    <text x="132" y="258" fill="#fff" font-size="18">2. AGENTS.md</text>
-    <text x="314" y="258" fill="#dce5ef" font-size="15">Commands / Style / Rules</text>
+    <text x="132" y="252" fill="#fff" font-size="18">2. AGENTS.md</text>
+    <text x="132" y="269" fill="#dce5ef" font-size="14">Commands, style, rules</text>
     <rect x="126" y="298" width="508" height="54" rx="10" fill="#2a2256" stroke="#9b8cff"/>
-    <text x="158" y="332" fill="#fff" font-size="18">3. Approvals</text>
-    <text x="360" y="332" fill="#dce5ef" font-size="15">Files / Network / Commands</text>
+    <text x="158" y="326" fill="#fff" font-size="18">3. 审批</text>
+    <text x="158" y="343" fill="#dce5ef" font-size="14">Approvals</text>
     <rect x="154" y="362" width="452" height="44" rx="10" fill="#382f22" stroke="#f3bd4f"/>
-    <text x="186" y="390" fill="#fff" font-size="17">4. Verification</text>
-    <text x="360" y="390" fill="#dce5ef" font-size="14">Tests / diff / review</text>
+    <text x="186" y="384" fill="#fff" font-size="17">4. 验证</text>
+    <text x="186" y="400" fill="#dce5ef" font-size="13">Verification</text>
   </g>
 </svg>`);
 }

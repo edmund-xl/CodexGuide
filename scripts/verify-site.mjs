@@ -51,13 +51,21 @@ if (htmlFiles.length !== expectedHtmlPages) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
-  if (!html.includes('data-bilingual="true"')) {
-    errors.push(`${file}: missing bilingual content blocks.`);
+  const zhIndex = html.indexOf('data-language-section="zh"');
+  const enIndex = html.indexOf('data-language-section="en"');
+  if (zhIndex === -1 || enIndex === -1) {
+    errors.push(`${file}: missing separated Chinese/English sections.`);
+  }
+  if (zhIndex !== -1 && enIndex !== -1 && zhIndex > enIndex) {
+    errors.push(`${file}: English section appears before Chinese section.`);
+  }
+  if (html.includes(["bilingual", "-pair"].join("")) || html.includes(["lang", "-card"].join(""))) {
+    errors.push(`${file}: contains mixed bilingual pair layout.`);
   }
   if (!html.includes("中文") || !html.includes("English")) {
     errors.push(`${file}: missing visible Chinese/English labels.`);
   }
-  if (file !== "index.html" && (!/验收标准/i.test(html) || !/Acceptance criteria/i.test(html))) {
+  if (file !== "index.html" && (!/文档质量验收标准/i.test(html) || !/Documentation Quality Acceptance Criteria/i.test(html))) {
     errors.push(`${file}: missing acceptance criteria.`);
   }
   for (const pattern of forbiddenPatterns) {
@@ -91,4 +99,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Verified ${htmlFiles.length} HTML pages: bilingual coverage, acceptance criteria, links, and forbidden keywords all pass.`);
+console.log(`Verified ${htmlFiles.length} HTML pages: separated Chinese-first bilingual sections, acceptance criteria, links, and forbidden keywords all pass.`);
