@@ -1,0 +1,140 @@
+{
+  "slug": "remote-service-health-check",
+  "title": {
+    "zh": "14 远程服务健康检查与修复建议",
+    "en": "14 Remote Service Health Check and Fix Proposal"
+  },
+  "maturityScore": 93,
+  "risk": {
+    "key": "high",
+    "zh": "中到高",
+    "en": "Medium to high"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "健康检查",
+        "en": "Health check"
+      },
+      "observation": {
+        "zh": "10:12 开始 HTTP 503，10:20 恢复",
+        "en": "HTTP 503 began at 10:12 and recovered at 10:20"
+      },
+      "evidenceFile": {
+        "zh": "evidence/healthz-window.txt",
+        "en": "evidence/healthz-window.txt"
+      },
+      "status": {
+        "zh": "已记录",
+        "en": "Recorded"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "配置差异",
+        "en": "Config delta"
+      },
+      "observation": {
+        "zh": "DB_POOL_SIZE 从 12 改为 4，与等待时间升高吻合",
+        "en": "DB_POOL_SIZE changed from 12 to 4 and matches increased wait time"
+      },
+      "evidenceFile": {
+        "zh": "evidence/config-delta.txt",
+        "en": "evidence/config-delta.txt"
+      },
+      "status": {
+        "zh": "高置信",
+        "en": "High confidence"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "容量指标",
+        "en": "Capacity signal"
+      },
+      "observation": {
+        "zh": "CPU 和内存没有同步升高",
+        "en": "CPU and memory did not rise at the same time"
+      },
+      "evidenceFile": {
+        "zh": "evidence/metrics-snapshot.txt",
+        "en": "evidence/metrics-snapshot.txt"
+      },
+      "status": {
+        "zh": "排除一项",
+        "en": "One cause reduced"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "复测方案",
+        "en": "Retest plan"
+      },
+      "observation": {
+        "zh": "先恢复配置，再复测 healthz 和等待时间",
+        "en": "Restore config first, then retest healthz and wait time"
+      },
+      "evidenceFile": {
+        "zh": "repair-plan.md",
+        "en": "repair-plan.md"
+      },
+      "status": {
+        "zh": "待确认",
+        "en": "Needs confirmation"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "curl -i --max-time 10 http://127.0.0.1:8080/healthz",
+      "rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/",
+      "人工确认 repair-plan.md 包含影响范围、回退方式和复测窗口。"
+    ],
+    "en": [
+      "curl -i --max-time 10 http://127.0.0.1:8080/healthz",
+      "rg -n \"HTTP 503|db_pool_wait_ms|DB_POOL_SIZE\" evidence/ config/",
+      "Manually confirm repair-plan.md includes impact scope, rollback, and retest window."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "只读检查不能擅自重启、扩容或改配置。",
+      "修复建议要写清风险和回退路径。",
+      "如果要执行生产动作，先让负责人确认。"
+    ],
+    "en": [
+      "Read-only checks must not restart, scale, or change configuration without approval.",
+      "Fix suggestions must state risk and rollback path.",
+      "Production actions require owner confirmation first."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "远程服务短时间内多次 5xx，需要只读确认健康状态并提出最小修复建议。",
+      "en": "A remote service produced repeated 5xx responses, requiring read-only health confirmation and minimal fix suggestions."
+    },
+    "firstSignal": {
+      "zh": "10:12 到 10:19 错误率升高，重启不是第一步。",
+      "en": "Error rate rose from 10:12 to 10:19, and restart was not the first step."
+    },
+    "doneSignal": {
+      "zh": "只读确认超时集中在一个下游调用，给出限流和回滚两条建议。",
+      "en": "Read-only checks showed timeouts concentrated in one downstream call, producing rate-limit and rollback options."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "slug": "spreadsheet-cleanup",
+  "title": {
+    "zh": "06 表格数据清洗与异常核对",
+    "en": "06 Spreadsheet Cleanup and Anomaly Review"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "数据画像",
+        "en": "Data profile"
+      },
+      "observation": {
+        "zh": "4 行、5 列，order_id 有重复，date 有缺失",
+        "en": "4 rows, 5 columns, duplicate order_id, missing date"
+      },
+      "evidenceFile": {
+        "zh": "data-profile.md",
+        "en": "data-profile.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "重复检测",
+        "en": "Duplicate check"
+      },
+      "observation": {
+        "zh": "order_id=1002 出现 2 次，金额符号不一致",
+        "en": "order_id=1002 appears twice with inconsistent amount signs"
+      },
+      "evidenceFile": {
+        "zh": "anomalies.csv",
+        "en": "anomalies.csv"
+      },
+      "status": {
+        "zh": "待复核",
+        "en": "Needs review"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "范围检测",
+        "en": "Range check"
+      },
+      "observation": {
+        "zh": "amount=8500 超过手动确认阈值",
+        "en": "amount=8500 exceeds manual review threshold"
+      },
+      "evidenceFile": {
+        "zh": "review-sheet.csv",
+        "en": "review-sheet.csv"
+      },
+      "status": {
+        "zh": "待确认",
+        "en": "Needs confirmation"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "输出安全",
+        "en": "Output safety"
+      },
+      "observation": {
+        "zh": "原始 CSV 未覆盖，清理版使用新文件名",
+        "en": "Original CSV not overwritten; cleaned version uses new filename"
+      },
+      "evidenceFile": {
+        "zh": "file list",
+        "en": "file list"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "wc -l orders-redacted.csv",
+      "head -n 5 orders-redacted.csv",
+      "rg -n \",,|-[0-9]+\\.|pending\" orders-redacted.csv"
+    ],
+    "en": [
+      "wc -l orders-redacted.csv",
+      "head -n 5 orders-redacted.csv",
+      "rg -n \",,|-[0-9]+\\.|pending\" orders-redacted.csv"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "不直接覆盖原 CSV。",
+      "金额和状态修正必须由业务负责人确认。",
+      "复核表保留原始行号，便于追溯。"
+    ],
+    "en": [
+      "Do not overwrite the original CSV.",
+      "Amount and status corrections require owner confirmation.",
+      "The review sheet keeps original row numbers for traceability."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "脱敏订单 CSV 出现空状态、异常金额和重复行，需要形成可复核清理建议。",
+      "en": "A redacted order CSV had blank statuses, abnormal amounts, and duplicates needing reviewable cleanup suggestions."
+    },
+    "firstSignal": {
+      "zh": "总行数与有效订单数不一致，金额列存在负数和文本值。",
+      "en": "Total rows and valid orders did not match, and the amount column contained negatives and text values."
+    },
+    "doneSignal": {
+      "zh": "异常被分为 4 类，所有建议都保留原始行号。",
+      "en": "Anomalies were split into four classes, with original row numbers preserved for every suggestion."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

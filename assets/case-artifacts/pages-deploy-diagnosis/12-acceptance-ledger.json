@@ -1,0 +1,140 @@
+{
+  "slug": "pages-deploy-diagnosis",
+  "title": {
+    "zh": "03 GitHub Pages 部署失败诊断",
+    "en": "03 GitHub Pages Deployment Failure Diagnosis"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "本地构建",
+        "en": "Local build"
+      },
+      "observation": {
+        "zh": "44 个页面生成成功",
+        "en": "44 pages generated successfully"
+      },
+      "evidenceFile": {
+        "zh": "npm run build",
+        "en": "npm run build"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "本地检查",
+        "en": "Local check"
+      },
+      "observation": {
+        "zh": "双语、链接、验收、禁用词通过",
+        "en": "Bilingual, links, acceptance, and blocked words passed"
+      },
+      "evidenceFile": {
+        "zh": "npm run check",
+        "en": "npm run check"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "失败定位",
+        "en": "Failure location"
+      },
+      "observation": {
+        "zh": "第一个失败点在 Pages 配置或 artifact 步骤",
+        "en": "First failure located in Pages configuration or artifact step"
+      },
+      "evidenceFile": {
+        "zh": "job steps",
+        "en": "job steps"
+      },
+      "status": {
+        "zh": "已定位",
+        "en": "Located"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "线上验收",
+        "en": "Live acceptance"
+      },
+      "observation": {
+        "zh": "新 run build/deploy 成功，线上返回 200",
+        "en": "New run build/deploy passed and live URL returned 200"
+      },
+      "evidenceFile": {
+        "zh": "curl -I -L",
+        "en": "curl -I -L"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "npm run build && npm run check && git diff --check",
+      "git status --short --branch",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/"
+    ],
+    "en": [
+      "npm run build && npm run check && git diff --check",
+      "git status --short --branch",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "只把新 run 作为成功依据，不回头修改旧失败 run 的判断。",
+      "发布修复和内容改动尽量分开，便于回滚。",
+      "宣布完成前必须同时确认 Actions 与线上地址。"
+    ],
+    "en": [
+      "Use only the new run as success evidence; do not reinterpret the old failed run.",
+      "Keep publish fixes and content edits separate where possible for rollback.",
+      "Before declaring completion, confirm both Actions and the live URL."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "收到部署失败通知，build 红色、deploy 跳过，需要判断是内容、workflow 还是发布配置问题。",
+      "en": "A deploy failure notification showed build red and deploy skipped, requiring separation of content, workflow, and publish configuration issues."
+    },
+    "firstSignal": {
+      "zh": "邮件只说明失败，无法证明第一个红色步骤在哪里。",
+      "en": "The email only said the run failed and did not prove the first red step."
+    },
+    "doneSignal": {
+      "zh": "新提交触发的 build 与 deploy 均成功，线上案例总览返回 200。",
+      "en": "The new commit produced successful build and deploy jobs, and the live recipe index returned 200."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

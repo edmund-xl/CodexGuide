@@ -1,0 +1,140 @@
+{
+  "slug": "log-error-diagnosis",
+  "title": {
+    "zh": "13 日志报错定位与修复建议",
+    "en": "13 Log Error Diagnosis and Fix Proposal"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "症状",
+        "en": "Symptom"
+      },
+      "observation": {
+        "zh": "检查脚本报告 old-page.html 断链",
+        "en": "Check script reports broken old-page.html link"
+      },
+      "evidenceFile": {
+        "zh": "npm run check",
+        "en": "npm run check"
+      },
+      "status": {
+        "zh": "已记录",
+        "en": "Recorded"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "根因假设",
+        "en": "Hypothesis"
+      },
+      "observation": {
+        "zh": "导航或搜索索引仍指向旧 URL",
+        "en": "Navigation or search index still points to old URL"
+      },
+      "evidenceFile": {
+        "zh": "rg old-page",
+        "en": "rg old-page"
+      },
+      "status": {
+        "zh": "待验证",
+        "en": "To validate"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "验证",
+        "en": "Validation"
+      },
+      "observation": {
+        "zh": "生成器数据中找到旧路径",
+        "en": "Old path found in generator data"
+      },
+      "evidenceFile": {
+        "zh": "scripts/generate-site.mjs",
+        "en": "scripts/generate-site.mjs"
+      },
+      "status": {
+        "zh": "确认",
+        "en": "Confirmed"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "验收",
+        "en": "Acceptance"
+      },
+      "observation": {
+        "zh": "修复后 build/check 均通过",
+        "en": "After fix, build/check both pass"
+      },
+      "evidenceFile": {
+        "zh": "npm run build && npm run check",
+        "en": "npm run build && npm run check"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "npm run check",
+      "rg -n \"old-page|missing local target|recipes/\" scripts recipes README.md",
+      "npm run build && npm run check && git diff --check"
+    ],
+    "en": [
+      "npm run check",
+      "rg -n \"old-page|missing local target|recipes/\" scripts recipes README.md",
+      "npm run build && npm run check && git diff --check"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "不要顺手重构无关代码。",
+      "修复说明必须包含失败命令和复跑命令。",
+      "如果日志不足，先补采样日志再下结论。"
+    ],
+    "en": [
+      "Do not opportunistically refactor unrelated code.",
+      "The fix note must include the failing command and rerun command.",
+      "If logs are insufficient, collect more log samples before concluding."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "本地检查失败，需要从日志定位最小修复，不扩大到无关重构。",
+      "en": "A local check failed and needed minimal diagnosis from logs without expanding into unrelated refactors."
+    },
+    "firstSignal": {
+      "zh": "错误信息指向旧路径，但搜索结果显示还有多个入口残留。",
+      "en": "The error pointed to an old path, and search results showed several stale entries."
+    },
+    "doneSignal": {
+      "zh": "只改路径映射和入口链接，复跑检查通过。",
+      "en": "Only path mapping and entry links were changed, and the rerun passed."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

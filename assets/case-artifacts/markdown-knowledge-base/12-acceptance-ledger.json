@@ -1,0 +1,140 @@
+{
+  "slug": "markdown-knowledge-base",
+  "title": {
+    "zh": "05 Markdown 知识库重整",
+    "en": "05 Markdown Knowledge Base Restructure"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "低到中",
+    "en": "Low to medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "扫描",
+        "en": "Scan"
+      },
+      "observation": {
+        "zh": "发现 18 篇笔记，11 篇缺 date，6 篇缺 status",
+        "en": "Found 18 notes, 11 missing date, 6 missing status"
+      },
+      "evidenceFile": {
+        "zh": "missing-fields.md",
+        "en": "missing-fields.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "样本迁移",
+        "en": "Sample migration"
+      },
+      "observation": {
+        "zh": "5 篇样本生成 frontmatter，未猜缺失日期",
+        "en": "Five samples gained frontmatter without guessed dates"
+      },
+      "evidenceFile": {
+        "zh": "sample-diff.patch",
+        "en": "sample-diff.patch"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "索引",
+        "en": "Index"
+      },
+      "observation": {
+        "zh": "按 topic/status 分组，能看到待补项",
+        "en": "Grouped by topic/status and shows pending items"
+      },
+      "evidenceFile": {
+        "zh": "index.md",
+        "en": "index.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "待补",
+        "en": "Pending"
+      },
+      "observation": {
+        "zh": "所有缺失作者、日期、结论单独列出",
+        "en": "Missing author, date, and conclusion items are listed separately"
+      },
+      "evidenceFile": {
+        "zh": "pending-review.md",
+        "en": "pending-review.md"
+      },
+      "status": {
+        "zh": "待人工补充",
+        "en": "Needs human input"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "rg --files notes-working | sort",
+      "rg -n \"^title:|^date:|^topic:|^status:\" notes-working",
+      "git diff -- notes-working index.md pending-review.md"
+    ],
+    "en": [
+      "rg --files notes-working | sort",
+      "rg -n \"^title:|^date:|^topic:|^status:\" notes-working",
+      "git diff -- notes-working index.md pending-review.md"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "原文只移动和补元数据，不删除正文。",
+      "待补事项单独列出，不能伪装成已完成知识。",
+      "合并前由用户抽查至少 3 篇笔记。"
+    ],
+    "en": [
+      "Original text is moved and annotated, not deleted.",
+      "Missing items are listed separately, not presented as completed knowledge.",
+      "The user should spot-check at least three notes before merging."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "散乱 Markdown 笔记需要按主题、状态和待补事项重整，且保留回退依据。",
+      "en": "Loose Markdown notes needed organization by topic, state, and missing items while preserving rollback evidence."
+    },
+    "firstSignal": {
+      "zh": "同一主题有三个命名方式，部分笔记没有 owner 和 status。",
+      "en": "The same topic had three naming styles and some notes had no owner or status."
+    },
+    "doneSignal": {
+      "zh": "12 篇笔记完成统一头部，索引能按主题和待补项检索。",
+      "en": "Twelve notes received consistent headers, and the index supports topic and missing-item lookup."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

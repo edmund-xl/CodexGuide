@@ -2063,9 +2063,13 @@ function caseLibraryManifest() {
     artifactCount: caseRecipes.length * caseArtifactCount(),
     artifactFilesPerCase: caseArtifactCount(),
     averageMaturityScore: averageMaturityScore(),
+    requiredArtifactFiles: artifactDefinitions(caseRecipes[0]).map((item) => item.file),
     cases: caseRecipes.map((recipe) => ({
       slug: artifactSlug(recipe),
       path: recipe.path,
+      artifactBase: artifactBase(recipe),
+      fieldSnapshot: `${artifactBase(recipe)}/11-field-snapshot.svg`,
+      acceptanceLedger: `${artifactBase(recipe)}/12-acceptance-ledger.json`,
       title: {
         zh: recipe.title.zh,
         en: recipe.title.en
@@ -2215,6 +2219,82 @@ ${trace.handoff.map((item) => `- ${item.en}`).join("\n")}
 `;
 }
 
+function acceptanceLedger(recipe) {
+  const trace = operationTrace(recipe);
+  return {
+    slug: artifactSlug(recipe),
+    title: {
+      zh: recipe.title.zh,
+      en: recipe.title.en
+    },
+    maturityScore: caseMaturityScore(recipe),
+    risk: {
+      key: riskKey(recipe),
+      zh: recipe.risk.zh,
+      en: recipe.risk.en
+    },
+    requiredEvidence: recipe.evidenceTable.map((row) => ({
+      checkpoint: {
+        zh: row[0].zh,
+        en: row[0].en
+      },
+      observation: {
+        zh: row[1].zh,
+        en: row[1].en
+      },
+      evidenceFile: {
+        zh: row[2].zh,
+        en: row[2].en
+      },
+      status: {
+        zh: row[3].zh,
+        en: row[3].en
+      }
+    })),
+    acceptanceCommands: {
+      zh: recipe.commands.map((item) => item.zh),
+      en: recipe.commands.map((item) => item.en)
+    },
+    humanHandoff: {
+      zh: trace.handoff.map((item) => item.zh),
+      en: trace.handoff.map((item) => item.en)
+    },
+    fieldSignals: {
+      trigger: {
+        zh: trace.snapshot.trigger.zh,
+        en: trace.snapshot.trigger.en
+      },
+      firstSignal: {
+        zh: trace.snapshot.firstSignal.zh,
+        en: trace.snapshot.firstSignal.en
+      },
+      doneSignal: {
+        zh: trace.snapshot.finalSignal.zh,
+        en: trace.snapshot.finalSignal.en
+      }
+    },
+    artifacts: [
+      "01-input-brief.md",
+      "02-evidence-table.csv",
+      "03-result-sample.md",
+      "04-acceptance-runbook.md",
+      "05-execution-transcript.log",
+      "06-delivery-preview.md",
+      "07-before-after.md",
+      "08-quality-scorecard.json",
+      "09-operation-replay.md",
+      "10-human-handoff.md",
+      "11-field-snapshot.svg",
+      "12-acceptance-ledger.json",
+      "evidence-board.svg"
+    ]
+  };
+}
+
+function acceptanceLedgerJson(recipe) {
+  return JSON.stringify(acceptanceLedger(recipe), null, 2);
+}
+
 function artifactDefinitions(recipe) {
   const titleZh = textOf(recipe.title, "zh");
   return [
@@ -2296,6 +2376,13 @@ function artifactDefinitions(recipe) {
       body: ""
     },
     {
+      file: "12-acceptance-ledger.json",
+      label: b("验收总账", "Acceptance Ledger"),
+      kind: b("总账", "Ledger"),
+      description: b("把证据、命令、人工交接、现场信号和材料清单整理成机器可读记录。", "Collect evidence, commands, human handoff, field signals, and artifact inventory into a machine-readable record."),
+      body: acceptanceLedgerJson(recipe)
+    },
+    {
       file: "evidence-board.svg",
       label: b("证据看板", "Evidence Board"),
       kind: b("视觉", "Visual"),
@@ -2353,8 +2440,8 @@ function caseArtifactSection(recipe, lang) {
     <section>
       <h2>${isZh ? "实测材料包" : "Lab Artifact Pack"}</h2>
       ${paragraph(b(
-        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。读者可以先看材料，再替换成自己的任务。",
-        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board. Readers can inspect the pack before adapting it to their own task."
+        "每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账和证据看板。读者可以先看材料，再替换成自己的任务。",
+        "Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, and evidence board. Readers can inspect the pack before adapting it to their own task."
       ), lang)}
       ${artifactCards(recipe, lang)}
       <div class="case-visual-grid">
@@ -2484,6 +2571,40 @@ function handoffPanel(recipe, lang) {
     </div>`;
 }
 
+function acceptanceLedgerPanel(recipe, lang) {
+  const ledger = acceptanceLedger(recipe);
+  const isZh = lang === "zh";
+  const items = [
+    [b("材料文件", "Artifact Files"), b(String(artifactDefinitions(recipe).length), String(artifactDefinitions(recipe).length))],
+    [b("证据行", "Evidence Rows"), b(String(ledger.requiredEvidence.length), String(ledger.requiredEvidence.length))],
+    [b("验收命令", "Acceptance Commands"), b(String(ledger.acceptanceCommands[lang].length), String(ledger.acceptanceCommands[lang].length))],
+    [b("人工交接", "Human Handoff"), b(String(ledger.humanHandoff[lang].length), String(ledger.humanHandoff[lang].length))]
+  ];
+  const rows = [
+    [b("第一信号", "First Signal"), ledger.fieldSignals.firstSignal],
+    [b("完成信号", "Done Signal"), ledger.fieldSignals.doneSignal],
+    [b("风险等级", "Risk Level"), recipe.risk],
+    [b("总账文件", "Ledger File"), b("12-acceptance-ledger.json", "12-acceptance-ledger.json")]
+  ];
+
+  return `
+    <div class="ledger-panel">
+      <div class="ledger-stats">
+        ${items.map(([label, value]) => `
+          <article>
+            <span>${escapeHtml(textOf(label, lang))}</span>
+            <strong>${escapeHtml(textOf(value, lang))}</strong>
+          </article>
+        `).join("")}
+      </div>
+      ${tableHtml([
+        b("总账项", "Ledger Item"),
+        b("记录", "Record")
+      ], rows, lang, "evidence-table ledger-table")}
+      <a class="ledger-link" href="${relativeLink(recipe.path, `${artifactBase(recipe)}/12-acceptance-ledger.json`)}">${isZh ? "打开验收总账 JSON" : "Open acceptance ledger JSON"}</a>
+    </div>`;
+}
+
 function caseContent(recipe, lang) {
   const evidenceHeaders = [
     b("检查点", "Checkpoint"),
@@ -2571,6 +2692,11 @@ function caseContent(recipe, lang) {
       <h2>${isZh ? "质量评分" : "Quality Scorecard"}</h2>
       ${paragraph(b("质量评分不代表绝对正确，只用来快速查看材料边界、证据强度、复测清晰度和交付成熟度是否达标。", "The scorecard is not an absolute truth; it quickly shows whether material boundary, evidence strength, retest clarity, and delivery maturity meet the bar."), lang)}
       ${qualityScorecard(recipe, lang)}
+    </section>
+    <section>
+      <h2>${isZh ? "验收总账" : "Acceptance Ledger"}</h2>
+      ${paragraph(b("验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。", "The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record."), lang)}
+      ${acceptanceLedgerPanel(recipe, lang)}
     </section>
     <section>
       <h2>${isZh ? "结果样例" : "Result Sample"}</h2>
@@ -2945,7 +3071,7 @@ function homePage() {
     [b("自动质量检查", "Automated quality checks"), b("验证链接、双语覆盖、验收标准和禁用关键词。", "Validates links, bilingual coverage, acceptance criteria, and forbidden terms.")]
   ];
   const proofRows = [
-    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board.")],
+    [b("材料包", "Artifact pack"), b(`14 组 / ${caseRecipes.length * caseArtifactCount()} 个文件`, `14 sets / ${caseRecipes.length * caseArtifactCount()} files`), b("每个案例生成输入任务单、证据 CSV、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账和证据看板。", "Every recipe generates an input brief, evidence CSV, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, and evidence board.")],
     [b("现场记录", "Run log"), b("4 个节点", "4 checkpoints"), b("按时间记录范围锁定、环境核对、证据采集和终审判断。", "Records scope lock, environment check, evidence capture, and final review by time.")],
     [b("验收方式", "Acceptance"), b("命令 + 人工", "Commands + manual"), b("每篇都保留可复跑命令、人工检查步骤、失败修正和风险边界。", "Each page keeps rerunnable commands, manual checks, corrections, and risk boundaries.")]
   ];

@@ -1,0 +1,140 @@
+{
+  "slug": "deck-export-check",
+  "title": {
+    "zh": "01 演示稿生成与导出核查",
+    "en": "01 Deck Generation and Export Verification"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "低到中",
+    "en": "Low to medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "大纲锁定",
+        "en": "Outline locked"
+      },
+      "observation": {
+        "zh": "7 页结构，无价格、无客户名",
+        "en": "Seven-slide structure, no pricing, no customer names"
+      },
+      "evidenceFile": {
+        "zh": "slide-outline.md",
+        "en": "slide-outline.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "文件导出",
+        "en": "File export"
+      },
+      "observation": {
+        "zh": "PPTX 可打开，页数为 7",
+        "en": "PPTX opens and contains seven slides"
+      },
+      "evidenceFile": {
+        "zh": "deck-draft.pptx",
+        "en": "deck-draft.pptx"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "视觉抽查",
+        "en": "Visual spot check"
+      },
+      "observation": {
+        "zh": "数据页有一处正文过长，已缩短为两行",
+        "en": "Data slide had long body text and was shortened to two lines"
+      },
+      "evidenceFile": {
+        "zh": "data-slide-1440.png",
+        "en": "data-slide-1440.png"
+      },
+      "status": {
+        "zh": "修正后通过",
+        "en": "Passed after fix"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "人工确认",
+        "en": "Human confirmation"
+      },
+      "observation": {
+        "zh": "试用期、隐私表述、对外承诺待用户确认",
+        "en": "Trial period, privacy wording, and external claims need user confirmation"
+      },
+      "evidenceFile": {
+        "zh": "export-notes.md",
+        "en": "export-notes.md"
+      },
+      "status": {
+        "zh": "待确认",
+        "en": "Needs confirmation"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md",
+      "人工打开 deck-draft.pptx，确认 7 页均可显示且备注不为空。",
+      "人工检查 screenshots/cover.png、agenda.png、data.png、closing.png 是否无文字溢出。"
+    ],
+    "en": [
+      "ls out/deck-draft.pptx out/slide-checklist.md out/export-notes.md",
+      "Open deck-draft.pptx manually and confirm all seven slides display and notes are not empty.",
+      "Manually check screenshots/cover.png, agenda.png, data.png, and closing.png for no text overflow."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "演示稿可用于内部评审，不能直接对外发布。",
+      "用户需要确认试用期、隐私表述和素材授权。",
+      "若要改成正式销售材料，先补真实数据和品牌终审。"
+    ],
+    "en": [
+      "The deck is ready for internal review, not direct external publication.",
+      "The user must confirm trial wording, privacy wording, and asset rights.",
+      "To turn it into sales material, add real data and brand approval first."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "一份 800 字产品说明需要在当天交给团队做内部评审，要求 7 页以内且能导出。",
+      "en": "An 800-word product brief needed an internal review deck the same day, capped at seven slides and exportable."
+    },
+    "firstSignal": {
+      "zh": "第一轮生成 10 页，数据页正文在 1440px 预览里溢出。",
+      "en": "The first pass produced ten slides and the data slide overflowed in a 1440px preview."
+    },
+    "doneSignal": {
+      "zh": "最终 7 页均可打开，四张预览截图无溢出，1 项对外表述保留人工确认。",
+      "en": "The final seven slides opened correctly, four preview screenshots had no overflow, and one external-facing claim stayed under human confirmation."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

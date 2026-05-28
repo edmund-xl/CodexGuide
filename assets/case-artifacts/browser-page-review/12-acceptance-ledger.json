@@ -1,0 +1,140 @@
+{
+  "slug": "browser-page-review",
+  "title": {
+    "zh": "02 浏览器页面巡检与截图证据",
+    "en": "02 Browser Page Review with Screenshot Evidence"
+  },
+  "maturityScore": 95,
+  "risk": {
+    "key": "low",
+    "zh": "低",
+    "en": "Low"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "桌面首屏",
+        "en": "Desktop first view"
+      },
+      "observation": {
+        "zh": "主标题、侧栏和任务状态面板可见",
+        "en": "Main heading, sidebar, and task status panel are visible"
+      },
+      "evidenceFile": {
+        "zh": "home-desktop-1440.png",
+        "en": "home-desktop-1440.png"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "手机视口",
+        "en": "Mobile viewport"
+      },
+      "observation": {
+        "zh": "无横向滚动，导航按钮可展开",
+        "en": "No horizontal scrolling; nav button expands"
+      },
+      "evidenceFile": {
+        "zh": "case-mobile-390.png",
+        "en": "case-mobile-390.png"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "证据表",
+        "en": "Evidence table"
+      },
+      "observation": {
+        "zh": "表格在手机端可横向滚动，未撑破页面",
+        "en": "Table scrolls horizontally on mobile without breaking the page"
+      },
+      "evidenceFile": {
+        "zh": "case-table-mobile.png",
+        "en": "case-table-mobile.png"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "控制台",
+        "en": "Console"
+      },
+      "observation": {
+        "zh": "无 JavaScript 错误，资源均返回 200",
+        "en": "No JavaScript errors; assets return 200"
+      },
+      "evidenceFile": {
+        "zh": "console-summary.txt",
+        "en": "console-summary.txt"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/",
+      "浏览器桌面视口：1440x1000，截图 home-desktop-1440.png。",
+      "浏览器手机视口：390x900，检查 document.documentElement.scrollWidth 是否大于 window.innerWidth。"
+    ],
+    "en": [
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/",
+      "Browser desktop viewport: 1440x1000, capture home-desktop-1440.png.",
+      "Browser mobile viewport: 390x900, check whether document.documentElement.scrollWidth is greater than window.innerWidth."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "页面可交付，但手机端表格滚动提示建议补强。",
+      "截图只覆盖指定路径，未点击写入型控件。",
+      "后续改版时保留同一组视口，避免截图不可比。"
+    ],
+    "en": [
+      "The page is deliverable, but the mobile table scroll cue should be improved.",
+      "Screenshots cover only the specified path; write actions were not clicked.",
+      "Keep the same viewports in later redesigns so screenshots remain comparable."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "本地页面即将交付，需要确认桌面、手机、控制台和表格区域没有阻断问题。",
+      "en": "A local page was close to delivery and needed desktop, mobile, console, and table checks."
+    },
+    "firstSignal": {
+      "zh": "手机截图里表格可滚动，但缺少明显滚动提示。",
+      "en": "The mobile screenshot showed the table could scroll, but the scroll cue was weak."
+    },
+    "doneSignal": {
+      "zh": "页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。",
+      "en": "Page-level horizontal overflow was false, console errors were 0, and P0 issues were 0."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

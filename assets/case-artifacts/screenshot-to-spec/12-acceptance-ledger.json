@@ -1,0 +1,140 @@
+{
+  "slug": "screenshot-to-spec",
+  "title": {
+    "zh": "07 设计截图转实现规格",
+    "en": "07 Design Screenshot to Implementation Spec"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "颜色规则",
+        "en": "Color rules"
+      },
+      "observation": {
+        "zh": "底色、面板、边框、强调色已映射到 CSS token",
+        "en": "Background, panels, borders, and accent mapped to CSS tokens"
+      },
+      "evidenceFile": {
+        "zh": "implementation-spec.md",
+        "en": "implementation-spec.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "组件状态",
+        "en": "Component states"
+      },
+      "observation": {
+        "zh": "导航、按钮、卡片、表格、代码块均有状态说明",
+        "en": "Navigation, buttons, cards, tables, and code blocks have state notes"
+      },
+      "evidenceFile": {
+        "zh": "component-checklist.md",
+        "en": "component-checklist.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "移动端",
+        "en": "Mobile"
+      },
+      "observation": {
+        "zh": "390px 下按钮换行、表格滚动、侧栏收起",
+        "en": "At 390px, buttons wrap, tables scroll, sidebar collapses"
+      },
+      "evidenceFile": {
+        "zh": "mobile-390.png",
+        "en": "mobile-390.png"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "不可复用项",
+        "en": "Non-reusable items"
+      },
+      "observation": {
+        "zh": "品牌名、真实数值、图片和原文案均未进入规格",
+        "en": "Brand names, real numbers, images, and original copy are not in the spec"
+      },
+      "evidenceFile": {
+        "zh": "risk-notes.md",
+        "en": "risk-notes.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "人工检查 1440x1000 截图：导航、主内容、证据表、按钮无重叠。",
+      "人工检查 390x900 截图：无页面级横向溢出，长命令可读。",
+      "rg -n \"目标品牌名|真实业务词\" implementation-spec.md component-checklist.md"
+    ],
+    "en": [
+      "Manually inspect 1440x1000 screenshots: nav, content, evidence table, and buttons have no overlap.",
+      "Manually inspect 390x900 screenshots: no page-level horizontal overflow and long commands remain readable.",
+      "rg -n \"target brand|real business term\" implementation-spec.md component-checklist.md"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "截图不能证明交互状态，缺失状态必须标为待确认。",
+      "规格只写可实现信息，不臆测业务规则。",
+      "实现后必须用同一视口重新截图对比。"
+    ],
+    "en": [
+      "Screenshots cannot prove interaction states, so missing states must be marked for confirmation.",
+      "The spec records implementable details, not guessed business rules.",
+      "After implementation, recapture the same viewports for comparison."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "只有目标截图和当前页面截图，需要转成开发可执行的组件规格。",
+      "en": "Only target and current screenshots were available, requiring an implementable component specification."
+    },
+    "firstSignal": {
+      "zh": "截图里按钮、筛选栏和表格密度没有文字规格。",
+      "en": "Buttons, filters, and table density were visible in screenshots but lacked written specs."
+    },
+    "doneSignal": {
+      "zh": "输出 8 个组件、5 个状态、3 个断点的实现清单。",
+      "en": "The output included an implementation checklist for eight components, five states, and three breakpoints."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

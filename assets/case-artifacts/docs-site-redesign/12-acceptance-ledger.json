@@ -1,0 +1,140 @@
+{
+  "slug": "docs-site-redesign",
+  "title": {
+    "zh": "04 本地文档站批量改版",
+    "en": "04 Local Documentation Site Redesign"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "页面数量",
+        "en": "Page count"
+      },
+      "observation": {
+        "zh": "HTML 页面仍为 44",
+        "en": "HTML page count remains 44"
+      },
+      "evidenceFile": {
+        "zh": "npm run check",
+        "en": "npm run check"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "链接",
+        "en": "Links"
+      },
+      "observation": {
+        "zh": "导航、搜索、README 链接均指向现有文件",
+        "en": "Navigation, search, and README links point to existing files"
+      },
+      "evidenceFile": {
+        "zh": "verify-site.mjs",
+        "en": "verify-site.mjs"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "移动端",
+        "en": "Mobile"
+      },
+      "observation": {
+        "zh": "390px 下无页面横向溢出",
+        "en": "No page-level horizontal overflow at 390px"
+      },
+      "evidenceFile": {
+        "zh": "mobile screenshots",
+        "en": "mobile screenshots"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "截图",
+        "en": "Screenshots"
+      },
+      "observation": {
+        "zh": "README 五张截图均为新版深色界面",
+        "en": "All five README screenshots show the redesigned dark interface"
+      },
+      "evidenceFile": {
+        "zh": "assets/screenshots/",
+        "en": "assets/screenshots/"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "npm run build",
+      "npm run check",
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/"
+    ],
+    "en": [
+      "npm run build",
+      "npm run check",
+      "curl -I -L --max-time 15 http://127.0.0.1:4173/CodexGuide/"
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "README 截图必须和当前构建一致。",
+      "每次生成后都要重新跑链接和禁用词检查。",
+      "视觉改版不应改变原始发布路径。"
+    ],
+    "en": [
+      "README screenshots must match the current build.",
+      "Run link and blocked-term checks after each generation.",
+      "Visual redesign should not change the publish path."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "站点需要从浅色文档模板升级成深色产品工作台，同时不能破坏发布链路。",
+      "en": "The site needed to move from a light documentation template to a dark product workbench without breaking publishing."
+    },
+    "firstSignal": {
+      "zh": "第一次改版后案例详情信息密度不足，案例总览缺少任务矩阵。",
+      "en": "After the first redesign, recipe details lacked enough density and the index lacked a task matrix."
+    },
+    "doneSignal": {
+      "zh": "44 个页面生成通过，案例页有证据表、命令块、评分和材料包。",
+      "en": "All 44 pages generated successfully, and recipe pages include evidence tables, command blocks, scorecards, and artifact packs."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

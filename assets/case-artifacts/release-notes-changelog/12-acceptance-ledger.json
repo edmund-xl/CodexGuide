@@ -1,0 +1,140 @@
+{
+  "slug": "release-notes-changelog",
+  "title": {
+    "zh": "11 发布说明与变更日志生成",
+    "en": "11 Release Notes and Changelog Drafting"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "提交范围",
+        "en": "Commit range"
+      },
+      "observation": {
+        "zh": "读取 18 个提交，过滤 4 个维护提交",
+        "en": "Read 18 commits and filtered four maintenance commits"
+      },
+      "evidenceFile": {
+        "zh": "git log",
+        "en": "git log"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "分类",
+        "en": "Categorization"
+      },
+      "observation": {
+        "zh": "新增 3、修复 5、改进 4、文档 2",
+        "en": "Added 3, fixed 5, improved 4, docs 2"
+      },
+      "evidenceFile": {
+        "zh": "change-categories.md",
+        "en": "change-categories.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "公开版",
+        "en": "Public notes"
+      },
+      "observation": {
+        "zh": "每条均有提交或 Issue 对应",
+        "en": "Every item maps to a commit or issue"
+      },
+      "evidenceFile": {
+        "zh": "release-notes.md",
+        "en": "release-notes.md"
+      },
+      "status": {
+        "zh": "待确认语气",
+        "en": "Tone needs confirmation"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "内部版",
+        "en": "Internal changelog"
+      },
+      "observation": {
+        "zh": "保留风险、迁移和排障线索",
+        "en": "Keeps risk, migration, and troubleshooting cues"
+      },
+      "evidenceFile": {
+        "zh": "internal-changelog.md",
+        "en": "internal-changelog.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "git log --oneline v0.8.0..HEAD",
+      "git diff --name-only v0.8.0..HEAD",
+      "人工核对 release-notes.md 中每条是否能回到提交或 Issue。"
+    ],
+    "en": [
+      "git log --oneline v0.8.0..HEAD",
+      "git diff --name-only v0.8.0..HEAD",
+      "Manually verify each release-notes.md item maps back to a commit or issue."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "用户版不暴露内部工单号。",
+      "风险项先给维护者看，不直接写进公告。",
+      "发布日期和影响范围必须人工确认。"
+    ],
+    "en": [
+      "The user-facing version does not expose internal ticket IDs.",
+      "Risk items go to maintainers first, not directly into announcements.",
+      "Release date and impact scope require human confirmation."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "版本发布前需要从提交和工单整理发布说明，同时区分用户可见变化和内部变更。",
+      "en": "Before release, commits and tickets needed release notes that separate user-visible changes from internal changes."
+    },
+    "firstSignal": {
+      "zh": "原始提交里混有重构、修复和文案调整，不能直接贴给用户。",
+      "en": "Raw commits mixed refactors, fixes, and copy edits, so they could not be pasted to users."
+    },
+    "doneSignal": {
+      "zh": "输出用户版、内部版和待确认清单三份内容。",
+      "en": "The output included user-facing notes, internal notes, and a confirmation list."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

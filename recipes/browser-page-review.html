@@ -216,7 +216,7 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
 
     <section>
       <h2>实测材料包</h2>
-      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图和证据看板。读者可以先看材料，再替换成自己的任务。</p>
+      <p>每个案例都提供一组可打开的演示文件：输入任务单、证据表、结果片段、验收 runbook、执行转录、交付预览、前后对比、质量评分、操作回放、人工交接、现场图、验收总账和证据看板。读者可以先看材料，再替换成自己的任务。</p>
 
     <div class="artifact-grid">
 
@@ -284,6 +284,12 @@ URL: http://127.0.0.1:4173/recipes/pages-deploy-diagnosis.html
           <span>现场</span>
           <strong>现场图</strong>
           <small>用终端、输出和交接提示压缩展示一次任务现场。</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/12-acceptance-ledger.json">
+          <span>总账</span>
+          <strong>验收总账</strong>
+          <small>把证据、命令、人工交接、现场信号和材料清单整理成机器可读记录。</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
@@ -480,6 +486,56 @@ P2 文字瑕疵：2 - 两处按钮文案可缩短
           </article>
 
       </div>
+    </div>
+    </section>
+    <section>
+      <h2>验收总账</h2>
+      <p>验收总账把这篇案例的材料数量、证据行、复跑命令、人工交接和现场信号压缩成可复核记录。</p>
+
+    <div class="ledger-panel">
+      <div class="ledger-stats">
+
+          <article>
+            <span>材料文件</span>
+            <strong>13</strong>
+          </article>
+
+          <article>
+            <span>证据行</span>
+            <strong>4</strong>
+          </article>
+
+          <article>
+            <span>验收命令</span>
+            <strong>3</strong>
+          </article>
+
+          <article>
+            <span>人工交接</span>
+            <strong>3</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table ledger-table">
+        <thead>
+          <tr><th>总账项</th><th>记录</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>第一信号</td><td>手机截图里表格可滚动，但缺少明显滚动提示。</td></tr>
+
+            <tr><td>完成信号</td><td>页面级横向溢出为 false，控制台错误为 0，P0 问题为 0。</td></tr>
+
+            <tr><td>风险等级</td><td>低</td></tr>
+
+            <tr><td>总账文件</td><td>12-acceptance-ledger.json</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <a class="ledger-link" href="../assets/case-artifacts/browser-page-review/12-acceptance-ledger.json">打开验收总账 JSON</a>
     </div>
     </section>
     <section>
@@ -694,7 +750,7 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
 
     <section>
       <h2>Lab Artifact Pack</h2>
-      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
+      <p>Every recipe includes openable demo files: input brief, evidence table, result sample, acceptance runbook, execution transcript, delivery preview, before/after file, quality scorecard, operation replay, human handoff, field snapshot, acceptance ledger, and evidence board. Readers can inspect the pack before adapting it to their own task.</p>
 
     <div class="artifact-grid">
 
@@ -762,6 +818,12 @@ Prohibited actions: do not submit forms, change data, or trigger account actions
           <span>Field</span>
           <strong>Field Snapshot</strong>
           <small>Compress one task run into terminal, output, and handoff signals.</small>
+        </a>
+
+        <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/12-acceptance-ledger.json">
+          <span>Ledger</span>
+          <strong>Acceptance Ledger</strong>
+          <small>Collect evidence, commands, human handoff, field signals, and artifact inventory into a machine-readable record.</small>
         </a>
 
         <a class="artifact-card" href="../assets/case-artifacts/browser-page-review/evidence-board.svg">
@@ -958,6 +1020,56 @@ Passed checks: local service 200, no desktop overlap, no mobile page overflow</t
           </article>
 
       </div>
+    </div>
+    </section>
+    <section>
+      <h2>Acceptance Ledger</h2>
+      <p>The acceptance ledger compresses artifact count, evidence rows, rerun commands, human handoff, and field signals into a reviewable record.</p>
+
+    <div class="ledger-panel">
+      <div class="ledger-stats">
+
+          <article>
+            <span>Artifact Files</span>
+            <strong>13</strong>
+          </article>
+
+          <article>
+            <span>Evidence Rows</span>
+            <strong>4</strong>
+          </article>
+
+          <article>
+            <span>Acceptance Commands</span>
+            <strong>3</strong>
+          </article>
+
+          <article>
+            <span>Human Handoff</span>
+            <strong>3</strong>
+          </article>
+
+      </div>
+
+    <div class="table-wrap">
+      <table class="evidence-table ledger-table">
+        <thead>
+          <tr><th>Ledger Item</th><th>Record</th></tr>
+        </thead>
+        <tbody>
+
+            <tr><td>First Signal</td><td>The mobile screenshot showed the table could scroll, but the scroll cue was weak.</td></tr>
+
+            <tr><td>Done Signal</td><td>Page-level horizontal overflow was false, console errors were 0, and P0 issues were 0.</td></tr>
+
+            <tr><td>Risk Level</td><td>Low</td></tr>
+
+            <tr><td>Ledger File</td><td>12-acceptance-ledger.json</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+      <a class="ledger-link" href="../assets/case-artifacts/browser-page-review/12-acceptance-ledger.json">Open acceptance ledger JSON</a>
     </div>
     </section>
     <section>

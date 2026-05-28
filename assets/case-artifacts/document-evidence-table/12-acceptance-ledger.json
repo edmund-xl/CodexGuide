@@ -1,0 +1,140 @@
+{
+  "slug": "document-evidence-table",
+  "title": {
+    "zh": "09 文档与 PDF 摘要到证据表",
+    "en": "09 Document and PDF Summary to Evidence Table"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "结构识别",
+        "en": "Structure mapping"
+      },
+      "observation": {
+        "zh": "识别 4 个章节，页码 1-18",
+        "en": "Identified four sections across pages 1-18"
+      },
+      "evidenceFile": {
+        "zh": "summary-brief.md",
+        "en": "summary-brief.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "证据抽取",
+        "en": "Evidence extraction"
+      },
+      "observation": {
+        "zh": "得到 23 条单主张证据",
+        "en": "Extracted 23 single-claim evidence rows"
+      },
+      "evidenceFile": {
+        "zh": "evidence-table.md",
+        "en": "evidence-table.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "问题集中",
+        "en": "Question capture"
+      },
+      "observation": {
+        "zh": "7 条责任人和日期待确认",
+        "en": "Seven owner/date items need confirmation"
+      },
+      "evidenceFile": {
+        "zh": "open-questions.md",
+        "en": "open-questions.md"
+      },
+      "status": {
+        "zh": "待确认",
+        "en": "Needs confirmation"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "高风险字段",
+        "en": "High-risk fields"
+      },
+      "observation": {
+        "zh": "金额、日期、责任均单独成行",
+        "en": "Amounts, dates, and owners each have separate rows"
+      },
+      "evidenceFile": {
+        "zh": "evidence-table.md",
+        "en": "evidence-table.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "人工检查 evidence-table.md 每行是否包含页码和摘录线索。",
+      "rg -n \"待确认|低|中\" evidence-table.md open-questions.md",
+      "人工回到 PDF 核对所有金额、日期、责任人和限制条件。"
+    ],
+    "en": [
+      "Manually check every evidence-table.md row for page number and excerpt cue.",
+      "rg -n \"待确认|Low|Medium\" evidence-table.md open-questions.md",
+      "Manually return to the PDF to verify all amounts, dates, owners, and constraints."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "无法读取的扫描页不做事实结论。",
+      "表格结论必须能回到页码和摘录。",
+      "摘要可作为草稿，不能替代人工阅读原文。"
+    ],
+    "en": [
+      "Do not make factual claims from unreadable scanned pages.",
+      "Table claims must trace back to page and excerpt.",
+      "The summary is a draft aid, not a replacement for human reading."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "多份文档摘要需要转成证据表，要求能追溯到页码和原句位置。",
+      "en": "Several document summaries needed an evidence table traceable to page numbers and original wording."
+    },
+    "firstSignal": {
+      "zh": "初稿把事实和推断混在同一列，无法复核。",
+      "en": "The first draft mixed facts and inference in one column, making review difficult."
+    },
+    "doneSignal": {
+      "zh": "每行证据都有页码、摘录、判断和人工复核状态。",
+      "en": "Every evidence row had a page, excerpt, judgment, and human review status."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

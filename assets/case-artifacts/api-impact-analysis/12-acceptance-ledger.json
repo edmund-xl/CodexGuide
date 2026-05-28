@@ -1,0 +1,140 @@
+{
+  "slug": "api-impact-analysis",
+  "title": {
+    "zh": "10 API 变更影响分析",
+    "en": "10 API Change Impact Analysis"
+  },
+  "maturityScore": 93,
+  "risk": {
+    "key": "high",
+    "zh": "中到高",
+    "en": "Medium to high"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "端点变更",
+        "en": "Endpoint change"
+      },
+      "observation": {
+        "zh": "GET /v1/tasks 新增 archived 状态",
+        "en": "GET /v1/tasks adds archived status"
+      },
+      "evidenceFile": {
+        "zh": "api-impact.md",
+        "en": "api-impact.md"
+      },
+      "status": {
+        "zh": "需要测试",
+        "en": "Needs test"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "字段变更",
+        "en": "Field change"
+      },
+      "observation": {
+        "zh": "priority 从 string 变 enum，类型校验受影响",
+        "en": "priority changes from string to enum and affects type validation"
+      },
+      "evidenceFile": {
+        "zh": "call-sites.md",
+        "en": "call-sites.md"
+      },
+      "status": {
+        "zh": "需要修改",
+        "en": "Needs change"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "错误码",
+        "en": "Error code"
+      },
+      "observation": {
+        "zh": "429 新增 retry_after_ms，重试逻辑可优化",
+        "en": "429 adds retry_after_ms and retry logic can improve"
+      },
+      "evidenceFile": {
+        "zh": "test-matrix.md",
+        "en": "test-matrix.md"
+      },
+      "status": {
+        "zh": "需要测试",
+        "en": "Needs test"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "调用点",
+        "en": "Call sites"
+      },
+      "observation": {
+        "zh": "发现 3 个直接调用、2 个测试断言、1 篇文档",
+        "en": "Found three direct calls, two test assertions, and one doc page"
+      },
+      "evidenceFile": {
+        "zh": "rg output",
+        "en": "rg output"
+      },
+      "status": {
+        "zh": "已记录",
+        "en": "Recorded"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs",
+      "rg -n \"archived|priority\" tests src",
+      "人工确认版本号、环境、上线窗口和回退方式。"
+    ],
+    "en": [
+      "rg -n \"GET /v1/tasks|POST /v1/tasks|priority|retry_after_ms|429\" src tests docs",
+      "rg -n \"archived|priority\" tests src",
+      "Manually confirm version, environment, release window, and rollback method."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "没有 owner 的调用点不能直接关闭。",
+      "字段兼容策略需要产品和后端共同确认。",
+      "影响分析完成不等于代码已经修改。"
+    ],
+    "en": [
+      "Call sites without owners cannot be closed.",
+      "The compatibility policy needs product and backend confirmation.",
+      "Impact analysis completion does not mean code has been changed."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "接口字段即将调整，需要判断页面、测试、文档和调用方会受哪些影响。",
+      "en": "An API field change was planned, requiring impact analysis across pages, tests, docs, and callers."
+    },
+    "firstSignal": {
+      "zh": "字段名变化影响了 5 个调用点，其中 2 个在测试里。",
+      "en": "The field rename affected five call sites, two of them in tests."
+    },
+    "doneSignal": {
+      "zh": "影响表列出 owner、文件路径、修改建议和验证命令。",
+      "en": "The impact table listed owner, file path, change suggestion, and verification command."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

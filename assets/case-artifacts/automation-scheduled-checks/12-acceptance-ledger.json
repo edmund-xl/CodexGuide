@@ -1,0 +1,140 @@
+{
+  "slug": "automation-scheduled-checks",
+  "title": {
+    "zh": "12 自动化提醒与定期检查",
+    "en": "12 Automation Reminders and Scheduled Checks"
+  },
+  "maturityScore": 94,
+  "risk": {
+    "key": "medium",
+    "zh": "中",
+    "en": "Medium"
+  },
+  "requiredEvidence": [
+    {
+      "checkpoint": {
+        "zh": "规则",
+        "en": "Rules"
+      },
+      "observation": {
+        "zh": "检查 3 个页面，均需返回 200",
+        "en": "Check three pages and each must return 200"
+      },
+      "evidenceFile": {
+        "zh": "automation-brief.md",
+        "en": "automation-brief.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "模拟输出",
+        "en": "Mock output"
+      },
+      "observation": {
+        "zh": "结果控制在 8 行内，含异常和建议",
+        "en": "Result stays within eight lines and includes anomalies and suggestions"
+      },
+      "evidenceFile": {
+        "zh": "mock-result.md",
+        "en": "mock-result.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "暂停条件",
+        "en": "Pause condition"
+      },
+      "observation": {
+        "zh": "连续三次无异常可降频或暂停",
+        "en": "After three no-anomaly runs, reduce frequency or pause"
+      },
+      "evidenceFile": {
+        "zh": "pause-rules.md",
+        "en": "pause-rules.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    },
+    {
+      "checkpoint": {
+        "zh": "越权检查",
+        "en": "Authority check"
+      },
+      "observation": {
+        "zh": "无发布、删除、发送或付款动作",
+        "en": "No publish, delete, send, or payment action"
+      },
+      "evidenceFile": {
+        "zh": "automation-brief.md",
+        "en": "automation-brief.md"
+      },
+      "status": {
+        "zh": "通过",
+        "en": "Pass"
+      }
+    }
+  ],
+  "acceptanceCommands": {
+    "zh": [
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html",
+      "人工确认自动化输出没有发布、删除、发送或付款动作。"
+    ],
+    "en": [
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/",
+      "curl -I -L --max-time 20 https://edmund-xl.github.io/CodexGuide/recipes/index.html",
+      "Manually confirm automation output contains no publish, delete, send, or payment action."
+    ]
+  },
+  "humanHandoff": {
+    "zh": [
+      "自动化不能替代需要人工判断的动作。",
+      "没有退出条件的定期任务不要长期保留。",
+      "失败提醒应说明证据和下一步，而不是只报错。"
+    ],
+    "en": [
+      "Automation cannot replace actions requiring human judgment.",
+      "Do not keep scheduled tasks without an exit condition indefinitely.",
+      "Failure alerts should include evidence and next action, not just an error."
+    ]
+  },
+  "fieldSignals": {
+    "trigger": {
+      "zh": "重复检查任务容易遗漏，需要转成定期提醒并保留失败处理方式。",
+      "en": "A repeated check was easy to miss and needed a scheduled reminder with failure handling."
+    },
+    "firstSignal": {
+      "zh": "原始需求只有“每天看一下”，没有说什么时候停。",
+      "en": "The original ask only said 'check daily' and did not define when to stop."
+    },
+    "doneSignal": {
+      "zh": "自动化记录包含频率、检查内容、停止条件和失败摘要格式。",
+      "en": "The automation record includes cadence, checks, stop condition, and failure-summary format."
+    }
+  },
+  "artifacts": [
+    "01-input-brief.md",
+    "02-evidence-table.csv",
+    "03-result-sample.md",
+    "04-acceptance-runbook.md",
+    "05-execution-transcript.log",
+    "06-delivery-preview.md",
+    "07-before-after.md",
+    "08-quality-scorecard.json",
+    "09-operation-replay.md",
+    "10-human-handoff.md",
+    "11-field-snapshot.svg",
+    "12-acceptance-ledger.json",
+    "evidence-board.svg"
+  ]
+}

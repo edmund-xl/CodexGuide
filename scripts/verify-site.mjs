@@ -31,6 +31,7 @@ const caseArtifactFiles = [
   "09-operation-replay.md",
   "10-human-handoff.md",
   "11-field-snapshot.svg",
+  "12-acceptance-ledger.json",
   "evidence-board.svg"
 ];
 const caseLibraryManifest = "assets/case-artifacts/index.json";
@@ -82,6 +83,8 @@ const caseRequiredMarkers = [
   "Before / After",
   "质量评分",
   "Quality Scorecard",
+  "验收总账",
+  "Acceptance Ledger",
   "case-dashboard",
   "artifact-grid",
   "case-visual",
@@ -93,6 +96,8 @@ const caseRequiredMarkers = [
   "delivery-preview",
   "before-after-table",
   "quality-scorecard",
+  "ledger-panel",
+  "ledger-table",
   "evidence-table",
   "command-panel",
   "output-sample",
@@ -182,8 +187,20 @@ if (!files.includes(caseLibraryManifest)) {
   if (manifest.artifactCount !== casePages.length * caseArtifactFiles.length) {
     errors.push(`Recipe library manifest total artifact count mismatch: ${manifest.artifactCount}`);
   }
+  if (!Array.isArray(manifest.requiredArtifactFiles) || manifest.requiredArtifactFiles.length !== caseArtifactFiles.length) {
+    errors.push("Recipe library manifest required artifact files are invalid.");
+  }
   if (!Array.isArray(manifest.cases) || manifest.cases.length !== casePages.length) {
     errors.push("Recipe library manifest cases array is invalid.");
+  } else {
+    for (const item of manifest.cases) {
+      if (!item.fieldSnapshot || !item.acceptanceLedger) {
+        errors.push(`Recipe library manifest missing field snapshot or acceptance ledger for ${item.slug}.`);
+      }
+      if (item.artifactCount !== caseArtifactFiles.length) {
+        errors.push(`Recipe library manifest artifact count mismatch for ${item.slug}.`);
+      }
+    }
   }
 }
 
